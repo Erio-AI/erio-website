@@ -4834,7 +4834,4 @@ body {
     padding-left: 28px !important;
     padding-right: 28px !important;
   }
-  /* .builds has padding: 45px 0 — give it side padding so the cards
-     inside don't bleed to the screen edge on mobile. */
-  .builds { padding-left: 28px !important; padding-right: 28px !important; }
 }
