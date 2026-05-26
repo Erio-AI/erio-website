@@ -2745,15 +2745,15 @@ a.cw-chat-btn { text-decoration: none; }
    sized for desktop. Scope: only <= 720px.
 ============================================================ */
 @media (max-width: 720px) {
-  /* let the stage flex to its content instead of a fixed 5056:3392 box,
-     and break out of .hero's 36px horizontal padding (≤880px breakpoint
-     in styles.css) so the container's outer edge sits at the same 22px
-     viewport inset that the SEO / SVP / etc. paragraph sections use. */
+  /* let the stage flex to its content instead of a fixed 5056:3392 box.
+     The .hero parent already provides the uniform 28px viewport inset
+     (set in styles.css mobile override), so the stage sits flush inside
+     that — no negative breakout margins. */
   .cw-stage {
     aspect-ratio: auto;
     width: auto;
-    margin-left: -14px;
-    margin-right: -14px;
+    margin-left: 0;
+    margin-right: 0;
     padding: 22px 18px 36px;
     border-radius: 22px;
     grid-template-columns: 1fr;
@@ -2815,9 +2815,9 @@ a.cw-chat-btn { text-decoration: none; }
 }
 
 @media (max-width: 420px) {
-  /* ≤520px in styles.css drops .hero padding to 32px sides — re-align
-     the stage edge to the section paragraphs' 22px inset. */
-  .cw-stage { margin-left: -10px; margin-right: -10px; padding: 16px 14px 28px; gap: 14px; }
+  /* small phones — just tighten internal stage padding; .hero already
+     provides the uniform 28px viewport inset. */
+  .cw-stage { margin-left: 0; margin-right: 0; padding: 16px 14px 28px; gap: 14px; }
   .cw-headline { font-size: 32px; }
   .cw-hero-actions { flex-direction: column; }
   .cw-btn { width: 100%; }
