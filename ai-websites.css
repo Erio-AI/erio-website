@@ -2818,3 +2818,14 @@ a.cw-chat-btn { text-decoration: none; }
   .cw-feed-scroll { height: 500px; }
   .cw-avatars span { width: 24px; height: 24px; margin-left: -8px; }
 }
+
+/* ============================================================
+   MOBILE: content (copy) always above its animation (viz)
+   Applies to all six alternating sections on both ai-websites
+   and ai-employees. The desktop CSS keeps DOM order — we use
+   `order` to flip viz below copy on mobile only.
+============================================================ */
+@media (max-width: 900px) {
+  .seo-copy, .svp-copy, .spd-copy, .frs-copy, .aiw-copy, .prm-copy { order: 0; }
+  .seo-viz,  .svp-viz,  .spd-viz,  .frs-viz,  .aiw-viz,  .prm-viz  { order: 1; }
+}
