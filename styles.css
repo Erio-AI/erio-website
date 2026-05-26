@@ -4803,12 +4803,12 @@ body {
 @media (max-width: 760px) {
   .voice { padding: 40px 28px; }
   .voice-stage { padding: 60px 0; }
-  .voice-hex { width: 475px; height: 475px; }
+  .voice-hex { width: 475px; height: 475px; top: calc(54% - 50px); }
 }
 @media (min-width: 761px) {
   /* desktop only: drop the spinning hexagon ~25px and move its centred glow
      down by the same amount so the glow stays centred on the hexagon */
-  .voice-hex { top: calc(54% - 5px); }
+  .voice-hex { top: calc(54% + 25px); }
   .voice-stage::before {
     background: radial-gradient(42% 46% at 50% calc(50% + 25px), rgba(64, 235, 255, 0.22), transparent 72%);
   }
