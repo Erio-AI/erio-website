@@ -2836,5 +2836,5 @@ a.cw-chat-btn { text-decoration: none; }
   .seo-viz,  .svp-viz,  .spd-viz,  .frs-viz,  .aiw-viz,  .prm-viz  { order: 1; }
   /* ai-employees [LIVE CALL ANALYTICS] only: halve the gap between
      the "Total visibility…" callout and the dashboard animation. */
-  .aiw--dash .aiw-wrap { gap: 24px; }
+  .aiw--dash .aiw-wrap { gap: 12px; }
 }
