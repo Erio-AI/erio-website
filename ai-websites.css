@@ -374,7 +374,7 @@
 .cw-field-box {
   display: flex; align-items: center; gap: 9px;
   padding: 11px 13px; border-radius: 11px; min-width: 0;
-  width: 100%; box-sizing: border-box;
+  min-height: 42px; box-sizing: border-box;
   background: rgba(255,255,255,0.035);
   border: 1px solid rgba(120,200,222,0.16);
   transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
