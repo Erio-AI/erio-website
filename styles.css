@@ -4832,7 +4832,13 @@ body {
   .finalcta,
   .voice,
   .pp-body,
-  .pkg-pricing {
+  .pkg-pricing,
+  .seo,
+  .svp,
+  .spd,
+  .frs,
+  .aiw,
+  .prm {
     padding-left: 28px !important;
     padding-right: 28px !important;
   }
