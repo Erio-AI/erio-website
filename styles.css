@@ -4834,4 +4834,12 @@ body {
     padding-left: 28px !important;
     padding-right: 28px !important;
   }
+  /* on mobile, B-row should sit in the same visual container as A —
+     strip its standalone glass box (background/border/padding). */
+  .bab-row-win {
+    padding: 0;
+    border: 0;
+    background: none;
+    border-radius: 0;
+  }
 }
