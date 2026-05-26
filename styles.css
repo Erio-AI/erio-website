@@ -4842,6 +4842,12 @@ body {
     padding-left: 28px !important;
     padding-right: 28px !important;
   }
+  /* ai-employees only: the embedded LeadConnector chat orb was getting
+     barely clipped at 28px sides — give the hero 22px so it fits. */
+  .hero--employees {
+    padding-left: 22px !important;
+    padding-right: 22px !important;
+  }
   /* on mobile, B-row should sit in the same visual container as A —
      strip its standalone glass box (background/border/padding). */
   .bab-row-win {
