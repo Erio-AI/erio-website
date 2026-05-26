@@ -4813,3 +4813,28 @@ body {
     background: radial-gradient(42% 46% at 50% calc(50% + 25px), rgba(64, 235, 255, 0.22), transparent 72%);
   }
 }
+
+/* ============================================================
+   MOBILE — uniform 28px side spacing across every home-page
+   section. Overrides the various 24/32/36/48px values set in
+   earlier breakpoints. Keeps top/bottom paddings intact via
+   per-section rules that only touch left/right.
+============================================================ */
+@media (max-width: 880px) {
+  .hero,
+  .logos-strip,
+  .problem,
+  .growth,
+  .benefits,
+  .whyerio,
+  .howit,
+  .faq,
+  .finalcta,
+  .voice {
+    padding-left: 28px !important;
+    padding-right: 28px !important;
+  }
+  /* .builds has padding: 45px 0 — give it side padding so the cards
+     inside don't bleed to the screen edge on mobile. */
+  .builds { padding-left: 28px !important; padding-right: 28px !important; }
+}
