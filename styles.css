@@ -4831,7 +4831,8 @@ body {
   .faq,
   .finalcta,
   .voice,
-  .pp-body {
+  .pp-body,
+  .pkg-pricing {
     padding-left: 28px !important;
     padding-right: 28px !important;
   }
