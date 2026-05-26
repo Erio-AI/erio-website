@@ -4803,7 +4803,7 @@ body {
 @media (max-width: 760px) {
   .voice { padding: 40px 28px; }
   .voice-stage { padding: 60px 0; }
-  .voice-hex { width: 475px; height: 475px; top: calc(54% - 20px); }
+  .voice-hex { width: 475px; height: 475px; top: calc(54% - 10px); }
 }
 @media (min-width: 761px) {
   /* desktop only: drop the spinning hexagon ~25px and move its centred glow
