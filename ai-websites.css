@@ -1186,7 +1186,7 @@ a.cw-chat-btn { text-decoration: none; }
   .svp-wrap { grid-template-columns: 1fr; gap: 48px; }
   .svp-viz { max-width: 340px; order: -1; }
   .svp-copy { max-width: 600px; margin: 0 auto; }
-  .svp-chip.c1 { right: -2%; top: calc(10% - 24px + 36px); }
+  .svp-chip.c1 { right: -2%; top: calc(10% - 24px + 84px); }
   .svp-chip.c2 { left: -2%; }
 }
 
