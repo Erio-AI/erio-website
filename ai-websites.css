@@ -2834,4 +2834,7 @@ a.cw-chat-btn { text-decoration: none; }
 @media (max-width: 900px) {
   .seo-copy, .svp-copy, .spd-copy, .frs-copy, .aiw-copy, .prm-copy { order: 0; }
   .seo-viz,  .svp-viz,  .spd-viz,  .frs-viz,  .aiw-viz,  .prm-viz  { order: 1; }
+  /* ai-employees [LIVE CALL ANALYTICS] only: halve the gap between
+     the "Total visibility…" callout and the dashboard animation. */
+  .aiw--dash .aiw-wrap { gap: 24px; }
 }
