@@ -4808,7 +4808,7 @@ body {
 @media (min-width: 761px) {
   /* desktop only: drop the spinning hexagon ~25px and move its centred glow
      down by the same amount so the glow stays centred on the hexagon */
-  .voice-hex { top: calc(54% + 10px); }
+  .voice-hex { top: calc(54% - 5px); }
   .voice-stage::before {
     background: radial-gradient(42% 46% at 50% calc(50% + 25px), rgba(64, 235, 255, 0.22), transparent 72%);
   }
