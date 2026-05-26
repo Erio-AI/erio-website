@@ -1186,7 +1186,7 @@ a.cw-chat-btn { text-decoration: none; }
   .svp-wrap { grid-template-columns: 1fr; gap: 48px; }
   .svp-viz { max-width: 340px; order: -1; }
   .svp-copy { max-width: 600px; margin: 0 auto; }
-  .svp-chip.c1 { right: -2%; }
+  .svp-chip.c1 { right: -2%; top: calc(10% - 24px + 36px); }
   .svp-chip.c2 { left: -2%; }
 }
 
@@ -2005,7 +2005,12 @@ a.cw-chat-btn { text-decoration: none; }
   .prm-viz { max-width: 350px; order: -1; }
   .prm-copy { max-width: 600px; margin: 0 auto; }
   .prm-chip.c1 { right: -2%; }
-  .prm-chip.c2 { left: -2%; }
+  /* "Higher value" chip: only `left: -2%` was being added on top of the
+     desktop `right: -4%`, which stretched the chip across the whole viz.
+     Reset `right`, anchor at horizontal center, and use the standalone
+     `translate` property to center — `transform` stays free for the
+     prmFloatY bob animation. */
+  .prm-chip.c2 { left: 50%; right: auto; translate: -50% 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {

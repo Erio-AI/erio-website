@@ -4782,7 +4782,7 @@ body {
 .voice-cta {
   position: relative; z-index: 2; margin-top: 12px;
   display: inline-flex; align-items: center; gap: 12px;
-  font-family: 'Exo 2', system-ui, sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
+  font-family: 'Exo 2', system-ui, sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.06em; text-transform: none;
   color: #fff; text-decoration: none; padding: 14px 26px; border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   background: linear-gradient(135deg, #53B9E0 0%, #337791 100%);
