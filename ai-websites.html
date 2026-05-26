@@ -1,0 +1,2783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Erio — Build with Taste. Ship with Confidence.</title>
+<link rel="icon" type="image/png" href="favicon.png?v=3" />
+<link rel="shortcut icon" type="image/png" href="favicon.png?v=3" />
+<link rel="apple-touch-icon" href="favicon.png?v=3" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* Headline now has 5 words ("AI Websites for Home Services"), so re-stagger
+     the per-character fade-in delays — same +0.05s/char, +0.10s/word cadence
+     as the home page — so every character animates in left-to-right. */
+  .hero-title .word:nth-of-type(1) .char:nth-child(1) { animation-delay: 0.65s; }
+  .hero-title .word:nth-of-type(1) .char:nth-child(2) { animation-delay: 0.70s; }
+  /* Websites */
+  .hero-title .word:nth-of-type(2) .char:nth-child(1) { animation-delay: 0.80s; }
+  .hero-title .word:nth-of-type(2) .char:nth-child(2) { animation-delay: 0.85s; }
+  .hero-title .word:nth-of-type(2) .char:nth-child(3) { animation-delay: 0.90s; }
+  .hero-title .word:nth-of-type(2) .char:nth-child(4) { animation-delay: 0.95s; }
+  .hero-title .word:nth-of-type(2) .char:nth-child(5) { animation-delay: 1.00s; }
+  .hero-title .word:nth-of-type(2) .char:nth-child(6) { animation-delay: 1.05s; }
+  .hero-title .word:nth-of-type(2) .char:nth-child(7) { animation-delay: 1.10s; }
+  .hero-title .word:nth-of-type(2) .char:nth-child(8) { animation-delay: 1.15s; }
+  /* for */
+  .hero-title .word:nth-of-type(3) .char:nth-child(1) { animation-delay: 1.25s; }
+  .hero-title .word:nth-of-type(3) .char:nth-child(2) { animation-delay: 1.30s; }
+  .hero-title .word:nth-of-type(3) .char:nth-child(3) { animation-delay: 1.35s; }
+  /* Home */
+  .hero-title .word:nth-of-type(4) .char:nth-child(1) { animation-delay: 1.45s; }
+  .hero-title .word:nth-of-type(4) .char:nth-child(2) { animation-delay: 1.50s; }
+  .hero-title .word:nth-of-type(4) .char:nth-child(3) { animation-delay: 1.55s; }
+  .hero-title .word:nth-of-type(4) .char:nth-child(4) { animation-delay: 1.60s; }
+  /* Services */
+  .hero-title .word:nth-of-type(5) .char:nth-child(1) { animation-delay: 1.70s; }
+  .hero-title .word:nth-of-type(5) .char:nth-child(2) { animation-delay: 1.75s; }
+  .hero-title .word:nth-of-type(5) .char:nth-child(3) { animation-delay: 1.80s; }
+  .hero-title .word:nth-of-type(5) .char:nth-child(4) { animation-delay: 1.85s; }
+  .hero-title .word:nth-of-type(5) .char:nth-child(5) { animation-delay: 1.90s; }
+  .hero-title .word:nth-of-type(5) .char:nth-child(6) { animation-delay: 1.95s; }
+  .hero-title .word:nth-of-type(5) .char:nth-child(7) { animation-delay: 2.00s; }
+  .hero-title .word:nth-of-type(5) .char:nth-child(8) { animation-delay: 2.05s; }
+</style>
+<link rel="stylesheet" href="ai-websites.css?v=47">
+</head>
+<body>
+
+<!-- AMBIENT BACKGROUND LAYERS -->
+<div class="bg-mesh" aria-hidden="true"></div>
+
+<!-- SVG filter: single-pass luminance->alpha (keyed-black bg → transparent) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="blackToAlpha" color-interpolation-filters="sRGB"
+            x="0" y="0" width="100%" height="100%">
+      <feColorMatrix type="matrix" values="
+        1 0 0 0 0
+        0 1 0 0 0
+        0 0 1 0 0
+        1.35 1.65 1.35 0 -0.4"/>
+    </filter>
+  </defs>
+</svg>
+
+
+<!-- TOP NAV -->
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="/" aria-label="Erio home">
+      <img src="Erio Logo Original.png" alt="Erio" />
+    </a>
+
+    <div class="nav-pill-slot">
+      <nav class="nav-pill" aria-label="Primary">
+      <a class="nav-drop-trigger" href="#products" aria-haspopup="true">
+        Products
+        <svg class="nav-drop-chevron" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </a>
+      <a href="https://app.erio.ai/">Login</a>
+      <a href="/packages">Packages</a>
+      <div class="nav-pill-sub" role="menu">
+        <div class="nav-pill-sub-inner">
+          <a href="/ai-websites"  role="menuitem">AI Websites</a>
+          <a href="/ai-employees" role="menuitem">AI Employees</a>
+          <a href="#ai-solutions" role="menuitem">AI Solutions</a>
+        </div>
+      </div>
+      </nav>
+    </div>
+
+    <div class="nav-cta">
+      <a class="btn-primary" href="/book">
+        <span>Book</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <!-- MOBILE NAV — single pill with logo (L), Demo text (center), hamburger (R) -->
+    <div class="nav-mobile-pill" role="navigation" aria-label="Mobile">
+      <a class="nav-mobile-logo" href="/" aria-label="Erio home">
+        <img src="Erio Logo Original.png" alt="Erio" />
+      </a>
+      <a class="nav-mobile-demo" href="/book">Book</a>
+      <button class="nav-mobile-burger" type="button" aria-label="Open menu"
+              aria-expanded="false" aria-controls="navMobileMenu">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.6" stroke-linecap="round" aria-hidden="true">
+          <defs>
+            <linearGradient id="burgerGrad" gradientUnits="userSpaceOnUse"
+                            x1="4" y1="7" x2="20" y2="17">
+              <stop offset="0%"   stop-color="#70F0FF"/>
+              <stop offset="55%"  stop-color="#53B9E0"/>
+              <stop offset="100%" stop-color="#337791"/>
+            </linearGradient>
+          </defs>
+          <line x1="4" y1="7"  x2="20" y2="7"  stroke="url(#burgerGrad)"/>
+          <line x1="4" y1="12" x2="20" y2="12" stroke="url(#burgerGrad)"/>
+          <line x1="4" y1="17" x2="20" y2="17" stroke="url(#burgerGrad)"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile dropdown menu — opens beneath the pill -->
+    <div class="nav-mobile-menu" id="navMobileMenu" role="menu" aria-hidden="true">
+      <a href="/packages"     role="menuitem">Packages</a>
+      <a href="/ai-websites"  role="menuitem">AI Websites</a>
+      <a href="/ai-employees" role="menuitem">AI Employees</a>
+      <a href="#ai-solutions" role="menuitem">AI Solutions</a>
+      <a href="https://app.erio.ai/" role="menuitem">Login</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<main class="hero">
+
+  <!-- HEADLINE -->
+  <h1 class="hero-title">
+    <span class="word"><span class="char">A</span><span class="char">I</span></span>
+    <span class="word"><span class="char">W</span><span class="char">e</span><span class="char">b</span><span class="char">s</span><span class="char">i</span><span class="char">t</span><span class="char">e</span><span class="char">s</span></span>
+    <span class="word"><span class="char">F</span><span class="char">o</span><span class="char">r</span></span>
+    <i class="hero-br" aria-hidden="true"></i>
+    <span class="word"><span class="char">H</span><span class="char">o</span><span class="char">m</span><span class="char">e</span></span>
+    <span class="word grad"><span class="char">S</span><span class="char">e</span><span class="char">r</span><span class="char">v</span><span class="char">i</span><span class="char">c</span><span class="char">e</span><span class="char">s</span></span>
+  </h1>
+
+  <p class="hero-sub">Custom-built websites that turn local searches into booked jobs.<br/>Designed for contractors who want more work.</p>
+
+  <div class="cta-frame">
+    <svg class="cta-track cta-track-l" viewBox="0 0 300 90" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      <defs>
+        <linearGradient id="trackFadeL" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%"   stop-color="#53D2E0" stop-opacity="0"/>
+          <stop offset="55%"  stop-color="#53D2E0" stop-opacity="0.4"/>
+          <stop offset="100%" stop-color="#A1E8F0" stop-opacity="0.9"/>
+        </linearGradient>
+      </defs>
+      <path id="trackPathL"
+            d="M 5 78 C 80 78, 200 45, 295 45"
+            stroke="url(#trackFadeL)" stroke-width="1.3"
+            stroke-dasharray="2 7" stroke-linecap="round"
+            fill="none"/>
+      <circle r="2.6" fill="#A1E8F0"
+              style="filter: drop-shadow(0 0 4px #53D2E0) drop-shadow(0 0 9px rgba(83,210,224,0.7));">
+        <animateMotion dur="2.6s" repeatCount="indefinite" rotate="auto" keyPoints="0;1" keyTimes="0;1">
+          <mpath href="#trackPathL"/>
+        </animateMotion>
+        <animate attributeName="opacity"
+                 values="0;0.4;1;1;0" keyTimes="0;0.1;0.4;0.85;1"
+                 dur="2.6s" repeatCount="indefinite"/>
+      </circle>
+    </svg>
+
+    <a class="hero-cta" href="/book">
+      <span class="cta-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="6 4 20 12 6 20" fill="currentColor"/>
+        </svg>
+      </span>
+      <span>Schedule Demo</span>
+    </a>
+
+    <svg class="cta-track cta-track-r" viewBox="0 0 300 90" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      <defs>
+        <linearGradient id="trackFadeR" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%"   stop-color="#A1E8F0" stop-opacity="0.9"/>
+          <stop offset="45%"  stop-color="#53D2E0" stop-opacity="0.4"/>
+          <stop offset="100%" stop-color="#53D2E0" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <path id="trackPathR"
+            d="M 5 45 C 100 45, 220 78, 295 78"
+            stroke="url(#trackFadeR)" stroke-width="1.3"
+            stroke-dasharray="2 7" stroke-linecap="round"
+            fill="none"/>
+      <circle r="2.6" fill="#A1E8F0"
+              style="filter: drop-shadow(0 0 4px #53D2E0) drop-shadow(0 0 9px rgba(83,210,224,0.7));">
+        <animateMotion dur="2.6s" repeatCount="indefinite" rotate="auto" keyPoints="1;0" keyTimes="0;1">
+          <mpath href="#trackPathR"/>
+        </animateMotion>
+        <animate attributeName="opacity"
+                 values="0;0.4;1;1;0" keyTimes="0;0.1;0.4;0.85;1"
+                 dur="2.6s" repeatCount="indefinite"/>
+      </circle>
+    </svg>
+  </div>
+
+  <!-- ============================================================
+       FLOATING CONTRACTOR-WEBSITE PREVIEW — layered glass panels
+       (transparent stage; a hero background image can sit behind it)
+  ============================================================ -->
+  <div class="cw-stage" aria-label="Example general-contractor website" role="img">
+    <div class="cw-aura" aria-hidden="true"></div>
+
+    <!-- ───── floating nav bar ───── -->
+    <div class="cw-float cw-pos-nav" data-depth="7" style="--fdur:8s; --fph:-1.2s;">
+      <nav class="cw-panel cw-nav" style="--rev:.10s">
+        <div class="cw-brand">
+          <span class="cw-brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 L12 5 L21 20"/><path d="M7.6 20 L12 12 L16.4 20"/></svg>
+          </span>
+          <span class="cw-brand-name">SUMMIT<em>Build&nbsp;Co.</em></span>
+        </div>
+        <div class="cw-nav-links">
+          <span class="is-active">Services</span>
+          <span>Service Areas</span>
+          <span>Projects</span>
+          <span>About</span>
+          <span>Contact</span>
+        </div>
+        <div class="cw-nav-right">
+          <a class="cw-nav-phone" href="tel:+17867880486">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5 9 4l1.2 3.4-1.8 1.3a10.5 10.5 0 0 0 4.6 4.6l1.3-1.8L17.7 13l.5 2.5a1.4 1.4 0 0 1-1.5 1.7A13.6 13.6 0 0 1 4.3 5a1.4 1.4 0 0 1 1.7-1.5"/></svg>
+            (786)&nbsp;788-0486
+          </a>
+          <a class="cw-nav-cta" href="/book">Book Appointment</a>
+        </div>
+      </nav>
+    </div>
+
+    <!-- ───── hero text panel ───── -->
+    <div class="cw-float cw-pos-hero" data-depth="3" style="--fdur:9.5s; --fph:-3s;">
+      <div class="cw-panel cw-hero" style="--rev:.24s">
+        <span class="cw-eyebrow"><span class="cw-eyebrow-dot"></span>Licensed &amp; Insured · Since 2008</span>
+        <h3 class="cw-headline">Your project,<br><span class="cw-grad">built right.</span></h3>
+        <p class="cw-sub">Remodels, repairs &amp; new builds from a crew you can trust — clear quotes, clean job sites, finished on schedule.</p>
+        <div class="cw-hero-actions">
+          <a class="cw-btn cw-btn-fill" href="/book">Get a Free Quote
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <a class="cw-btn cw-btn-ghost" href="/book">View Projects</a>
+        </div>
+        <div class="cw-trust">
+          <span class="cw-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Free estimates</span>
+          <span class="cw-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>5-yr warranty</span>
+          <span class="cw-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>On-time guarantee</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ───── review badge (floating chip) ───── -->
+    <div class="cw-float cw-pos-review" data-depth="12" style="--fdur:7s; --fph:-5s;">
+      <div class="cw-panel cw-review" style="--rev:.56s">
+        <div class="cw-review-stars" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 5.9 6.6.9-4.8 4.6 1.1 6.5L12 21.3 6.2 20.4l1.1-6.5-4.8-4.6 6.6-.9z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 5.9 6.6.9-4.8 4.6 1.1 6.5L12 21.3 6.2 20.4l1.1-6.5-4.8-4.6 6.6-.9z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 5.9 6.6.9-4.8 4.6 1.1 6.5L12 21.3 6.2 20.4l1.1-6.5-4.8-4.6 6.6-.9z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 5.9 6.6.9-4.8 4.6 1.1 6.5L12 21.3 6.2 20.4l1.1-6.5-4.8-4.6 6.6-.9z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 5.9 6.6.9-4.8 4.6 1.1 6.5L12 21.3 6.2 20.4l1.1-6.5-4.8-4.6 6.6-.9z"/></svg>
+        </div>
+        <div class="cw-review-meta"><strong>4.9</strong><span>280+ verified reviews</span></div>
+        <div class="cw-avatars" aria-hidden="true">
+          <span><img src="Profile%20Pictures/happy-male-photographer-showing-result-of-content-2025-03-18-16-21-22-utc.png" alt="" loading="lazy"></span>
+          <span><img src="Profile%20Pictures/happy-young-smiling-woman-taking-a-self-portrait-p-2025-01-08-14-17-44-utc.png" alt="" loading="lazy"></span>
+          <span><img src="Profile%20Pictures/man-photographing-family-2025-03-15-08-22-07-utc.png" alt="" loading="lazy"></span>
+          <span><img src="Profile%20Pictures/young-couple-walking-in-the-background-of-a-large-2024-10-17-13-22-40-utc.png" alt="" loading="lazy"></span>
+          <span class="cw-av-more">+9</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ───── get-a-free-quote form ───── -->
+    <div class="cw-float cw-pos-form" data-depth="6" style="--fdur:8.6s; --fph:-2s;">
+      <form class="cw-panel cw-form" style="--rev:.36s" onsubmit="return false">
+        <div class="cw-form-head">
+          <span class="cw-form-title">Get a Free Quote</span>
+          <span class="cw-form-pill">~1&nbsp;hr reply</span>
+        </div>
+        <div class="cw-field">
+          <span class="cw-field-label">Full name</span>
+          <span class="cw-field-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg>
+            <span class="cw-field-val" data-cw-type="Jordan Mitchell">Jordan Mitchell</span>
+          </span>
+        </div>
+        <div class="cw-field-row">
+          <div class="cw-field">
+            <span class="cw-field-label">Phone</span>
+            <span class="cw-field-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5 9 4l1.2 3.4-1.8 1.3a10.5 10.5 0 0 0 4.6 4.6l1.3-1.8L17.7 13l.5 2.5a1.4 1.4 0 0 1-1.5 1.7A13.6 13.6 0 0 1 4.3 5a1.4 1.4 0 0 1 1.7-1.5"/></svg>
+              <span class="cw-field-val" data-cw-type="(305) 555-0142">(305) 555-0142</span>
+            </span>
+          </div>
+          <div class="cw-field">
+            <span class="cw-field-label">Zip</span>
+            <span class="cw-field-box"><span class="cw-field-val" data-cw-type="33131">33131</span></span>
+          </div>
+        </div>
+        <div class="cw-field">
+          <span class="cw-field-label">Service needed</span>
+          <span class="cw-field-box cw-field-select">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 6a3.5 3.5 0 0 0-4.6 4.3L4 16.2 7.8 20l5.9-5.9A3.5 3.5 0 0 0 18 9.5l-2.3 2.3-2-2L16 7.5z"/></svg>
+            <span class="cw-field-val" data-cw-type="Kitchen Remodel">Kitchen Remodel</span>
+            <svg class="cw-field-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </span>
+        </div>
+        <div class="cw-field">
+          <span class="cw-field-label">Project details</span>
+          <span class="cw-field-box cw-field-area">
+            <span class="cw-field-val" data-cw-type="Full kitchen reno — cabinets, counters &amp; island">Full kitchen reno — cabinets, counters &amp; island</span>
+          </span>
+        </div>
+        <a class="cw-submit" href="/book">Get My Free Quote
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <span class="cw-form-foot">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+          No spam · No obligation
+        </span>
+      </form>
+    </div>
+
+    <!-- ───── analytics carousel ───── -->
+    <div class="cw-float cw-pos-analytics" data-depth="4" style="--fdur:10s; --fph:-6s;">
+      <div class="cw-panel cw-analytics" style="--rev:.48s">
+        <div class="cw-ticker">
+          <div class="cw-ticker-track">
+            <!-- ── credibility ticker · set A ── -->
+            <div class="cw-stat"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5.5"/><path d="M8.5 13.5 7 22l5-2.7L17 22l-1.5-8.5"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">20+</span><span class="cw-stat-label">Years in business</span></span></div>
+            <div class="cw-stat"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 19 6v5c0 4.4-3 7.4-7 9-4-1.6-7-4.6-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">100%</span><span class="cw-stat-label">Insured &amp; bonded</span></span></div>
+            <div class="cw-stat"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="8.5" r="3"/><path d="M4 20a5.5 5.5 0 0 1 11 0"/><path d="M16 6a3 3 0 0 1 0 5.7"/><path d="M18.5 20a5.5 5.5 0 0 0-2.6-4.7"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">10,000+</span><span class="cw-stat-label">Customers served</span></span></div>
+            <div class="cw-stat"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.4-6-10a6 6 0 0 1 12 0c0 4.6-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">Local</span><span class="cw-stat-label">Owned &amp; operated</span></span></div>
+            <div class="cw-stat"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7 14.85 8.45 21.2 9.35 16.6 13.8 17.7 20.1 12 17.1 6.3 20.1 7.4 13.8 2.8 9.35 9.15 8.45 Z"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">280+</span><span class="cw-stat-label">5-star reviews</span></span></div>
+            <div class="cw-stat"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 1.8"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">98%</span><span class="cw-stat-label">On-time completion</span></span></div>
+            <div class="cw-stat"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3.5" width="16" height="12" rx="2"/><path d="M8.5 19.5 12 18l3.5 1.5v-4"/><path d="M8 7.5h8M8 10.5h5"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">Licensed</span><span class="cw-stat-label">GC&nbsp;#B-1184</span></span></div>
+            <div class="cw-stat"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 6a3.5 3.5 0 0 0-4.6 4.3L4 16.2 7.8 20l5.9-5.9A3.5 3.5 0 0 0 18 9.5l-2.3 2.3-2-2L16 7.5z"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">5-Year</span><span class="cw-stat-label">Workmanship warranty</span></span></div>
+            <!-- ── set B (duplicate for a seamless loop) ── -->
+            <div class="cw-stat" aria-hidden="true"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5.5"/><path d="M8.5 13.5 7 22l5-2.7L17 22l-1.5-8.5"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">20+</span><span class="cw-stat-label">Years in business</span></span></div>
+            <div class="cw-stat" aria-hidden="true"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 19 6v5c0 4.4-3 7.4-7 9-4-1.6-7-4.6-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">100%</span><span class="cw-stat-label">Insured &amp; bonded</span></span></div>
+            <div class="cw-stat" aria-hidden="true"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="8.5" r="3"/><path d="M4 20a5.5 5.5 0 0 1 11 0"/><path d="M16 6a3 3 0 0 1 0 5.7"/><path d="M18.5 20a5.5 5.5 0 0 0-2.6-4.7"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">10,000+</span><span class="cw-stat-label">Customers served</span></span></div>
+            <div class="cw-stat" aria-hidden="true"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.4-6-10a6 6 0 0 1 12 0c0 4.6-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">Local</span><span class="cw-stat-label">Owned &amp; operated</span></span></div>
+            <div class="cw-stat" aria-hidden="true"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7 14.85 8.45 21.2 9.35 16.6 13.8 17.7 20.1 12 17.1 6.3 20.1 7.4 13.8 2.8 9.35 9.15 8.45 Z"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">280+</span><span class="cw-stat-label">5-star reviews</span></span></div>
+            <div class="cw-stat" aria-hidden="true"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 1.8"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">98%</span><span class="cw-stat-label">On-time completion</span></span></div>
+            <div class="cw-stat" aria-hidden="true"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3.5" width="16" height="12" rx="2"/><path d="M8.5 19.5 12 18l3.5 1.5v-4"/><path d="M8 7.5h8M8 10.5h5"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">Licensed</span><span class="cw-stat-label">GC&nbsp;#B-1184</span></span></div>
+            <div class="cw-stat" aria-hidden="true"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 6a3.5 3.5 0 0 0-4.6 4.3L4 16.2 7.8 20l5.9-5.9A3.5 3.5 0 0 0 18 9.5l-2.3 2.3-2-2L16 7.5z"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">5-Year</span><span class="cw-stat-label">Workmanship warranty</span></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════ Facebook live feed (2/3) + call/text chat (1/3) ═══════ -->
+    <div class="cw-float cw-pos-extra" data-depth="4">
+      <div class="cw-extra">
+
+        <!-- LEFT · Facebook feed, auto-published to the site -->
+        <section class="cw-panel cw-feed" style="--rev:.5s">
+          <header class="cw-feed-head">
+            <span class="cw-fb-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.52 1.5-3.91 3.78-3.91 1.1 0 2.24.2 2.24.2v2.47H15.2c-1.24 0-1.63.78-1.63 1.57v1.88h2.78l-.44 2.9h-2.34V22c4.78-.79 8.43-4.94 8.43-9.94z"/></svg>
+            </span>
+            <div class="cw-feed-title">
+              <strong>Facebook Feed</strong>
+              <span>Auto-published to your website</span>
+            </div>
+            <span class="cw-feed-live" aria-hidden="true"><i></i>LIVE</span>
+          </header>
+
+          <div class="cw-feed-scroll">
+            <div class="cw-feed-list" data-cw-feed>
+              <!-- Three posts. One shows at a time and cross-fades on a
+                   continuous loop: bathroom → living room → bedroom → … -->
+              <article class="cw-post is-active">
+                <div class="cw-post-top">
+                  <span class="cw-post-av" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15"/><path d="M7.6 20 12 12l4.4 8"/></svg></span>
+                  <div class="cw-post-meta"><strong>Summit Build&nbsp;Co.</strong><span class="cw-post-time">Just now</span></div>
+                  <svg class="cw-post-src" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.52 1.5-3.91 3.78-3.91 1.1 0 2.24.2 2.24.2v2.47H15.2c-1.24 0-1.63.78-1.63 1.57v1.88h2.78l-.44 2.9h-2.34V22c4.78-.79 8.43-4.94 8.43-9.94z"/></svg>
+                </div>
+                <div class="cw-post-body">
+                  <div class="cw-post-media"><img src="post-bathroom.jpg" alt="Bathroom remodel by Summit Build Co." loading="lazy"></div>
+                  <div class="cw-post-side">
+                    <p class="cw-post-cap">Spa-style primary bath, handed over this morning — heated floors, rainfall shower, and that freestanding soaker tub. 🛁✨</p>
+                    <div class="cw-post-foot">
+                      <span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 10.5h3.5V22H2zM22 11.2a1.9 1.9 0 0 0-1.9-1.9h-4.7l.74-3.78A1.55 1.55 0 0 0 13 4.7L8 10.5V22h9.3a1.9 1.9 0 0 0 1.87-1.5l1.28-7a1.9 1.9 0 0 0 .05-.3z"/></svg>248</span>
+                      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M21 11.5a8 8 0 0 1-11.6 7.1L4 20.5l1.9-5.3A8 8 0 1 1 21 11.5z"/></svg>32</span>
+                      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M16 6l-4-4-4 4M12 2v13"/></svg>11</span>
+                    </div>
+                    <span class="cw-post-more">View all 32 comments</span>
+                    <div class="cw-post-comments">
+                      <div class="cw-cmt"><span class="cw-cmt-av">J</span><p><strong>Jessica&nbsp;R.</strong> Absolutely stunning 😍 the tub is everything</p></div>
+                      <div class="cw-cmt"><span class="cw-cmt-av">M</span><p><strong>Marcus&nbsp;D.</strong> That marble work is unreal. Booking you next.</p></div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+              <article class="cw-post">
+                <div class="cw-post-top">
+                  <span class="cw-post-av" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15"/><path d="M7.6 20 12 12l4.4 8"/></svg></span>
+                  <div class="cw-post-meta"><strong>Summit Build&nbsp;Co.</strong><span class="cw-post-time">Just now</span></div>
+                  <svg class="cw-post-src" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.52 1.5-3.91 3.78-3.91 1.1 0 2.24.2 2.24.2v2.47H15.2c-1.24 0-1.63.78-1.63 1.57v1.88h2.78l-.44 2.9h-2.34V22c4.78-.79 8.43-4.94 8.43-9.94z"/></svg>
+                </div>
+                <div class="cw-post-body">
+                  <div class="cw-post-media"><img src="post-living.jpg" alt="Living room remodel by Summit Build Co." loading="lazy"></div>
+                  <div class="cw-post-side">
+                    <p class="cw-post-cap">Living room transformation complete — custom built-ins, white-oak floors, and a statement fireplace wall. 🔥</p>
+                    <div class="cw-post-foot">
+                      <span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 10.5h3.5V22H2zM22 11.2a1.9 1.9 0 0 0-1.9-1.9h-4.7l.74-3.78A1.55 1.55 0 0 0 13 4.7L8 10.5V22h9.3a1.9 1.9 0 0 0 1.87-1.5l1.28-7a1.9 1.9 0 0 0 .05-.3z"/></svg>312</span>
+                      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M21 11.5a8 8 0 0 1-11.6 7.1L4 20.5l1.9-5.3A8 8 0 1 1 21 11.5z"/></svg>44</span>
+                      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M16 6l-4-4-4 4M12 2v13"/></svg>19</span>
+                    </div>
+                    <span class="cw-post-more">View all 44 comments</span>
+                    <div class="cw-post-comments">
+                      <div class="cw-cmt"><span class="cw-cmt-av">S</span><p><strong>Sofia&nbsp;M.</strong> Obsessed with those built-ins! 👏</p></div>
+                      <div class="cw-cmt"><span class="cw-cmt-av">A</span><p><strong>Aaron&nbsp;P.</strong> Best crew in town, hands down.</p></div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+              <article class="cw-post">
+                <div class="cw-post-top">
+                  <span class="cw-post-av" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15"/><path d="M7.6 20 12 12l4.4 8"/></svg></span>
+                  <div class="cw-post-meta"><strong>Summit Build&nbsp;Co.</strong><span class="cw-post-time">Just now</span></div>
+                  <svg class="cw-post-src" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.52 1.5-3.91 3.78-3.91 1.1 0 2.24.2 2.24.2v2.47H15.2c-1.24 0-1.63.78-1.63 1.57v1.88h2.78l-.44 2.9h-2.34V22c4.78-.79 8.43-4.94 8.43-9.94z"/></svg>
+                </div>
+                <div class="cw-post-body">
+                  <div class="cw-post-media"><img src="post-bedroom.jpg" alt="Bedroom remodel by Summit Build Co." loading="lazy"></div>
+                  <div class="cw-post-side">
+                    <p class="cw-post-cap">Primary bedroom reveal — warm white oak, soft linens, and so much natural light. Calm, clean, done. ☀️</p>
+                    <div class="cw-post-foot">
+                      <span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 10.5h3.5V22H2zM22 11.2a1.9 1.9 0 0 0-1.9-1.9h-4.7l.74-3.78A1.55 1.55 0 0 0 13 4.7L8 10.5V22h9.3a1.9 1.9 0 0 0 1.87-1.5l1.28-7a1.9 1.9 0 0 0 .05-.3z"/></svg>176</span>
+                      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M21 11.5a8 8 0 0 1-11.6 7.1L4 20.5l1.9-5.3A8 8 0 1 1 21 11.5z"/></svg>21</span>
+                      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M16 6l-4-4-4 4M12 2v13"/></svg>7</span>
+                    </div>
+                    <span class="cw-post-more">View all 21 comments</span>
+                    <div class="cw-post-comments">
+                      <div class="cw-cmt"><span class="cw-cmt-av">H</span><p><strong>Hannah&nbsp;W.</strong> So peaceful — I could move right in 😍</p></div>
+                      <div class="cw-cmt"><span class="cw-cmt-av">L</span><p><strong>Leo&nbsp;F.</strong> Quality is next level. 🙌</p></div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- RIGHT · call / text chat widget -->
+        <aside class="cw-panel cw-chat" style="--rev:.58s">
+          <header class="cw-chat-head">
+            <span class="cw-chat-photo" aria-label="Representative photo"><img src="chat-rep.jpg" alt="" loading="lazy"></span>
+            <div class="cw-chat-id">
+              <strong>Chat with Summit</strong>
+              <span class="cw-chat-status"><i></i>Online now · replies in ~5&nbsp;sec</span>
+            </div>
+          </header>
+          <div class="cw-chat-thread">
+            <div class="cw-chat-msg">Hi there! 👋 How can we help with your project today?</div>
+            <div class="cw-chat-msg cw-chat-me">Hi! I'd love a quote to remodel my kitchen 🙂</div>
+            <div class="cw-chat-typing" aria-hidden="true"><i></i><i></i><i></i></div>
+          </div>
+          <div class="cw-chat-cta">
+            <a class="cw-chat-btn cw-chat-call" href="/ai-employees">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5 9 4l1.2 3.4-1.8 1.3a10.5 10.5 0 0 0 4.6 4.6l1.3-1.8L17.7 13l.5 2.5a1.4 1.4 0 0 1-1.5 1.7A13.6 13.6 0 0 1 4.3 5a1.4 1.4 0 0 1 1.7-1.5"/></svg>
+              Call
+            </a>
+            <span class="cw-chat-btn cw-chat-text">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5h16v10H8l-4 3.5z"/></svg>
+              Text
+            </span>
+          </div>
+          <div class="cw-chat-input">
+            <span>Type your message…</span>
+            <span class="cw-chat-send" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h14M12 5l7 7-7 7"/></svg></span>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<!-- ====== SEO + AI/LLM visibility ====== -->
+<section class="seo" aria-labelledby="seo-title">
+  <div class="seo-bg-grid" aria-hidden="true"></div>
+  <div class="seo-glow" aria-hidden="true"></div>
+
+  <div class="seo-wrap">
+
+    <!-- LEFT · "Answer Engine" — every search + AI engine wired to your site -->
+    <div class="seo-viz" aria-hidden="true">
+      <div class="seo-radar"></div>
+
+      <svg class="seo-net" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <linearGradient id="seoBeam" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#40EBFF" stop-opacity="0"/>
+            <stop offset="0.5" stop-color="#53B9E0" stop-opacity="0.7"/>
+            <stop offset="1" stop-color="#40EBFF" stop-opacity="0.95"/>
+          </linearGradient>
+        </defs>
+        <line class="seo-beam" x1="16" y1="30" x2="40.9" y2="44.7"/>
+        <line class="seo-beam" x1="84" y1="24" x2="58.3" y2="43.6"/>
+        <line class="seo-beam" x1="14" y1="72" x2="41" y2="55.5"/>
+        <line class="seo-beam" x1="86" y1="68" x2="59.4" y2="54.7"/>
+      </svg>
+
+      <div class="seo-core">
+        <span class="seo-core-ring"></span>
+        <span class="seo-core-ring r2"></span>
+        <span class="seo-core-orb">
+          <svg viewBox="0 0 24 24">
+            <defs>
+              <radialGradient id="seoGlobeGrad" cx="38%" cy="32%" r="75%">
+                <stop offset="0" stop-color="#bff6ff"/>
+                <stop offset="0.42" stop-color="#40EBFF"/>
+                <stop offset="1" stop-color="#1f9fb6"/>
+              </radialGradient>
+            </defs>
+            <!-- Material Icons "language" / classic internet globe: filled path traces all wireframe outlines -->
+            <path fill="url(#seoGlobeGrad)" d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.56zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2 0 .68.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56zm2.95-8H5.08c.96-1.66 2.49-2.93 4.33-3.56C8.81 5.55 8.35 6.75 8.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2 0-.68.07-1.35.16-2h4.68c.09.65.16 1.32.16 2 0 .68-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2 0-.68-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"/>
+          </svg>
+        </span>
+      </div>
+
+      <div class="seo-node n1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>Google</div>
+      <div class="seo-node n2"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.282 9.821a5.985 5.985 0 0 0-.516-4.91 6.046 6.046 0 0 0-6.51-2.9A6.065 6.065 0 0 0 4.981 4.18a5.985 5.985 0 0 0-3.998 2.9 6.046 6.046 0 0 0 .743 7.097 5.98 5.98 0 0 0 .51 4.911 6.051 6.051 0 0 0 6.515 2.9A5.985 5.985 0 0 0 13.26 24a6.056 6.056 0 0 0 5.772-4.206 5.99 5.99 0 0 0 3.997-2.9 6.056 6.056 0 0 0-.747-7.073zM13.26 22.43a4.476 4.476 0 0 1-2.876-1.04l.141-.081 4.779-2.758a.795.795 0 0 0 .392-.681v-6.737l2.02 1.168a.071.071 0 0 1 .038.052v5.583a4.504 4.504 0 0 1-4.494 4.494zM3.6 18.304a4.47 4.47 0 0 1-.535-3.014l.142.085 4.783 2.759a.771.771 0 0 0 .78 0l5.843-3.369v2.332a.08.08 0 0 1-.033.062L9.74 19.95a4.5 4.5 0 0 1-6.14-1.646zM2.34 7.896a4.485 4.485 0 0 1 2.366-1.973V11.6a.766.766 0 0 0 .388.676l5.815 3.355-2.02 1.168a.076.076 0 0 1-.071 0l-4.83-2.786A4.504 4.504 0 0 1 2.34 7.872zm16.597 3.855l-5.833-3.387L15.119 7.2a.076.076 0 0 1 .071 0l4.83 2.791a4.494 4.494 0 0 1-.676 8.105v-5.678a.79.79 0 0 0-.407-.667zm2.01-3.023l-.141-.085-4.774-2.782a.776.776 0 0 0-.785 0L9.409 9.23V6.897a.066.066 0 0 1 .028-.061l4.781-2.756a4.5 4.5 0 0 1 6.677 4.66zm-12.64 4.135l-2.02-1.164a.08.08 0 0 1-.038-.057V6.075a4.5 4.5 0 0 1 7.375-3.453l-.142.08L8.704 5.46a.795.795 0 0 0-.393.681zm1.097-2.365l2.602-1.5 2.607 1.5v2.999l-2.597 1.5-2.607-1.5z"/></svg>ChatGPT</div>
+      <div class="seo-node n3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3"/></svg>Perplexity</div>
+      <div class="seo-node n4"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c.4 4.6 2.4 6.6 7 7c-4.6.4-6.6 2.4-7 7c-.4-4.6-2.4-6.6-7-7c4.6-.4 6.6-2.4 7-7z"/></svg>Gemini</div>
+
+      <div class="seo-proof p1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 14l4-4 3 3 6-6"/><path d="M14 7h4v4"/></svg>Ranked&nbsp;#1</div>
+      <div class="seo-proof p2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Cited by AI</div>
+    </div>
+
+    <!-- RIGHT · copy -->
+    <div class="seo-copy">
+      <span class="seo-tag"><span class="seo-tag-dot"></span>[ SEO &amp; AI VISIBILITY ]</span>
+      <h2 class="seo-title" id="seo-title">Built to be found —<br><span class="seo-em">by Google and AI alike</span></h2>
+      <p class="seo-lead">Every site we build is engineered for how people actually search today — climbing the search engines <em>and</em> getting surfaced by the AI assistants your customers now ask first.</p>
+
+      <div class="seo-points">
+        <div class="seo-point">
+          <span class="seo-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/><path d="M8.5 11.5l2 2 3.5-4"/></svg></span>
+          <div class="seo-point-body">
+            <h3>Search-engine optimized</h3>
+            <p>Clean semantic markup, lightning-fast load times, and locally-targeted content — so you climb Google for the jobs in your area.</p>
+          </div>
+        </div>
+        <div class="seo-point">
+          <span class="seo-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.7 5.3L19 10l-5.3 1.7L12 17l-1.7-5.3L5 10l5.3-1.7z"/><path d="M19 15l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z"/></svg></span>
+          <div class="seo-point-body">
+            <h3>Ready for AI &amp; LLMs</h3>
+            <p>Structured, machine-readable content so ChatGPT, Gemini, and Perplexity can read, understand, and confidently recommend your business.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="seo-callout">
+        <span class="seo-callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 7-7"/><path d="M17 8h4v4"/></svg></span>
+        <p><strong>More people ask AI before they ask anyone else.</strong> Searches on assistants like ChatGPT are growing fast — we make sure you're the answer they get.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ====== Service pages + service-area pages ====== -->
+<section class="svp" aria-labelledby="svp-title">
+  <div class="svp-bg-grid" aria-hidden="true"></div>
+  <div class="svp-glow" aria-hidden="true"></div>
+
+  <div class="svp-wrap">
+
+    <!-- LEFT · "Page Generator" — a rich page for every service & every area -->
+    <div class="svp-viz" aria-hidden="true">
+      <div class="svp-board">
+        <div class="svp-heads">
+          <span class="svp-head"><span class="svp-head-dot"></span>Service pages</span>
+          <span class="svp-head"><span class="svp-head-dot"></span>Area pages</span>
+        </div>
+        <div class="svp-grid">
+          <article class="svp-tile">
+            <span class="svp-tile-bar"></span>
+            <div class="svp-tile-row"><span class="svp-tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v7M9 3v7M7.5 10v11M16.5 3c-1.6 0-2.5 2-2.5 4.5s.9 3.5 2.5 3.5v10"/></svg></span><span class="svp-tile-name">Kitchen&nbsp;Remodels</span></div>
+            <span class="svp-tile-line"></span><span class="svp-tile-line s2"></span>
+          </article>
+          <article class="svp-tile a">
+            <span class="svp-tile-bar"></span>
+            <div class="svp-tile-row"><span class="svp-tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span class="svp-tile-name">Coral&nbsp;Gables</span></div>
+            <span class="svp-tile-line"></span><span class="svp-tile-line s2"></span>
+          </article>
+          <article class="svp-tile">
+            <span class="svp-tile-bar"></span>
+            <div class="svp-tile-row"><span class="svp-tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6 6 10a6 6 0 0 1-12 0c0-4 6-10 6-10z"/></svg></span><span class="svp-tile-name">Bathroom&nbsp;Renos</span></div>
+            <span class="svp-tile-line"></span><span class="svp-tile-line s2"></span>
+          </article>
+          <article class="svp-tile a">
+            <span class="svp-tile-bar"></span>
+            <div class="svp-tile-row"><span class="svp-tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span class="svp-tile-name">Brickell</span></div>
+            <span class="svp-tile-line"></span><span class="svp-tile-line s2"></span>
+          </article>
+          <article class="svp-tile">
+            <span class="svp-tile-bar"></span>
+            <div class="svp-tile-row"><span class="svp-tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/></svg></span><span class="svp-tile-name">Roofing&nbsp;&amp;&nbsp;Siding</span></div>
+            <span class="svp-tile-line"></span><span class="svp-tile-line s2"></span>
+          </article>
+          <article class="svp-tile a">
+            <span class="svp-tile-bar"></span>
+            <div class="svp-tile-row"><span class="svp-tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span class="svp-tile-name">Doral</span></div>
+            <span class="svp-tile-line"></span><span class="svp-tile-line s2"></span>
+          </article>
+        </div>
+        <span class="svp-scan"></span>
+      </div>
+      <div class="svp-chip c1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.2"/></svg>Every location</div>
+      <div class="svp-chip c2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Rich content</div>
+    </div>
+
+    <!-- RIGHT · copy -->
+    <div class="svp-copy">
+      <span class="svp-tag"><span class="svp-tag-dot"></span>[ SERVICE &amp; AREA PAGES ]</span>
+      <h2 class="svp-title" id="svp-title">A page for every service —<br><span class="svp-em">in every area you serve</span></h2>
+      <p class="svp-lead">We never cram your whole business onto one page. Erio builds a rich, dedicated page for each service you offer <em>and</em> each area you cover — so you surface for exactly what people search, wherever they're searching from.</p>
+
+      <div class="svp-points">
+        <div class="svp-point">
+          <span class="svp-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v4h4"/><path d="M8 13h8M8 17h6"/></svg></span>
+          <div class="svp-point-body">
+            <h3>Dedicated service pages</h3>
+            <p>Every service gets its own in-depth, keyword-rich page that tells Google — and your customers — exactly what you do and why you're the best at it.</p>
+          </div>
+        </div>
+        <div class="svp-point">
+          <span class="svp-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg></span>
+          <div class="svp-point-body">
+            <h3>Local service-area pages</h3>
+            <p>A tailored page for each town and neighborhood you serve, so you rank across your entire market — not just where your office happens to sit.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="svp-callout">
+        <span class="svp-callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg></span>
+        <p><strong>More pages means more ways to be found.</strong> Every service and every location becomes another doorway into your business — from search and from AI.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ====== Real-time automations / speed-to-lead ====== -->
+<section class="spd" aria-labelledby="spd-title">
+  <div class="spd-bg-grid" aria-hidden="true"></div>
+  <div class="spd-glow" aria-hidden="true"></div>
+
+  <div class="spd-wrap">
+
+    <!-- LEFT · copy -->
+    <div class="spd-copy">
+      <span class="spd-tag"><span class="spd-tag-dot"></span>[ SPEED TO LEAD ]</span>
+      <h2 class="spd-title" id="spd-title">Leads come in —<br><span class="spd-em">everyone gets the message</span></h2>
+      <p class="spd-lead">Every form and calendar on your site is wired to real-time automations. The instant someone books an appointment or sends a message, confirmations fire automatically — no waiting, no missed leads.</p>
+
+      <div class="spd-points">
+        <div class="spd-point">
+          <span class="spd-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 4l4 4-4 4"/><path d="M21 8H8"/><path d="M7 20l-4-4 4-4"/><path d="M3 16h13"/></svg></span>
+          <div class="spd-point-body">
+            <h3>Two-way instant confirmations</h3>
+            <p>Your customer gets an immediate confirmation their booking or message went through — and you're pinged the second a new lead lands, so you can follow up while they're still hot.</p>
+          </div>
+        </div>
+        <div class="spd-point">
+          <span class="spd-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 6-2.5 7-2.5 7h17S18 14 18 8z"/><path d="M10 20a2 2 0 0 0 4 0"/><path d="M12 5.5V8l1.6 1"/></svg></span>
+          <div class="spd-point-body">
+            <h3>Reminders that kill no-shows</h3>
+            <p>Every booking kicks off an automatic reminder sequence — a couple days before, the day before, and a couple hours before — so appointments actually show up.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="spd-callout">
+        <span class="spd-callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></span>
+        <p><strong>Speed wins the job.</strong> The faster a lead hears back, the more likely they are to book — so we make your response instant, every single time.</p>
+      </div>
+    </div>
+
+    <!-- RIGHT · "Real-Time Relay" animation -->
+    <div class="spd-viz" aria-hidden="true">
+
+      <!-- the trigger event -->
+      <div class="spd-trigger">
+        <span class="spd-trigger-ring"></span>
+        <span class="spd-trigger-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/><path d="M8.5 14.5l2.2 2.2 4.3-4.3"/></svg></span>
+        <div class="spd-trigger-txt"><strong>Appointment booked</strong><span>Sarah&nbsp;M. · Tue 2:00&nbsp;PM</span></div>
+        <span class="spd-live"></span>
+      </div>
+
+      <!-- dispatch beams -->
+      <svg class="spd-net" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <linearGradient id="spdBeam" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#40EBFF" stop-opacity="0.95"/>
+            <stop offset="0.5" stop-color="#53B9E0" stop-opacity="0.7"/>
+            <stop offset="1" stop-color="#40EBFF" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <line class="spd-beam" x1="50" y1="25" x2="27" y2="47"/>
+        <line class="spd-beam" x1="50" y1="25" x2="73" y2="47"/>
+      </svg>
+
+      <!-- two-way destinations -->
+      <div class="spd-dest owner">
+        <span class="spd-dest-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 6-2.5 7-2.5 7h17S18 14 18 8z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg></span>
+        <div class="spd-dest-txt"><strong>New booking!</strong><span>→ You</span></div>
+      </div>
+      <div class="spd-dest customer">
+        <span class="spd-dest-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+        <div class="spd-dest-txt"><strong>You're confirmed</strong><span>→ Customer</span></div>
+      </div>
+
+      <!-- auto-reminder timeline -->
+      <div class="spd-timeline">
+        <span class="spd-tl-label">Auto reminders · fewer no-shows</span>
+        <div class="spd-tl-track">
+          <div class="spd-tl-node"><span class="spd-tl-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="spd-tl-cap">Booked</span></div>
+          <div class="spd-tl-node"><span class="spd-tl-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 6-2.5 7-2.5 7h17S18 14 18 8z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg></span><span class="spd-tl-cap">2 days</span></div>
+          <div class="spd-tl-node"><span class="spd-tl-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 6-2.5 7-2.5 7h17S18 14 18 8z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg></span><span class="spd-tl-cap">1 day</span></div>
+          <div class="spd-tl-node"><span class="spd-tl-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 6-2.5 7-2.5 7h17S18 14 18 8z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg></span><span class="spd-tl-cap">2 hrs</span></div>
+        </div>
+      </div>
+
+      <!-- floating proof chips -->
+      <div class="spd-chip c1"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg>&lt; 1 sec</div>
+      <div class="spd-chip c2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Both notified</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ====== Fresh content / freshness signal ====== -->
+<section class="frs" aria-labelledby="frs-title">
+  <div class="frs-bg-grid" aria-hidden="true"></div>
+  <div class="frs-glow" aria-hidden="true"></div>
+
+  <div class="frs-wrap">
+
+    <!-- LEFT · "Freshness Dashboard" animation -->
+    <div class="frs-viz" aria-hidden="true">
+      <div class="frs-panel">
+        <div class="frs-head">
+          <span class="frs-head-title">
+            <span class="frs-head-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2.5 7 5-14L17 12h4"/></svg></span>
+            Website activity
+          </span>
+          <span class="frs-fresh"><i></i>Updated · just now</span>
+        </div>
+
+        <div class="frs-feed">
+          <div class="frs-item review">
+            <span class="frs-item-ico"><svg viewBox="0 0 24 24"><path fill="#4285F4" d="M23.5 12.27c0-.79-.07-1.54-.2-2.27H12v4.51h6.47a5.53 5.53 0 0 1-2.4 3.63v3h3.88c2.27-2.09 3.55-5.17 3.55-8.87z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.76-2.1-6.7-4.94H1.3v3.1A12 12 0 0 0 12 24z"/><path fill="#FBBC05" d="M5.3 14.31a7.2 7.2 0 0 1 0-4.62V6.6H1.3a12 12 0 0 0 0 10.8z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42A11.97 11.97 0 0 0 12 0 12 12 0 0 0 1.3 6.6l4 3.09C6.24 6.86 8.88 4.75 12 4.75z"/></svg></span>
+            <div class="frs-item-main">
+              <span class="frs-stars">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 5.9 6.6.9-4.8 4.6 1.1 6.5L12 21.3 6.2 20.4l1.1-6.5-4.8-4.6 6.6-.9z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 5.9 6.6.9-4.8 4.6 1.1 6.5L12 21.3 6.2 20.4l1.1-6.5-4.8-4.6 6.6-.9z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 5.9 6.6.9-4.8 4.6 1.1 6.5L12 21.3 6.2 20.4l1.1-6.5-4.8-4.6 6.6-.9z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 5.9 6.6.9-4.8 4.6 1.1 6.5L12 21.3 6.2 20.4l1.1-6.5-4.8-4.6 6.6-.9z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 5.9 6.6.9-4.8 4.6 1.1 6.5L12 21.3 6.2 20.4l1.1-6.5-4.8-4.6 6.6-.9z"/></svg>
+              </span>
+              <span class="frs-item-sub">New Google review</span>
+            </div>
+            <span class="frs-new">NEW</span>
+          </div>
+          <div class="frs-item post">
+            <span class="frs-item-ico fb"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.52 1.5-3.91 3.78-3.91 1.1 0 2.24.2 2.24.2v2.47H15.2c-1.24 0-1.63.78-1.63 1.57v1.88h2.78l-.44 2.9h-2.34V22c4.78-.79 8.43-4.94 8.43-9.94z"/></svg></span>
+            <div class="frs-item-main">
+              <strong class="frs-item-title">New Facebook post</strong>
+              <span class="frs-item-sub">Published just now</span>
+            </div>
+            <span class="frs-new">NEW</span>
+          </div>
+        </div>
+
+        <div class="frs-chart">
+          <svg viewBox="0 0 100 40" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="frsFill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#40EBFF" stop-opacity="0.32"/>
+                <stop offset="1" stop-color="#40EBFF" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path d="M0,34 L14,30 L26,31 L38,23 L50,25 L62,17 L74,18 L86,9 L100,5 L100,40 L0,40 Z" fill="url(#frsFill)"/>
+            <path d="M0,34 L14,30 L26,31 L38,23 L50,25 L62,17 L74,18 L86,9 L100,5" fill="none" stroke="#40EBFF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="frs-chart-dot"></span>
+          <span class="frs-chart-tag">Activity <b>▲</b></span>
+        </div>
+      </div>
+
+      <div class="frs-chip c1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Active site</div>
+      <div class="frs-chip c2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V13M12 21V8M19 21V4"/></svg>More traffic</div>
+    </div>
+
+    <!-- RIGHT · copy -->
+    <div class="frs-copy">
+      <span class="frs-tag"><span class="frs-tag-dot"></span>[ ALWAYS FRESH ]</span>
+      <h2 class="frs-title" id="frs-title">We keep your site fresh —<br><span class="frs-em">and the traffic keeps coming</span></h2>
+      <p class="frs-lead">On a regular basis, we publish your newest Google reviews and your latest Facebook posts straight to your site — so it never goes stale, and always shows your business in action.</p>
+
+      <div class="frs-points">
+        <div class="frs-point">
+          <span class="frs-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 4v5h-5"/></svg></span>
+          <div class="frs-point-body">
+            <h3>Fresh reviews &amp; posts, on autopilot</h3>
+            <p>Your newest 5-star Google reviews and freshest Facebook posts get added to your site on a regular cadence — automatically, with zero effort from you.</p>
+          </div>
+        </div>
+        <div class="frs-point">
+          <span class="frs-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.4-3.2 7.6-8 9-4.8-1.4-8-4.6-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
+          <div class="frs-point-body">
+            <h3>Proof your business is active</h3>
+            <p>A constantly-updated site tells Google and AI tools like ChatGPT that your business is alive and working — which builds trust and lifts you in the rankings.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="frs-callout">
+        <span class="frs-callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V13M12 21V8M19 21V4"/></svg></span>
+        <p><strong>Active sites win.</strong> More freshness means more trust, more visibility, and ultimately more traffic and more customers finding your business.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ====== 24/7 AI chat widget ====== -->
+<section class="aiw" aria-labelledby="aiw-title">
+  <div class="aiw-bg-grid" aria-hidden="true"></div>
+  <div class="aiw-glow" aria-hidden="true"></div>
+
+  <div class="aiw-wrap">
+
+    <!-- LEFT · copy -->
+    <div class="aiw-copy">
+      <span class="aiw-tag"><span class="aiw-tag-dot"></span>[ 24/7 AI ASSISTANT ]</span>
+      <h2 class="aiw-title" id="aiw-title">An AI on every page —<br><span class="aiw-em">answering, around the clock</span></h2>
+      <p class="aiw-lead">We embed an AI chat widget on every page of your site that visitors can call or message anytime. Trained on your business, it answers their exact questions instantly — like an employee who never clocks out.</p>
+
+      <div class="aiw-points">
+        <div class="aiw-point">
+          <span class="aiw-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13a8 8 0 0 1 16 0"/><path d="M4 13v3a2 2 0 0 0 2 2h1v-6H6a2 2 0 0 0-2 1z"/><path d="M20 13v3a2 2 0 0 1-2 2h-1v-6h1a2 2 0 0 1 2 1z"/></svg></span>
+          <div class="aiw-point-body">
+            <h3>Call or message, any hour</h3>
+            <p>Whether it's 3 AM or the middle of a busy workday, customers get their specific questions answered on the spot — by phone or by chat.</p>
+          </div>
+        </div>
+        <div class="aiw-point">
+          <span class="aiw-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></span>
+          <div class="aiw-point-body">
+            <h3>A 24/7 signal that earns traffic</h3>
+            <p>Google and AI tools like ChatGPT see that visitors can always get answers on your site — so they're far more confident sending people your way.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="aiw-callout">
+        <span class="aiw-callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8 8 0 0 1-11.6 7.1L4 20.5l1.9-5.3A8 8 0 1 1 21 11.5z"/><path d="M8.5 12l2.2 2.2 4.3-4.3"/></svg></span>
+        <p><strong>More answered questions means more booked jobs.</strong> An always-on assistant turns curious visitors into customers — more business, more jobs, more money in your pocket.</p>
+      </div>
+    </div>
+
+    <!-- RIGHT · "Always-On Assistant" animation -->
+    <div class="aiw-viz" aria-hidden="true">
+      <span class="aiw-ring"></span>
+      <span class="aiw-dial"></span>
+      <span class="aiw-sweep"></span>
+
+      <div class="aiw-core">
+        <span class="aiw-core-glow"></span>
+        <span class="aiw-wave"><i></i><i></i><i></i><i></i><i></i></span>
+      </div>
+
+      <div class="aiw-pill q"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.3a2.4 2.4 0 1 1 3.3 2.2c-.7.4-.9.9-.9 1.6"/><path d="M12 16.6h.01"/></svg>Open this weekend? <b>· 3:14&nbsp;AM</b></div>
+      <div class="aiw-pill a"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Yes — open 7 days a week</div>
+      <div class="aiw-pill call"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5 9 4l1.2 3.4-1.8 1.3a10.5 10.5 0 0 0 4.6 4.6l1.3-1.8L17.7 13l.5 2.5a1.4 1.4 0 0 1-1.5 1.7A13.6 13.6 0 0 1 4.3 5a1.4 1.4 0 0 1 1.7-1.5"/></svg>Call</div>
+      <div class="aiw-pill msg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8 8 0 0 1-11.6 7.1L4 20.5l1.9-5.3A8 8 0 1 1 21 11.5z"/></svg>Message</div>
+
+      <div class="aiw-chip c1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5l3 1.8"/></svg>24/7</div>
+      <div class="aiw-chip c2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="6.5" width="11" height="11" rx="2.5"/><path d="M9.5 1.5v3M14.5 1.5v3M9.5 19.5v3M14.5 19.5v3M1.5 9.5h3M1.5 14.5h3M19.5 9.5h3M19.5 14.5h3"/></svg>Trained on your business</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ====== Premium custom design ====== -->
+<section class="prm" aria-labelledby="prm-title">
+  <div class="prm-bg-grid" aria-hidden="true"></div>
+  <div class="prm-glow" aria-hidden="true"></div>
+
+  <div class="prm-wrap">
+
+    <!-- LEFT · "Premium Artboard" animation -->
+    <div class="prm-viz" aria-hidden="true">
+      <span class="prm-guide tl"></span>
+      <span class="prm-guide br"></span>
+
+      <div class="prm-card">
+        <div class="prm-card-top">
+          <span class="prm-dots"><i></i><i></i><i></i></span>
+          <span class="prm-url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>yourbusiness.com</span>
+        </div>
+        <div class="prm-card-body">
+          <div class="prm-hero-row">
+            <div class="prm-hero-copy">
+              <span class="prm-eyebrow"></span>
+              <span class="prm-bar h1"></span>
+              <span class="prm-bar h2"></span>
+              <span class="prm-bar sub"></span>
+              <span class="prm-cta">Get a Quote</span>
+            </div>
+            <div class="prm-hero-img"></div>
+          </div>
+          <div class="prm-tiles"><span></span><span></span><span></span></div>
+        </div>
+        <span class="prm-gloss"></span>
+      </div>
+
+      <div class="prm-palette">
+        <span style="--c:#40EBFF"></span>
+        <span style="--c:#9FDCEF"></span>
+        <span style="--c:#53B9E0"></span>
+        <span style="--c:#1699A8"></span>
+      </div>
+
+      <div class="prm-chip c1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l11-11"/><path d="M16 3l1.1 3L20 7l-2.9 1L16 11l-1.1-3L12 7l2.9-1z"/></svg>Custom-built</div>
+      <div class="prm-chip c2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17l5-5 4 4 6-7"/><path d="M16 9h4v4"/></svg>Higher value</div>
+    </div>
+
+    <!-- RIGHT · copy -->
+    <div class="prm-copy">
+      <span class="prm-tag"><span class="prm-tag-dot"></span>[ PREMIUM DESIGN ]</span>
+      <h2 class="prm-title" id="prm-title">Look high-end —<br><span class="prm-em">and get paid like it</span></h2>
+      <p class="prm-lead">Every site we build is custom-designed from scratch — beautiful, modern, and genuinely high-end. It's your digital business card, and it makes the right impression the second someone lands on it.</p>
+
+      <div class="prm-points">
+        <div class="prm-point">
+          <span class="prm-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l3.5 5.5L12 22 2.5 8.5z"/><path d="M2.5 8.5h19M9 3l-3 5.5L12 22M15 3l3 5.5L12 22"/></svg></span>
+          <div class="prm-point-body">
+            <h3>Instant credibility &amp; trust</h3>
+            <p>A polished, professional site tells visitors you're the real deal before they read a word — so they trust you, and they reach out.</p>
+          </div>
+        </div>
+        <div class="prm-point">
+          <span class="prm-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 11 3.8a2 2 0 0 0-1.4-.6H4a1 1 0 0 0-1 1v5.6a2 2 0 0 0 .6 1.4l9.6 9.6a2 2 0 0 0 2.8 0l4.6-4.6a2 2 0 0 0 0-2.8z"/><circle cx="7.6" cy="7.6" r="1.3"/></svg></span>
+          <div class="prm-point-body">
+            <h3>Premium look, premium prices</h3>
+            <p>When your website looks high-end, people assume your work is too — so they convert more readily and happily pay more for it.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="prm-callout">
+        <span class="prm-callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 7-7"/><path d="M17 8h4v4"/></svg></span>
+        <p><strong>Design isn't decoration — it's leverage.</strong> A site that looks expensive wins more jobs and commands higher prices.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ====== FAQ — contractor questions ====== -->
+<section class="faq" aria-labelledby="faq-title">
+  <div class="faq-grid-bg" aria-hidden="true"></div>
+  <div class="faq-glow" aria-hidden="true"></div>
+  <span class="faq-cross faq-cross-tl" aria-hidden="true"></span>
+  <span class="faq-cross faq-cross-br" aria-hidden="true"></span>
+
+  <div class="faq-wrap">
+    <div class="faq-head">
+      <span class="faq-tag"><span class="faq-dot"></span>[ FAQ ]</span>
+      <h2 class="faq-title" id="faq-title">Everything contractors ask about <span class="faq-em">their new website</span></h2>
+    </div>
+
+    <div class="faq-list">
+      <article class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span class="faq-q-text">Is every website really custom-built, or just a template?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Always custom. Every site is designed from scratch to look high-end, professional, and unmistakably yours — never a cookie-cutter template. That polished first impression builds instant trust and lets you charge what your work is worth.</p></div></div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span class="faq-q-text">How will my new site actually get found on Google?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner"><p>We build every site for search from the ground up — fast load times, clean semantic code, and locally-targeted content — so you climb Google for the exact jobs people are searching for in your area.</p></div></div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span class="faq-q-text">What does it mean that my site is "optimized for AI"?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner"><p>We structure your content so AI tools like ChatGPT, Gemini, and Perplexity can read, understand, and recommend your business. More and more people ask AI for a referral before they ever open Google — and we make sure you're the answer they get.</p></div></div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span class="faq-q-text">Do you create pages for each of my services and service areas?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Yes. You get a dedicated, in-depth page for every service you offer and every town or neighborhood you serve — so you show up across your entire market, not just where your office happens to be.</p></div></div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span class="faq-q-text">What happens the moment someone books or fills out a form?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Confirmations fire instantly, both ways: your customer gets an immediate text or email, and you're notified the second a new lead lands. Every booking also kicks off automatic reminders — a couple days before, the day before, and a couple hours before — so you get far fewer no-shows.</p></div></div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span class="faq-q-text">Can my website answer customer questions 24/7?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Every page includes an AI assistant your visitors can call or message any time, day or night. It's trained on your business, so it answers their specific questions on the spot — like an employee who never clocks out — even at 2&nbsp;AM or on a Sunday.</p></div></div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span class="faq-q-text">Will my website stay fresh, or go stale over time?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Never stale. We regularly publish your newest Google reviews and freshest Facebook posts right to your site. That constant activity tells Google and AI your business is alive and working — which builds trust and drives more traffic your way.</p></div></div>
+      </article>
+    </div>
+
+    <div class="faq-foot">
+      <span class="faq-foot-text">Still have questions?</span>
+      <a class="faq-foot-cta" href="/book">
+        <span>Ask an expert</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FINAL CTA — let's talk ====== -->
+<section class="finalcta" aria-labelledby="finalcta-title">
+  <div class="finalcta-stage">
+    <div class="finalcta-discs" aria-hidden="true">
+      <span class="fdisc d1"></span>
+      <span class="fdisc d2"></span>
+      <span class="fdisc d3"></span>
+      <span class="fdisc d4"></span>
+    </div>
+    <h2 class="finalcta-title" id="finalcta-title">Let&rsquo;s <span class="finalcta-em">talk.</span></h2>
+    <p class="finalcta-sub">Or better &mdash; call our demo line and let Erio do the talking. Websites, AI&nbsp;employees, and custom solutions, all built around the way your shop actually runs.</p>
+    <div class="finalcta-actions">
+      <a href="/book" class="finalcta-fill">
+        <span>Book Demo</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="2"/><path d="M3 9.5h18"/><path d="M8 2.5v4M16 2.5v4"/></svg>
+      </a>
+      <a href="/packages" class="finalcta-line">
+        <span>View Packages</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8.5"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer class="site-foot">
+  <div class="site-foot-brand">
+    <a href="/"><img class="site-foot-logo" src="Erio-Logo-Text-White-Transparent.png" alt="Erio" /></a>
+    <p>&copy; 2026 Erio LLC &middot; AI websites, employees &amp; solutions.</p>
+    <div class="site-foot-legal">
+      <a href="/privacypolicy" target="_blank" rel="noopener">Privacy</a>
+      <span>|</span>
+      <a href="/termsofservice" target="_blank" rel="noopener">Terms</a>
+    </div>
+  </div>
+
+  <nav class="site-foot-col" aria-label="Explore">
+    <span class="site-foot-head">Explore</span>
+    <a href="/book">Book</a>
+    <a href="/packages">Packages</a>
+    <a href="https://app.erio.ai/">Login</a>
+  </nav>
+
+  <nav class="site-foot-col" aria-label="Products">
+    <span class="site-foot-head">Products</span>
+    <a href="/ai-websites">AI Websites</a>
+    <a href="/ai-employees">AI Employees</a>
+    <a href="#products">AI Solutions</a>
+  </nav>
+
+  <div class="site-foot-col">
+    <span class="site-foot-head">Contact</span>
+    <a href="mailto:info@erio.ai">info@erio.ai</a>
+    <a href="tel:+17867880486">(786) 788-0486</a>
+    <a class="site-foot-addr" href="https://www.google.com/maps/place/Erio/@38.3941829,-171.0053285,3z/data=!4m6!3m5!1s0x4ba0d6ca652a56b:0x278344f4b97a786e!8m2!3d46.423669!4d-129.9427086!16s%2Fg%2F11yk61fcg9?entry=ttu&g_ep=EgoyMDI2MDUyMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">1000 Brickell Ave,<br>Miami, FL 33131</a>
+  </div>
+</footer>
+
+<script>
+  /* ============================================================
+     AI EMPLOYEES VOICE WAVE — 30 vertical bars with multi-frequency
+     speech-like animation. 2D canvas, brand neon cyan palette.
+  ============================================================ */
+  (function initVoiceWave() {
+    const canvas = document.querySelector('.voice-wave-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    let cssW = 0, cssH = 0, time = 0, raf = 0;
+    let visible = true, docVisible = !document.hidden;
+
+    function resize() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const rect = canvas.getBoundingClientRect();
+      cssW = Math.max(1, rect.width);
+      cssH = Math.max(1, rect.height);
+      canvas.width  = Math.round(cssW * dpr);
+      canvas.height = Math.round(cssH * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.lineCap = 'round';
+    }
+    resize();
+    if ('ResizeObserver' in window) new ResizeObserver(resize).observe(canvas);
+    window.addEventListener('resize', resize, { passive: true });
+
+    // 30 animated bars + 1 static mini-bar on each side + 1 dot on each end
+    const BAR_COUNT = 34;
+    const PALE  = [120, 172, 179]; // #78ACB3
+    const NEON  = [44, 165, 179];  // #2CA5B3
+
+    function draw() {
+      raf = 0;
+      if (!visible || !docVisible) return;
+      ctx.clearRect(0, 0, cssW, cssH);
+
+      const visW = cssW * 0.80;
+      const gap = visW / BAR_COUNT;
+      const startX = (cssW - visW) / 2 + gap / 2;
+      const centerY = cssH / 2;
+      const maxHalf = cssH * 0.42;
+
+      for (let i = 0; i < BAR_COUNT; i++) {
+        const x = startX + i * gap;
+
+        // ---- Outermost dots (very edge) ----
+        if (i === 0 || i === BAR_COUNT - 1) {
+          ctx.fillStyle = `rgba(${NEON[0]}, ${NEON[1]}, ${NEON[2]}, 0.22)`;
+          ctx.beginPath();
+          ctx.arc(x, centerY, 4, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.fillStyle = `rgba(${PALE[0]}, ${PALE[1]}, ${PALE[2]}, 0.95)`;
+          ctx.beginPath();
+          ctx.arc(x, centerY, 1.8, 0, Math.PI * 2);
+          ctx.fill();
+          continue;
+        }
+
+        // ---- Static mini-bars (one step inside each dot) ----
+        if (i === 1 || i === BAR_COUNT - 2) {
+          const half = 5;
+          const y1 = centerY - half;
+          const y2 = centerY + half;
+          ctx.lineWidth = 7;
+          ctx.strokeStyle = `rgba(${NEON[0]}, ${NEON[1]}, ${NEON[2]}, 0.22)`;
+          ctx.beginPath();
+          ctx.moveTo(x, y1);
+          ctx.lineTo(x, y2);
+          ctx.stroke();
+          ctx.lineWidth = 2.8;
+          ctx.strokeStyle = `rgb(${NEON[0]}, ${NEON[1]}, ${NEON[2]})`;
+          ctx.beginPath();
+          ctx.moveTo(x, y1);
+          ctx.lineTo(x, y2);
+          ctx.stroke();
+          continue;
+        }
+
+        // ---- Animated bars (i = 2 … BAR_COUNT-3) ----
+        // Re-normalize p over the 30 active bars so the envelope still
+        // peaks at the dead center.
+        const p = (i - 2) / (BAR_COUNT - 5);
+
+        const env = Math.pow(Math.sin(p * Math.PI), 0.7);
+
+        // Phase: time * freq - p * k → features travel low-p to high-p (LEFT → RIGHT)
+        const speech =
+          (Math.sin(time * 1.9 - p * 0.5) * 0.5 + 0.5) * 0.7 +
+          (Math.sin(time * 1.4 - p * 1.2) * 0.5 + 0.5) * 0.3;
+
+        const detail =
+          (Math.sin(time * 5.4 - p * 2.3) * 0.5 + 0.5) * 0.40 +
+          (Math.sin(time * 8.6 - p * 3.7 + 1.5) * 0.5 + 0.5) * 0.35 +
+          (Math.sin(time * 13.2 - p * 5.1) * 0.5 + 0.5) * 0.25;
+
+        const flutter = Math.sin(time * 4.2 - i * 0.7) * 0.3 + 0.7;
+
+        // Higher baseline so the wave sits taller even at its quietest
+        const intensity = Math.min(1, env * (0.62 + speech * detail * 0.55) * flutter);
+        // Larger floor too — outermost bars never collapse below this
+        const half = Math.max(12, intensity * maxHalf);
+        const y1 = centerY - half;
+        const y2 = centerY + half;
+
+        // GLOW pass — wide, low-alpha halo
+        ctx.lineWidth = 9;
+        ctx.strokeStyle = `rgba(${NEON[0]}, ${NEON[1]}, ${NEON[2]}, ${0.08 + intensity * 0.12})`;
+        ctx.beginPath();
+        ctx.moveTo(x, y1);
+        ctx.lineTo(x, y2);
+        ctx.stroke();
+
+        // CORE pass — solid neon (was a per-bar createLinearGradient
+        // allocated every frame — costly). Solid color reads the same
+        // visually because the halo already provides the falloff.
+        ctx.lineWidth = 3;
+        ctx.strokeStyle = `rgb(${NEON[0]}, ${NEON[1]}, ${NEON[2]})`;
+        ctx.beginPath();
+        ctx.moveTo(x, y1);
+        ctx.lineTo(x, y2);
+        ctx.stroke();
+      }
+
+      time += 0.018;
+      raf = requestAnimationFrame(draw);
+    }
+
+    function start() { if (!raf) raf = requestAnimationFrame(draw); }
+    function stop()  { if (raf) { cancelAnimationFrame(raf); raf = 0; } }
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(entries => {
+        for (const e of entries) {
+          visible = e.isIntersecting;
+          if (visible) start(); else stop();
+        }
+      }, { rootMargin: '50px' }).observe(canvas);
+    }
+    document.addEventListener('visibilitychange', () => {
+      docVisible = !document.hidden;
+      if (docVisible) start(); else stop();
+    });
+
+    start();
+  })();
+
+  /* ============================================================
+     MOBILE NAV — hamburger toggles the dropdown menu.
+  ============================================================ */
+  (function initMobileMenu() {
+    const burger = document.querySelector('.nav-mobile-burger');
+    const menu   = document.getElementById('navMobileMenu');
+    if (!burger || !menu) return;
+
+    function setOpen(open) {
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      menu.setAttribute('aria-hidden', open ? 'false' : 'true');
+      burger.classList.toggle('is-open', open);
+      menu.classList.toggle('is-open', open);
+    }
+
+    burger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setOpen(burger.getAttribute('aria-expanded') !== 'true');
+    });
+
+    // close on item tap
+    menu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => setOpen(false));
+    });
+
+    // close on outside tap
+    document.addEventListener('click', (e) => {
+      if (burger.getAttribute('aria-expanded') !== 'true') return;
+      if (menu.contains(e.target) || burger.contains(e.target)) return;
+      setOpen(false);
+    });
+
+    // close on escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') setOpen(false);
+    });
+  })();
+
+  /* ============================================================
+     MOBILE PILL — wider by default; shrinks when scrolling down,
+     expands again when scrolling up (and at the very top).
+  ============================================================ */
+  (function initMobilePillScroll() {
+    const pill = document.querySelector('.nav-mobile-pill');
+    if (!pill) return;
+    let lastY = window.scrollY || 0;
+    let ticking = false;
+
+    function update() {
+      ticking = false;
+      const y = window.scrollY || 0;
+      if (y <= 4) {
+        pill.classList.remove('is-compact');     // expanded at the top
+      } else if (y > lastY + 2) {
+        pill.classList.add('is-compact');         // scrolling down → shrink
+      } else if (y < lastY - 2) {
+        pill.classList.remove('is-compact');      // scrolling up → expand
+      }
+      lastY = y;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+  })();
+
+  /* ============================================================
+     PRODUCTS DROPDOWN — opens ONLY when the cursor enters
+     "Products", then stays open while the cursor is anywhere on
+     the pill, and closes once the cursor leaves the pill entirely.
+  ============================================================ */
+  (function initProductsDropdown() {
+    const pill    = document.querySelector('.nav-pill');
+    const trigger = document.querySelector('.nav-drop-trigger');
+    const sub     = pill && pill.querySelector('.nav-pill-sub');
+    if (!pill || !trigger || !sub) return;
+
+    const open = () => {
+      pill.classList.add('is-open');
+      sub.style.maxHeight = sub.scrollHeight + 'px'; // exact content height
+    };
+    const close = () => {
+      pill.classList.remove('is-open');
+      sub.style.maxHeight = ''; // back to CSS max-height:0
+    };
+
+    // open only from Products (hover or keyboard focus)
+    trigger.addEventListener('mouseenter', open);
+    trigger.addEventListener('focus', open);
+
+    // stay open across the whole pill; close when the cursor leaves it
+    pill.addEventListener('mouseleave', close);
+
+    // keyboard: close once focus leaves the pill
+    pill.addEventListener('focusout', (e) => {
+      if (!pill.contains(e.relatedTarget)) close();
+    });
+  })();
+
+  /* ============================================================
+     CARD SPOTLIGHT — hover-only neon cyan border glow that
+     traces the cursor across each partner card. Desktop only.
+  ============================================================ */
+  (function initCardSpotlight() {
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    const cards = document.querySelectorAll('.partner-card');
+    cards.forEach(card => {
+      card.addEventListener('pointermove', (e) => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--spot-x', (e.clientX - rect.left).toFixed(1));
+        card.style.setProperty('--spot-y', (e.clientY - rect.top).toFixed(1));
+      }, { passive: true });
+    });
+  })();
+
+  // headline gradient: compute per-char background-position once after layout settles,
+  // then recompute on resize debounced to avoid layout thrash
+  function applyHeadlineGradient() {
+    const title = document.querySelector('.hero-title');
+    if (!title) return;
+    const chars = title.querySelectorAll('.char');
+    if (!chars.length) return;
+    // single forced reflow read, then batch writes
+    const titleLeft = title.getBoundingClientRect().left;
+    const total = title.offsetWidth;
+    const writes = [];
+    chars.forEach(c => {
+      const offset = c.getBoundingClientRect().left - titleLeft;
+      writes.push([c, total, -offset]);
+    });
+    writes.forEach(([c, size, pos]) => {
+      c.style.setProperty('--grad-size', size + 'px');
+      c.style.setProperty('--grad-pos', pos + 'px');
+    });
+  }
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(applyHeadlineGradient);
+  } else {
+    window.addEventListener('load', applyHeadlineGradient);
+  }
+  let resizeRaf = 0;
+  window.addEventListener('resize', () => {
+    if (resizeRaf) return;
+    resizeRaf = requestAnimationFrame(() => {
+      resizeRaf = 0;
+      applyHeadlineGradient();
+    });
+  }, { passive: true });
+
+  // growth section: trigger the staged reveal once when scrolled into view
+  const growth = document.querySelector('.growth');
+  if (growth && 'IntersectionObserver' in window) {
+    const growthObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-revealed');
+          growthObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.25 });
+    growthObs.observe(growth);
+  } else if (growth) {
+    growth.classList.add('is-revealed');
+  }
+
+  // logos strip: blur-fade reveal when it scrolls into view
+  const logosStrip = document.querySelector('.logos-strip');
+  if (logosStrip && 'IntersectionObserver' in window) {
+    const logosObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-revealed');
+          logosObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    logosObs.observe(logosStrip);
+  } else if (logosStrip) {
+    logosStrip.classList.add('is-revealed');
+  }
+
+  /* ============================================================
+     THE PROBLEM — counter animations, viz reveals, matrix canvas
+  ============================================================ */
+  (function initProblem() {
+    const root = document.querySelector('.problem');
+    if (!root) return;
+
+    // Reveal + run viz animations once when section scrolls in
+    let activated = false;
+    function activate() {
+      if (activated) return;
+      activated = true;
+      root.classList.add('is-revealed');
+
+      // Inner-viz CSS reveal finishes ~2.1s in. Generation animations
+      // start a bit before that so they're visibly mid-action when the
+      // wipe completes, and run at half-speed so every tick is readable.
+      const GEN_START = 1500;
+
+      setTimeout(() => {
+        // Big-number counters — easeOutCubic ramp from 0 to data-count.
+        root.querySelectorAll('[data-count]').forEach(el => {
+          const target = parseInt(el.dataset.count, 10);
+          // 2× the previous durations so people can actually watch them roll.
+          const dur = target > 10000 ? 4400 : 3200;
+          const start = performance.now();
+          function tick(now) {
+            const t = Math.min(1, (now - start) / dur);
+            const eased = 1 - Math.pow(1 - t, 3);
+            const v = Math.round(target * eased);
+            el.textContent = v.toLocaleString();
+            if (t < 1) requestAnimationFrame(tick);
+          }
+          requestAnimationFrame(tick);
+        });
+
+        // Donut: stroke-dashoffset reveals the 62% arc
+        const donut = root.querySelector('.donut-fg');
+        if (donut) {
+          const C = 2 * Math.PI * 42;
+          donut.style.strokeDasharray = C;
+          donut.style.strokeDashoffset = C;
+          requestAnimationFrame(() => {
+            donut.style.transition = 'stroke-dashoffset 3.6s cubic-bezier(0.22, 1, 0.36, 1) 0.2s';
+            donut.style.strokeDashoffset = String(C * (1 - 0.62));
+          });
+        }
+
+        // Sparkline: draw in from left
+        const line = root.querySelector('.line-path');
+        if (line) {
+          const L = line.getTotalLength();
+          line.style.strokeDasharray = L;
+          line.style.strokeDashoffset = L;
+          requestAnimationFrame(() => {
+            line.style.transition = 'stroke-dashoffset 3.2s cubic-bezier(0.22, 1, 0.36, 1) 0.3s';
+            line.style.strokeDashoffset = '0';
+          });
+        }
+        const lineFill = root.querySelector('.line-fill');
+        if (lineFill) {
+          lineFill.style.opacity = '0';
+          lineFill.style.transition = 'opacity 2.4s var(--ease-velvet, ease-out) 2.0s';
+          requestAnimationFrame(() => { lineFill.style.opacity = '1'; });
+        }
+
+        // Comparison bars: grow from 0 to data-fill width
+        root.querySelectorAll('.pcomp-fill').forEach((fill, i) => {
+          const target = fill.dataset.fill || '0%';
+          fill.style.setProperty('--fill', '0%');
+          setTimeout(() => {
+            fill.animate(
+              [{ width: '0%' }, { width: target }],
+              { duration: 2000, easing: 'cubic-bezier(0.22, 1, 0.36, 1)', fill: 'forwards' }
+            );
+          }, 600 + i * 260);
+        });
+
+        // 24-hour heatmap: sweep in the after-hours cells with stagger.
+        root.querySelectorAll('.phr.is-off').forEach(cell => cell.classList.remove('is-off'));
+        root.querySelectorAll('.phr').forEach((cell, i) => {
+          const isAfterHours = i < 8 || i >= 18;
+          if (isAfterHours) {
+            setTimeout(() => cell.classList.add('is-off'), 400 + i * 70);
+          }
+        });
+      }, GEN_START);
+    }
+
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver(entries => {
+        for (const e of entries) {
+          if (e.isIntersecting) { activate(); obs.unobserve(e.target); }
+        }
+      }, { threshold: 0.18 });
+      obs.observe(root);
+    } else {
+      activate();
+    }
+
+    /* Gauge needle + fill arc are pure-CSS via .is-revealed; readout
+       value is animated by the [data-count] loop above. */
+
+    /* === BENEFITS spotlight + 3 grid-line beams === */
+    initBenefitsInteractions();
+  })();
+
+  function initBenefitsInteractions() {
+    const root = document.querySelector('.benefits');
+    if (!root) return;
+    const grid = root.querySelector('.benefits-grid');
+    const sparkLayer = root.querySelector('.benefits-sparks');
+    if (!grid) return;
+
+    const bricks = Array.from(grid.querySelectorAll('.bt, .bt-filler'));
+
+    // Cache per-brick offsets (relative to grid) so we can compute each
+    // brick's local cursor coords without per-event getBoundingClientRect()
+    // on every brick (which would be expensive).
+    let brickRects = [];
+    function recomputeBrickRects() {
+      const gr = grid.getBoundingClientRect();
+      brickRects = bricks.map(b => {
+        const r = b.getBoundingClientRect();
+        return { el: b, left: r.left - gr.left, top: r.top - gr.top };
+      });
+    }
+    recomputeBrickRects();
+    if ('ResizeObserver' in window) {
+      new ResizeObserver(recomputeBrickRects).observe(grid);
+    } else {
+      window.addEventListener('resize', recomputeBrickRects, { passive: true });
+    }
+    window.addEventListener('scroll', recomputeBrickRects, { passive: true });
+
+    /* Grid-level pointer tracking: writes --spot-x / --spot-y onto EVERY
+       brick (in that brick's own local coords). The brick under the
+       cursor gets its bloom (::before, panel-level :hover); every other
+       brick's edge ring (::after) uses its own cursor-local coords so
+       the side nearest the cursor lights up — adjacent bricks share
+       seamlessly lit seams. */
+    grid.addEventListener('pointerenter', () => grid.classList.add('is-hovered'));
+    grid.addEventListener('pointerleave', () => grid.classList.remove('is-hovered'));
+
+    /* Spark particle pool (≈25% more spawn density than the prior tuning) */
+    const POOL_SIZE = 18;
+    const pool = [];
+    if (sparkLayer) {
+      for (let i = 0; i < POOL_SIZE; i++) {
+        const s = document.createElement('span');
+        s.className = 'spark';
+        sparkLayer.appendChild(s);
+        pool.push(s);
+      }
+    }
+    let poolIdx = 0;
+    let lastSpark = 0;
+    function spawnSpark(gx, gy) {
+      // Hold off sparks until the bricks finish gliding into place
+      if (!root.classList.contains('is-bricks-ready')) return;
+      const now = performance.now();
+      if (now - lastSpark < 56) return;
+      lastSpark = now;
+      const s = pool[poolIdx];
+      poolIdx = (poolIdx + 1) % POOL_SIZE;
+      const angle = Math.random() * Math.PI * 2;
+      const dist = 18 + Math.random() * 26;
+      s.style.left = gx + 'px';
+      s.style.top  = gy + 'px';
+      s.style.setProperty('--dx', (Math.cos(angle) * dist) + 'px');
+      s.style.setProperty('--dy', (Math.sin(angle) * dist) + 'px');
+      s.classList.remove('is-on');
+      // Force reflow so the animation restarts from 0
+      // eslint-disable-next-line no-unused-expressions
+      s.offsetWidth;
+      s.classList.add('is-on');
+    }
+
+    grid.addEventListener('pointermove', e => {
+      const gr = grid.getBoundingClientRect();
+      const gx = e.clientX - gr.left;
+      const gy = e.clientY - gr.top;
+      // Update every brick's local cursor coords
+      for (const r of brickRects) {
+        r.el.style.setProperty('--spot-x', (gx - r.left) + 'px');
+        r.el.style.setProperty('--spot-y', (gy - r.top)  + 'px');
+      }
+      // Spark
+      if (pool.length) spawnSpark(gx, gy);
+    });
+  }
+
+  /* ============================================================
+     BENEFITS — counters + popping calc-snippet canvas + cursor glow
+  ============================================================ */
+  (function initBenefits() {
+    const root = document.querySelector('.benefits');
+    if (!root) return;
+
+    // Reveal observer
+    let activated = false;
+    function activate() {
+      if (activated) return;
+      activated = true;
+      root.classList.add('is-revealed');
+
+      // Last brick locks into place at 1.65s + 1.2s transition = 2.85s.
+      // After that, spotlight + sparks become active.
+      setTimeout(() => root.classList.add('is-bricks-ready'), 2850);
+
+      // Slow 2.4 s counter ramp once the tiles' wipe-in starts (~1.5 s in)
+      setTimeout(() => {
+        root.querySelectorAll('[data-bcount]').forEach(el => {
+          const target = parseFloat(el.dataset.bcount);
+          const decimals = (el.dataset.bcount.split('.')[1] || '').length;
+          const dur = 2400;
+          const startT = performance.now();
+          function tick(now) {
+            const t = Math.min(1, (now - startT) / dur);
+            const eased = 1 - Math.pow(1 - t, 3);
+            const v = target * eased;
+            el.textContent = decimals > 0 ? v.toFixed(decimals) : Math.round(v).toLocaleString();
+            if (t < 1) requestAnimationFrame(tick);
+          }
+          requestAnimationFrame(tick);
+        });
+      }, 1500);
+    }
+
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver(es => {
+        for (const e of es) {
+          if (e.isIntersecting) { activate(); obs.unobserve(e.target); }
+        }
+      }, { threshold: 0.18 });
+      obs.observe(root);
+    } else {
+      activate();
+    }
+
+    /* Crosshair is fixed at the dead center of the grid — pure CSS.
+       Beams + core fade in once via `.is-revealed` on the section. */
+  })();
+
+  /* ============================================================
+     WHY ERIO — scroll reveal (alternating slide-ins + divider draw)
+  ============================================================ */
+  /* ============================================================
+     FAQ — accordion (single open) + scroll reveal
+  ============================================================ */
+  (function initFaq() {
+    const root = document.querySelector('.faq');
+    if (!root) return;
+
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('is-revealed'); obs.unobserve(e.target); }
+        });
+      }, { threshold: 0.15 });
+      obs.observe(root);
+    } else {
+      root.classList.add('is-revealed');
+    }
+
+    // Reveal-on-scroll. For each, we observe an inner "watch" element so the
+    // fade fires when the actual content enters the viewport (the voice
+    // section has tall top padding, which otherwise triggered it too early).
+    [
+      { root: '.finalcta', watch: '.finalcta-stage', th: 0.25 },
+      { root: '.voice',    watch: '.voice-stage',    th: 0.35 },
+      { root: '.seo',      watch: '.seo-wrap',       th: 0.2 },
+      { root: '.svp',      watch: '.svp-wrap',       th: 0.2 },
+      { root: '.spd',      watch: '.spd-wrap',       th: 0.2 },
+      { root: '.frs',      watch: '.frs-wrap',       th: 0.2 },
+      { root: '.aiw',      watch: '.aiw-wrap',       th: 0.2 },
+      { root: '.prm',      watch: '.prm-wrap',       th: 0.2 }
+    ].forEach(({ root: rootSel, watch, th }) => {
+      const el = document.querySelector(rootSel);
+      if (!el) return;
+      const target = el.querySelector(watch) || el;
+      if ('IntersectionObserver' in window) {
+        const o = new IntersectionObserver(es => {
+          es.forEach(e => { if (e.isIntersecting) { el.classList.add('is-revealed'); o.disconnect(); } });
+        }, { threshold: th });
+        o.observe(target);
+      } else {
+        el.classList.add('is-revealed');
+      }
+    });
+
+    const items = Array.from(root.querySelectorAll('.faq-item'));
+    items.forEach(item => {
+      const btn = item.querySelector('.faq-q');
+      if (!btn) return;
+      btn.addEventListener('click', () => {
+        const open = item.classList.contains('is-open');
+        // close all, then open the clicked one (single-open accordion)
+        items.forEach(it => {
+          it.classList.remove('is-open');
+          const b = it.querySelector('.faq-q');
+          if (b) b.setAttribute('aria-expanded', 'false');
+        });
+        if (!open) {
+          item.classList.add('is-open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  })();
+
+  (function initWhyErio() {
+    const root = document.querySelector('.whyerio');
+    if (!root) return;
+
+    const stage = root.querySelector('.why-stage') || root;
+
+    // Reveal cascade (fires once when the pinned stage scrolls into view)
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { root.classList.add('is-revealed'); obs.unobserve(e.target); }
+        });
+      }, { threshold: 0.3 });
+      obs.observe(stage);
+    } else {
+      root.classList.add('is-revealed');
+    }
+
+    // Left sub-content per reason (headline stays "Built for contractors";
+    // the right column never changes).
+    const VARIANTS = [
+      { eyebrow: "An AI partner that's actually", line1: "Built for", line2: "contractors",
+        lead: "We don't vanish into a six-month build. Your site and AI receptionist go live and start booking jobs within a week — so you see results while the season's still hot.",
+        ftitle: "Live in days, not months",
+        fdesc: "From kickoff to answering your calls in about a week — fast, without cutting corners." },
+      { eyebrow: "Real people who", line1: "Know the", line2: "trades",
+        lead: "Behind the AI is a real team that knows the trades — building it, training it on your services, and answering when you call. No ticket queues, no bot about your bot.",
+        ftitle: "A real team in your corner",
+        fdesc: "People who build, tune, and support your system — and actually pick up the phone." },
+      { eyebrow: "Shaped around", line1: "How you", line2: "work",
+        lead: "Your setup is shaped around how you run jobs — the truck, the crew, the after-hours callback. Erio fits your workflow instead of forcing you into someone else's.",
+        ftitle: "Made for how you work",
+        fdesc: "Tuned to your trade, your service area, and your schedule — never a generic template." }
+    ];
+
+    const swap      = root.querySelector('.why-swap');
+    const elEye     = root.querySelector('[data-why-eyebrow]');
+    const elEm      = root.querySelector('[data-why-em]');
+    const elLead    = root.querySelector('[data-why-lead]');
+    const elFt      = root.querySelector('[data-why-ftitle]');
+    const elFd      = root.querySelector('[data-why-fdesc]');
+    const railItems = Array.from(root.querySelectorAll('.why-rail-item'));
+    if (!swap || railItems.length < 3) return;
+
+    const mq = window.matchMedia('(max-width: 980px)');
+    let active = -1;
+    let raf = 0;
+
+    function render(i) {
+      const v = VARIANTS[i];
+      if (elEye)  elEye.textContent = v.eyebrow;
+      if (elEm)   elEm.innerHTML = v.line1 + '<br>' + v.line2;
+      if (elLead) elLead.textContent = v.lead;
+      if (elFt)   elFt.textContent = v.ftitle;
+      if (elFd)   elFd.textContent = v.fdesc;
+      railItems.forEach((r, ri) => r.classList.toggle('is-active', ri === i));
+    }
+
+    function setActive(i) {
+      if (i === active) return;
+      const first = active === -1;
+      active = i;
+      if (first) { render(i); return; }
+      swap.classList.add('is-swapping');
+      setTimeout(() => { render(i); swap.classList.remove('is-swapping'); }, 260);
+    }
+
+    function pick() {
+      raf = 0;
+      if (mq.matches) { setActive(0); return; }
+      // Map scroll progress through the pinned track → active index 0/1/2.
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      const rect = root.getBoundingClientRect();
+      const total = root.offsetHeight - vh;
+      const scrolled = Math.min(Math.max(-rect.top, 0), Math.max(1, total));
+      const p = total > 0 ? scrolled / total : 0;
+      const idx = Math.min(VARIANTS.length - 1, Math.floor(p * VARIANTS.length));
+      setActive(idx);
+    }
+    function schedule() { if (!raf) raf = requestAnimationFrame(pick); }
+
+    render(0);
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+    pick();
+  })();
+
+  /* ============================================================
+     WHAT ERIO BUILDS — console reveal + tab switcher + counters
+  ============================================================ */
+  (function initBuilds() {
+    const root = document.querySelector('.builds');
+    if (!root) return;
+
+    const tabs       = Array.from(root.querySelectorAll('.builds-tab'));
+    const indicator  = root.querySelector('.builds-switch-indicator');
+    const panes      = Array.from(root.querySelectorAll('.bcon-pane'));
+    const routeText  = root.querySelector('[data-route]');
+    const console_   = root.querySelector('.builds-console');
+    const counters   = new Map(); // pane → list of counter spans
+    panes.forEach(p => counters.set(p, Array.from(p.querySelectorAll('[data-count]'))));
+
+    const ROUTES = {
+      websites:  'erio.os / websites / live',
+      employees: 'erio.os / employees / live',
+      solutions: 'erio.os / solutions / live'
+    };
+    const CTAS = {
+      websites:  '/ai-websites',
+      employees: 'ai-employees.html',
+      solutions: 'ai-solutions.html'
+    };
+    const footCta = root.querySelector('[data-deep-cta]');
+
+    function positionIndicator(tab) {
+      if (!indicator || !tab) return;
+      const switchEl = tab.parentElement;
+      const sRect = switchEl.getBoundingClientRect();
+      const tRect = tab.getBoundingClientRect();
+      indicator.style.width     = tRect.width  + 'px';
+      indicator.style.transform = `translateX(${tRect.left - sRect.left - 6}px)`;
+    }
+
+    function runCounters(pane) {
+      const items = counters.get(pane) || [];
+      items.forEach(el => {
+        if (el.dataset.counted === '1') return;
+        const target = +el.dataset.count;
+        const dur = 1100;
+        const start = performance.now();
+        function step(now) {
+          const p = Math.min(1, (now - start) / dur);
+          const eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(target * eased).toLocaleString();
+          if (p < 1) requestAnimationFrame(step);
+          else { el.textContent = target.toLocaleString(); el.dataset.counted = '1'; }
+        }
+        requestAnimationFrame(step);
+      });
+    }
+
+    function activate(name) {
+      tabs.forEach(t => {
+        const on = t.dataset.tab === name;
+        t.classList.toggle('is-active', on);
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        if (on) positionIndicator(t);
+      });
+      panes.forEach(p => {
+        const on = p.dataset.pane === name;
+        p.classList.toggle('is-active', on);
+        if (on) {
+          // restart any width-based bar animations
+          p.querySelectorAll('.bab-fill').forEach(b => {
+            b.style.animation = 'none';
+            b.getBoundingClientRect();
+            b.style.animation = '';
+          });
+          // reset and re-run counters for this pane
+          (counters.get(p) || []).forEach(el => { el.dataset.counted = ''; el.textContent = '0'; });
+          setTimeout(() => runCounters(p), 120);
+        }
+      });
+      if (routeText) routeText.textContent = ROUTES[name] || '';
+      if (console_) console_.dataset.active = name;
+      if (footCta) footCta.setAttribute('href', CTAS[name] || '#');
+    }
+
+    tabs.forEach(t => t.addEventListener('click', () => activate(t.dataset.tab)));
+
+    // Reveal on scroll-in
+    function onReveal() {
+      const firstActive = tabs.find(t => t.classList.contains('is-active')) || tabs[0];
+      // Wait for the console's transform transition to start before sizing the indicator
+      requestAnimationFrame(() => positionIndicator(firstActive));
+      // Run counters on the visible pane only
+      const activePane = panes.find(p => p.classList.contains('is-active')) || panes[0];
+      setTimeout(() => runCounters(activePane), 1100);
+    }
+
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('is-revealed');
+            onReveal();
+            obs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.18 });
+      obs.observe(root);
+    } else {
+      root.classList.add('is-revealed');
+      onReveal();
+    }
+
+    // Keep the indicator aligned on resize
+    window.addEventListener('resize', () => {
+      const active = tabs.find(t => t.classList.contains('is-active'));
+      positionIndicator(active);
+    });
+
+    /* ── Scroll-tied tilt for the console ──────────────────────────
+       Mirrors the Framer-Motion ContainerScroll math in vanilla JS:
+       rotateX: 20deg → 0,  scale: 1.05 → 1 (1.05 → 1 on desktop;
+       0.7 → 0.9 on mobile),  translateY: 0 → -100.
+       Progress = (vh - sectionTop) / (sectionHeight + vh), clamped 0..1.
+       Updated inside rAF so scroll stays smooth in both directions. */
+    (function initBuildsScrollTilt() {
+      const target = console_;
+      if (!target) return;
+
+      let isMobile = window.matchMedia('(max-width: 768px)').matches;
+      let raf = 0;
+
+      function apply() {
+        raf = 0;
+        // Mobile: no scroll-tied animation, no tilt — sit flat.
+        if (isMobile) {
+          target.style.transform = 'none';
+          return;
+        }
+        const rect = target.getBoundingClientRect();
+        const vh   = window.innerHeight || document.documentElement.clientHeight;
+        // Progress = 0 when the console's top hits the viewport bottom,
+        // Progress = 1 noticeably before the console centres on screen.
+        const total    = (vh / 2 + rect.height / 2) * 0.86;
+        const consumed = vh - rect.top;
+        const p = Math.max(0, Math.min(1, consumed / total));
+
+        const rotate = 20 - 20 * p;                       // 20 → 0
+        const sFrom  = isMobile ? 0.7  : 1.05;
+        const sTo    = isMobile ? 0.9  : 1.0;
+        const scale  = sFrom + (sTo - sFrom) * p;         // mobile: 0.7→0.9, desktop: 1.05→1
+        const ty     = -100 * p;                          // 0 → -100
+
+        target.style.transform =
+          `perspective(1000px) rotateX(${rotate.toFixed(3)}deg) scale(${scale.toFixed(4)}) translateY(${ty.toFixed(2)}px)`;
+      }
+
+      function schedule() { if (!raf) raf = requestAnimationFrame(apply); }
+
+      window.addEventListener('scroll', schedule, { passive: true });
+      window.addEventListener('resize', () => {
+        isMobile = window.matchMedia('(max-width: 768px)').matches;
+        schedule();
+      });
+      apply();
+    })();
+  })();
+
+  /* ============================================================
+     HOW IT WORKS — auto-rotating step deck + flowing mist canvas
+  ============================================================ */
+  (function initHowItWorks() {
+    const root = document.querySelector('.howit');
+    if (!root) return;
+
+    // Reveal on scroll-in
+    if ('IntersectionObserver' in window) {
+      const revObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('is-revealed');
+            revObs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      revObs.observe(root);
+    } else {
+      root.classList.add('is-revealed');
+    }
+
+    // Step cycling — single source of truth for cycle length
+    const CYCLE_MS = 3200; // reduced by ~1/3 from 4800ms
+    // Time the section's static cascade takes to settle before step 1 lights up.
+    const CASCADE_MS = 1400;
+    root.style.setProperty('--howit-cycle', (CYCLE_MS / 1000) + 's');
+    const tabs = root.querySelectorAll('.howit-tab');
+    const mocks = root.querySelectorAll('.howit-mock');
+    let active = 0;
+    let timer = 0;
+    let cycleStart = 0;
+    let cycleRemaining = CYCLE_MS;
+
+    function restartActiveBar() {
+      // Force the active tab's progress animation (a pseudo-element) to
+      // restart by briefly setting its animation-name to 'none' via a
+      // CSS variable, then clearing it.
+      const tab = root.querySelector('.howit-tab.is-active');
+      if (!tab) return;
+      tab.style.setProperty('--howit-anim', 'none');
+      // force reflow so the variable change registers before clearing
+      // eslint-disable-next-line no-unused-expressions
+      tab.offsetWidth;
+      tab.style.removeProperty('--howit-anim');
+    }
+
+    function activate(step) {
+      if (step === active) {
+        restartActiveBar();
+        return;
+      }
+      active = step;
+      tabs.forEach(t => t.classList.toggle('is-active', +t.dataset.step === step));
+      mocks.forEach(m => m.classList.toggle('is-active', +m.dataset.step === step));
+      restartActiveBar();
+    }
+    function advance() {
+      timer = 0;
+      activate((active % 3) + 1);
+      startCycle();
+      // If cursor is still over the new active tab, pause immediately.
+      if (typeof syncPauseState === 'function') syncPauseState();
+    }
+    function startCycle() {
+      stopCycle();
+      if (active === 0) return; // wait for cascade-deferred first activation
+      restartActiveBar();
+      cycleStart = performance.now();
+      cycleRemaining = CYCLE_MS;
+      timer = setTimeout(advance, cycleRemaining);
+    }
+    function stopCycle() {
+      if (timer) { clearTimeout(timer); timer = 0; }
+      cycleRemaining = CYCLE_MS;
+    }
+    /* Pause: save the remaining time, clear the pending timeout. The bar's
+       CSS animation pauses automatically via the .howit-steps:hover rule. */
+    function pauseCycle() {
+      if (!timer) return;
+      cycleRemaining = Math.max(0, CYCLE_MS - (performance.now() - cycleStart));
+      clearTimeout(timer);
+      timer = 0;
+    }
+    /* Resume: re-schedule the advance for the remaining time. The CSS
+       animation resumes from its paused position once :hover is gone. */
+    function resumeCycle() {
+      if (timer || active === 0) return;
+      if (cycleRemaining >= CYCLE_MS) { startCycle(); return; }
+      cycleStart = performance.now() - (CYCLE_MS - cycleRemaining);
+      timer = setTimeout(advance, cycleRemaining);
+    }
+
+    /* Plan-card shuffle (Step 1 mockup) — rotates each card's
+       position class so the front card cycles every SHUFFLE_MS. */
+    const cards = root.querySelectorAll('.hm-plan-stack .hm-card');
+    const SHUFFLE_MS = 1900;
+    const POS = ['is-front', 'is-mid', 'is-back'];
+    let shuffleTick = 0;
+    let shuffleTimer = 0;
+    function shuffleCards() {
+      shuffleTick = (shuffleTick + 1) % cards.length;
+      cards.forEach((c, i) => {
+        const pos = ((i - shuffleTick) % cards.length + cards.length) % cards.length;
+        c.classList.remove(...POS);
+        c.classList.add(POS[pos]);
+      });
+    }
+    function startShuffle() {
+      stopShuffle();
+      if (!cards.length) return; // step 1 no longer uses a shuffled card stack
+      shuffleTimer = setInterval(shuffleCards, SHUFFLE_MS);
+    }
+    function stopShuffle() {
+      if (shuffleTimer) { clearInterval(shuffleTimer); shuffleTimer = 0; }
+    }
+
+    /* Pause only when the user hovers the *active* step's column.
+       Hovering a different step never pauses. After every activate()
+       we re-check, because the active tab can change underneath the
+       cursor (auto-advance) or via click. */
+    function isActiveHovered() {
+      const tab = root.querySelector('.howit-tab.is-active');
+      return !!(tab && tab.matches(':hover'));
+    }
+    function syncPauseState() {
+      if (isActiveHovered()) pauseCycle();
+      else resumeCycle();
+    }
+
+    tabs.forEach(t => {
+      t.addEventListener('click', () => {
+        activate(+t.dataset.step);
+        startCycle();
+        syncPauseState();
+      });
+      t.addEventListener('mouseenter', syncPauseState);
+      t.addEventListener('mouseleave', syncPauseState);
+    });
+
+    // First-time reveal: wait for the static cascade to settle, then
+    // activate step 1, start the step cycle, and start the card shuffle.
+    // On re-entry (scroll away + back) we just resume both.
+    let firstSeen = false;
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(entries => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            if (!firstSeen) {
+              firstSeen = true;
+              setTimeout(() => {
+                activate(1);
+                startCycle();
+                startShuffle();
+              }, CASCADE_MS);
+            } else {
+              startCycle();
+              startShuffle();
+            }
+          } else {
+            stopCycle();
+            stopShuffle();
+          }
+        }
+      }, { threshold: 0.2 }).observe(root);
+    } else {
+      activate(1);
+      startCycle();
+      startShuffle();
+    }
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) { stopCycle(); stopShuffle(); }
+      else if (active !== 0) { startCycle(); startShuffle(); }
+    });
+
+    /* MIST CANVAS — slow horizontal cyan/teal waveband flowing across the stage */
+    const canvas = root.querySelector('.howit-mist');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let cssW = 0, cssH = 0, time = 0, raf = 0;
+    let visible = true, docVisible = !document.hidden;
+
+    function resize() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const rect = canvas.getBoundingClientRect();
+      cssW = Math.max(1, rect.width);
+      cssH = Math.max(1, rect.height);
+      canvas.width  = Math.round(cssW * dpr);
+      canvas.height = Math.round(cssH * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.lineCap = 'round';
+    }
+    resize();
+    if ('ResizeObserver' in window) new ResizeObserver(resize).observe(canvas);
+    window.addEventListener('resize', resize, { passive: true });
+
+    // Brand cyan gradient (#40EBFF light → #1699A8 teal).
+    const SILK_LIGHT = [64,  235, 255]; // #40EBFF
+    const SILK_DEEP  = [22,  153, 168]; // #1699A8
+
+    // Flowing silk ribbons: broad, layered, translucent filled bands that
+    // sweep diagonally across the card. Concentrated left-of-centre with
+    // long tails trailing to the right (echoes the reference composition).
+    const RIBBONS = [
+      // yФrac, ampPx, thickPx, slope, speed, phase, alpha
+      { y: 0.34, amp: 46, thick: 150, slope: 0.10, speed: 0.55, phase: 0.0, alpha: 0.060 },
+      { y: 0.46, amp: 60, thick: 200, slope: 0.16, speed: 0.42, phase: 1.7, alpha: 0.075 },
+      { y: 0.56, amp: 52, thick: 170, slope: 0.13, speed: 0.62, phase: 3.1, alpha: 0.065 },
+      { y: 0.62, amp: 40, thick: 120, slope: 0.08, speed: 0.50, phase: 4.6, alpha: 0.055 },
+      { y: 0.50, amp: 72, thick: 90,  slope: 0.18, speed: 0.36, phase: 2.3, alpha: 0.050 },
+    ];
+
+    function lerpColor(t) {
+      const r = Math.round(SILK_LIGHT[0] + (SILK_DEEP[0] - SILK_LIGHT[0]) * t);
+      const g = Math.round(SILK_LIGHT[1] + (SILK_DEEP[1] - SILK_LIGHT[1]) * t);
+      const b = Math.round(SILK_LIGHT[2] + (SILK_DEEP[2] - SILK_LIGHT[2]) * t);
+      return [r, g, b];
+    }
+
+    function ribbonCenter(rib, t) {
+      // t = 0..1 across the width; concentrate the wave on the left third
+      const localPhase = time * rib.speed + rib.phase;
+      const flow =
+          Math.sin(t * Math.PI * 1.4 + localPhase) * rib.amp
+        + Math.sin(t * Math.PI * 3.0 + localPhase * 1.3) * rib.amp * 0.35
+        + Math.cos(t * Math.PI * 0.7 + localPhase * 0.6) * rib.amp * 0.5;
+      const x = t * cssW;
+      return rib.y * cssH + flow + (x - cssW * 0.5) * rib.slope;
+    }
+
+    function draw() {
+      raf = 0;
+      if (!visible || !docVisible) return;
+      ctx.clearRect(0, 0, cssW, cssH);
+
+      const segs = 64;
+      ctx.globalCompositeOperation = 'lighter';
+
+      for (const rib of RIBBONS) {
+        // taper thickness: thick toward the left-centre, trailing thin to edges
+        const thickAt = (t) => rib.thick * Math.pow(Math.sin(t * Math.PI), 0.55) * (1 - t * 0.35);
+
+        // ── soft body fill ──
+        ctx.beginPath();
+        for (let j = 0; j <= segs; j++) {
+          const t = j / segs;
+          const yc = ribbonCenter(rib, t);
+          const y = yc - thickAt(t) * 0.5;
+          if (j === 0) ctx.moveTo(t * cssW, y); else ctx.lineTo(t * cssW, y);
+        }
+        for (let j = segs; j >= 0; j--) {
+          const t = j / segs;
+          const yc = ribbonCenter(rib, t);
+          ctx.lineTo(t * cssW, yc + thickAt(t) * 0.5);
+        }
+        ctx.closePath();
+
+        const grad = ctx.createLinearGradient(0, 0, cssW, cssH);
+        const [lr, lg, lb] = lerpColor(0);
+        const [dr, dg, db] = lerpColor(1);
+        grad.addColorStop(0,   `rgba(${lr},${lg},${lb},0)`);
+        grad.addColorStop(0.18,`rgba(${lr},${lg},${lb},${rib.alpha})`);
+        grad.addColorStop(0.6, `rgba(${dr},${dg},${db},${rib.alpha * 0.9})`);
+        grad.addColorStop(1,   `rgba(${dr},${dg},${db},0)`);
+        ctx.fillStyle = grad;
+        ctx.fill();
+
+        // ── silky sheen highlight along the centreline ──
+        ctx.beginPath();
+        for (let j = 0; j <= segs; j++) {
+          const t = j / segs;
+          const yc = ribbonCenter(rib, t) - thickAt(t) * 0.18;
+          if (j === 0) ctx.moveTo(t * cssW, yc); else ctx.lineTo(t * cssW, yc);
+        }
+        ctx.lineWidth = 1.2;
+        const [hr, hg, hb] = lerpColor(0.2);
+        ctx.strokeStyle = `rgba(${hr},${hg},${hb},${rib.alpha * 1.8})`;
+        ctx.stroke();
+      }
+
+      ctx.globalCompositeOperation = 'source-over';
+      time += 0.012;
+      raf = requestAnimationFrame(draw);
+    }
+
+    function start() { if (!raf) raf = requestAnimationFrame(draw); }
+    function stop()  { if (raf) { cancelAnimationFrame(raf); raf = 0; } }
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(entries => {
+        for (const e of entries) {
+          visible = e.isIntersecting;
+          if (visible) start(); else stop();
+        }
+      }, { rootMargin: '50px' }).observe(canvas);
+    }
+    document.addEventListener('visibilitychange', () => {
+      docVisible = !document.hidden;
+      if (docVisible) start(); else stop();
+    });
+
+    start();
+  })();
+</script>
+
+<!-- ============================================================
+     HERO WAVES — Sonic-waveform style, one on each side of the
+     wordmark. Each canvas is a 2D rasterized field of curves
+     blended additively. CSS mask handles the inner/outer fade.
+============================================================ -->
+<script>
+(function initHeroWaves() {
+  const canvases = document.querySelectorAll('.hero-wave-canvas');
+  if (!canvases.length) return;
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  canvases.forEach((canvas) => {
+    const ctx = canvas.getContext('2d');
+    const isRight = canvas.classList.contains('hero-wave-r');
+    let raf = 0, time = isRight ? 1.7 : 0;
+    let visible = true, docVisible = !document.hidden;
+    let cssW = 0, cssH = 0;
+
+    function resize() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const rect = canvas.getBoundingClientRect();
+      cssW = Math.max(1, rect.width);
+      cssH = Math.max(1, rect.height);
+      canvas.width  = Math.round(cssW * dpr);
+      canvas.height = Math.round(cssH * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.lineCap  = 'round';
+      ctx.lineJoin = 'round';
+    }
+
+    function draw() {
+      raf = 0;
+      if (!visible || !docVisible) return;
+
+      // Crystal-clear redraw every frame — no motion-trail smear so each
+      // line stays sharp instead of accumulating ghost echoes.
+      ctx.clearRect(0, 0, cssW, cssH);
+
+      const centerY = cssH * 0.5;
+      const lineCount = 44;
+      const segmentCount = 96;
+
+      // Amplitude scales with canvas height so it reads on mobile too
+      const ampScale = Math.min(1.15, cssH / 320);
+
+      // Brand wave palette
+      const C0 = [22, 153, 168];   // #1699A8 deep cyan
+      const C1 = [112, 240, 255];  // #70F0FF neon sky cyan
+
+      for (let i = 0; i < lineCount; i++) {
+        const progress = i / (lineCount - 1);
+        const intensity = Math.sin(progress * Math.PI);
+
+        const r = Math.round(C0[0] + (C1[0] - C0[0]) * intensity);
+        const g = Math.round(C0[1] + (C1[1] - C0[1]) * intensity);
+        const b = Math.round(C0[2] + (C1[2] - C0[2]) * intensity);
+
+        ctx.beginPath();
+        for (let j = 0; j <= segmentCount; j++) {
+          const x = (j / segmentCount) * cssW;
+
+          // NEGATIVE time → features travel from outer edge toward inner
+          // (and the right canvas is scaleX(-1) so it mirrors symmetrically
+          // toward the wordmark).
+          const noise =
+              Math.sin(j * 0.10 - time + i * 0.20) * 16 * ampScale
+            + Math.sin(j * 0.04 - time * 0.6 + i * 0.07) * 6 * ampScale;
+
+          const spike =
+              Math.cos(j * 0.20 - time + i * 0.10)
+            * Math.sin(j * 0.05 - time * 0.85)
+            * 38 * ampScale;
+
+          const y = centerY + noise + spike;
+
+          if (j === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+
+        // Subtle neon glow: wide low-alpha halo (cheap, no shadowBlur)
+        ctx.lineWidth = 3.2;
+        ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${0.04 + intensity * 0.10})`;
+        ctx.stroke();
+
+        // Crisp core stroke
+        ctx.lineWidth = 1.1;
+        ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${0.32 + intensity * 0.50})`;
+        ctx.stroke();
+      }
+
+      time += 0.018;
+      if (!prefersReduced) raf = requestAnimationFrame(draw);
+    }
+
+    function start() { if (!raf) raf = requestAnimationFrame(draw); }
+    function stop()  { if (raf) { cancelAnimationFrame(raf); raf = 0; } }
+
+    resize();
+    if ('ResizeObserver' in window) new ResizeObserver(resize).observe(canvas);
+    window.addEventListener('resize', resize, { passive: true });
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        for (const e of entries) {
+          visible = e.isIntersecting;
+          if (visible) start(); else stop();
+        }
+      }, { rootMargin: '50px' }).observe(canvas);
+    }
+    document.addEventListener('visibilitychange', () => {
+      docVisible = !document.hidden;
+      if (docVisible) start(); else stop();
+    });
+
+    if (prefersReduced) {
+      // Render one frame so the wave is visible without animating
+      draw();
+    } else {
+      start();
+    }
+  });
+})();
+</script>
+
+<!-- ============================================================
+     AI SOLUTIONS GLOBE — D3 wireframe + halftone-dotted earth.
+     Visual only: auto-rotates. No drag, no zoom, no input handlers.
+============================================================ -->
+<script type="module">
+  import * as d3 from 'https://esm.sh/d3@7';
+
+  const canvas = document.querySelector('.globe-canvas');
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let cssW = 0, cssH = 0, radius = 0;
+    let projection, pathGen;
+    let landFeatures = null;
+    const allDots = [];
+    const rotation = [0, 0];
+    const ROTATION_SPEED = 0.3;   // degrees per frame
+    let visible = true;
+    let docVisible = !document.hidden;
+    let dataLoaded = false;
+    let raf = 0;
+
+    function setupCanvas() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const rect = canvas.getBoundingClientRect();
+      cssW = Math.max(1, rect.width);
+      cssH = Math.max(1, rect.height);
+      radius = Math.min(cssW, cssH) / 2.4 * 0.9;
+      canvas.width  = Math.round(cssW * dpr);
+      canvas.height = Math.round(cssH * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      projection = d3.geoOrthographic()
+        .scale(radius)
+        .translate([cssW / 2, cssH / 2])
+        .clipAngle(90)
+        .rotate(rotation);
+      pathGen = d3.geoPath().projection(projection).context(ctx);
+    }
+
+    function pointInPolygon(point, polygon) {
+      const [x, y] = point;
+      let inside = false;
+      for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+        const [xi, yi] = polygon[i];
+        const [xj, yj] = polygon[j];
+        if ((yi > y) !== (yj > y) && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) {
+          inside = !inside;
+        }
+      }
+      return inside;
+    }
+    function pointInFeature(point, feature) {
+      const g = feature.geometry;
+      if (g.type === 'Polygon') {
+        if (!pointInPolygon(point, g.coordinates[0])) return false;
+        for (let i = 1; i < g.coordinates.length; i++) {
+          if (pointInPolygon(point, g.coordinates[i])) return false;
+        }
+        return true;
+      } else if (g.type === 'MultiPolygon') {
+        for (const poly of g.coordinates) {
+          if (pointInPolygon(point, poly[0])) {
+            let inHole = false;
+            for (let i = 1; i < poly.length; i++) {
+              if (pointInPolygon(point, poly[i])) { inHole = true; break; }
+            }
+            if (!inHole) return true;
+          }
+        }
+      }
+      return false;
+    }
+    function generateDots(feature, dotSpacing = 16) {
+      const dots = [];
+      const [[minLng, minLat], [maxLng, maxLat]] = d3.geoBounds(feature);
+      const step = dotSpacing * 0.08;
+      for (let lng = minLng; lng <= maxLng; lng += step) {
+        for (let lat = minLat; lat <= maxLat; lat += step) {
+          if (pointInFeature([lng, lat], feature)) dots.push([lng, lat]);
+        }
+      }
+      return dots;
+    }
+
+    function render() {
+      if (!cssW || !cssH) return;
+      ctx.clearRect(0, 0, cssW, cssH);
+      const currentScale = projection.scale();
+      const scaleFactor = currentScale / radius;
+
+      // Ocean disk
+      ctx.beginPath();
+      ctx.arc(cssW / 2, cssH / 2, currentScale, 0, 2 * Math.PI);
+      ctx.fillStyle = '#00000000';
+      ctx.fill();
+      ctx.strokeStyle = '#78ACB3';
+      ctx.lineWidth = 2 * scaleFactor;
+      ctx.stroke();
+
+      if (!landFeatures) return;
+
+      // Graticule
+      const graticule = d3.geoGraticule();
+      ctx.beginPath();
+      pathGen(graticule());
+      ctx.strokeStyle = '#78ACB3';
+      ctx.lineWidth = 1 * scaleFactor;
+      ctx.globalAlpha = 0.25;
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+
+      // Land outlines
+      ctx.beginPath();
+      for (const f of landFeatures.features) pathGen(f);
+      ctx.strokeStyle = '#78ACB3';
+      ctx.lineWidth = 1 * scaleFactor;
+      ctx.stroke();
+
+      // Halftone dots
+      ctx.fillStyle = '#2CA5B3';
+      const r = 1.2 * scaleFactor;
+      for (let i = 0; i < allDots.length; i++) {
+        const p = projection(allDots[i]);
+        if (p && p[0] >= 0 && p[0] <= cssW && p[1] >= 0 && p[1] <= cssH) {
+          ctx.beginPath();
+          ctx.arc(p[0], p[1], r, 0, 2 * Math.PI);
+          ctx.fill();
+        }
+      }
+    }
+
+    async function loadWorldData() {
+      try {
+        const res = await fetch(
+          'https://raw.githubusercontent.com/martynafford/natural-earth-geojson/refs/heads/master/110m/physical/ne_110m_land.json'
+        );
+        if (!res.ok) throw new Error('Failed to load land data');
+        landFeatures = await res.json();
+        for (const f of landFeatures.features) {
+          for (const d of generateDots(f, 16)) allDots.push(d);
+        }
+        dataLoaded = true;
+        canvas.style.opacity = '1';
+      } catch (err) {
+        console.warn('Globe data load failed:', err);
+      }
+    }
+
+    function animate() {
+      raf = 0;
+      if (!visible || !docVisible) return;
+      rotation[0] += ROTATION_SPEED;
+      projection.rotate(rotation);
+      render();
+      raf = requestAnimationFrame(animate);
+    }
+    function startLoop() { if (!raf) raf = requestAnimationFrame(animate); }
+    function stopLoop()  { if (raf) { cancelAnimationFrame(raf); raf = 0; } }
+
+    function init() {
+      setupCanvas();
+      if ('ResizeObserver' in window) {
+        new ResizeObserver(() => { setupCanvas(); render(); }).observe(canvas);
+      }
+      window.addEventListener('resize', () => { setupCanvas(); render(); }, { passive: true });
+
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver((entries) => {
+          for (const e of entries) {
+            visible = e.isIntersecting;
+            if (visible) startLoop(); else stopLoop();
+          }
+        }, { rootMargin: '50px' }).observe(canvas);
+      }
+      document.addEventListener('visibilitychange', () => {
+        docVisible = !document.hidden;
+        if (docVisible) startLoop(); else stopLoop();
+      });
+
+      loadWorldData();
+      startLoop();
+    }
+
+    if (canvas.offsetWidth > 0) {
+      init();
+    } else {
+      const ro = new ResizeObserver((entries) => {
+        if (entries[0]?.contentRect.width > 0) { ro.disconnect(); init(); }
+      });
+      ro.observe(canvas);
+    }
+  }
+</script>
+
+<script>
+  /* ============================================================
+     CONTRACTOR-WEBSITE PREVIEW — carousel auto-play + pointer parallax
+  ============================================================ */
+  (function cwInit() {
+    const stage = document.querySelector('.cw-stage');
+    if (!stage) return;
+
+    /* ── analytics carousel ── */
+    const carousel = stage.querySelector('[data-cw-carousel]');
+    const track    = carousel && carousel.querySelector('.cw-track');
+    const dotsWrap = stage.querySelector('[data-cw-dots]');
+    const dots     = dotsWrap ? Array.from(dotsWrap.children) : [];
+    if (track && dots.length) {
+      const slides = track.children.length;
+      let idx = 0, timer = 0;
+      const go = (i) => {
+        idx = (i + slides) % slides;
+        track.style.transform = 'translateX(' + (-idx * 100) + '%)';
+        dots.forEach((d, di) => d.classList.toggle('is-active', di === idx));
+      };
+      const stop  = () => { if (timer) { clearInterval(timer); timer = 0; } };
+      const start = () => { stop(); timer = setInterval(() => go(idx + 1), 3600); };
+      dots.forEach((d, di) => d.addEventListener('click', () => { go(di); start(); }));
+      carousel.addEventListener('pointerenter', stop);
+      carousel.addEventListener('pointerleave', start);
+      document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
+      go(0); start();
+    }
+
+    /* ── pointer parallax (fine-pointer, motion-allowed) ── */
+    const okMotion = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const finePtr  = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (okMotion && finePtr) {
+      const floats = Array.from(stage.querySelectorAll('.cw-float'));
+      let raf = 0, nx = 0, ny = 0;
+      const apply = () => {
+        raf = 0;
+        floats.forEach((f) => {
+          const d = parseFloat(f.dataset.depth || '4');
+          f.style.transform = 'translate3d(' + (nx * d * 2.4).toFixed(2) + 'px,' + (ny * d * 2.4).toFixed(2) + 'px,0)';
+        });
+      };
+      stage.addEventListener('pointermove', (e) => {
+        const r = stage.getBoundingClientRect();
+        nx = (e.clientX - r.left) / r.width - 0.5;
+        ny = (e.clientY - r.top) / r.height - 0.5;
+        if (!raf) raf = requestAnimationFrame(apply);
+      }, { passive: true });
+      stage.addEventListener('pointerleave', () => { nx = 0; ny = 0; if (!raf) raf = requestAnimationFrame(apply); });
+    }
+
+    /* ── Facebook feed — one post at a time, cross-fading on a continuous loop ── */
+    const feed = stage.querySelector('[data-cw-feed]');
+    if (feed && okMotion) {
+      const posts = Array.from(feed.children);
+      if (posts.length) {
+        let idx = posts.findIndex((p) => p.classList.contains('is-active'));
+        if (idx < 0) idx = 0;
+        posts.forEach((p, i) => p.classList.toggle('is-active', i === idx));
+        let timer = 0;
+        const advance = () => {
+          posts[idx].classList.remove('is-active');
+          idx = (idx + 1) % posts.length;          /* loops forever: 1 → 2 → 3 → 1 … */
+          posts[idx].classList.add('is-active');
+        };
+        const start = () => { if (!timer) timer = setInterval(() => { if (!document.hidden) advance(); }, 3800); };
+        const stop  = () => { if (timer) { clearInterval(timer); timer = 0; } };
+        /* pause while a visitor hovers a post, then resume so it never stalls */
+        feed.addEventListener('pointerenter', stop);
+        feed.addEventListener('pointerleave', start);
+        document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
+        start();
+      }
+    }
+
+    /* ── quote form — fields typed in real time, on a loop ── */
+    const typeTargets = Array.from(stage.querySelectorAll('.cw-form [data-cw-type]'));
+    if (typeTargets.length) {
+      const texts = typeTargets.map((t) => t.getAttribute('data-cw-type'));
+      const caret = document.createElement('span');
+      caret.className = 'cw-caret';
+
+      if (!okMotion) {
+        typeTargets.forEach((t, i) => { t.textContent = texts[i]; });
+        typeTargets[typeTargets.length - 1].appendChild(caret);
+      } else {
+        const setActive = (i) => typeTargets.forEach((t, k) => {
+          const f = t.closest('.cw-field');
+          if (f) f.classList.toggle('cw-field-active', k === i);
+        });
+        const clearAll = () => typeTargets.forEach((t) => { t.textContent = ''; });
+        let fi = 0, ci = 0;
+
+        const typeChar = () => {
+          const t = texts[fi], el = typeTargets[fi];
+          if (ci < t.length) {
+            ci++;
+            el.textContent = t.slice(0, ci);
+            el.appendChild(caret);
+            const ch = t[ci - 1];
+            let d = 48 + Math.random() * 60;          // natural keystroke rhythm
+            if (ch === ' ') d += 45;
+            if ('.,—&'.indexOf(ch) > -1) d += 110;
+            setTimeout(typeChar, d);
+          } else if (fi < texts.length - 1) {
+            fi++; ci = 0;
+            setTimeout(nextField, 560);               // pause between fields
+          } else {
+            setTimeout(restart, 3000);                // hold, then loop
+          }
+        };
+        const nextField = () => {
+          setActive(fi);
+          typeTargets[fi].textContent = '';
+          typeTargets[fi].appendChild(caret);         // caret waits in the empty field
+          setTimeout(typeChar, 380);
+        };
+        const restart = () => { clearAll(); fi = 0; ci = 0; nextField(); };
+
+        clearAll();
+        nextField();
+      }
+    }
+
+    /* ── hero headline — second line swaps on a smooth, continuous loop ── */
+    const swap = stage.querySelector('.cw-headline .cw-grad');
+    if (swap && okMotion) {
+      const phrases = ['built right.', 'on time.', 'in trusted hands.'];
+      let pi = 0;
+      const HOLD = 2200, MOVE = 460;
+      setInterval(() => {
+        swap.classList.add('cw-swap-out');          // glide current word up + fade out
+        setTimeout(() => {
+          pi = (pi + 1) % phrases.length;
+          swap.style.transition = 'none';           // snap to the "enter" start state
+          swap.classList.remove('cw-swap-out');
+          swap.classList.add('cw-swap-in');
+          swap.textContent = phrases[pi];
+          void swap.offsetWidth;                     // commit before re-enabling motion
+          swap.style.transition = '';
+          swap.classList.remove('cw-swap-in');       // glide new word up into place
+        }, MOVE);
+      }, HOLD + MOVE);
+    }
+  })();
+</script>
+
+</body>
+</html>

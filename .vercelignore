@@ -1,0 +1,24 @@
+# source/work files — not needed for deployment
+*.mov
+0509*.mp4
+openart-*.mp4
+openart-*.png
+audio-waves-new.mp4
+receptionist.mp4
+receptionist-keyed.mp4
+solutions.mp4
+"updated audio waves.mp4"
+"updated custom solutions.mp4"
+"updated websites.mp4"
+"updated clean  websites.mp4"
+"updated site panels.mp4"
+"updated website panels.mp4"
+erio-hero.mp4
+erio-hero.webm
+erio-wave.mp4
+audio-waves-new-keyed.webm
+Erio-Brand-Board.html
+Untitled.mov
+Open Erio V1.command
+.DS_Store
+_tmp_*.mp4

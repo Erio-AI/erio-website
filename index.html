@@ -1,0 +1,3370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Erio — Build with Taste. Ship with Confidence.</title>
+<link rel="icon" type="image/png" href="favicon.png?v=3" />
+<link rel="shortcut icon" type="image/png" href="favicon.png?v=3" />
+<link rel="apple-touch-icon" href="favicon.png?v=3" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=4">
+<style>
+  /* top-to-bottom inner-shadow bevel on the AI Websites / AI Employees / AI Solutions
+     cards beneath the hero (home page only): light top edge, dark bottom + soft depth */
+  .partner-card {
+    box-shadow:
+      0 22px 60px rgba(0, 0, 0, 0.35),
+      inset 0 2px 0 rgba(255, 255, 255, 0.18),
+      inset 0 -2px 0 rgba(0, 0, 0, 0.5),
+      inset 0 -16px 24px -14px rgba(0, 0, 0, 0.4);
+  }
+  .partner-card:hover {
+    box-shadow:
+      0 30px 76px rgba(0, 0, 0, 0.58),
+      inset 0 2px 0 rgba(255, 255, 255, 0.18),
+      inset 0 -2px 0 rgba(0, 0, 0, 0.5),
+      inset 0 -16px 24px -14px rgba(0, 0, 0, 0.4);
+  }
+  /* mobile only: halve the gap between the Schedule Demo button and the cards */
+  @media (max-width: 720px) {
+    .cta-frame { margin-bottom: 37px; }
+  }
+  @media (max-width: 520px) {
+    .cta-frame { margin-bottom: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- AMBIENT BACKGROUND LAYERS -->
+<div class="bg-mesh" aria-hidden="true"></div>
+
+<!-- SVG filter: single-pass luminance->alpha (keyed-black bg → transparent) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="blackToAlpha" color-interpolation-filters="sRGB"
+            x="0" y="0" width="100%" height="100%">
+      <feColorMatrix type="matrix" values="
+        1 0 0 0 0
+        0 1 0 0 0
+        0 0 1 0 0
+        1.35 1.65 1.35 0 -0.4"/>
+    </filter>
+  </defs>
+</svg>
+
+
+<!-- TOP NAV -->
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="/" aria-label="Erio home">
+      <img src="Erio Logo Original.png" alt="Erio" />
+    </a>
+
+    <div class="nav-pill-slot">
+      <nav class="nav-pill" aria-label="Primary">
+      <a class="nav-drop-trigger" href="#products" aria-haspopup="true">
+        Products
+        <svg class="nav-drop-chevron" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </a>
+      <a href="https://app.erio.ai/">Login</a>
+      <a href="/packages">Packages</a>
+      <div class="nav-pill-sub" role="menu">
+        <div class="nav-pill-sub-inner">
+          <a href="/ai-websites"  role="menuitem">AI Websites</a>
+          <a href="ai-employees.html" role="menuitem">AI Employees</a>
+          <a href="#ai-solutions" role="menuitem">AI Solutions</a>
+        </div>
+      </div>
+      </nav>
+    </div>
+
+    <div class="nav-cta">
+      <a class="btn-primary" href="/book">
+        <span>Book</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <!-- MOBILE NAV — single pill with logo (L), Demo text (center), hamburger (R) -->
+    <div class="nav-mobile-pill" role="navigation" aria-label="Mobile">
+      <a class="nav-mobile-logo" href="/" aria-label="Erio home">
+        <img src="Erio Logo Original.png" alt="Erio" />
+      </a>
+      <a class="nav-mobile-demo" href="/book">Book</a>
+      <button class="nav-mobile-burger" type="button" aria-label="Open menu"
+              aria-expanded="false" aria-controls="navMobileMenu">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.6" stroke-linecap="round" aria-hidden="true">
+          <defs>
+            <linearGradient id="burgerGrad" gradientUnits="userSpaceOnUse"
+                            x1="4" y1="7" x2="20" y2="17">
+              <stop offset="0%"   stop-color="#70F0FF"/>
+              <stop offset="55%"  stop-color="#53B9E0"/>
+              <stop offset="100%" stop-color="#337791"/>
+            </linearGradient>
+          </defs>
+          <line x1="4" y1="7"  x2="20" y2="7"  stroke="url(#burgerGrad)"/>
+          <line x1="4" y1="12" x2="20" y2="12" stroke="url(#burgerGrad)"/>
+          <line x1="4" y1="17" x2="20" y2="17" stroke="url(#burgerGrad)"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile dropdown menu — opens beneath the pill -->
+    <div class="nav-mobile-menu" id="navMobileMenu" role="menu" aria-hidden="true">
+      <a href="/packages"     role="menuitem">Packages</a>
+      <a href="/ai-websites"  role="menuitem">AI Websites</a>
+      <a href="ai-employees.html" role="menuitem">AI Employees</a>
+      <a href="#ai-solutions" role="menuitem">AI Solutions</a>
+      <a href="https://app.erio.ai/" role="menuitem">Login</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<main class="hero">
+  <div class="hero-mark" aria-hidden="true">
+    <canvas class="hero-wave-canvas hero-wave-l" aria-hidden="true"></canvas>
+    <canvas class="hero-wave-canvas hero-wave-r" aria-hidden="true"></canvas>
+    <div class="hero-mark-halo"></div>
+    <img class="hero-mark-logo" src="Erio-Logo-Text-White-Transparent.png" alt="Erio" />
+  </div>
+
+  <!-- HEADLINE -->
+  <h1 class="hero-title">
+    <span class="word"><span class="char">A</span><span class="char">I</span></span>
+    <span class="word"><span class="char">F</span><span class="char">o</span><span class="char">r</span></span>
+    <span class="word"><span class="char">H</span><span class="char">o</span><span class="char">m</span><span class="char">e</span></span>
+    <span class="word grad"><span class="char">S</span><span class="char">e</span><span class="char">r</span><span class="char">v</span><span class="char">i</span><span class="char">c</span><span class="char">e</span><span class="char">s</span></span>
+  </h1>
+
+  <p class="hero-sub">Introducing AI websites, receptionists, and custom solutions.<br/>Built for contractors who want more jobs.</p>
+
+  <div class="cta-frame">
+    <svg class="cta-track cta-track-l" viewBox="0 0 300 90" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      <defs>
+        <linearGradient id="trackFadeL" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%"   stop-color="#53D2E0" stop-opacity="0"/>
+          <stop offset="55%"  stop-color="#53D2E0" stop-opacity="0.4"/>
+          <stop offset="100%" stop-color="#A1E8F0" stop-opacity="0.9"/>
+        </linearGradient>
+      </defs>
+      <path id="trackPathL"
+            d="M 5 78 C 80 78, 200 45, 295 45"
+            stroke="url(#trackFadeL)" stroke-width="1.3"
+            stroke-dasharray="2 7" stroke-linecap="round"
+            fill="none"/>
+      <circle r="2.6" fill="#A1E8F0"
+              style="filter: drop-shadow(0 0 4px #53D2E0) drop-shadow(0 0 9px rgba(83,210,224,0.7));">
+        <animateMotion dur="2.6s" repeatCount="indefinite" rotate="auto" keyPoints="0;1" keyTimes="0;1">
+          <mpath href="#trackPathL"/>
+        </animateMotion>
+        <animate attributeName="opacity"
+                 values="0;0.4;1;1;0" keyTimes="0;0.1;0.4;0.85;1"
+                 dur="2.6s" repeatCount="indefinite"/>
+      </circle>
+    </svg>
+
+    <a class="hero-cta" href="/book">
+      <span class="cta-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="6 4 20 12 6 20" fill="currentColor"/>
+        </svg>
+      </span>
+      <span>Schedule Demo</span>
+    </a>
+
+    <svg class="cta-track cta-track-r" viewBox="0 0 300 90" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      <defs>
+        <linearGradient id="trackFadeR" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%"   stop-color="#A1E8F0" stop-opacity="0.9"/>
+          <stop offset="45%"  stop-color="#53D2E0" stop-opacity="0.4"/>
+          <stop offset="100%" stop-color="#53D2E0" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <path id="trackPathR"
+            d="M 5 45 C 100 45, 220 78, 295 78"
+            stroke="url(#trackFadeR)" stroke-width="1.3"
+            stroke-dasharray="2 7" stroke-linecap="round"
+            fill="none"/>
+      <circle r="2.6" fill="#A1E8F0"
+              style="filter: drop-shadow(0 0 4px #53D2E0) drop-shadow(0 0 9px rgba(83,210,224,0.7));">
+        <animateMotion dur="2.6s" repeatCount="indefinite" rotate="auto" keyPoints="1;0" keyTimes="0;1">
+          <mpath href="#trackPathR"/>
+        </animateMotion>
+        <animate attributeName="opacity"
+                 values="0;0.4;1;1;0" keyTimes="0;0.1;0.4;0.85;1"
+                 dur="2.6s" repeatCount="indefinite"/>
+      </circle>
+    </svg>
+  </div>
+
+  <div class="hero-partners">
+    <div class="partners-row">
+      <a class="partner-item" href="/ai-websites">
+        <h3 class="partner-label">AI Websites</h3>
+        <div class="partner-card">
+          <div class="wm-mock" aria-hidden="true">
+            <!-- Floating nav -->
+            <div class="wm-panel wm-nav">
+              <div class="wm-logo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14.7 6.3a4 4 0 0 0-5.3 5.3L3 18l3 3 6.4-6.4a4 4 0 0 0 5.3-5.3l-2.4 2.4-2.7-2.7 2.4-2.4z"/>
+                </svg>
+                <span class="wm-logo-name">JobPros</span>
+              </div>
+              <div class="wm-nav-links">
+                <span>Services</span>
+                <span>Areas</span>
+                <span class="wm-nav-btn">Book</span>
+              </div>
+            </div>
+
+            <!-- Main hero panel -->
+            <div class="wm-panel wm-hero">
+              <div class="wm-eyebrow">24/7 · Local Pros</div>
+              <div class="wm-title">Book More Jobs</div>
+              <div class="wm-sub">Convert More Leads — Today</div>
+              <div class="wm-cta">Free Quote →</div>
+            </div>
+
+            <!-- Three service cards -->
+            <div class="wm-services">
+              <div class="wm-panel wm-service">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="3"/>
+                  <path d="M12 2v3M12 19v3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M2 12h3M19 12h3M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/>
+                </svg>
+                <span class="wm-service-label">Repairs</span>
+              </div>
+              <div class="wm-panel wm-service">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 12a9 9 0 0 1 15-6.7L21 8"/>
+                  <path d="M21 3v5h-5"/>
+                </svg>
+                <span class="wm-service-label">Installs</span>
+              </div>
+              <div class="wm-panel wm-service">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="4" width="18" height="16" rx="1.5"/>
+                  <line x1="3" y1="10" x2="21" y2="10"/>
+                  <line x1="3" y1="16" x2="21" y2="16"/>
+                  <line x1="10" y1="7" x2="14" y2="7"/>
+                  <line x1="10" y1="13" x2="14" y2="13"/>
+                  <line x1="10" y1="19" x2="14" y2="19"/>
+                </svg>
+                <span class="wm-service-label">Upkeep</span>
+              </div>
+            </div>
+          </div>
+          <p class="pc-desc">Sites built to turn browsers into a lead generation machine.</p>
+        </div>
+      </a>
+      <a class="partner-item" href="ai-employees.html">
+        <h3 class="partner-label">AI Employees</h3>
+        <div class="partner-card">
+          <canvas class="voice-wave-canvas" aria-hidden="true"></canvas>
+          <p class="pc-desc">Answers every call, qualifies every lead, books every job.</p>
+        </div>
+      </a>
+      <div class="partner-item">
+        <h3 class="partner-label">AI Solutions</h3>
+        <div class="partner-card">
+          <canvas class="globe-canvas" aria-hidden="true"></canvas>
+          <p class="pc-desc">Custom AI tooling that ties your whole shop together.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ====== LOGOS STRIP — auto-scrolling carousel of trade categories ====== -->
+<section class="logos-strip" aria-label="For local businesses">
+  <p class="logos-strip-label">for local businesses</p>
+  <div class="logos-strip-track-wrap">
+    <div class="logos-strip-track">
+      <!-- Set 1 -->
+      <div class="logo-item">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 4c-1.1 0-2 .9-2 2v2H4c-.6 0-1 .4-1 1v11c0 .6.4 1 1 1h16c.6 0 1-.4 1-1V9c0-.6-.4-1-1-1h-3V6c0-1.1-.9-2-2-2H9zm0 1.5h6c.3 0 .5.2.5.5v2h-7V6c0-.3.2-.5.5-.5z"/></svg>
+        <span class="logo-item-label">Handyman</span>
+      </div>
+      <div class="logo-item">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14.7 6.3a4 4 0 0 0-5.3 5.3L3 18l3 3 6.4-6.4a4 4 0 0 0 5.3-5.3l-2.4 2.4-2.7-2.7 2.4-2.4z"/></svg>
+        <span class="logo-item-label">Plumbers</span>
+      </div>
+      <div class="logo-item">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 8 8h2.5l-3.5 5h2.5l-3.5 5h6V22h2v-2h6l-3.5-5h2.5l-3.5-5H16L12 2z"/></svg>
+        <span class="logo-item-label">Landscapers</span>
+      </div>
+      <div class="logo-item">
+        <svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="12" cy="13" rx="5" ry="6"/><rect x="11.4" y="4.5" width="1.2" height="3.5" rx="0.3"/><path d="M9.5 4.7 8 3l-.9.9 1.7 1.5zM14.5 4.7 16 3l.9.9-1.7 1.5z"/><path d="M7 10.6 3.4 9.7l-.3 1.2 3.6.9zM17 10.6l3.6-.9.3 1.2-3.6.9zM7 13.4H3.3v1.2H7zM17 13.4h3.7v1.2H17zM7 16.2l-3.6.9.3 1.2L7.3 17.4zM17 16.2l3.6.9-.3 1.2-3.6-.9z"/></svg>
+        <span class="logo-item-label">Pest Control</span>
+      </div>
+      <div class="logo-item">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg>
+        <span class="logo-item-label">Electricians</span>
+      </div>
+      <div class="logo-item">
+        <svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="14" height="6" rx="1"/><rect x="17" y="5" width="3.2" height="2" rx="0.5"/><rect x="9.5" y="9" width="1.5" height="3"/><rect x="8" y="12" width="4.5" height="9" rx="0.5"/></svg>
+        <span class="logo-item-label">Painters</span>
+      </div>
+      <div class="logo-item">
+        <svg viewBox="0 0 24 24" fill="currentColor"><rect x="5" y="3" width="2.2" height="18" rx="0.6"/><rect x="16.8" y="3" width="2.2" height="18" rx="0.6"/><rect x="5" y="6.5" width="14" height="1.6" rx="0.3"/><rect x="5" y="11.2" width="14" height="1.6" rx="0.3"/><rect x="5" y="15.9" width="14" height="1.6" rx="0.3"/></svg>
+        <span class="logo-item-label">Roofers</span>
+      </div>
+      <div class="logo-item">
+        <svg viewBox="0 0 24 24" fill="currentColor"><rect x="11.3" y="2" width="1.4" height="20" rx="0.5"/><rect x="2" y="11.3" width="20" height="1.4" rx="0.5"/><rect x="11.3" y="2" width="1.4" height="20" rx="0.5" transform="rotate(45 12 12)"/><rect x="11.3" y="2" width="1.4" height="20" rx="0.5" transform="rotate(-45 12 12)"/></svg>
+        <span class="logo-item-label">HVAC</span>
+      </div>
+      <div class="logo-item">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 2 12h2v9h6v-6h4v6h6v-9h2L12 3z"/></svg>
+        <span class="logo-item-label">Remodelers</span>
+      </div>
+      <div class="logo-item">
+        <svg viewBox="0 0 24 24" fill="currentColor"><rect x="11" y="3.5" width="2" height="3.5" rx="0.3"/><path d="M4 18v-2.5C4 11.4 7.4 8 11.5 8h1c4.1 0 7.5 3.4 7.5 7.5V18H4z"/><rect x="3" y="19" width="18" height="2.5" rx="0.5"/></svg>
+        <span class="logo-item-label">Construction</span>
+      </div>
+
+      <!-- Set 2 — duplicate for seamless loop -->
+      <div class="logo-item" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 4c-1.1 0-2 .9-2 2v2H4c-.6 0-1 .4-1 1v11c0 .6.4 1 1 1h16c.6 0 1-.4 1-1V9c0-.6-.4-1-1-1h-3V6c0-1.1-.9-2-2-2H9zm0 1.5h6c.3 0 .5.2.5.5v2h-7V6c0-.3.2-.5.5-.5z"/></svg>
+        <span class="logo-item-label">Handyman</span>
+      </div>
+      <div class="logo-item" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.3 5.3L3 18l3 3 6.4-6.4a4 4 0 0 0 5.3-5.3l-2.4 2.4-2.7-2.7 2.4-2.4z"/></svg>
+        <span class="logo-item-label">Plumbers</span>
+      </div>
+      <div class="logo-item" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2 8 8h2.5l-3.5 5h2.5l-3.5 5h6V22h2v-2h6l-3.5-5h2.5l-3.5-5H16L12 2z"/></svg>
+        <span class="logo-item-label">Landscapers</span>
+      </div>
+      <div class="logo-item" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><ellipse cx="12" cy="13" rx="5" ry="6"/><rect x="11.4" y="4.5" width="1.2" height="3.5" rx="0.3"/><path d="M9.5 4.7 8 3l-.9.9 1.7 1.5zM14.5 4.7 16 3l.9.9-1.7 1.5z"/><path d="M7 10.6 3.4 9.7l-.3 1.2 3.6.9zM17 10.6l3.6-.9.3 1.2-3.6.9zM7 13.4H3.3v1.2H7zM17 13.4h3.7v1.2H17zM7 16.2l-3.6.9.3 1.2L7.3 17.4zM17 16.2l3.6.9-.3 1.2-3.6-.9z"/></svg>
+        <span class="logo-item-label">Pest Control</span>
+      </div>
+      <div class="logo-item" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg>
+        <span class="logo-item-label">Electricians</span>
+      </div>
+      <div class="logo-item" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3" y="3" width="14" height="6" rx="1"/><rect x="17" y="5" width="3.2" height="2" rx="0.5"/><rect x="9.5" y="9" width="1.5" height="3"/><rect x="8" y="12" width="4.5" height="9" rx="0.5"/></svg>
+        <span class="logo-item-label">Painters</span>
+      </div>
+      <div class="logo-item" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="5" y="3" width="2.2" height="18" rx="0.6"/><rect x="16.8" y="3" width="2.2" height="18" rx="0.6"/><rect x="5" y="6.5" width="14" height="1.6" rx="0.3"/><rect x="5" y="11.2" width="14" height="1.6" rx="0.3"/><rect x="5" y="15.9" width="14" height="1.6" rx="0.3"/></svg>
+        <span class="logo-item-label">Roofers</span>
+      </div>
+      <div class="logo-item" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="11.3" y="2" width="1.4" height="20" rx="0.5"/><rect x="2" y="11.3" width="20" height="1.4" rx="0.5"/><rect x="11.3" y="2" width="1.4" height="20" rx="0.5" transform="rotate(45 12 12)"/><rect x="11.3" y="2" width="1.4" height="20" rx="0.5" transform="rotate(-45 12 12)"/></svg>
+        <span class="logo-item-label">HVAC</span>
+      </div>
+      <div class="logo-item" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3 2 12h2v9h6v-6h4v6h6v-9h2L12 3z"/></svg>
+        <span class="logo-item-label">Remodelers</span>
+      </div>
+      <div class="logo-item" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="11" y="3.5" width="2" height="3.5" rx="0.3"/><path d="M4 18v-2.5C4 11.4 7.4 8 11.5 8h1c4.1 0 7.5 3.4 7.5 7.5V18H4z"/><rect x="3" y="19" width="18" height="2.5" rx="0.5"/></svg>
+        <span class="logo-item-label">Construction</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== THE PROBLEM — data-dashboard style loss metrics ====== -->
+<section class="problem" aria-labelledby="problem-title">
+  <div class="problem-wrap">
+
+    <div class="problem-head">
+      <span class="problem-tag">
+        <span class="problem-dot"></span>
+        [ The Problem ]
+      </span>
+    </div>
+
+    <h2 class="problem-title" id="problem-title">
+      What's quietly <span class="problem-em">costing you money</span>.
+    </h2>
+    <p class="problem-sub">
+      Every missed call, slow reply, and after-hours voicemail is revenue walking straight to the competitor who picked up first. Here's what it looks like in the numbers.
+    </p>
+
+    <div class="problem-deck">
+      <!-- Tile 1: 62% after-hours calls missed (donut) -->
+      <article class="ptile">
+        <header class="ptile-head">
+          <span class="ptile-label">After-hours calls</span>
+          <span class="ptile-trend">▼ LOSS</span>
+        </header>
+        <div class="ptile-body">
+          <div class="ptile-figure">
+            <span class="ptile-value" data-count="62">0</span><span class="ptile-unit">%</span>
+          </div>
+          <svg class="ptile-donut" viewBox="0 0 100 100" aria-hidden="true">
+            <circle cx="50" cy="50" r="42" fill="none"
+                    stroke="rgba(83,185,224,0.16)" stroke-width="6"/>
+            <circle class="donut-fg" cx="50" cy="50" r="42" fill="none"
+                    stroke="url(#problemDonutGrad)" stroke-width="6"
+                    stroke-linecap="round" transform="rotate(-90 50 50)"/>
+          </svg>
+        </div>
+        <p class="ptile-cap">go unanswered. Voicemails don't book jobs.</p>
+      </article>
+
+      <!-- Tile 2: $8,400/mo lost (sparkline trending up) -->
+      <article class="ptile">
+        <header class="ptile-head">
+          <span class="ptile-label">Revenue lost / mo</span>
+          <span class="ptile-trend">▼ LOSS</span>
+        </header>
+        <div class="ptile-body">
+          <div class="ptile-figure">
+            <span class="ptile-currency">$</span><span class="ptile-value" data-count="8400">0</span>
+          </div>
+        </div>
+        <svg class="ptile-line" viewBox="0 0 200 56" preserveAspectRatio="none" aria-hidden="true">
+          <path class="line-fill" d="M 0 56 L 0 36 L 28 32 L 56 38 L 84 28 L 112 32 L 140 22 L 168 18 L 200 8 L 200 56 Z" fill="url(#problemFillGrad)"/>
+          <path class="line-path" d="M 0 36 L 28 32 L 56 38 L 84 28 L 112 32 L 140 22 L 168 18 L 200 8" fill="none" stroke="url(#problemLineGrad)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <p class="ptile-cap">in jobs lost to slow follow-up.</p>
+      </article>
+
+      <!-- Tile 3: 47 hrs response (comparison bars) -->
+      <article class="ptile">
+        <header class="ptile-head">
+          <span class="ptile-label">Avg response time</span>
+          <span class="ptile-trend">▼ LOSS</span>
+        </header>
+        <div class="ptile-body">
+          <div class="ptile-figure">
+            <span class="ptile-value" data-count="47">0</span><span class="ptile-unit">hrs</span>
+          </div>
+        </div>
+        <div class="ptile-compare" aria-hidden="true">
+          <div class="pcomp-row">
+            <span class="pcomp-label">5 min</span>
+            <span class="pcomp-bar"><span class="pcomp-fill is-win" data-fill="6%"></span></span>
+            <span class="pcomp-val">9× conv</span>
+          </div>
+          <div class="pcomp-row">
+            <span class="pcomp-label">47 hr</span>
+            <span class="pcomp-bar"><span class="pcomp-fill is-loss" data-fill="98%"></span></span>
+            <span class="pcomp-val">cold</span>
+          </div>
+        </div>
+        <p class="ptile-cap">leads buy from the first to respond.</p>
+      </article>
+
+      <!-- Tile 4: 32+ calls missed (24-hour heatmap) -->
+      <article class="ptile">
+        <header class="ptile-head">
+          <span class="ptile-label">Calls missed / mo</span>
+          <span class="ptile-trend">▼ LOSS</span>
+        </header>
+        <div class="ptile-body">
+          <div class="ptile-figure">
+            <span class="ptile-value" data-count="32">0</span><span class="ptile-unit">+</span>
+          </div>
+        </div>
+        <div class="ptile-hours" aria-hidden="true">
+          <span class="phr is-off"></span><span class="phr is-off"></span><span class="phr is-off"></span>
+          <span class="phr is-off"></span><span class="phr is-off"></span><span class="phr is-off"></span>
+          <span class="phr is-off"></span><span class="phr is-off"></span>
+          <span class="phr"></span><span class="phr"></span><span class="phr"></span>
+          <span class="phr"></span><span class="phr"></span><span class="phr"></span>
+          <span class="phr"></span><span class="phr"></span><span class="phr"></span>
+          <span class="phr is-off"></span><span class="phr is-off"></span><span class="phr is-off"></span>
+          <span class="phr is-off"></span><span class="phr is-off"></span><span class="phr is-off"></span>
+          <span class="phr is-off"></span>
+        </div>
+        <div class="ptile-hrs-axis" aria-hidden="true">
+          <span>00</span><span>06</span><span>12</span><span>18</span><span>24</span>
+        </div>
+        <p class="ptile-cap">while crews are on-site or off-clock.</p>
+      </article>
+    </div>
+
+    <div class="problem-hero">
+      <div class="phero-inner">
+        <div class="phero-stack">
+          <span class="phero-label">Total annual leak</span>
+
+          <div class="leak-gauge" aria-label="Annual leak gauge, $100,800 of $120,000 scale">
+            <svg class="lg-svg" viewBox="0 0 280 160" aria-hidden="true">
+              <defs>
+                <linearGradient id="leakGaugeFill" x1="0%" y1="100%" x2="100%" y2="0%">
+                  <stop offset="0%"   stop-color="#1699A8" stop-opacity="0.85"/>
+                  <stop offset="55%"  stop-color="#40EBFF"/>
+                  <stop offset="100%" stop-color="#A1E8F0"/>
+                </linearGradient>
+                <filter id="leakGaugeGlow" x="-50%" y="-50%" width="200%" height="200%">
+                  <feGaussianBlur stdDeviation="2.4"/>
+                </filter>
+              </defs>
+
+              <!-- Track arc (background) -->
+              <path d="M 30 140 A 110 110 0 0 1 250 140"
+                    stroke="rgba(83, 185, 224, 0.18)" stroke-width="2" fill="none"/>
+
+              <!-- Filled arc — grows in lock-step with the needle -->
+              <path class="lg-fill" d="M 30 140 A 110 110 0 0 1 250 140"
+                    stroke="url(#leakGaugeFill)" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+
+              <!-- Major tick marks -->
+              <g class="lg-ticks" stroke="rgba(161, 232, 240, 0.55)" stroke-width="1.4" stroke-linecap="round">
+                <line x1="34"     y1="140"   x2="22"     y2="140"/>
+                <line x1="65.04"  y1="65.04" x2="56.55"  y2="56.55"/>
+                <line x1="140"    y1="34"    x2="140"    y2="22"/>
+                <line x1="214.96" y1="65.04" x2="223.45" y2="56.55"/>
+                <line x1="246"    y1="140"   x2="258"    y2="140"/>
+              </g>
+
+              <!-- Minor (small) tick marks at every 18° between majors -->
+              <g class="lg-minors" stroke="rgba(178, 204, 214, 0.25)" stroke-width="1" stroke-linecap="round">
+                <line x1="44.4"  y1="106"   x2="38.7"  y2="103.1"/>
+                <line x1="80.7"  y1="79.4"  x2="74.0"  y2="73.6"/>
+                <line x1="108.3" y1="49.8"  x2="103.7" y2="42.7"/>
+                <line x1="171.7" y1="49.8"  x2="176.3" y2="42.7"/>
+                <line x1="199.3" y1="79.4"  x2="206.0" y2="73.6"/>
+                <line x1="235.6" y1="106"   x2="241.3" y2="103.1"/>
+              </g>
+
+              <!-- Scale labels -->
+              <g class="lg-labels" fill="rgba(178, 204, 214, 0.65)"
+                 font-family="'Exo 2', system-ui, sans-serif" font-size="10"
+                 font-weight="500" font-variant-numeric="tabular-nums">
+                <text x="20"  y="156" text-anchor="middle">$0</text>
+                <text x="48"  y="49"  text-anchor="middle">$30K</text>
+                <text x="140" y="14"  text-anchor="middle">$60K</text>
+                <text x="232" y="49"  text-anchor="middle">$90K</text>
+                <text x="260" y="156" text-anchor="middle">$120K</text>
+              </g>
+
+              <!-- Needle + hub. transform-box/transform-origin handled in CSS. -->
+              <line class="lg-needle" x1="140" y1="140" x2="140" y2="48"
+                    stroke="#40EBFF" stroke-width="2.4" stroke-linecap="round"/>
+              <circle class="lg-needle-shadow" cx="140" cy="140" r="14"
+                      fill="rgba(64, 235, 255, 0.15)" filter="url(#leakGaugeGlow)"/>
+              <circle class="lg-hub" cx="140" cy="140" r="6.5"
+                      fill="#0c2630" stroke="#40EBFF" stroke-width="1.5"/>
+              <circle cx="140" cy="140" r="2" fill="#A1E8F0"/>
+            </svg>
+
+            <div class="lg-readout">
+              <span class="lg-readout-currency">$</span>
+              <span class="lg-readout-value" data-count="100800">0</span>
+            </div>
+          </div>
+
+          <span class="phero-note">per year, quietly walking out the door.</span>
+        </div>
+        <div class="phero-spec" aria-hidden="true">
+          <div class="pspec-row"><span>SOURCE</span><span>industry avg, no-AI shops</span></div>
+          <div class="pspec-row"><span>METHOD</span><span>missed calls × avg ticket</span></div>
+          <div class="pspec-row"><span>OFFSET</span><span class="is-cyan">recoverable with AI</span></div>
+
+          <div class="pspec-mini">
+            <div class="pmini">
+              <span class="pmini-label">per month</span>
+              <span class="pmini-value">$<span data-count="8400">0</span></span>
+            </div>
+            <div class="pmini">
+              <span class="pmini-label">per day</span>
+              <span class="pmini-value">$<span data-count="276">0</span></span>
+            </div>
+          </div>
+
+          <a class="find-cta" href="/book">
+            <span>Find solution</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- shared gradient defs used by the SVGs above -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="problemDonutGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%"   stop-color="#A1E8F0"/>
+        <stop offset="100%" stop-color="#40EBFF"/>
+      </linearGradient>
+      <linearGradient id="problemLineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%"   stop-color="#A1E8F0" stop-opacity="0.4"/>
+        <stop offset="100%" stop-color="#40EBFF" stop-opacity="1"/>
+      </linearGradient>
+      <linearGradient id="problemFillGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%"   stop-color="#40EBFF" stop-opacity="0.18"/>
+        <stop offset="100%" stop-color="#40EBFF" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+  </svg>
+</section>
+
+<!-- ====== GROWTH SECTION ====== -->
+<section class="growth" aria-labelledby="growth-title">
+  <div class="growth-wrap">
+    <h2 class="growth-title" id="growth-title">
+      Home service businesses are growing
+      <span class="growth-highlight">faster with AI than ever before.</span>
+    </h2>
+
+    <div class="growth-body">
+      <div class="growth-stories">
+        <p class="growth-story" data-step="0">
+          <span class="growth-dot"></span>
+          [ The Shift ]
+        </p>
+        <p class="growth-story" data-step="1">
+          In <span class="growth-year-mark">2020</span>, only <strong>~5% of home service contractors</strong> were using any kind of AI. Calls went to voicemail, leads slipped through cracks, and quotes were written by hand.
+        </p>
+        <p class="growth-story" data-step="2">
+          By <span class="growth-year-mark">2022</span>, adoption climbed to <strong>~18%</strong> as basic AI tools — chat, lead routing, smart scheduling — started showing up inside the major contractor CRMs.
+        </p>
+        <p class="growth-story" data-step="3">
+          In <span class="growth-year-mark">2024</span>, more than <strong>half of contractors (~52%)</strong> had adopted AI in some form, with AI receptionists capturing millions of after-hours calls competitors used to lose.
+        </p>
+        <p class="growth-story" data-step="4">
+          <span class="growth-year-mark">Today</span>, roughly <strong>78% of contractors</strong> rely on AI to book jobs, answer calls, and grow — and the ones using Erio are doing it at the highest level.
+        </p>
+      </div>
+
+      <div class="growth-chart" aria-hidden="true">
+        <svg class="growth-chart-svg" viewBox="0 0 880 600" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <radialGradient id="dotGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%"  stop-color="#A1D9F0" stop-opacity="0.85"/>
+              <stop offset="60%" stop-color="#40EBFF" stop-opacity="0.25"/>
+              <stop offset="100%" stop-color="#40EBFF" stop-opacity="0"/>
+            </radialGradient>
+            <filter id="dotBlur" x="-100%" y="-100%" width="300%" height="300%">
+              <feGaussianBlur stdDeviation="3"/>
+            </filter>
+            <!-- Back-wall fade: starts at the back-of-floor opacity (0.09)
+                 and fades fully transparent toward the top so the wall never
+                 competes with pillar stems, dots, or % labels. -->
+            <linearGradient id="wallFade" gradientUnits="userSpaceOnUse"
+                            x1="0" y1="408" x2="0" y2="130">
+              <stop offset="0%"   stop-color="#40EBFF" stop-opacity="0.20"/>
+              <stop offset="100%" stop-color="#40EBFF" stop-opacity="0.03"/>
+            </linearGradient>
+          </defs>
+
+          <!-- 3D BACK WALL — continues the floor's vertical depth lines
+               upward and adds faint horizontal rungs. Rendered first so
+               the floor, pillars, dots, and labels sit in front. -->
+          <g class="growth-wall" fill="none" stroke="url(#wallFade)" stroke-width="1">
+            <!-- horizontal rungs evenly spaced from back floor edge upward -->
+            <line x1="316" y1="352" x2="664" y2="352"/>
+            <line x1="316" y1="296" x2="664" y2="296"/>
+            <line x1="316" y1="240" x2="664" y2="240"/>
+            <line x1="316" y1="184" x2="664" y2="184"/>
+            <!-- vertical wall pillars continue the floor's converged depth lines -->
+            <line x1="316" y1="408" x2="316" y2="130"/>
+            <line x1="403" y1="408" x2="403" y2="130"/>
+            <line x1="490" y1="408" x2="490" y2="130"/>
+            <line x1="577" y1="408" x2="577" y2="130"/>
+            <line x1="664" y1="408" x2="664" y2="130"/>
+          </g>
+
+          <!-- Y-AXIS on the left: only 0% (bottom) and 100% (top) marked -->
+          <g class="growth-axis" stroke="#40EBFF" fill="none">
+            <line class="axis-line" x1="80" y1="510" x2="80" y2="130"
+                  stroke-width="1" opacity="0.35" stroke-linecap="round"/>
+            <line class="axis-tick" x1="75" y1="510" x2="85" y2="510" stroke-width="1" opacity="0.55"/>
+            <line class="axis-tick" x1="75" y1="130" x2="85" y2="130" stroke-width="1" opacity="0.55"/>
+          </g>
+          <g class="growth-axis-labels" font-family="'Exo 2', sans-serif" font-size="11"
+             letter-spacing="0.06em" fill="rgba(178, 204, 214, 0.6)" text-anchor="end">
+            <text x="68" y="513">0%</text>
+            <text x="68" y="133">100%</text>
+            <!-- vertical axis title -->
+            <text class="axis-title" x="0" y="0"
+                  transform="translate(36 320) rotate(-90)"
+                  text-anchor="middle" font-size="11"
+                  letter-spacing="0.32em" fill="rgba(178, 204, 214, 0.7)">
+              CONTRACTOR  AI  USAGE
+            </text>
+          </g>
+
+          <!-- 3D-perspective floor grid (5 columns / 4 cells across)
+               y=510 is 0% baseline; pillars rise to y values mapped to their % -->
+          <g class="growth-floor" stroke="#40EBFF" fill="none" stroke-width="1">
+            <!-- horizontal depth lines (parallel to viewer) -->
+            <line x1="120" y1="510" x2="860" y2="510" opacity="0.34"/>
+            <line x1="190" y1="475" x2="790" y2="475" opacity="0.22"/>
+            <line x1="240" y1="447" x2="740" y2="447" opacity="0.16"/>
+            <line x1="282" y1="425" x2="698" y2="425" opacity="0.12"/>
+            <line x1="316" y1="408" x2="664" y2="408" opacity="0.09"/>
+
+            <!-- vertical "depth" lines (5 columns evenly spaced) — converge to vanishing pt -->
+            <line x1="120" y1="510" x2="316" y2="408" opacity="0.30"/>
+            <line x1="305" y1="510" x2="403" y2="408" opacity="0.18"/>
+            <line x1="490" y1="510" x2="490" y2="408" opacity="0.18"/>
+            <line x1="675" y1="510" x2="577" y2="408" opacity="0.18"/>
+            <line x1="860" y1="510" x2="664" y2="408" opacity="0.30"/>
+          </g>
+
+          <!-- ambient floor glow under each pillar -->
+          <g class="growth-glows">
+            <ellipse class="g-glow g-1" cx="212" cy="510" rx="58" ry="13" fill="url(#dotGlow)" opacity="0"/>
+            <ellipse class="g-glow g-2" cx="397" cy="510" rx="58" ry="13" fill="url(#dotGlow)" opacity="0"/>
+            <ellipse class="g-glow g-3" cx="582" cy="510" rx="58" ry="13" fill="url(#dotGlow)" opacity="0"/>
+            <ellipse class="g-glow g-4" cx="767" cy="510" rx="58" ry="13" fill="url(#dotGlow)" opacity="0"/>
+          </g>
+
+          <!-- Pillars sized to ACTUAL contractor AI usage % (research-backed):
+               2020 ≈ 5%, 2022 ≈ 18%, 2024 ≈ 52%, TODAY ≈ 78%
+               y-axis maps 0% = y510, 100% = y130, so 1% = 3.8px -->
+          <g class="growth-pillars" fill="none">
+            <!-- Pillar 1: 2020 — 5% (510 - 5*3.8 = 491) -->
+            <g class="g-pillar p-1">
+              <line class="p-stem" x1="212" y1="510" x2="212" y2="491"
+                    stroke="#40EBFF" stroke-width="1.8" stroke-linecap="round"/>
+              <circle class="p-dot-halo" cx="212" cy="491" r="14"
+                      fill="url(#dotGlow)" opacity="0"/>
+              <circle class="p-dot" cx="212" cy="491" r="5"
+                      fill="#A1D9F0" filter="url(#dotBlur)"/>
+              <circle class="p-dot-core" cx="212" cy="491" r="2.6" fill="#FFFFFF"/>
+              <text class="p-value" x="212" y="478" text-anchor="middle"
+                    font-family="'Exo 2',sans-serif" font-size="12" font-weight="600"
+                    fill="#A1D9F0" letter-spacing="0.04em">5%</text>
+            </g>
+
+            <!-- Pillar 2: 2022 — 18% (510 - 18*3.8 = 442) -->
+            <g class="g-pillar p-2">
+              <line class="p-stem" x1="397" y1="510" x2="397" y2="442"
+                    stroke="#40EBFF" stroke-width="1.8" stroke-linecap="round"/>
+              <circle class="p-dot-halo" cx="397" cy="442" r="14"
+                      fill="url(#dotGlow)" opacity="0"/>
+              <circle class="p-dot" cx="397" cy="442" r="5"
+                      fill="#A1D9F0" filter="url(#dotBlur)"/>
+              <circle class="p-dot-core" cx="397" cy="442" r="2.6" fill="#FFFFFF"/>
+              <text class="p-value" x="397" y="429" text-anchor="middle"
+                    font-family="'Exo 2',sans-serif" font-size="12" font-weight="600"
+                    fill="#A1D9F0" letter-spacing="0.04em">18%</text>
+            </g>
+
+            <!-- Pillar 3: 2024 — 52% (510 - 52*3.8 = 312) -->
+            <g class="g-pillar p-3">
+              <line class="p-stem" x1="582" y1="510" x2="582" y2="312"
+                    stroke="#40EBFF" stroke-width="1.8" stroke-linecap="round"/>
+              <circle class="p-dot-halo" cx="582" cy="312" r="14"
+                      fill="url(#dotGlow)" opacity="0"/>
+              <circle class="p-dot" cx="582" cy="312" r="5.5"
+                      fill="#A1D9F0" filter="url(#dotBlur)"/>
+              <circle class="p-dot-core" cx="582" cy="312" r="2.8" fill="#FFFFFF"/>
+              <text class="p-value" x="582" y="298" text-anchor="middle"
+                    font-family="'Exo 2',sans-serif" font-size="13" font-weight="600"
+                    fill="#A1D9F0" letter-spacing="0.04em">52%</text>
+            </g>
+
+            <!-- Pillar 4: TODAY — 78% (510 - 78*3.8 = 214) -->
+            <g class="g-pillar p-4">
+              <line class="p-stem" x1="767" y1="510" x2="767" y2="214"
+                    stroke="#A1D9F0" stroke-width="2" stroke-linecap="round"/>
+              <circle class="p-dot-halo" cx="767" cy="214" r="20"
+                      fill="url(#dotGlow)" opacity="0"/>
+              <circle class="p-dot" cx="767" cy="214" r="7"
+                      fill="#FFFFFF" filter="url(#dotBlur)"/>
+              <circle class="p-dot-core" cx="767" cy="214" r="3.2" fill="#FFFFFF"/>
+              <text class="p-value" x="767" y="198" text-anchor="middle"
+                    font-family="'Exo 2',sans-serif" font-size="14" font-weight="700"
+                    fill="#FFFFFF" letter-spacing="0.04em">78%</text>
+            </g>
+          </g>
+
+          <!-- year labels under the floor -->
+          <g class="growth-years"
+             fill="#40EBFF" font-family="'Exo 2', sans-serif"
+             font-size="13" text-anchor="middle" letter-spacing="0.18em">
+            <text class="g-year y-1" x="212" y="555">2020</text>
+            <text class="g-year y-2" x="397" y="555">2022</text>
+            <text class="g-year y-3" x="582" y="555">2024</text>
+            <text class="g-year y-4" x="767" y="555">TODAY</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== BENEFITS — what AI does for local service businesses ====== -->
+<section class="benefits" aria-labelledby="benefits-title">
+  <div class="benefits-wrap">
+    <div class="benefits-head">
+      <span class="benefits-tag">
+        <span class="benefits-dot"></span>
+        [ The Fix ]
+      </span>
+    </div>
+
+    <h2 class="benefits-title" id="benefits-title">
+      AI hands contractors back their <span class="benefits-em">time, leads, and leverage</span>.
+    </h2>
+    <p class="benefits-sub">
+      Never miss a lead. Reply in seconds. Book around the clock. Look more polished than the shop across town — and quietly hand the owner back the hours they used to spend chasing the phone.
+    </p>
+  </div>
+
+  <!-- Thin leader line drops from the paragraph into the brick grid;
+       same cyan hairline as the brick edges. -->
+  <div class="benefits-leader" aria-hidden="true"></div>
+
+  <div class="benefits-grid">
+      <!-- ROW 1 — aligned: content (24/7) · icon-filler · content (<30s) -->
+      <article class="bt bt-pos-1">
+        <div class="bt-figure">
+          <span class="bt-value" data-bcount="24">0</span><span class="bt-slash">/</span><span class="bt-value" data-bcount="7">0</span>
+        </div>
+        <div class="bt-body">
+          <span class="bt-label">Round-the-clock coverage</span>
+          <span class="bt-cap">Calls picked up at 2 AM, on Sundays, on the holidays competitors take off.</span>
+        </div>
+      </article>
+      <div class="bt-filler bt-fpos-1" aria-hidden="true">
+        <span class="bt-icon-label">AI Employees</span>
+        <svg class="bt-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 11a7 7 0 0 1 14 0"/>
+          <circle cx="12" cy="9.5" r="2.6"/>
+          <path d="M6 21v-3a6 6 0 0 1 12 0v3"/>
+        </svg>
+        <span class="bt-icon-meta">Always on the line</span>
+      </div>
+      <article class="bt bt-pos-2">
+        <div class="bt-figure">
+          <span class="bt-prefix">&lt;</span><span class="bt-value" data-bcount="30">0</span><span class="bt-suffix">s</span>
+        </div>
+        <div class="bt-body">
+          <span class="bt-label">Avg AI response time</span>
+          <span class="bt-cap">Replies land before the lead has finished typing the next google search.</span>
+        </div>
+      </article>
+
+      <!-- ROW 2 — brick-offset: half-edge · content (+38%) · icon-filler · half-edge -->
+      <div class="bt-filler bt-fpos-edge-l" aria-hidden="true"></div>
+      <article class="bt bt-pos-3">
+        <div class="bt-figure">
+          <span class="bt-prefix">+</span><span class="bt-value" data-bcount="38">0</span><span class="bt-suffix">%</span>
+        </div>
+        <div class="bt-body">
+          <span class="bt-label">Booking-rate lift</span>
+          <span class="bt-cap">Leads reached in minutes don't shop around — they book.</span>
+        </div>
+      </article>
+      <div class="bt-filler bt-fpos-2" aria-hidden="true">
+        <span class="bt-icon-label">AI Websites</span>
+        <svg class="bt-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="5" width="18" height="14" rx="1.2"/>
+          <line x1="3" y1="9.5" x2="21" y2="9.5"/>
+          <circle cx="6.2" cy="7.3" r="0.6"/>
+          <circle cx="8.4" cy="7.3" r="0.6"/>
+          <circle cx="10.6" cy="7.3" r="0.6"/>
+          <path d="M8 13.5h8M8 16h5"/>
+        </svg>
+        <span class="bt-icon-meta">Built to convert</span>
+      </div>
+      <div class="bt-filler bt-fpos-edge-r" aria-hidden="true"></div>
+
+      <!-- ROW 3 — aligned: icon-filler · content (5hrs) · icon-filler -->
+      <div class="bt-filler bt-fpos-3" aria-hidden="true">
+        <span class="bt-icon-label">AI Solutions</span>
+        <svg class="bt-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M12 2v3M12 19v3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M2 12h3M19 12h3M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1"/>
+        </svg>
+        <span class="bt-icon-meta">Tailored automation</span>
+      </div>
+      <article class="bt bt-pos-4">
+        <div class="bt-figure">
+          <span class="bt-value" data-bcount="5">0</span><span class="bt-suffix">hrs</span>
+        </div>
+        <div class="bt-body">
+          <span class="bt-label">Owner hours recovered / week</span>
+          <span class="bt-cap">Back to running jobs and growing the shop — not babysitting the phone.</span>
+        </div>
+      </article>
+      <div class="bt-filler bt-fpos-4" aria-hidden="true">
+        <span class="bt-icon-label">Measured Growth</span>
+        <svg class="bt-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="3 17 9 11 13 15 21 7"/>
+          <polyline points="14 7 21 7 21 14"/>
+        </svg>
+        <span class="bt-icon-meta">Compounding wins</span>
+      </div>
+
+      <!-- Spark particles spawn at the cursor on pointermove. -->
+      <div class="benefits-sparks" aria-hidden="true"></div>
+  </div>
+</section>
+
+<!-- ====== OUR VOICE — hexagon focal ====== -->
+<section class="voice" aria-labelledby="voice-title">
+  <div class="voice-stage">
+    <div class="voice-hex" aria-hidden="true">
+      <svg viewBox="0 0 200 200" fill="none">
+        <defs>
+          <linearGradient id="voiceHexG" x1="0" y1="0" x2="200" y2="200">
+            <stop offset="0%"   stop-color="#40EBFF" stop-opacity="0.9"/>
+            <stop offset="50%"  stop-color="#1699A8" stop-opacity="0.5"/>
+            <stop offset="100%" stop-color="#1699A8" stop-opacity="0.15"/>
+          </linearGradient>
+          <radialGradient id="voiceHexC" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"   stop-color="#40EBFF" stop-opacity="0.55"/>
+            <stop offset="100%" stop-color="#40EBFF" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <path d="M 92.3 14.6 Q 100.0 10.0 107.7 14.6 L 167.3 50.4 Q 175.0 55.0 175.0 64.0 L 175.0 136.0 Q 175.0 145.0 167.3 149.6 L 107.7 185.4 Q 100.0 190.0 92.3 185.4 L 32.7 149.6 Q 25.0 145.0 25.0 136.0 L 25.0 64.0 Q 25.0 55.0 32.7 50.4 Z" stroke="url(#voiceHexG)" stroke-width="1" stroke-linejoin="round" fill="none"/>
+        <path d="M 94.0 33.6 Q 100.0 30.0 106.0 33.6 L 152.0 61.4 Q 158.0 65.0 158.0 72.0 L 158.0 128.0 Q 158.0 135.0 152.0 138.6 L 106.0 166.4 Q 100.0 170.0 94.0 166.4 L 48.0 138.6 Q 42.0 135.0 42.0 128.0 L 42.0 72.0 Q 42.0 65.0 48.0 61.4 Z" stroke="url(#voiceHexG)" stroke-width="0.7" stroke-linejoin="round" fill="none" opacity="0.7"/>
+        <path d="M 94.8 53.1 Q 100.0 50.0 105.2 53.1 L 136.8 71.9 Q 142.0 75.0 142.0 81.0 L 142.0 119.0 Q 142.0 125.0 136.8 128.1 L 105.2 146.9 Q 100.0 150.0 94.8 146.9 L 63.2 128.1 Q 58.0 125.0 58.0 119.0 L 58.0 81.0 Q 58.0 75.0 63.2 71.9 Z" stroke="url(#voiceHexG)" stroke-width="0.7" stroke-linejoin="round" fill="none" opacity="0.5"/>
+        <path d="M 96.5 72.0 Q 100.0 70.0 103.5 72.0 L 120.5 82.0 Q 124.0 84.0 124.0 88.0 L 124.0 112.0 Q 124.0 116.0 120.5 118.0 L 103.5 128.0 Q 100.0 130.0 96.5 128.0 L 79.5 118.0 Q 76.0 116.0 76.0 112.0 L 76.0 88.0 Q 76.0 84.0 79.5 82.0 Z" stroke="url(#voiceHexG)" stroke-width="0.7" stroke-linejoin="round" fill="none" opacity="0.4"/>
+      </svg>
+    </div>
+    <h2 class="voice-title" id="voice-title">Custom-trained on <span class="voice-em">your business.</span></h2>
+    <p class="voice-sub">Your website, your AI employees, your custom solutions &mdash; all trained on your services, your prices, your hours, and your tone. Everything Erio builds runs like it's been part of the team for years.</p>
+    <a class="voice-cta" href="/book">
+      <span>Start now</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ====== WHY ERIO — built for contractors ====== -->
+<section class="whyerio" aria-labelledby="why-title">
+  <div class="why-stage">
+  <div class="why-glow" aria-hidden="true"></div>
+  <div class="why-wrap">
+
+    <!-- ── Left: only this side swaps as you scroll; right stays constant ── -->
+    <div class="why-left">
+      <div class="why-rail" aria-hidden="true">
+        <span class="why-rail-item is-active">Fast Setup</span>
+        <span class="why-rail-tick"></span>
+        <span class="why-rail-item">Real Support</span>
+        <span class="why-rail-tick"></span>
+        <span class="why-rail-item">Your Workflow</span>
+      </div>
+
+      <div class="why-intro">
+        <span class="why-tag"><span class="why-dot"></span>[ The Industry ]</span>
+
+        <div class="why-swap">
+          <p class="why-eyebrow" data-why-eyebrow>An AI partner that's actually</p>
+          <h2 class="why-title" id="why-title"><span class="why-em" data-why-em>Built for<br>contractors</span></h2>
+          <p class="why-lead" data-why-lead>We don't vanish into a six-month build. Your site and AI receptionist go live and start booking jobs within a week — so you see results while the season's still hot.</p>
+          <div class="why-feature">
+            <span class="why-feature-bar" aria-hidden="true"></span>
+            <div class="why-feature-body">
+              <span class="why-feature-title" data-why-ftitle>Live in days, not months</span>
+              <p class="why-feature-desc" data-why-fdesc>From kickoff to answering your calls in about a week — fast, without cutting corners.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Right: three reasons, always visible (does not change) ── -->
+    <div class="why-right">
+      <span class="why-divider" aria-hidden="true"></span>
+
+      <article class="why-item">
+        <div class="why-item-text">
+          <div class="why-item-head">
+            <h3 class="why-item-title">Up and running fast</h3>
+            <span class="why-num">1</span>
+          </div>
+          <p class="why-item-desc">Live in days, not months. Your site and AI receptionist are answering calls inside a week — never stuck in a six-month build while jobs slip by.</p>
+        </div>
+        <div class="why-tile why-tile-speed" aria-hidden="true">
+          <span class="wt-arrow"><i></i><i></i><i></i></span>
+          <span class="wt-label">Live in days</span>
+        </div>
+      </article>
+
+      <article class="why-item why-item-rev">
+        <div class="why-item-text">
+          <div class="why-item-head">
+            <h3 class="why-item-title">A real team behind it</h3>
+            <span class="why-num">2</span>
+          </div>
+          <p class="why-item-desc">A real team builds, trains, and tunes your system — and picks up the phone when you need them. You're never left alone with a bot.</p>
+        </div>
+        <div class="why-tile why-tile-support" aria-hidden="true">
+          <span class="wt-pulse p1"></span>
+          <span class="wt-pulse p2"></span>
+          <span class="wt-pulse p3"></span>
+          <div class="wt-wave">
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <span class="wt-label">Real team · on call</span>
+        </div>
+      </article>
+
+      <article class="why-item">
+        <div class="why-item-text">
+          <div class="why-item-head">
+            <h3 class="why-item-title">Fits how you work</h3>
+            <span class="why-num">3</span>
+          </div>
+          <p class="why-item-desc">Designed for how contractors really work — the truck, the jobsite, the 9&nbsp;PM callback. The tools bend to your day, not the other way around.</p>
+        </div>
+        <div class="why-tile why-tile-rhythm" aria-hidden="true">
+          <svg class="wt-clock" viewBox="0 0 200 200">
+            <circle class="wt-clock-ring" cx="100" cy="100" r="74"/>
+            <g class="wt-ticks">
+              <line x1="100" y1="30" x2="100" y2="40"/><line x1="100" y1="160" x2="100" y2="170"/>
+              <line x1="30" y1="100" x2="40" y2="100"/><line x1="160" y1="100" x2="170" y2="100"/>
+              <line x1="50.5" y1="50.5" x2="57.5" y2="57.5"/><line x1="142.5" y1="142.5" x2="149.5" y2="149.5"/>
+              <line x1="149.5" y1="50.5" x2="142.5" y2="57.5"/><line x1="57.5" y1="142.5" x2="50.5" y2="149.5"/>
+            </g>
+            <g class="wt-hand"><line x1="100" y1="100" x2="100" y2="42"/></g>
+            <circle class="wt-hub" cx="100" cy="100" r="4"/>
+            <circle class="wt-ev e1" cx="100" cy="26" r="5"/>
+            <circle class="wt-ev e2" cx="164" cy="137" r="5"/>
+            <circle class="wt-ev e3" cx="36" cy="137" r="5"/>
+          </svg>
+          <span class="wt-label">Your schedule</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- ====== WHAT ERIO BUILDS — three engines, one console ====== -->
+<section class="builds" id="products" aria-labelledby="builds-title">
+  <div class="builds-wrap">
+
+    <!-- Corner crosshair tick marks framing the section content -->
+    <span class="builds-cross builds-cross-tl" aria-hidden="true"></span>
+    <span class="builds-cross builds-cross-tr" aria-hidden="true"></span>
+
+    <!-- Ambient mist halo behind the console -->
+    <div class="builds-mist" aria-hidden="true"></div>
+
+    <div class="builds-head">
+      <span class="builds-tag">
+        <span class="builds-dot"></span>
+        [ The Build ]
+      </span>
+
+      <h2 class="builds-title" id="builds-title">
+        Three engines. <span class="builds-em">One operating system</span> for your shop.
+      </h2>
+
+      <p class="builds-sub">
+        Pick one. Stack all three. Every Erio build runs on the same compounding stack &mdash; pulled together inside a single command surface.
+      </p>
+    </div>
+
+    <!-- Product switcher: indicator pill slides between buttons -->
+    <div class="builds-switch" role="tablist" aria-label="What Erio builds">
+      <span class="builds-switch-track" aria-hidden="true"></span>
+      <span class="builds-switch-indicator" aria-hidden="true"></span>
+      <button class="builds-tab is-active" role="tab" aria-selected="true" data-tab="websites" type="button">
+        <span class="builds-tab-num">01</span>
+        <span class="builds-tab-label">AI Websites</span>
+      </button>
+      <button class="builds-tab" role="tab" aria-selected="false" data-tab="employees" type="button">
+        <span class="builds-tab-num">02</span>
+        <span class="builds-tab-label">AI Employees</span>
+      </button>
+      <button class="builds-tab" role="tab" aria-selected="false" data-tab="solutions" type="button">
+        <span class="builds-tab-num">03</span>
+        <span class="builds-tab-label">AI Solutions</span>
+      </button>
+    </div>
+
+    <!-- ── The console ── -->
+    <div class="builds-console" data-active="websites">
+
+      <!-- Corner crosshair brackets on the console itself -->
+      <span class="bcon-corner bcon-corner-tl" aria-hidden="true"></span>
+      <span class="bcon-corner bcon-corner-tr" aria-hidden="true"></span>
+      <span class="bcon-corner bcon-corner-bl" aria-hidden="true"></span>
+      <span class="bcon-corner bcon-corner-br" aria-hidden="true"></span>
+
+      <!-- Toolbar strip -->
+      <div class="bcon-toolbar">
+        <div class="bcon-lights"><span></span><span></span><span></span></div>
+        <div class="bcon-route">
+          <span class="bcon-route-arrow">↗</span>
+          <span class="bcon-route-text" data-route>erio.os / websites / live</span>
+        </div>
+        <div class="bcon-status">
+          <span class="bcon-status-dot"></span>
+          <span>Connected</span>
+        </div>
+      </div>
+
+      <!-- Stage holds 3 stacked panes; only the active one is visible -->
+      <div class="bcon-stage">
+
+        <!-- ─────────── PANE · AI WEBSITES ─────────── -->
+        <article class="bcon-pane is-active" data-pane="websites">
+          <header class="bp-head">
+            <div class="bp-head-l">
+              <span class="bp-eye">Service · 01 / 03</span>
+              <h3 class="bp-title">AI Websites</h3>
+              <p class="bp-blurb">Sites tuned for the way local buyers actually search &mdash; built to turn browsers into a lead-generation machine.</p>
+            </div>
+            <a class="bp-cta" href="/ai-websites">
+              <span>Open AI Websites</span>
+              <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </header>
+
+          <div class="bp-grid bp-grid-web">
+            <!-- LEFT: Mini live page preview -->
+            <div class="bcell bcell-web-page">
+              <div class="bcell-h"><span>live preview</span><span class="bcell-h-tick">erio.ai/sample</span></div>
+              <div class="bweb">
+                <div class="bweb-nav">
+                  <span class="bweb-logo"></span>
+                  <span class="bweb-link"></span>
+                  <span class="bweb-link"></span>
+                  <span class="bweb-link"></span>
+                  <span class="bweb-btn">Book →</span>
+                </div>
+                <div class="bweb-hero">
+                  <span class="bweb-tag">[ Roofing · Charlotte ]</span>
+                  <div class="bweb-h1"></div>
+                  <div class="bweb-h1 bweb-h1-2"></div>
+                  <div class="bweb-row">
+                    <span class="bweb-cta">Get free estimate &rarr;</span>
+                    <span class="bweb-meta"><em>21s</em> avg reply</span>
+                  </div>
+                </div>
+                <div class="bweb-shape"></div>
+              </div>
+            </div>
+
+            <!-- MIDDLE: KPI tile + sparkline + chip row -->
+            <div class="bcell bcell-web-kpi">
+              <div class="bcell-h"><span>conversions · 24h</span><span class="bcell-h-tick is-live">live</span></div>
+              <div class="bkpi-lg">
+                <span class="bkpi-value" data-count="248">0</span>
+                <span class="bkpi-delta is-up">▲ 18%</span>
+              </div>
+              <svg class="bspark" viewBox="0 0 200 56" preserveAspectRatio="none" aria-hidden="true">
+                <defs>
+                  <linearGradient id="bsparkFill" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0" stop-color="#40EBFF" stop-opacity="0.32"/>
+                    <stop offset="1" stop-color="#40EBFF" stop-opacity="0"/>
+                  </linearGradient>
+                  <linearGradient id="bsparkLine" x1="0" x2="1" y1="0" y2="0">
+                    <stop offset="0"   stop-color="#53B9E0"/>
+                    <stop offset="0.6" stop-color="#9FDCEF"/>
+                    <stop offset="1"   stop-color="#40EBFF"/>
+                  </linearGradient>
+                </defs>
+                <path class="bspark-fill" d="M 0 50 L 0 36 L 24 32 L 48 38 L 72 26 L 96 30 L 120 20 L 144 24 L 168 14 L 200 8 L 200 56 Z" fill="url(#bsparkFill)"/>
+                <path class="bspark-line" d="M 0 36 L 24 32 L 48 38 L 72 26 L 96 30 L 120 20 L 144 24 L 168 14 L 200 8" fill="none" stroke="url(#bsparkLine)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <div class="bkpi-row">
+                <div class="bkpi-sm"><span>Conv. rate</span><b>7.4<em>%</em></b></div>
+                <div class="bkpi-sm"><span>Avg load</span><b>0.9<em>s</em></b></div>
+                <div class="bkpi-sm"><span>Bounce</span><b>11<em>%</em></b></div>
+              </div>
+            </div>
+
+            <!-- RIGHT: A/B winner -->
+            <div class="bcell bcell-web-ab">
+              <div class="bcell-h"><span>A/B headline</span><span class="bcell-h-tick">winner promoted</span></div>
+              <div class="bab">
+                <div class="bab-row">
+                  <div class="bab-r1">
+                    <span class="bab-label">A · "Top rated near you"</span>
+                    <span class="bab-num">3.1%</span>
+                  </div>
+                  <span class="bab-bar"><span class="bab-fill" style="--w:34%"></span></span>
+                </div>
+                <div class="bab-row bab-row-win">
+                  <div class="bab-r1">
+                    <span class="bab-label">B · "Free estimate in 21s"</span>
+                    <span class="bab-num">7.4%</span>
+                  </div>
+                  <span class="bab-bar"><span class="bab-fill is-win" style="--w:88%"></span></span>
+                </div>
+              </div>
+              <div class="bab-meta">
+                <span>confidence <em>99.4%</em></span>
+                <span class="bab-meta-sep">·</span>
+                <span>auto-promoted</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- ─────────── PANE · AI EMPLOYEES ─────────── -->
+        <article class="bcon-pane" data-pane="employees">
+          <header class="bp-head">
+            <div class="bp-head-l">
+              <span class="bp-eye">Service · 02 / 03</span>
+              <h3 class="bp-title">AI Employees</h3>
+              <p class="bp-blurb">Always-on receptionists, schedulers, and follow-up agents that answer every call, qualify every lead, and book every job &mdash; at 2&nbsp;AM or on a Sunday.</p>
+            </div>
+            <a class="bp-cta" href="ai-employees.html">
+              <span>Open AI Employees</span>
+              <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </header>
+
+          <div class="bp-grid bp-grid-emp">
+            <!-- LEFT: Live agent + voice wave -->
+            <div class="bcell bcell-emp-live">
+              <div class="bcell-h"><span>active call</span><span class="bcell-h-tick is-live">on the line</span></div>
+              <div class="bemp-id">
+                <span class="bemp-avatar"><b>CS</b></span>
+                <div class="bemp-meta">
+                  <span class="bemp-name">Cornerstone Structures</span>
+                  <span class="bemp-sub">inbound · greeting · qualifying</span>
+                </div>
+                <span class="bemp-time">00:42</span>
+              </div>
+              <div class="bwave">
+                <span class="bwave-bar" style="--h:38%"></span>
+                <span class="bwave-bar" style="--h:62%"></span>
+                <span class="bwave-bar" style="--h:88%"></span>
+                <span class="bwave-bar" style="--h:55%"></span>
+                <span class="bwave-bar" style="--h:74%"></span>
+                <span class="bwave-bar" style="--h:42%"></span>
+                <span class="bwave-bar" style="--h:81%"></span>
+                <span class="bwave-bar" style="--h:48%"></span>
+                <span class="bwave-bar" style="--h:66%"></span>
+                <span class="bwave-bar" style="--h:35%"></span>
+                <span class="bwave-bar" style="--h:72%"></span>
+                <span class="bwave-bar" style="--h:58%"></span>
+                <span class="bwave-bar" style="--h:84%"></span>
+                <span class="bwave-bar" style="--h:46%"></span>
+                <span class="bwave-bar" style="--h:62%"></span>
+                <span class="bwave-bar" style="--h:38%"></span>
+                <span class="bwave-bar" style="--h:78%"></span>
+                <span class="bwave-bar" style="--h:52%"></span>
+                <span class="bwave-bar" style="--h:69%"></span>
+                <span class="bwave-bar" style="--h:44%"></span>
+              </div>
+              <div class="bemp-transcript">
+                <span class="bemp-tline">&ldquo;...what's the address for the estimate?&rdquo;</span>
+              </div>
+            </div>
+
+            <!-- MIDDLE: KPI tile + funnel -->
+            <div class="bcell bcell-emp-kpi">
+              <div class="bcell-h"><span>today</span><span class="bcell-h-tick is-live">live</span></div>
+              <div class="bkpi-lg">
+                <span class="bkpi-value" data-count="87">0</span>
+                <span class="bkpi-suffix">calls answered</span>
+              </div>
+              <div class="bkpi-row bkpi-row-2">
+                <div class="bkpi-sm"><span>Booked</span><b>41</b></div>
+                <div class="bkpi-sm"><span>Qualified</span><b>63</b></div>
+              </div>
+              <div class="bfun">
+                <div class="bfun-step" style="--w:100%"><span>Inbound</span><b>87</b></div>
+                <div class="bfun-step" style="--w:72%"><span>Qualified</span><b>63</b></div>
+                <div class="bfun-step" style="--w:47%"><span>Booked</span><b>41</b></div>
+              </div>
+            </div>
+
+            <!-- RIGHT: Pipeline cards -->
+            <div class="bcell bcell-emp-pipe">
+              <div class="bcell-h"><span>pipeline · last 30m</span><span class="bcell-h-tick">+5 today</span></div>
+              <ul class="bpipe">
+                <li class="bpipe-item">
+                  <span class="bpipe-init">JM</span>
+                  <div class="bpipe-mid">
+                    <span class="bpipe-name">J. Martinez · Re-roof</span>
+                    <span class="bpipe-sub">qualified · booked Tue 9am</span>
+                  </div>
+                  <span class="bpipe-tag is-booked">BOOKED</span>
+                </li>
+                <li class="bpipe-item">
+                  <span class="bpipe-init">RD</span>
+                  <div class="bpipe-mid">
+                    <span class="bpipe-name">R. Davis · Leak repair</span>
+                    <span class="bpipe-sub">qualified · awaiting reply</span>
+                  </div>
+                  <span class="bpipe-tag is-warm">WARM</span>
+                </li>
+                <li class="bpipe-item">
+                  <span class="bpipe-init">AT</span>
+                  <div class="bpipe-mid">
+                    <span class="bpipe-name">A. Tran · Inspection</span>
+                    <span class="bpipe-sub">new · greeting</span>
+                  </div>
+                  <span class="bpipe-tag is-new">NEW</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- ─────────── PANE · AI SOLUTIONS ─────────── -->
+        <article class="bcon-pane" data-pane="solutions">
+          <header class="bp-head">
+            <div class="bp-head-l">
+              <span class="bp-eye">Service · 03 / 03</span>
+              <h3 class="bp-title">AI Solutions</h3>
+              <p class="bp-blurb">Custom AI tooling stitched into the seams of your operation. Estimating engines, dispatch boards, route optimizers &mdash; wherever the friction lives.</p>
+            </div>
+            <a class="bp-cta" href="ai-solutions.html">
+              <span>Open AI Solutions</span>
+              <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </header>
+
+          <div class="bp-grid bp-grid-sol">
+            <!-- LEFT: Workflow flow graph -->
+            <div class="bcell bcell-sol-flow">
+              <div class="bcell-h"><span>workflow · estimate generator</span><span class="bcell-h-tick is-live">running</span></div>
+              <div class="bflow">
+                <svg class="bflow-svg" viewBox="0 0 280 200" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="bflowGrad" x1="0" x2="1" y1="0" y2="0">
+                      <stop offset="0"   stop-color="#1699A8" stop-opacity="0.0"/>
+                      <stop offset="0.5" stop-color="#40EBFF" stop-opacity="0.9"/>
+                      <stop offset="1"   stop-color="#1699A8" stop-opacity="0.0"/>
+                    </linearGradient>
+                  </defs>
+                  <!-- edges -->
+                  <path d="M 56 40 C 100 40, 140 100, 140 100" stroke="rgba(160,210,225,0.28)" stroke-width="1.1" fill="none"/>
+                  <path d="M 56 160 C 100 160, 140 100, 140 100" stroke="rgba(160,210,225,0.28)" stroke-width="1.1" fill="none"/>
+                  <path d="M 140 100 C 180 100, 220 100, 240 100" stroke="rgba(160,210,225,0.28)" stroke-width="1.1" fill="none"/>
+                  <!-- animated comet on each edge -->
+                  <circle class="bflow-pulse" cx="0" cy="0" r="2.2" fill="#40EBFF">
+                    <animateMotion dur="2.4s" repeatCount="indefinite" path="M 56 40 C 100 40, 140 100, 140 100"/>
+                  </circle>
+                  <circle class="bflow-pulse" cx="0" cy="0" r="2.2" fill="#40EBFF">
+                    <animateMotion dur="2.4s" begin="0.6s" repeatCount="indefinite" path="M 56 160 C 100 160, 140 100, 140 100"/>
+                  </circle>
+                  <circle class="bflow-pulse" cx="0" cy="0" r="2.4" fill="#40EBFF">
+                    <animateMotion dur="2.4s" begin="1.2s" repeatCount="indefinite" path="M 140 100 C 180 100, 220 100, 240 100"/>
+                  </circle>
+                </svg>
+                <span class="bnode bnode-in1">Drawings</span>
+                <span class="bnode bnode-in2">CRM lead</span>
+                <span class="bnode bnode-core"><b>AI</b><i>engine</i></span>
+                <span class="bnode bnode-out">PDF + Quote</span>
+              </div>
+            </div>
+
+            <!-- MIDDLE: Integrations grid + savings -->
+            <div class="bcell bcell-sol-int">
+              <div class="bcell-h"><span>integrations · 12</span><span class="bcell-h-tick">all green</span></div>
+              <div class="bint">
+                <span class="bint-chip">HubSpot</span>
+                <span class="bint-chip">Stripe</span>
+                <span class="bint-chip">QuickBooks</span>
+                <span class="bint-chip">Twilio</span>
+                <span class="bint-chip">Sheets</span>
+                <span class="bint-chip">Slack</span>
+                <span class="bint-chip">Calendar</span>
+                <span class="bint-chip">Zapier</span>
+                <span class="bint-chip">DocuSign</span>
+              </div>
+              <div class="bkpi-lg bkpi-lg-tight">
+                <span class="bkpi-value" data-count="32">0</span>
+                <span class="bkpi-suffix">hrs saved / wk</span>
+              </div>
+            </div>
+
+            <!-- RIGHT: Status feed -->
+            <div class="bcell bcell-sol-feed">
+              <div class="bcell-h"><span>activity</span><span class="bcell-h-tick is-live">streaming</span></div>
+              <ul class="bfeed">
+                <li class="bfeed-item">
+                  <span class="bfeed-dot"></span>
+                  <div class="bfeed-mid">
+                    <span class="bfeed-msg">Estimate <em>#A-4421</em> generated</span>
+                    <span class="bfeed-sub">2.3s · sent to lead</span>
+                  </div>
+                  <span class="bfeed-time">just now</span>
+                </li>
+                <li class="bfeed-item">
+                  <span class="bfeed-dot"></span>
+                  <div class="bfeed-mid">
+                    <span class="bfeed-msg">Route optimized <em>· 14 stops</em></span>
+                    <span class="bfeed-sub">saved 38 mi</span>
+                  </div>
+                  <span class="bfeed-time">2m</span>
+                </li>
+                <li class="bfeed-item">
+                  <span class="bfeed-dot"></span>
+                  <div class="bfeed-mid">
+                    <span class="bfeed-msg">Invoice synced <em>· QuickBooks</em></span>
+                    <span class="bfeed-sub">$8,420 · paid</span>
+                  </div>
+                  <span class="bfeed-time">6m</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Console footer -->
+      <div class="bcon-footer">
+        <span class="bcon-foot-meta">uptime <em>99.998%</em></span>
+        <span class="bcon-foot-meta">sessions <em data-foot-sessions>1,284</em></span>
+        <span class="bcon-foot-meta">last sync <em>just now</em></span>
+        <a class="bcon-foot-cta" href="https://app.erio.ai/">
+          <span>Open dashboard</span>
+          <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ====== HOW IT WORKS — three-step process ====== -->
+<section class="howit" aria-labelledby="howit-title">
+  <div class="howit-wrap">
+
+    <div class="howit-head">
+      <div class="howit-bracket howit-bracket-l" aria-hidden="true">
+        <svg class="howit-trace howit-trace-l" viewBox="0 0 200 84" aria-hidden="true" fill="none">
+          <defs>
+            <!-- comet body: faded tail → bright head -->
+            <linearGradient id="howitCometL" x1="0%" y1="50%" x2="100%" y2="50%">
+              <stop offset="0"    stop-color="#40EBFF" stop-opacity="0"/>
+              <stop offset="0.55" stop-color="#40EBFF" stop-opacity="0.55"/>
+              <stop offset="1"    stop-color="#A1E8F0" stop-opacity="1"/>
+            </linearGradient>
+            <!-- orbit path: a rounded rectangle inside the grid panel.
+                 Starts at the inner (title-adjacent) edge midpoint and
+                 traces clockwise — quadratic Bézier corners let the
+                 comet smoothly rotate through each turn instead of
+                 snapping. -->
+            <path id="howitOrbitL"
+                  d="M 196 42 V 46 Q 196 56 186 56 H 14 Q 4 56 4 46 V 38 Q 4 28 14 28 H 186 Q 196 28 196 38 V 42 Z"
+                  fill="none"/>
+          </defs>
+          <g class="howit-comet">
+            <circle r="2.8" fill="#A1E8F0"><animateMotion dur="5s" begin="-0.56s" repeatCount="indefinite"><mpath href="#howitOrbitL"/></animateMotion></circle>
+            <circle r="2.5" fill="#40EBFF" opacity="0.9"><animateMotion dur="5s" begin="-0.49s" repeatCount="indefinite"><mpath href="#howitOrbitL"/></animateMotion></circle>
+            <circle r="2.2" fill="#40EBFF" opacity="0.78"><animateMotion dur="5s" begin="-0.42s" repeatCount="indefinite"><mpath href="#howitOrbitL"/></animateMotion></circle>
+            <circle r="1.9" fill="#40EBFF" opacity="0.64"><animateMotion dur="5s" begin="-0.35s" repeatCount="indefinite"><mpath href="#howitOrbitL"/></animateMotion></circle>
+            <circle r="1.6" fill="#40EBFF" opacity="0.5"><animateMotion dur="5s" begin="-0.28s" repeatCount="indefinite"><mpath href="#howitOrbitL"/></animateMotion></circle>
+            <circle r="1.3" fill="#40EBFF" opacity="0.36"><animateMotion dur="5s" begin="-0.21s" repeatCount="indefinite"><mpath href="#howitOrbitL"/></animateMotion></circle>
+            <circle r="1.1" fill="#40EBFF" opacity="0.24"><animateMotion dur="5s" begin="-0.14s" repeatCount="indefinite"><mpath href="#howitOrbitL"/></animateMotion></circle>
+            <circle r="0.9" fill="#40EBFF" opacity="0.14"><animateMotion dur="5s" begin="-0.07s" repeatCount="indefinite"><mpath href="#howitOrbitL"/></animateMotion></circle>
+          </g>
+        </svg>
+      </div>
+      <div class="howit-head-inner">
+        <span class="howit-tag">
+          <span class="howit-dot"></span>
+          [ The Process ]
+        </span>
+        <h2 class="howit-title" id="howit-title">How it works</h2>
+        <p class="howit-sub">Three steps to a fuller calendar</p>
+      </div>
+      <div class="howit-bracket howit-bracket-r" aria-hidden="true">
+        <svg class="howit-trace howit-trace-r" viewBox="0 0 200 84" aria-hidden="true" fill="none">
+          <defs>
+            <linearGradient id="howitCometR" x1="0%" y1="50%" x2="100%" y2="50%">
+              <stop offset="0"    stop-color="#40EBFF" stop-opacity="0"/>
+              <stop offset="0.55" stop-color="#40EBFF" stop-opacity="0.55"/>
+              <stop offset="1"    stop-color="#A1E8F0" stop-opacity="1"/>
+            </linearGradient>
+            <!-- mirror of the left orbit — starts at the inner (title-side)
+                 edge midpoint and traces counter-clockwise with rounded
+                 corners, so the comet bends smoothly through each turn. -->
+            <path id="howitOrbitR"
+                  d="M 4 42 V 46 Q 4 56 14 56 H 186 Q 196 56 196 46 V 38 Q 196 28 186 28 H 14 Q 4 28 4 38 V 42 Z"
+                  fill="none"/>
+          </defs>
+          <g class="howit-comet">
+            <circle r="2.8" fill="#A1E8F0"><animateMotion dur="5s" begin="-0.56s" repeatCount="indefinite"><mpath href="#howitOrbitR"/></animateMotion></circle>
+            <circle r="2.5" fill="#40EBFF" opacity="0.9"><animateMotion dur="5s" begin="-0.49s" repeatCount="indefinite"><mpath href="#howitOrbitR"/></animateMotion></circle>
+            <circle r="2.2" fill="#40EBFF" opacity="0.78"><animateMotion dur="5s" begin="-0.42s" repeatCount="indefinite"><mpath href="#howitOrbitR"/></animateMotion></circle>
+            <circle r="1.9" fill="#40EBFF" opacity="0.64"><animateMotion dur="5s" begin="-0.35s" repeatCount="indefinite"><mpath href="#howitOrbitR"/></animateMotion></circle>
+            <circle r="1.6" fill="#40EBFF" opacity="0.5"><animateMotion dur="5s" begin="-0.28s" repeatCount="indefinite"><mpath href="#howitOrbitR"/></animateMotion></circle>
+            <circle r="1.3" fill="#40EBFF" opacity="0.36"><animateMotion dur="5s" begin="-0.21s" repeatCount="indefinite"><mpath href="#howitOrbitR"/></animateMotion></circle>
+            <circle r="1.1" fill="#40EBFF" opacity="0.24"><animateMotion dur="5s" begin="-0.14s" repeatCount="indefinite"><mpath href="#howitOrbitR"/></animateMotion></circle>
+            <circle r="0.9" fill="#40EBFF" opacity="0.14"><animateMotion dur="5s" begin="-0.07s" repeatCount="indefinite"><mpath href="#howitOrbitR"/></animateMotion></circle>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <div class="howit-stage" aria-live="polite">
+
+      <!-- ───────── STEP 1 · ASSEMBLE — wide circuit: tools wire into one stack ───────── -->
+      <div class="howit-mock" data-step="1">
+        <div class="os os-assemble">
+          <svg class="os-svg" viewBox="0 0 1000 525" aria-hidden="true">
+            <defs>
+              <linearGradient id="osSpine1" x1="0" x2="1" y1="0" y2="0">
+                <stop offset="0" stop-color="#1699A8"/><stop offset="0.5" stop-color="#40EBFF"/><stop offset="1" stop-color="#9FDCEF"/>
+              </linearGradient>
+            </defs>
+
+            <!-- faint board bus traces (decorative depth) -->
+            <path class="os1-bus" d="M70 438 L300 438 L322 460 L678 460 L700 438 L930 438"/>
+            <path class="os1-bus os1-bus-2" d="M70 485 L220 485 L242 465 L758 465 L780 485 L930 485"/>
+
+            <!-- top constellation network feeding the stack -->
+            <path class="os1-mesh me1" d="M200 88 L350 133"/>
+            <path class="os1-mesh me2" d="M350 133 L500 63"/>
+            <path class="os1-mesh me3" d="M500 63 L650 133"/>
+            <path class="os1-mesh me4" d="M650 133 L800 88"/>
+            <path class="os1-mesh me5" d="M350 133 L650 133"/>
+            <path class="os1-feed fe1" d="M200 88 L200 152"/>
+            <path class="os1-feed fe2" d="M500 63 L500 152"/>
+            <path class="os1-feed fe3" d="M800 88 L800 152"/>
+            <circle class="os1-mdot md4" cx="350" cy="133" r="2.6"/>
+            <circle class="os1-mdot md5" cx="650" cy="133" r="2.6"/>
+            <circle class="os1-mdot md1" cx="200" cy="88" r="3.2"/>
+            <circle class="os1-mdot md3" cx="800" cy="88" r="3.2"/>
+            <circle class="os1-mdot md2" cx="500" cy="63" r="3.8"/>
+
+            <!-- main spine -->
+            <path class="os1-spine" d="M60 392 L940 358"/>
+
+            <!-- up branches → product nodes -->
+            <path class="os1-branch os1-b1" d="M200 385 L200 203"/>
+            <path class="os1-branch os1-b2" d="M500 375 L500 203"/>
+            <path class="os1-branch os1-b3" d="M800 365 L800 203"/>
+
+            <!-- down branches → integration chips -->
+            <path class="os1-dbranch d1" d="M300 384 L300 465"/>
+            <path class="os1-dbranch d2" d="M500 375 L500 465"/>
+            <path class="os1-dbranch d3" d="M700 366 L700 465"/>
+
+            <!-- connector pips on the spine -->
+            <circle class="os1-node-pip p1" cx="200" cy="385" r="4"/>
+            <circle class="os1-node-pip p2" cx="500" cy="375" r="4"/>
+            <circle class="os1-node-pip p3" cx="800" cy="365" r="4"/>
+
+            <!-- integration chips -->
+            <rect class="os1-chip c1" x="290" y="465" width="20" height="16" rx="3"/>
+            <rect class="os1-chip c2" x="490" y="465" width="20" height="16" rx="3"/>
+            <rect class="os1-chip c3" x="690" y="465" width="20" height="16" rx="3"/>
+
+            <!-- end flare -->
+            <circle class="os1-end" cx="940" cy="358" r="7" fill="#ffffff"/>
+
+            <!-- data packets along the spine -->
+            <circle class="os1-pulse" r="4.6" fill="#ffffff"><animateMotion dur="2.6s" repeatCount="indefinite" path="M60 392 L940 358"/></circle>
+            <circle class="os1-trav" r="2.2" fill="#40EBFF"><animateMotion dur="2.6s" begin="0.5s" repeatCount="indefinite" path="M60 392 L940 358"/></circle>
+            <circle class="os1-trav" r="1.8" fill="#9FDCEF"><animateMotion dur="2.6s" begin="1.2s" repeatCount="indefinite" path="M60 392 L940 358"/></circle>
+            <circle class="os1-trav" r="2" fill="#40EBFF"><animateMotion dur="2.6s" begin="1.9s" repeatCount="indefinite" path="M60 392 L940 358"/></circle>
+
+            <!-- packets dropping into the chips -->
+            <circle class="os1-drop" r="2.2" fill="#40EBFF"><animateMotion dur="1.5s" begin="0.6s" repeatCount="indefinite" path="M300 384 L300 465"/></circle>
+            <circle class="os1-drop" r="2.2" fill="#9FDCEF"><animateMotion dur="1.5s" begin="1.1s" repeatCount="indefinite" path="M500 375 L500 465"/></circle>
+            <circle class="os1-drop" r="2.2" fill="#40EBFF"><animateMotion dur="1.5s" begin="1.6s" repeatCount="indefinite" path="M700 366 L700 465"/></circle>
+
+          </svg>
+
+          <div class="os-node os1-node" style="--i:0; left:20%; top:36%;">
+            <span class="os-node-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="15" rx="1.6"/><line x1="3" y1="8.5" x2="21" y2="8.5"/><path d="M7 13h7M7 16h4"/></svg></span>
+            <span class="os-node-label">Websites</span>
+          </div>
+          <div class="os-node os1-node" style="--i:1; left:50%; top:36%;">
+            <span class="os-node-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12a7 7 0 0 1 14 0"/><path d="M5 12v3a2 2 0 0 0 2 2h1v-5H7a2 2 0 0 0-2 0z"/><path d="M19 12v3a2 2 0 0 1-2 2h-1v-5h1a2 2 0 0 1 2 0z"/><path d="M17 17v1a3 3 0 0 1-3 3h-2"/></svg></span>
+            <span class="os-node-label">Receptionists</span>
+          </div>
+          <div class="os-node os1-node" style="--i:2; left:80%; top:36%;">
+            <span class="os-node-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M2 12h3M19 12h3M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1"/></svg></span>
+            <span class="os-node-label">Solutions</span>
+          </div>
+
+          <span class="os-caption">Choose your AI — wired into one stack</span>
+        </div>
+      </div>
+
+      <!-- ───────── STEP 2 · ACTIVATE — core ignites, energy radiates wide ───────── -->
+      <div class="howit-mock" data-step="2">
+        <div class="os os-activate">
+          <svg class="os-svg" viewBox="0 0 1000 420" aria-hidden="true">
+            <!-- subtle peripheral HUD: faint outer orbit + drifting motes + corner ticks -->
+            <ellipse class="os2-outer" cx="500" cy="210" rx="478" ry="186"/>
+            <circle class="os2-mote" r="2" fill="#9FDCEF"><animateMotion dur="13s" repeatCount="indefinite" path="M22 210 A478 186 0 1 1 978 210 A478 186 0 1 1 22 210"/></circle>
+            <circle class="os2-mote" r="1.6" fill="#40EBFF"><animateMotion dur="13s" begin="6.5s" repeatCount="indefinite" path="M22 210 A478 186 0 1 1 978 210 A478 186 0 1 1 22 210"/></circle>
+            <path class="os2-corner" d="M30 64 L30 30 L64 30"/>
+            <path class="os2-corner" d="M970 64 L970 30 L936 30"/>
+            <path class="os2-corner" d="M30 356 L30 390 L64 390"/>
+            <path class="os2-corner" d="M970 356 L970 390 L936 390"/>
+            <ellipse class="os-orbit" cx="500" cy="210" rx="430" ry="150"/>
+            <ellipse class="os-orbit os-orbit-inner" cx="500" cy="210" rx="250" ry="92"/>
+            <circle class="os2-ripple r1" cx="500" cy="210" r="64"/>
+            <circle class="os2-ripple r2" cx="500" cy="210" r="64"/>
+            <circle class="os2-ripple r3" cx="500" cy="210" r="64"/>
+            <circle class="os2-ripple r4" cx="500" cy="210" r="64"/>
+            <path class="os2-thread" d="M500 210 L500 74"/>
+            <path class="os2-thread" d="M500 210 L182 210"/>
+            <path class="os2-thread" d="M500 210 L818 210"/>
+            <circle class="os2-pulse" r="4" fill="#ffffff"><animateMotion dur="1.7s" repeatCount="indefinite" path="M500 210 L500 74"/></circle>
+            <circle class="os2-pulse" r="4" fill="#ffffff"><animateMotion dur="1.7s" begin="0.55s" repeatCount="indefinite" path="M500 210 L182 210"/></circle>
+            <circle class="os2-pulse" r="4" fill="#ffffff"><animateMotion dur="1.7s" begin="1.1s" repeatCount="indefinite" path="M500 210 L818 210"/></circle>
+            <circle class="os2-orbiter" r="3.4" fill="#40EBFF"><animateMotion dur="7s" repeatCount="indefinite" path="M70 210 A430 150 0 1 1 930 210 A430 150 0 1 1 70 210"/></circle>
+            <circle class="os2-orbiter" r="2.6" fill="#9FDCEF"><animateMotion dur="7s" begin="2.3s" repeatCount="indefinite" path="M70 210 A430 150 0 1 1 930 210 A430 150 0 1 1 70 210"/></circle>
+            <circle class="os2-orbiter" r="3" fill="#A1E8F0"><animateMotion dur="7s" begin="4.6s" repeatCount="indefinite" path="M70 210 A430 150 0 1 1 930 210 A430 150 0 1 1 70 210"/></circle>
+            <circle class="os2-orbiter os2-orbiter-in" r="2.4" fill="#40EBFF"><animateMotion dur="4.6s" begin="1s" repeatCount="indefinite" path="M250 210 A250 92 0 1 1 750 210 A250 92 0 1 1 250 210"/></circle>
+            <circle class="os2-orbiter os2-orbiter-in" r="2" fill="#9FDCEF"><animateMotion dur="4.6s" begin="3.3s" repeatCount="indefinite" path="M250 210 A250 92 0 1 1 750 210 A250 92 0 1 1 250 210"/></circle>
+          </svg>
+
+          <span class="os-core os-core-live" aria-hidden="true"></span>
+
+          <div class="os-node is-on" style="left:50%; top:17.6%;">
+            <span class="os-node-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14.6 6.4a3.8 3.8 0 0 0-5 5l-6 6 3 3 6-6a3.8 3.8 0 0 0 5-5l-2.3 2.3-2-2 2.3-2.3z"/></svg></span>
+            <span class="os-node-label">Your services</span>
+          </div>
+          <div class="os-node is-on" style="left:18.2%; top:50%;">
+            <span class="os-node-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.4-6-10a6 6 0 0 1 12 0c0 4.6-6 10-6 10z"/><circle cx="12" cy="11" r="2.3"/></svg></span>
+            <span class="os-node-label">Service area</span>
+          </div>
+          <div class="os-node is-on" style="left:81.8%; top:50%;">
+            <span class="os-node-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4.5h10a2 2 0 0 1 2 2V20H7a2 2 0 0 1-2-2V4.5z"/><path d="M5 18a2 2 0 0 1 2-2h10"/><path d="M9 8.5h6M9 11.5h4"/></svg></span>
+            <span class="os-node-label">Knowledge</span>
+          </div>
+
+          <span class="os-caption">Training your AI — live</span>
+        </div>
+      </div>
+
+      <!-- ───────── STEP 3 · ATTRACT — leads rain in, captured, growth rises ───────── -->
+      <div class="howit-mock" data-step="3">
+        <div class="os os-attract">
+          <svg class="os-svg" viewBox="0 0 1000 420" aria-hidden="true">
+            <!-- top channel network the leads arrive from -->
+            <path class="os3-net" d="M140 58 H860"/>
+            <circle class="os3-srcdot d1" cx="140" cy="58" r="3.6"/>
+            <circle class="os3-srcdot d2" cx="380" cy="58" r="3.6"/>
+            <circle class="os3-srcdot d3" cx="620" cy="58" r="3.6"/>
+            <circle class="os3-srcdot d4" cx="860" cy="58" r="3.6"/>
+
+            <!-- ambient twinkles filling the upper field -->
+            <circle class="os3-twinkle tw1" cx="250" cy="118" r="1.8" fill="#9FDCEF"/>
+            <circle class="os3-twinkle tw2" cx="752" cy="126" r="1.6" fill="#40EBFF"/>
+            <circle class="os3-twinkle tw3" cx="500" cy="104" r="1.5" fill="#A1E8F0"/>
+            <circle class="os3-twinkle tw4" cx="636" cy="156" r="1.5" fill="#9FDCEF"/>
+            <circle class="os3-twinkle tw5" cx="338" cy="158" r="1.4" fill="#40EBFF"/>
+
+            <path class="os3-horizon" d="M110 374 Q500 322 890 374"/>
+            <circle class="os3-ripple r1" cx="500" cy="332" r="44"/>
+            <circle class="os3-ripple r2" cx="500" cy="332" r="44"/>
+
+            <!-- lead comets streaming down from each source channel -->
+            <ellipse class="os3-lead" rx="9" ry="1.8" fill="#40EBFF"><animateMotion dur="2.2s" repeatCount="indefinite" rotate="auto" path="M140 64 Q 300 180 500 332"/></ellipse>
+            <ellipse class="os3-lead" rx="9" ry="1.8" fill="#9FDCEF"><animateMotion dur="2.2s" begin="0.36s" repeatCount="indefinite" rotate="auto" path="M380 64 Q 442 192 500 332"/></ellipse>
+            <ellipse class="os3-lead" rx="9" ry="1.8" fill="#40EBFF"><animateMotion dur="2.2s" begin="0.72s" repeatCount="indefinite" rotate="auto" path="M620 64 Q 560 192 500 332"/></ellipse>
+            <ellipse class="os3-lead" rx="9" ry="1.8" fill="#A1E8F0"><animateMotion dur="2.2s" begin="1.08s" repeatCount="indefinite" rotate="auto" path="M860 64 Q 700 180 500 332"/></ellipse>
+            <ellipse class="os3-lead" rx="9" ry="1.8" fill="#40EBFF"><animateMotion dur="2.2s" begin="1.44s" repeatCount="indefinite" rotate="auto" path="M380 64 Q 420 200 500 332"/></ellipse>
+
+            <!-- growth rising from the capture core -->
+            <circle class="os3-rise" r="2.6" fill="#9FDCEF"><animateMotion dur="2.4s" begin="1s" repeatCount="indefinite" path="M500 332 Q 452 220 422 122"/></circle>
+            <circle class="os3-rise" r="2.6" fill="#40EBFF"><animateMotion dur="2.4s" begin="1.7s" repeatCount="indefinite" path="M500 332 Q 506 224 516 116"/></circle>
+            <circle class="os3-rise" r="2.2" fill="#A1E8F0"><animateMotion dur="2.4s" begin="2.4s" repeatCount="indefinite" path="M500 332 Q 552 226 586 130"/></circle>
+          </svg>
+
+          <span class="os-core os-core-bloom os-core-low" aria-hidden="true"></span>
+
+          <span class="os3-src" style="left:14%; top:7%;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M20 20l-3.4-3.4"/></svg>Search</span>
+          <span class="os3-src" style="left:38%; top:7%;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3h3l1.6 4-2.1 1.6a10 10 0 0 0 4.4 4.4L15 14.9l4 1.6v3a2 2 0 0 1-2 2A15 15 0 0 1 4.5 5a2 2 0 0 1 2-2z"/></svg>Calls</span>
+          <span class="os3-src" style="left:62%; top:7%;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/><path d="M10 13h5M10 16h5"/></svg>Forms</span>
+          <span class="os3-src" style="left:86%; top:7%;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6-5.3-6-10a6 6 0 0 1 12 0c0 4.7-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg>Maps</span>
+
+          <span class="os3-spark s1" aria-hidden="true"></span>
+          <span class="os3-spark s2" aria-hidden="true"></span>
+          <span class="os3-spark s3" aria-hidden="true"></span>
+
+          <span class="os-tag t1">✓ Booked</span>
+          <span class="os-tag t2">✓ New lead</span>
+          <span class="os-tag t3">✓ Booked</span>
+
+          <span class="os-caption">Leads roll in — on autopilot</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="howit-steps">
+      <button class="howit-tab" type="button" data-step="1">
+        <span class="howit-tab-bar"></span>
+        <span class="howit-tab-label">Step 1</span>
+        <div class="howit-tab-desc">
+          <h3>Pick Your Stack</h3>
+          <p>Tell us about your trade. Pick the AI tools that fit your shop — website, receptionist, or the full automation suite. Sign-up takes under three minutes.</p>
+        </div>
+      </button>
+      <button class="howit-tab" type="button" data-step="2">
+        <span class="howit-tab-bar"></span>
+        <span class="howit-tab-label">Step 2</span>
+        <div class="howit-tab-desc">
+          <h3>We Build It Live</h3>
+          <p>Our team trains your AI on your services, pricing, and service area. Your AI website goes live and your receptionist starts answering calls within seven days.</p>
+        </div>
+      </button>
+      <button class="howit-tab" type="button" data-step="3">
+        <span class="howit-tab-bar"></span>
+        <span class="howit-tab-label">Step 3</span>
+        <div class="howit-tab-desc">
+          <h3>Jobs Roll In</h3>
+          <p>Your AI captures every lead, books them straight to your calendar, and keeps your crews moving. Track every call, quote, and dollar from one dashboard.</p>
+        </div>
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ====== FAQ — contractor questions ====== -->
+<section class="faq" aria-labelledby="faq-title">
+  <div class="faq-grid-bg" aria-hidden="true"></div>
+  <div class="faq-glow" aria-hidden="true"></div>
+  <span class="faq-cross faq-cross-tl" aria-hidden="true"></span>
+  <span class="faq-cross faq-cross-br" aria-hidden="true"></span>
+
+  <div class="faq-wrap">
+    <div class="faq-head">
+      <span class="faq-tag"><span class="faq-dot"></span>[ FAQ ]</span>
+      <h2 class="faq-title" id="faq-title">Answers to the questions <span class="faq-em">contractors actually ask</span></h2>
+    </div>
+
+    <div class="faq-list">
+      <article class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span class="faq-q-text">How fast can Erio get me up and running?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Most contractors are live within a week — AI website published and your AI receptionist answering calls. No six-month build, no drawn-out onboarding.</p></div></div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span class="faq-q-text">What exactly does the AI receptionist do?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner"><p>It answers every call and message around the clock, qualifies the lead, handles questions about your services and area, and books the job straight onto your calendar — even at 2&nbsp;AM or on a Sunday.</p></div></div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span class="faq-q-text">Will the AI sound like a robot to my customers?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner"><p>No. It's trained on your business — your services, your service area, and the way you talk — so it sounds natural. And a real person on our team is always behind it.</p></div></div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span class="faq-q-text">Do I have to replace my current website?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Only if you want to. We'll build a new lead-generating site, or connect our AI tools to the site you already have — whatever books you more jobs.</p></div></div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span class="faq-q-text">Can you build something custom for my trade?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Yes — that's what AI Solutions is for. Estimating engines, dispatch boards, route optimizers, and other custom tooling built around the parts of your operation that slow you down.</p></div></div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span class="faq-q-text">Is there a real team behind this, or just software?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner"><p>A real team. We build, train, and tune your system — and we pick up the phone when you need us. You're never left troubleshooting a bot on your own.</p></div></div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span class="faq-q-text">What does Erio cost?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner"><p>It depends on which engines you stack — websites, AI employees, solutions, or all three. Book a quick demo and we'll scope a setup that fits your shop.</p></div></div>
+      </article>
+    </div>
+
+    <div class="faq-foot">
+      <span class="faq-foot-text">Still have questions?</span>
+      <a class="faq-foot-cta" href="/book">
+        <span>Ask an expert</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FINAL CTA — let's talk ====== -->
+<section class="finalcta" aria-labelledby="finalcta-title">
+  <div class="finalcta-stage">
+    <div class="finalcta-discs" aria-hidden="true">
+      <span class="fdisc d1"></span>
+      <span class="fdisc d2"></span>
+      <span class="fdisc d3"></span>
+      <span class="fdisc d4"></span>
+    </div>
+    <h2 class="finalcta-title" id="finalcta-title">Let&rsquo;s <span class="finalcta-em">talk.</span></h2>
+    <p class="finalcta-sub">Or better &mdash; call our demo line and let Erio do the talking. Websites, AI&nbsp;employees, and custom solutions, all built around the way your shop actually runs.</p>
+    <div class="finalcta-actions">
+      <a href="/book" class="finalcta-fill">
+        <span>Book Demo</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="2"/><path d="M3 9.5h18"/><path d="M8 2.5v4M16 2.5v4"/></svg>
+      </a>
+      <a href="/packages" class="finalcta-line">
+        <span>View Packages</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8.5"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer class="site-foot">
+  <div class="site-foot-brand">
+    <a href="/"><img class="site-foot-logo" src="Erio-Logo-Text-White-Transparent.png" alt="Erio" /></a>
+    <p>&copy; 2026 Erio LLC &middot; AI websites, employees &amp; solutions.</p>
+    <div class="site-foot-legal">
+      <a href="/privacypolicy" target="_blank" rel="noopener">Privacy</a>
+      <span>|</span>
+      <a href="/termsofservice" target="_blank" rel="noopener">Terms</a>
+    </div>
+  </div>
+
+  <nav class="site-foot-col" aria-label="Explore">
+    <span class="site-foot-head">Explore</span>
+    <a href="/book">Book</a>
+    <a href="/packages">Packages</a>
+    <a href="https://app.erio.ai/">Login</a>
+  </nav>
+
+  <nav class="site-foot-col" aria-label="Products">
+    <span class="site-foot-head">Products</span>
+    <a href="/ai-websites">AI Websites</a>
+    <a href="ai-employees.html">AI Employees</a>
+    <a href="#products">AI Solutions</a>
+  </nav>
+
+  <div class="site-foot-col">
+    <span class="site-foot-head">Contact</span>
+    <a href="mailto:info@erio.ai">info@erio.ai</a>
+    <a href="tel:+17867880486">(786) 788-0486</a>
+    <a class="site-foot-addr" href="https://www.google.com/maps/place/Erio/@38.3941829,-171.0053285,3z/data=!4m6!3m5!1s0x4ba0d6ca652a56b:0x278344f4b97a786e!8m2!3d46.423669!4d-129.9427086!16s%2Fg%2F11yk61fcg9?entry=ttu&g_ep=EgoyMDI2MDUyMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">1000 Brickell Ave,<br>Miami, FL 33131</a>
+  </div>
+</footer>
+
+<script>
+  /* ============================================================
+     AI EMPLOYEES VOICE WAVE — 30 vertical bars with multi-frequency
+     speech-like animation. 2D canvas, brand neon cyan palette.
+  ============================================================ */
+  (function initVoiceWave() {
+    const canvas = document.querySelector('.voice-wave-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    let cssW = 0, cssH = 0, time = 0, raf = 0;
+    let visible = true, docVisible = !document.hidden;
+
+    function resize() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const rect = canvas.getBoundingClientRect();
+      cssW = Math.max(1, rect.width);
+      cssH = Math.max(1, rect.height);
+      canvas.width  = Math.round(cssW * dpr);
+      canvas.height = Math.round(cssH * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.lineCap = 'round';
+    }
+    resize();
+    if ('ResizeObserver' in window) new ResizeObserver(resize).observe(canvas);
+    window.addEventListener('resize', resize, { passive: true });
+
+    // 30 animated bars + 1 static mini-bar on each side + 1 dot on each end
+    const BAR_COUNT = 34;
+    const PALE  = [92, 169, 179]; // #5CA9B3
+    const NEON  = [0, 160, 179];  // #00A0B3
+
+    function draw() {
+      raf = 0;
+      if (!visible || !docVisible) return;
+      ctx.clearRect(0, 0, cssW, cssH);
+
+      const visW = cssW * 0.80;
+      const gap = visW / BAR_COUNT;
+      const startX = (cssW - visW) / 2 + gap / 2;
+      const centerY = cssH / 2;
+      const maxHalf = cssH * 0.42;
+
+      for (let i = 0; i < BAR_COUNT; i++) {
+        const x = startX + i * gap;
+
+        // ---- Outermost dots (very edge) ----
+        if (i === 0 || i === BAR_COUNT - 1) {
+          ctx.fillStyle = `rgba(${NEON[0]}, ${NEON[1]}, ${NEON[2]}, 0.22)`;
+          ctx.beginPath();
+          ctx.arc(x, centerY, 4, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.fillStyle = `rgba(${PALE[0]}, ${PALE[1]}, ${PALE[2]}, 0.95)`;
+          ctx.beginPath();
+          ctx.arc(x, centerY, 1.8, 0, Math.PI * 2);
+          ctx.fill();
+          continue;
+        }
+
+        // ---- Static mini-bars (one step inside each dot) ----
+        if (i === 1 || i === BAR_COUNT - 2) {
+          const half = 5;
+          const y1 = centerY - half;
+          const y2 = centerY + half;
+          ctx.lineWidth = 7;
+          ctx.strokeStyle = `rgba(${NEON[0]}, ${NEON[1]}, ${NEON[2]}, 0.22)`;
+          ctx.beginPath();
+          ctx.moveTo(x, y1);
+          ctx.lineTo(x, y2);
+          ctx.stroke();
+          ctx.lineWidth = 2.8;
+          ctx.strokeStyle = `rgb(${NEON[0]}, ${NEON[1]}, ${NEON[2]})`;
+          ctx.beginPath();
+          ctx.moveTo(x, y1);
+          ctx.lineTo(x, y2);
+          ctx.stroke();
+          continue;
+        }
+
+        // ---- Animated bars (i = 2 … BAR_COUNT-3) ----
+        // Re-normalize p over the 30 active bars so the envelope still
+        // peaks at the dead center.
+        const p = (i - 2) / (BAR_COUNT - 5);
+
+        const env = Math.pow(Math.sin(p * Math.PI), 0.7);
+
+        // Phase: time * freq - p * k → features travel low-p to high-p (LEFT → RIGHT)
+        const speech =
+          (Math.sin(time * 1.9 - p * 0.5) * 0.5 + 0.5) * 0.7 +
+          (Math.sin(time * 1.4 - p * 1.2) * 0.5 + 0.5) * 0.3;
+
+        const detail =
+          (Math.sin(time * 5.4 - p * 2.3) * 0.5 + 0.5) * 0.40 +
+          (Math.sin(time * 8.6 - p * 3.7 + 1.5) * 0.5 + 0.5) * 0.35 +
+          (Math.sin(time * 13.2 - p * 5.1) * 0.5 + 0.5) * 0.25;
+
+        const flutter = Math.sin(time * 4.2 - i * 0.7) * 0.3 + 0.7;
+
+        // Higher baseline so the wave sits taller even at its quietest
+        const intensity = Math.min(1, env * (0.62 + speech * detail * 0.55) * flutter);
+        // Larger floor too — outermost bars never collapse below this
+        const half = Math.max(12, intensity * maxHalf);
+        const y1 = centerY - half;
+        const y2 = centerY + half;
+
+        // GLOW pass — wide, low-alpha halo
+        ctx.lineWidth = 9;
+        ctx.strokeStyle = `rgba(${NEON[0]}, ${NEON[1]}, ${NEON[2]}, ${0.08 + intensity * 0.12})`;
+        ctx.beginPath();
+        ctx.moveTo(x, y1);
+        ctx.lineTo(x, y2);
+        ctx.stroke();
+
+        // CORE pass — solid neon (was a per-bar createLinearGradient
+        // allocated every frame — costly). Solid color reads the same
+        // visually because the halo already provides the falloff.
+        ctx.lineWidth = 3;
+        ctx.strokeStyle = `rgb(${NEON[0]}, ${NEON[1]}, ${NEON[2]})`;
+        ctx.beginPath();
+        ctx.moveTo(x, y1);
+        ctx.lineTo(x, y2);
+        ctx.stroke();
+      }
+
+      time += 0.018;
+      raf = requestAnimationFrame(draw);
+    }
+
+    function start() { if (!raf) raf = requestAnimationFrame(draw); }
+    function stop()  { if (raf) { cancelAnimationFrame(raf); raf = 0; } }
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(entries => {
+        for (const e of entries) {
+          visible = e.isIntersecting;
+          if (visible) start(); else stop();
+        }
+      }, { rootMargin: '50px' }).observe(canvas);
+    }
+    document.addEventListener('visibilitychange', () => {
+      docVisible = !document.hidden;
+      if (docVisible) start(); else stop();
+    });
+
+    start();
+  })();
+
+  /* ============================================================
+     MOBILE NAV — hamburger toggles the dropdown menu.
+  ============================================================ */
+  (function initMobileMenu() {
+    const burger = document.querySelector('.nav-mobile-burger');
+    const menu   = document.getElementById('navMobileMenu');
+    if (!burger || !menu) return;
+
+    function setOpen(open) {
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      menu.setAttribute('aria-hidden', open ? 'false' : 'true');
+      burger.classList.toggle('is-open', open);
+      menu.classList.toggle('is-open', open);
+    }
+
+    burger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setOpen(burger.getAttribute('aria-expanded') !== 'true');
+    });
+
+    // close on item tap
+    menu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => setOpen(false));
+    });
+
+    // close on outside tap
+    document.addEventListener('click', (e) => {
+      if (burger.getAttribute('aria-expanded') !== 'true') return;
+      if (menu.contains(e.target) || burger.contains(e.target)) return;
+      setOpen(false);
+    });
+
+    // close on escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') setOpen(false);
+    });
+  })();
+
+  /* ============================================================
+     MOBILE PILL — wider by default; shrinks when scrolling down,
+     expands again when scrolling up (and at the very top).
+  ============================================================ */
+  (function initMobilePillScroll() {
+    const pill = document.querySelector('.nav-mobile-pill');
+    if (!pill) return;
+    let lastY = window.scrollY || 0;
+    let ticking = false;
+
+    function update() {
+      ticking = false;
+      const y = window.scrollY || 0;
+      if (y <= 4) {
+        pill.classList.remove('is-compact');     // expanded at the top
+      } else if (y > lastY + 2) {
+        pill.classList.add('is-compact');         // scrolling down → shrink
+      } else if (y < lastY - 2) {
+        pill.classList.remove('is-compact');      // scrolling up → expand
+      }
+      lastY = y;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+  })();
+
+  /* ============================================================
+     PRODUCTS DROPDOWN — opens ONLY when the cursor enters
+     "Products", then stays open while the cursor is anywhere on
+     the pill, and closes once the cursor leaves the pill entirely.
+  ============================================================ */
+  (function initProductsDropdown() {
+    const pill    = document.querySelector('.nav-pill');
+    const trigger = document.querySelector('.nav-drop-trigger');
+    const sub     = pill && pill.querySelector('.nav-pill-sub');
+    if (!pill || !trigger || !sub) return;
+
+    const open = () => {
+      pill.classList.add('is-open');
+      sub.style.maxHeight = sub.scrollHeight + 'px'; // exact content height
+    };
+    const close = () => {
+      pill.classList.remove('is-open');
+      sub.style.maxHeight = ''; // back to CSS max-height:0
+    };
+
+    // open only from Products (hover or keyboard focus)
+    trigger.addEventListener('mouseenter', open);
+    trigger.addEventListener('focus', open);
+
+    // stay open across the whole pill; close when the cursor leaves it
+    pill.addEventListener('mouseleave', close);
+
+    // keyboard: close once focus leaves the pill
+    pill.addEventListener('focusout', (e) => {
+      if (!pill.contains(e.relatedTarget)) close();
+    });
+  })();
+
+  /* ============================================================
+     CARD SPOTLIGHT — hover-only neon cyan border glow that
+     traces the cursor across each partner card. Desktop only.
+  ============================================================ */
+  (function initCardSpotlight() {
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    const cards = document.querySelectorAll('.partner-card');
+    cards.forEach(card => {
+      card.addEventListener('pointermove', (e) => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--spot-x', (e.clientX - rect.left).toFixed(1));
+        card.style.setProperty('--spot-y', (e.clientY - rect.top).toFixed(1));
+      }, { passive: true });
+    });
+  })();
+
+  // headline gradient: compute per-char background-position once after layout settles,
+  // then recompute on resize debounced to avoid layout thrash
+  function applyHeadlineGradient() {
+    const title = document.querySelector('.hero-title');
+    if (!title) return;
+    const chars = title.querySelectorAll('.char');
+    if (!chars.length) return;
+    // single forced reflow read, then batch writes
+    const titleLeft = title.getBoundingClientRect().left;
+    const total = title.offsetWidth;
+    const writes = [];
+    chars.forEach(c => {
+      const offset = c.getBoundingClientRect().left - titleLeft;
+      writes.push([c, total, -offset]);
+    });
+    writes.forEach(([c, size, pos]) => {
+      c.style.setProperty('--grad-size', size + 'px');
+      c.style.setProperty('--grad-pos', pos + 'px');
+    });
+  }
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(applyHeadlineGradient);
+  } else {
+    window.addEventListener('load', applyHeadlineGradient);
+  }
+  let resizeRaf = 0;
+  window.addEventListener('resize', () => {
+    if (resizeRaf) return;
+    resizeRaf = requestAnimationFrame(() => {
+      resizeRaf = 0;
+      applyHeadlineGradient();
+    });
+  }, { passive: true });
+
+  // growth section: trigger the staged reveal once when scrolled into view
+  const growth = document.querySelector('.growth');
+  if (growth && 'IntersectionObserver' in window) {
+    const growthObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-revealed');
+          growthObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.25 });
+    growthObs.observe(growth);
+  } else if (growth) {
+    growth.classList.add('is-revealed');
+  }
+
+  // logos strip: blur-fade reveal when it scrolls into view
+  const logosStrip = document.querySelector('.logos-strip');
+  if (logosStrip && 'IntersectionObserver' in window) {
+    const logosObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-revealed');
+          logosObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    logosObs.observe(logosStrip);
+  } else if (logosStrip) {
+    logosStrip.classList.add('is-revealed');
+  }
+
+  /* ============================================================
+     THE PROBLEM — counter animations, viz reveals, matrix canvas
+  ============================================================ */
+  (function initProblem() {
+    const root = document.querySelector('.problem');
+    if (!root) return;
+
+    // Reveal + run viz animations once when section scrolls in
+    let activated = false;
+    function activate() {
+      if (activated) return;
+      activated = true;
+      root.classList.add('is-revealed');
+
+      // Inner-viz CSS reveal finishes ~2.1s in. Generation animations
+      // start a bit before that so they're visibly mid-action when the
+      // wipe completes, and run at half-speed so every tick is readable.
+      const GEN_START = 1500;
+
+      setTimeout(() => {
+        // Big-number counters — easeOutCubic ramp from 0 to data-count.
+        root.querySelectorAll('[data-count]').forEach(el => {
+          const target = parseInt(el.dataset.count, 10);
+          // 2× the previous durations so people can actually watch them roll.
+          const dur = target > 10000 ? 4400 : 3200;
+          const start = performance.now();
+          function tick(now) {
+            const t = Math.min(1, (now - start) / dur);
+            const eased = 1 - Math.pow(1 - t, 3);
+            const v = Math.round(target * eased);
+            el.textContent = v.toLocaleString();
+            if (t < 1) requestAnimationFrame(tick);
+          }
+          requestAnimationFrame(tick);
+        });
+
+        // Donut: stroke-dashoffset reveals the 62% arc
+        const donut = root.querySelector('.donut-fg');
+        if (donut) {
+          const C = 2 * Math.PI * 42;
+          donut.style.strokeDasharray = C;
+          donut.style.strokeDashoffset = C;
+          requestAnimationFrame(() => {
+            donut.style.transition = 'stroke-dashoffset 3.6s cubic-bezier(0.22, 1, 0.36, 1) 0.2s';
+            donut.style.strokeDashoffset = String(C * (1 - 0.62));
+          });
+        }
+
+        // Sparkline: draw in from left
+        const line = root.querySelector('.line-path');
+        if (line) {
+          const L = line.getTotalLength();
+          line.style.strokeDasharray = L;
+          line.style.strokeDashoffset = L;
+          requestAnimationFrame(() => {
+            line.style.transition = 'stroke-dashoffset 3.2s cubic-bezier(0.22, 1, 0.36, 1) 0.3s';
+            line.style.strokeDashoffset = '0';
+          });
+        }
+        const lineFill = root.querySelector('.line-fill');
+        if (lineFill) {
+          lineFill.style.opacity = '0';
+          lineFill.style.transition = 'opacity 2.4s var(--ease-velvet, ease-out) 2.0s';
+          requestAnimationFrame(() => { lineFill.style.opacity = '1'; });
+        }
+
+        // Comparison bars: grow from 0 to data-fill width
+        root.querySelectorAll('.pcomp-fill').forEach((fill, i) => {
+          const target = fill.dataset.fill || '0%';
+          fill.style.setProperty('--fill', '0%');
+          setTimeout(() => {
+            fill.animate(
+              [{ width: '0%' }, { width: target }],
+              { duration: 2000, easing: 'cubic-bezier(0.22, 1, 0.36, 1)', fill: 'forwards' }
+            );
+          }, 600 + i * 260);
+        });
+
+        // 24-hour heatmap: sweep in the after-hours cells with stagger.
+        root.querySelectorAll('.phr.is-off').forEach(cell => cell.classList.remove('is-off'));
+        root.querySelectorAll('.phr').forEach((cell, i) => {
+          const isAfterHours = i < 8 || i >= 18;
+          if (isAfterHours) {
+            setTimeout(() => cell.classList.add('is-off'), 400 + i * 70);
+          }
+        });
+      }, GEN_START);
+    }
+
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver(entries => {
+        for (const e of entries) {
+          if (e.isIntersecting) { activate(); obs.unobserve(e.target); }
+        }
+      }, { threshold: 0.18 });
+      obs.observe(root);
+    } else {
+      activate();
+    }
+
+    /* Gauge needle + fill arc are pure-CSS via .is-revealed; readout
+       value is animated by the [data-count] loop above. */
+
+    /* === BENEFITS spotlight + 3 grid-line beams === */
+    initBenefitsInteractions();
+  })();
+
+  function initBenefitsInteractions() {
+    const root = document.querySelector('.benefits');
+    if (!root) return;
+    const grid = root.querySelector('.benefits-grid');
+    const sparkLayer = root.querySelector('.benefits-sparks');
+    if (!grid) return;
+
+    const bricks = Array.from(grid.querySelectorAll('.bt, .bt-filler'));
+
+    // Cache per-brick offsets (relative to grid) so we can compute each
+    // brick's local cursor coords without per-event getBoundingClientRect()
+    // on every brick (which would be expensive).
+    let brickRects = [];
+    function recomputeBrickRects() {
+      const gr = grid.getBoundingClientRect();
+      brickRects = bricks.map(b => {
+        const r = b.getBoundingClientRect();
+        return { el: b, left: r.left - gr.left, top: r.top - gr.top };
+      });
+    }
+    recomputeBrickRects();
+    if ('ResizeObserver' in window) {
+      new ResizeObserver(recomputeBrickRects).observe(grid);
+    } else {
+      window.addEventListener('resize', recomputeBrickRects, { passive: true });
+    }
+    window.addEventListener('scroll', recomputeBrickRects, { passive: true });
+
+    /* Grid-level pointer tracking: writes --spot-x / --spot-y onto EVERY
+       brick (in that brick's own local coords). The brick under the
+       cursor gets its bloom (::before, panel-level :hover); every other
+       brick's edge ring (::after) uses its own cursor-local coords so
+       the side nearest the cursor lights up — adjacent bricks share
+       seamlessly lit seams. */
+    grid.addEventListener('pointerenter', () => grid.classList.add('is-hovered'));
+    grid.addEventListener('pointerleave', () => grid.classList.remove('is-hovered'));
+
+    /* Spark particle pool (≈25% more spawn density than the prior tuning) */
+    const POOL_SIZE = 18;
+    const pool = [];
+    if (sparkLayer) {
+      for (let i = 0; i < POOL_SIZE; i++) {
+        const s = document.createElement('span');
+        s.className = 'spark';
+        sparkLayer.appendChild(s);
+        pool.push(s);
+      }
+    }
+    let poolIdx = 0;
+    let lastSpark = 0;
+    function spawnSpark(gx, gy) {
+      // Hold off sparks until the bricks finish gliding into place
+      if (!root.classList.contains('is-bricks-ready')) return;
+      const now = performance.now();
+      if (now - lastSpark < 56) return;
+      lastSpark = now;
+      const s = pool[poolIdx];
+      poolIdx = (poolIdx + 1) % POOL_SIZE;
+      const angle = Math.random() * Math.PI * 2;
+      const dist = 18 + Math.random() * 26;
+      s.style.left = gx + 'px';
+      s.style.top  = gy + 'px';
+      s.style.setProperty('--dx', (Math.cos(angle) * dist) + 'px');
+      s.style.setProperty('--dy', (Math.sin(angle) * dist) + 'px');
+      s.classList.remove('is-on');
+      // Force reflow so the animation restarts from 0
+      // eslint-disable-next-line no-unused-expressions
+      s.offsetWidth;
+      s.classList.add('is-on');
+    }
+
+    grid.addEventListener('pointermove', e => {
+      const gr = grid.getBoundingClientRect();
+      const gx = e.clientX - gr.left;
+      const gy = e.clientY - gr.top;
+      // Update every brick's local cursor coords
+      for (const r of brickRects) {
+        r.el.style.setProperty('--spot-x', (gx - r.left) + 'px');
+        r.el.style.setProperty('--spot-y', (gy - r.top)  + 'px');
+      }
+      // Spark
+      if (pool.length) spawnSpark(gx, gy);
+    });
+  }
+
+  /* ============================================================
+     BENEFITS — counters + popping calc-snippet canvas + cursor glow
+  ============================================================ */
+  (function initBenefits() {
+    const root = document.querySelector('.benefits');
+    if (!root) return;
+
+    // Reveal observer
+    let activated = false;
+    function activate() {
+      if (activated) return;
+      activated = true;
+      root.classList.add('is-revealed');
+
+      // Last brick locks into place at 1.65s + 1.2s transition = 2.85s.
+      // After that, spotlight + sparks become active.
+      setTimeout(() => root.classList.add('is-bricks-ready'), 2850);
+
+      // Slow 2.4 s counter ramp once the tiles' wipe-in starts (~1.5 s in)
+      setTimeout(() => {
+        root.querySelectorAll('[data-bcount]').forEach(el => {
+          const target = parseFloat(el.dataset.bcount);
+          const decimals = (el.dataset.bcount.split('.')[1] || '').length;
+          const dur = 2400;
+          const startT = performance.now();
+          function tick(now) {
+            const t = Math.min(1, (now - startT) / dur);
+            const eased = 1 - Math.pow(1 - t, 3);
+            const v = target * eased;
+            el.textContent = decimals > 0 ? v.toFixed(decimals) : Math.round(v).toLocaleString();
+            if (t < 1) requestAnimationFrame(tick);
+          }
+          requestAnimationFrame(tick);
+        });
+      }, 1500);
+    }
+
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver(es => {
+        for (const e of es) {
+          if (e.isIntersecting) { activate(); obs.unobserve(e.target); }
+        }
+      }, { threshold: 0.18 });
+      obs.observe(root);
+    } else {
+      activate();
+    }
+
+    /* Crosshair is fixed at the dead center of the grid — pure CSS.
+       Beams + core fade in once via `.is-revealed` on the section. */
+  })();
+
+  /* ============================================================
+     WHY ERIO — scroll reveal (alternating slide-ins + divider draw)
+  ============================================================ */
+  /* ============================================================
+     FAQ — accordion (single open) + scroll reveal
+  ============================================================ */
+  (function initFaq() {
+    const root = document.querySelector('.faq');
+    if (!root) return;
+
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('is-revealed'); obs.unobserve(e.target); }
+        });
+      }, { threshold: 0.15 });
+      obs.observe(root);
+    } else {
+      root.classList.add('is-revealed');
+    }
+
+    // Reveal-on-scroll. For each, we observe an inner "watch" element so the
+    // fade fires when the actual content enters the viewport (the voice
+    // section has tall top padding, which otherwise triggered it too early).
+    [
+      { root: '.finalcta', watch: '.finalcta-stage', th: 0.25 },
+      { root: '.voice',    watch: '.voice-stage',    th: 0.35 }
+    ].forEach(({ root: rootSel, watch, th }) => {
+      const el = document.querySelector(rootSel);
+      if (!el) return;
+      const target = el.querySelector(watch) || el;
+      if ('IntersectionObserver' in window) {
+        const o = new IntersectionObserver(es => {
+          es.forEach(e => { if (e.isIntersecting) { el.classList.add('is-revealed'); o.disconnect(); } });
+        }, { threshold: th });
+        o.observe(target);
+      } else {
+        el.classList.add('is-revealed');
+      }
+    });
+
+    const items = Array.from(root.querySelectorAll('.faq-item'));
+    items.forEach(item => {
+      const btn = item.querySelector('.faq-q');
+      if (!btn) return;
+      btn.addEventListener('click', () => {
+        const open = item.classList.contains('is-open');
+        // close all, then open the clicked one (single-open accordion)
+        items.forEach(it => {
+          it.classList.remove('is-open');
+          const b = it.querySelector('.faq-q');
+          if (b) b.setAttribute('aria-expanded', 'false');
+        });
+        if (!open) {
+          item.classList.add('is-open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  })();
+
+  (function initWhyErio() {
+    const root = document.querySelector('.whyerio');
+    if (!root) return;
+
+    const stage = root.querySelector('.why-stage') || root;
+
+    // Reveal cascade (fires once when the pinned stage scrolls into view)
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { root.classList.add('is-revealed'); obs.unobserve(e.target); }
+        });
+      }, { threshold: 0.3 });
+      obs.observe(stage);
+    } else {
+      root.classList.add('is-revealed');
+    }
+
+    // Left sub-content per reason (headline stays "Built for contractors";
+    // the right column never changes).
+    const VARIANTS = [
+      { eyebrow: "An AI partner that's actually", line1: "Built for", line2: "contractors",
+        lead: "We don't vanish into a six-month build. Your site and AI receptionist go live and start booking jobs within a week — so you see results while the season's still hot.",
+        ftitle: "Live in days, not months",
+        fdesc: "From kickoff to answering your calls in about a week — fast, without cutting corners." },
+      { eyebrow: "Real people who", line1: "Know the", line2: "trades",
+        lead: "Behind the AI is a real team that knows the trades — building it, training it on your services, and answering when you call. No ticket queues, no bot about your bot.",
+        ftitle: "A real team in your corner",
+        fdesc: "People who build, tune, and support your system — and actually pick up the phone." },
+      { eyebrow: "Shaped around", line1: "How you", line2: "work",
+        lead: "Your setup is shaped around how you run jobs — the truck, the crew, the after-hours callback. Erio fits your workflow instead of forcing you into someone else's.",
+        ftitle: "Made for how you work",
+        fdesc: "Tuned to your trade, your service area, and your schedule — never a generic template." }
+    ];
+
+    const swap      = root.querySelector('.why-swap');
+    const elEye     = root.querySelector('[data-why-eyebrow]');
+    const elEm      = root.querySelector('[data-why-em]');
+    const elLead    = root.querySelector('[data-why-lead]');
+    const elFt      = root.querySelector('[data-why-ftitle]');
+    const elFd      = root.querySelector('[data-why-fdesc]');
+    const railItems = Array.from(root.querySelectorAll('.why-rail-item'));
+    if (!swap || railItems.length < 3) return;
+
+    const mq = window.matchMedia('(max-width: 980px)');
+    let active = -1;
+    let raf = 0;
+
+    function render(i) {
+      const v = VARIANTS[i];
+      if (elEye)  elEye.textContent = v.eyebrow;
+      if (elEm)   elEm.innerHTML = v.line1 + '<br>' + v.line2;
+      if (elLead) elLead.textContent = v.lead;
+      if (elFt)   elFt.textContent = v.ftitle;
+      if (elFd)   elFd.textContent = v.fdesc;
+      railItems.forEach((r, ri) => r.classList.toggle('is-active', ri === i));
+    }
+
+    function setActive(i) {
+      if (i === active) return;
+      const first = active === -1;
+      active = i;
+      if (first) { render(i); return; }
+      swap.classList.add('is-swapping');
+      setTimeout(() => { render(i); swap.classList.remove('is-swapping'); }, 260);
+    }
+
+    function pick() {
+      raf = 0;
+      if (mq.matches) { setActive(0); return; }
+      // Map scroll progress through the pinned track → active index 0/1/2.
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      const rect = root.getBoundingClientRect();
+      const total = root.offsetHeight - vh;
+      const scrolled = Math.min(Math.max(-rect.top, 0), Math.max(1, total));
+      const p = total > 0 ? scrolled / total : 0;
+      const idx = Math.min(VARIANTS.length - 1, Math.floor(p * VARIANTS.length));
+      setActive(idx);
+    }
+    function schedule() { if (!raf) raf = requestAnimationFrame(pick); }
+
+    render(0);
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+    pick();
+  })();
+
+  /* ============================================================
+     WHAT ERIO BUILDS — console reveal + tab switcher + counters
+  ============================================================ */
+  (function initBuilds() {
+    const root = document.querySelector('.builds');
+    if (!root) return;
+
+    const tabs       = Array.from(root.querySelectorAll('.builds-tab'));
+    const indicator  = root.querySelector('.builds-switch-indicator');
+    const panes      = Array.from(root.querySelectorAll('.bcon-pane'));
+    const routeText  = root.querySelector('[data-route]');
+    const console_   = root.querySelector('.builds-console');
+    const counters   = new Map(); // pane → list of counter spans
+    panes.forEach(p => counters.set(p, Array.from(p.querySelectorAll('[data-count]'))));
+
+    const ROUTES = {
+      websites:  'erio.os / websites / live',
+      employees: 'erio.os / employees / live',
+      solutions: 'erio.os / solutions / live'
+    };
+    const CTAS = {
+      websites:  '/ai-websites',
+      employees: 'ai-employees.html',
+      solutions: 'ai-solutions.html'
+    };
+    const footCta = root.querySelector('[data-deep-cta]');
+
+    function positionIndicator(tab) {
+      if (!indicator || !tab) return;
+      const switchEl = tab.parentElement;
+      const sRect = switchEl.getBoundingClientRect();
+      const tRect = tab.getBoundingClientRect();
+      indicator.style.width     = tRect.width  + 'px';
+      indicator.style.transform = `translateX(${tRect.left - sRect.left - 6}px)`;
+    }
+
+    function runCounters(pane) {
+      const items = counters.get(pane) || [];
+      items.forEach(el => {
+        if (el.dataset.counted === '1') return;
+        const target = +el.dataset.count;
+        const dur = 1100;
+        const start = performance.now();
+        function step(now) {
+          const p = Math.min(1, (now - start) / dur);
+          const eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(target * eased).toLocaleString();
+          if (p < 1) requestAnimationFrame(step);
+          else { el.textContent = target.toLocaleString(); el.dataset.counted = '1'; }
+        }
+        requestAnimationFrame(step);
+      });
+    }
+
+    function activate(name) {
+      tabs.forEach(t => {
+        const on = t.dataset.tab === name;
+        t.classList.toggle('is-active', on);
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        if (on) positionIndicator(t);
+      });
+      panes.forEach(p => {
+        const on = p.dataset.pane === name;
+        p.classList.toggle('is-active', on);
+        if (on) {
+          // restart any width-based bar animations
+          p.querySelectorAll('.bab-fill').forEach(b => {
+            b.style.animation = 'none';
+            b.getBoundingClientRect();
+            b.style.animation = '';
+          });
+          // reset and re-run counters for this pane
+          (counters.get(p) || []).forEach(el => { el.dataset.counted = ''; el.textContent = '0'; });
+          setTimeout(() => runCounters(p), 120);
+        }
+      });
+      if (routeText) routeText.textContent = ROUTES[name] || '';
+      if (console_) console_.dataset.active = name;
+      if (footCta) footCta.setAttribute('href', CTAS[name] || '#');
+    }
+
+    tabs.forEach(t => t.addEventListener('click', () => activate(t.dataset.tab)));
+
+    // Reveal on scroll-in
+    function onReveal() {
+      const firstActive = tabs.find(t => t.classList.contains('is-active')) || tabs[0];
+      // Wait for the console's transform transition to start before sizing the indicator
+      requestAnimationFrame(() => positionIndicator(firstActive));
+      // Run counters on the visible pane only
+      const activePane = panes.find(p => p.classList.contains('is-active')) || panes[0];
+      setTimeout(() => runCounters(activePane), 1100);
+    }
+
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('is-revealed');
+            onReveal();
+            obs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.18 });
+      obs.observe(root);
+    } else {
+      root.classList.add('is-revealed');
+      onReveal();
+    }
+
+    // Keep the indicator aligned on resize
+    window.addEventListener('resize', () => {
+      const active = tabs.find(t => t.classList.contains('is-active'));
+      positionIndicator(active);
+    });
+
+    /* ── Scroll-tied tilt for the console ──────────────────────────
+       Mirrors the Framer-Motion ContainerScroll math in vanilla JS:
+       rotateX: 20deg → 0,  scale: 1.05 → 1 (1.05 → 1 on desktop;
+       0.7 → 0.9 on mobile),  translateY: 0 → -100.
+       Progress = (vh - sectionTop) / (sectionHeight + vh), clamped 0..1.
+       Updated inside rAF so scroll stays smooth in both directions. */
+    (function initBuildsScrollTilt() {
+      const target = console_;
+      if (!target) return;
+
+      let isMobile = window.matchMedia('(max-width: 768px)').matches;
+      let raf = 0;
+
+      function apply() {
+        raf = 0;
+        // Mobile: no scroll-tied animation, no tilt — sit flat.
+        if (isMobile) {
+          target.style.transform = 'none';
+          return;
+        }
+        const rect = target.getBoundingClientRect();
+        const vh   = window.innerHeight || document.documentElement.clientHeight;
+        // Progress = 0 when the console's top hits the viewport bottom,
+        // Progress = 1 noticeably before the console centres on screen.
+        const total    = (vh / 2 + rect.height / 2) * 0.86;
+        const consumed = vh - rect.top;
+        const p = Math.max(0, Math.min(1, consumed / total));
+
+        const rotate = 20 - 20 * p;                       // 20 → 0
+        const sFrom  = isMobile ? 0.7  : 1.05;
+        const sTo    = isMobile ? 0.9  : 1.0;
+        const scale  = sFrom + (sTo - sFrom) * p;         // mobile: 0.7→0.9, desktop: 1.05→1
+        const ty     = -100 * p;                          // 0 → -100
+
+        target.style.transform =
+          `perspective(1000px) rotateX(${rotate.toFixed(3)}deg) scale(${scale.toFixed(4)}) translateY(${ty.toFixed(2)}px)`;
+      }
+
+      function schedule() { if (!raf) raf = requestAnimationFrame(apply); }
+
+      window.addEventListener('scroll', schedule, { passive: true });
+      window.addEventListener('resize', () => {
+        isMobile = window.matchMedia('(max-width: 768px)').matches;
+        schedule();
+      });
+      apply();
+    })();
+  })();
+
+  /* ============================================================
+     HOW IT WORKS — auto-rotating step deck + flowing mist canvas
+  ============================================================ */
+  (function initHowItWorks() {
+    const root = document.querySelector('.howit');
+    if (!root) return;
+
+    // Reveal on scroll-in
+    if ('IntersectionObserver' in window) {
+      const revObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('is-revealed');
+            revObs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      revObs.observe(root);
+    } else {
+      root.classList.add('is-revealed');
+    }
+
+    // Step cycling — single source of truth for cycle length
+    const CYCLE_MS = 3200; // reduced by ~1/3 from 4800ms
+    // Time the section's static cascade takes to settle before step 1 lights up.
+    const CASCADE_MS = 1400;
+    root.style.setProperty('--howit-cycle', (CYCLE_MS / 1000) + 's');
+    const tabs = root.querySelectorAll('.howit-tab');
+    const mocks = root.querySelectorAll('.howit-mock');
+    let active = 0;
+    let timer = 0;
+    let cycleStart = 0;
+    let cycleRemaining = CYCLE_MS;
+
+    function restartActiveBar() {
+      // Force the active tab's progress animation (a pseudo-element) to
+      // restart by briefly setting its animation-name to 'none' via a
+      // CSS variable, then clearing it.
+      const tab = root.querySelector('.howit-tab.is-active');
+      if (!tab) return;
+      tab.style.setProperty('--howit-anim', 'none');
+      // force reflow so the variable change registers before clearing
+      // eslint-disable-next-line no-unused-expressions
+      tab.offsetWidth;
+      tab.style.removeProperty('--howit-anim');
+    }
+
+    function activate(step) {
+      if (step === active) {
+        restartActiveBar();
+        return;
+      }
+      active = step;
+      tabs.forEach(t => t.classList.toggle('is-active', +t.dataset.step === step));
+      mocks.forEach(m => m.classList.toggle('is-active', +m.dataset.step === step));
+      restartActiveBar();
+    }
+    function advance() {
+      timer = 0;
+      activate((active % 3) + 1);
+      startCycle();
+      // If cursor is still over the new active tab, pause immediately.
+      if (typeof syncPauseState === 'function') syncPauseState();
+    }
+    function startCycle() {
+      stopCycle();
+      if (active === 0) return; // wait for cascade-deferred first activation
+      restartActiveBar();
+      cycleStart = performance.now();
+      cycleRemaining = CYCLE_MS;
+      timer = setTimeout(advance, cycleRemaining);
+    }
+    function stopCycle() {
+      if (timer) { clearTimeout(timer); timer = 0; }
+      cycleRemaining = CYCLE_MS;
+    }
+    /* Pause: save the remaining time, clear the pending timeout. The bar's
+       CSS animation pauses automatically via the .howit-steps:hover rule. */
+    function pauseCycle() {
+      if (!timer) return;
+      cycleRemaining = Math.max(0, CYCLE_MS - (performance.now() - cycleStart));
+      clearTimeout(timer);
+      timer = 0;
+    }
+    /* Resume: re-schedule the advance for the remaining time. The CSS
+       animation resumes from its paused position once :hover is gone. */
+    function resumeCycle() {
+      if (timer || active === 0) return;
+      if (cycleRemaining >= CYCLE_MS) { startCycle(); return; }
+      cycleStart = performance.now() - (CYCLE_MS - cycleRemaining);
+      timer = setTimeout(advance, cycleRemaining);
+    }
+
+    /* Plan-card shuffle (Step 1 mockup) — rotates each card's
+       position class so the front card cycles every SHUFFLE_MS. */
+    const cards = root.querySelectorAll('.hm-plan-stack .hm-card');
+    const SHUFFLE_MS = 1900;
+    const POS = ['is-front', 'is-mid', 'is-back'];
+    let shuffleTick = 0;
+    let shuffleTimer = 0;
+    function shuffleCards() {
+      shuffleTick = (shuffleTick + 1) % cards.length;
+      cards.forEach((c, i) => {
+        const pos = ((i - shuffleTick) % cards.length + cards.length) % cards.length;
+        c.classList.remove(...POS);
+        c.classList.add(POS[pos]);
+      });
+    }
+    function startShuffle() {
+      stopShuffle();
+      if (!cards.length) return; // step 1 no longer uses a shuffled card stack
+      shuffleTimer = setInterval(shuffleCards, SHUFFLE_MS);
+    }
+    function stopShuffle() {
+      if (shuffleTimer) { clearInterval(shuffleTimer); shuffleTimer = 0; }
+    }
+
+    /* Pause only when the user hovers the *active* step's column.
+       Hovering a different step never pauses. After every activate()
+       we re-check, because the active tab can change underneath the
+       cursor (auto-advance) or via click. */
+    function isActiveHovered() {
+      const tab = root.querySelector('.howit-tab.is-active');
+      return !!(tab && tab.matches(':hover'));
+    }
+    function syncPauseState() {
+      if (isActiveHovered()) pauseCycle();
+      else resumeCycle();
+    }
+
+    tabs.forEach(t => {
+      t.addEventListener('click', () => {
+        activate(+t.dataset.step);
+        startCycle();
+        syncPauseState();
+      });
+      t.addEventListener('mouseenter', syncPauseState);
+      t.addEventListener('mouseleave', syncPauseState);
+    });
+
+    // First-time reveal: wait for the static cascade to settle, then
+    // activate step 1, start the step cycle, and start the card shuffle.
+    // On re-entry (scroll away + back) we just resume both.
+    let firstSeen = false;
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(entries => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            if (!firstSeen) {
+              firstSeen = true;
+              setTimeout(() => {
+                activate(1);
+                startCycle();
+                startShuffle();
+              }, CASCADE_MS);
+            } else {
+              startCycle();
+              startShuffle();
+            }
+          } else {
+            stopCycle();
+            stopShuffle();
+          }
+        }
+      }, { threshold: 0.2 }).observe(root);
+    } else {
+      activate(1);
+      startCycle();
+      startShuffle();
+    }
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) { stopCycle(); stopShuffle(); }
+      else if (active !== 0) { startCycle(); startShuffle(); }
+    });
+
+    /* MIST CANVAS — slow horizontal cyan/teal waveband flowing across the stage */
+    const canvas = root.querySelector('.howit-mist');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let cssW = 0, cssH = 0, time = 0, raf = 0;
+    let visible = true, docVisible = !document.hidden;
+
+    function resize() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const rect = canvas.getBoundingClientRect();
+      cssW = Math.max(1, rect.width);
+      cssH = Math.max(1, rect.height);
+      canvas.width  = Math.round(cssW * dpr);
+      canvas.height = Math.round(cssH * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.lineCap = 'round';
+    }
+    resize();
+    if ('ResizeObserver' in window) new ResizeObserver(resize).observe(canvas);
+    window.addEventListener('resize', resize, { passive: true });
+
+    // Brand cyan gradient (#40EBFF light → #1699A8 teal).
+    const SILK_LIGHT = [64,  235, 255]; // #40EBFF
+    const SILK_DEEP  = [22,  153, 168]; // #1699A8
+
+    // Flowing silk ribbons: broad, layered, translucent filled bands that
+    // sweep diagonally across the card. Concentrated left-of-centre with
+    // long tails trailing to the right (echoes the reference composition).
+    const RIBBONS = [
+      // yФrac, ampPx, thickPx, slope, speed, phase, alpha
+      { y: 0.34, amp: 46, thick: 150, slope: 0.10, speed: 0.55, phase: 0.0, alpha: 0.060 },
+      { y: 0.46, amp: 60, thick: 200, slope: 0.16, speed: 0.42, phase: 1.7, alpha: 0.075 },
+      { y: 0.56, amp: 52, thick: 170, slope: 0.13, speed: 0.62, phase: 3.1, alpha: 0.065 },
+      { y: 0.62, amp: 40, thick: 120, slope: 0.08, speed: 0.50, phase: 4.6, alpha: 0.055 },
+      { y: 0.50, amp: 72, thick: 90,  slope: 0.18, speed: 0.36, phase: 2.3, alpha: 0.050 },
+    ];
+
+    function lerpColor(t) {
+      const r = Math.round(SILK_LIGHT[0] + (SILK_DEEP[0] - SILK_LIGHT[0]) * t);
+      const g = Math.round(SILK_LIGHT[1] + (SILK_DEEP[1] - SILK_LIGHT[1]) * t);
+      const b = Math.round(SILK_LIGHT[2] + (SILK_DEEP[2] - SILK_LIGHT[2]) * t);
+      return [r, g, b];
+    }
+
+    function ribbonCenter(rib, t) {
+      // t = 0..1 across the width; concentrate the wave on the left third
+      const localPhase = time * rib.speed + rib.phase;
+      const flow =
+          Math.sin(t * Math.PI * 1.4 + localPhase) * rib.amp
+        + Math.sin(t * Math.PI * 3.0 + localPhase * 1.3) * rib.amp * 0.35
+        + Math.cos(t * Math.PI * 0.7 + localPhase * 0.6) * rib.amp * 0.5;
+      const x = t * cssW;
+      return rib.y * cssH + flow + (x - cssW * 0.5) * rib.slope;
+    }
+
+    function draw() {
+      raf = 0;
+      if (!visible || !docVisible) return;
+      ctx.clearRect(0, 0, cssW, cssH);
+
+      const segs = 64;
+      ctx.globalCompositeOperation = 'lighter';
+
+      for (const rib of RIBBONS) {
+        // taper thickness: thick toward the left-centre, trailing thin to edges
+        const thickAt = (t) => rib.thick * Math.pow(Math.sin(t * Math.PI), 0.55) * (1 - t * 0.35);
+
+        // ── soft body fill ──
+        ctx.beginPath();
+        for (let j = 0; j <= segs; j++) {
+          const t = j / segs;
+          const yc = ribbonCenter(rib, t);
+          const y = yc - thickAt(t) * 0.5;
+          if (j === 0) ctx.moveTo(t * cssW, y); else ctx.lineTo(t * cssW, y);
+        }
+        for (let j = segs; j >= 0; j--) {
+          const t = j / segs;
+          const yc = ribbonCenter(rib, t);
+          ctx.lineTo(t * cssW, yc + thickAt(t) * 0.5);
+        }
+        ctx.closePath();
+
+        const grad = ctx.createLinearGradient(0, 0, cssW, cssH);
+        const [lr, lg, lb] = lerpColor(0);
+        const [dr, dg, db] = lerpColor(1);
+        grad.addColorStop(0,   `rgba(${lr},${lg},${lb},0)`);
+        grad.addColorStop(0.18,`rgba(${lr},${lg},${lb},${rib.alpha})`);
+        grad.addColorStop(0.6, `rgba(${dr},${dg},${db},${rib.alpha * 0.9})`);
+        grad.addColorStop(1,   `rgba(${dr},${dg},${db},0)`);
+        ctx.fillStyle = grad;
+        ctx.fill();
+
+        // ── silky sheen highlight along the centreline ──
+        ctx.beginPath();
+        for (let j = 0; j <= segs; j++) {
+          const t = j / segs;
+          const yc = ribbonCenter(rib, t) - thickAt(t) * 0.18;
+          if (j === 0) ctx.moveTo(t * cssW, yc); else ctx.lineTo(t * cssW, yc);
+        }
+        ctx.lineWidth = 1.2;
+        const [hr, hg, hb] = lerpColor(0.2);
+        ctx.strokeStyle = `rgba(${hr},${hg},${hb},${rib.alpha * 1.8})`;
+        ctx.stroke();
+      }
+
+      ctx.globalCompositeOperation = 'source-over';
+      time += 0.012;
+      raf = requestAnimationFrame(draw);
+    }
+
+    function start() { if (!raf) raf = requestAnimationFrame(draw); }
+    function stop()  { if (raf) { cancelAnimationFrame(raf); raf = 0; } }
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(entries => {
+        for (const e of entries) {
+          visible = e.isIntersecting;
+          if (visible) start(); else stop();
+        }
+      }, { rootMargin: '50px' }).observe(canvas);
+    }
+    document.addEventListener('visibilitychange', () => {
+      docVisible = !document.hidden;
+      if (docVisible) start(); else stop();
+    });
+
+    start();
+  })();
+</script>
+
+<!-- ============================================================
+     HERO WAVES — Sonic-waveform style, one on each side of the
+     wordmark. Each canvas is a 2D rasterized field of curves
+     blended additively. CSS mask handles the inner/outer fade.
+============================================================ -->
+<script>
+(function initHeroWaves() {
+  const canvases = document.querySelectorAll('.hero-wave-canvas');
+  if (!canvases.length) return;
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  canvases.forEach((canvas) => {
+    const ctx = canvas.getContext('2d');
+    const isRight = canvas.classList.contains('hero-wave-r');
+    let raf = 0, time = isRight ? 1.7 : 0;
+    let visible = true, docVisible = !document.hidden;
+    let cssW = 0, cssH = 0;
+
+    function resize() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const rect = canvas.getBoundingClientRect();
+      cssW = Math.max(1, rect.width);
+      cssH = Math.max(1, rect.height);
+      canvas.width  = Math.round(cssW * dpr);
+      canvas.height = Math.round(cssH * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.lineCap  = 'round';
+      ctx.lineJoin = 'round';
+    }
+
+    function draw() {
+      raf = 0;
+      if (!visible || !docVisible) return;
+
+      // Crystal-clear redraw every frame — no motion-trail smear so each
+      // line stays sharp instead of accumulating ghost echoes.
+      ctx.clearRect(0, 0, cssW, cssH);
+
+      const centerY = cssH * 0.5;
+      const lineCount = 44;
+      const segmentCount = 96;
+
+      // Amplitude scales with canvas height so it reads on mobile too
+      const ampScale = Math.min(1.15, cssH / 320);
+
+      // Brand wave palette
+      const C0 = [22, 153, 168];   // #1699A8 deep cyan
+      const C1 = [112, 240, 255];  // #70F0FF neon sky cyan
+
+      for (let i = 0; i < lineCount; i++) {
+        const progress = i / (lineCount - 1);
+        const intensity = Math.sin(progress * Math.PI);
+
+        const r = Math.round(C0[0] + (C1[0] - C0[0]) * intensity);
+        const g = Math.round(C0[1] + (C1[1] - C0[1]) * intensity);
+        const b = Math.round(C0[2] + (C1[2] - C0[2]) * intensity);
+
+        ctx.beginPath();
+        for (let j = 0; j <= segmentCount; j++) {
+          const x = (j / segmentCount) * cssW;
+
+          // NEGATIVE time → features travel from outer edge toward inner
+          // (and the right canvas is scaleX(-1) so it mirrors symmetrically
+          // toward the wordmark).
+          const noise =
+              Math.sin(j * 0.10 - time + i * 0.20) * 16 * ampScale
+            + Math.sin(j * 0.04 - time * 0.6 + i * 0.07) * 6 * ampScale;
+
+          const spike =
+              Math.cos(j * 0.20 - time + i * 0.10)
+            * Math.sin(j * 0.05 - time * 0.85)
+            * 38 * ampScale;
+
+          const y = centerY + noise + spike;
+
+          if (j === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+
+        // Subtle neon glow: wide low-alpha halo (cheap, no shadowBlur)
+        ctx.lineWidth = 3.2;
+        ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${0.04 + intensity * 0.10})`;
+        ctx.stroke();
+
+        // Crisp core stroke
+        ctx.lineWidth = 1.1;
+        ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${0.32 + intensity * 0.50})`;
+        ctx.stroke();
+      }
+
+      time += 0.018;
+      if (!prefersReduced) raf = requestAnimationFrame(draw);
+    }
+
+    function start() { if (!raf) raf = requestAnimationFrame(draw); }
+    function stop()  { if (raf) { cancelAnimationFrame(raf); raf = 0; } }
+
+    resize();
+    if ('ResizeObserver' in window) new ResizeObserver(resize).observe(canvas);
+    window.addEventListener('resize', resize, { passive: true });
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        for (const e of entries) {
+          visible = e.isIntersecting;
+          if (visible) start(); else stop();
+        }
+      }, { rootMargin: '50px' }).observe(canvas);
+    }
+    document.addEventListener('visibilitychange', () => {
+      docVisible = !document.hidden;
+      if (docVisible) start(); else stop();
+    });
+
+    if (prefersReduced) {
+      // Render one frame so the wave is visible without animating
+      draw();
+    } else {
+      start();
+    }
+  });
+})();
+</script>
+
+<!-- ============================================================
+     AI SOLUTIONS GLOBE — D3 wireframe + halftone-dotted earth.
+     Visual only: auto-rotates. No drag, no zoom, no input handlers.
+============================================================ -->
+<script type="module">
+  import * as d3 from 'https://esm.sh/d3@7';
+
+  const canvas = document.querySelector('.globe-canvas');
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let cssW = 0, cssH = 0, radius = 0;
+    let projection, pathGen;
+    let landFeatures = null;
+    const allDots = [];
+    const rotation = [0, 0];
+    const ROTATION_SPEED = 0.3;   // degrees per frame
+    let visible = true;
+    let docVisible = !document.hidden;
+    let dataLoaded = false;
+    let raf = 0;
+
+    function setupCanvas() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const rect = canvas.getBoundingClientRect();
+      cssW = Math.max(1, rect.width);
+      cssH = Math.max(1, rect.height);
+      radius = Math.min(cssW, cssH) / 2.4 * 0.9;
+      canvas.width  = Math.round(cssW * dpr);
+      canvas.height = Math.round(cssH * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      projection = d3.geoOrthographic()
+        .scale(radius)
+        .translate([cssW / 2, cssH / 2])
+        .clipAngle(90)
+        .rotate(rotation);
+      pathGen = d3.geoPath().projection(projection).context(ctx);
+    }
+
+    function pointInPolygon(point, polygon) {
+      const [x, y] = point;
+      let inside = false;
+      for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+        const [xi, yi] = polygon[i];
+        const [xj, yj] = polygon[j];
+        if ((yi > y) !== (yj > y) && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) {
+          inside = !inside;
+        }
+      }
+      return inside;
+    }
+    function pointInFeature(point, feature) {
+      const g = feature.geometry;
+      if (g.type === 'Polygon') {
+        if (!pointInPolygon(point, g.coordinates[0])) return false;
+        for (let i = 1; i < g.coordinates.length; i++) {
+          if (pointInPolygon(point, g.coordinates[i])) return false;
+        }
+        return true;
+      } else if (g.type === 'MultiPolygon') {
+        for (const poly of g.coordinates) {
+          if (pointInPolygon(point, poly[0])) {
+            let inHole = false;
+            for (let i = 1; i < poly.length; i++) {
+              if (pointInPolygon(point, poly[i])) { inHole = true; break; }
+            }
+            if (!inHole) return true;
+          }
+        }
+      }
+      return false;
+    }
+    function generateDots(feature, dotSpacing = 16) {
+      const dots = [];
+      const [[minLng, minLat], [maxLng, maxLat]] = d3.geoBounds(feature);
+      const step = dotSpacing * 0.08;
+      for (let lng = minLng; lng <= maxLng; lng += step) {
+        for (let lat = minLat; lat <= maxLat; lat += step) {
+          if (pointInFeature([lng, lat], feature)) dots.push([lng, lat]);
+        }
+      }
+      return dots;
+    }
+
+    function render() {
+      if (!cssW || !cssH) return;
+      ctx.clearRect(0, 0, cssW, cssH);
+      const currentScale = projection.scale();
+      const scaleFactor = currentScale / radius;
+
+      // Ocean disk
+      ctx.beginPath();
+      ctx.arc(cssW / 2, cssH / 2, currentScale, 0, 2 * Math.PI);
+      ctx.fillStyle = '#00000000';
+      ctx.fill();
+      ctx.strokeStyle = '#62A9B3';
+      ctx.lineWidth = 2 * scaleFactor;
+      ctx.stroke();
+
+      if (!landFeatures) return;
+
+      // Graticule
+      const graticule = d3.geoGraticule();
+      ctx.beginPath();
+      pathGen(graticule());
+      ctx.strokeStyle = '#62A9B3';
+      ctx.lineWidth = 1 * scaleFactor;
+      ctx.globalAlpha = 0.25;
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+
+      // Land outlines
+      ctx.beginPath();
+      for (const f of landFeatures.features) pathGen(f);
+      ctx.strokeStyle = '#62A9B3';
+      ctx.lineWidth = 1 * scaleFactor;
+      ctx.stroke();
+
+      // Halftone dots
+      ctx.fillStyle = '#00A0B3';
+      const r = 1.2 * scaleFactor;
+      for (let i = 0; i < allDots.length; i++) {
+        const p = projection(allDots[i]);
+        if (p && p[0] >= 0 && p[0] <= cssW && p[1] >= 0 && p[1] <= cssH) {
+          ctx.beginPath();
+          ctx.arc(p[0], p[1], r, 0, 2 * Math.PI);
+          ctx.fill();
+        }
+      }
+    }
+
+    async function loadWorldData() {
+      try {
+        const res = await fetch(
+          'https://raw.githubusercontent.com/martynafford/natural-earth-geojson/refs/heads/master/110m/physical/ne_110m_land.json'
+        );
+        if (!res.ok) throw new Error('Failed to load land data');
+        landFeatures = await res.json();
+        for (const f of landFeatures.features) {
+          for (const d of generateDots(f, 16)) allDots.push(d);
+        }
+        dataLoaded = true;
+        canvas.style.opacity = '1';
+      } catch (err) {
+        console.warn('Globe data load failed:', err);
+      }
+    }
+
+    function animate() {
+      raf = 0;
+      if (!visible || !docVisible) return;
+      rotation[0] += ROTATION_SPEED;
+      projection.rotate(rotation);
+      render();
+      raf = requestAnimationFrame(animate);
+    }
+    function startLoop() { if (!raf) raf = requestAnimationFrame(animate); }
+    function stopLoop()  { if (raf) { cancelAnimationFrame(raf); raf = 0; } }
+
+    function init() {
+      setupCanvas();
+      if ('ResizeObserver' in window) {
+        new ResizeObserver(() => { setupCanvas(); render(); }).observe(canvas);
+      }
+      window.addEventListener('resize', () => { setupCanvas(); render(); }, { passive: true });
+
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver((entries) => {
+          for (const e of entries) {
+            visible = e.isIntersecting;
+            if (visible) startLoop(); else stopLoop();
+          }
+        }, { rootMargin: '50px' }).observe(canvas);
+      }
+      document.addEventListener('visibilitychange', () => {
+        docVisible = !document.hidden;
+        if (docVisible) startLoop(); else stopLoop();
+      });
+
+      loadWorldData();
+      startLoop();
+    }
+
+    if (canvas.offsetWidth > 0) {
+      init();
+    } else {
+      const ro = new ResizeObserver((entries) => {
+        if (entries[0]?.contentRect.width > 0) { ro.disconnect(); init(); }
+      });
+      ro.observe(canvas);
+    }
+  }
+</script>
+
+</body>
+</html>

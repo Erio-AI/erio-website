@@ -1,0 +1,2725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Erio — Build with Taste. Ship with Confidence.</title>
+<link rel="icon" type="image/png" href="favicon.png?v=3" />
+<link rel="shortcut icon" type="image/png" href="favicon.png?v=3" />
+<link rel="apple-touch-icon" href="favicon.png?v=3" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* Headline now has 5 words ("AI Employees for Home Services"), so re-stagger
+     the per-character fade-in delays — same +0.05s/char, +0.10s/word cadence
+     as the home page — so every character animates in left-to-right. */
+  .hero-title .word:nth-of-type(1) .char:nth-child(1) { animation-delay: 0.65s; }
+  .hero-title .word:nth-of-type(1) .char:nth-child(2) { animation-delay: 0.70s; }
+  /* Employees */
+  .hero-title .word:nth-of-type(2) .char:nth-child(1) { animation-delay: 0.80s; }
+  .hero-title .word:nth-of-type(2) .char:nth-child(2) { animation-delay: 0.85s; }
+  .hero-title .word:nth-of-type(2) .char:nth-child(3) { animation-delay: 0.90s; }
+  .hero-title .word:nth-of-type(2) .char:nth-child(4) { animation-delay: 0.95s; }
+  .hero-title .word:nth-of-type(2) .char:nth-child(5) { animation-delay: 1.00s; }
+  .hero-title .word:nth-of-type(2) .char:nth-child(6) { animation-delay: 1.05s; }
+  .hero-title .word:nth-of-type(2) .char:nth-child(7) { animation-delay: 1.10s; }
+  .hero-title .word:nth-of-type(2) .char:nth-child(8) { animation-delay: 1.15s; }
+  .hero-title .word:nth-of-type(2) .char:nth-child(9) { animation-delay: 1.20s; }
+  /* for */
+  .hero-title .word:nth-of-type(3) .char:nth-child(1) { animation-delay: 1.30s; }
+  .hero-title .word:nth-of-type(3) .char:nth-child(2) { animation-delay: 1.35s; }
+  .hero-title .word:nth-of-type(3) .char:nth-child(3) { animation-delay: 1.40s; }
+  /* Home */
+  .hero-title .word:nth-of-type(4) .char:nth-child(1) { animation-delay: 1.50s; }
+  .hero-title .word:nth-of-type(4) .char:nth-child(2) { animation-delay: 1.55s; }
+  .hero-title .word:nth-of-type(4) .char:nth-child(3) { animation-delay: 1.60s; }
+  .hero-title .word:nth-of-type(4) .char:nth-child(4) { animation-delay: 1.65s; }
+  /* Services */
+  .hero-title .word:nth-of-type(5) .char:nth-child(1) { animation-delay: 1.75s; }
+  .hero-title .word:nth-of-type(5) .char:nth-child(2) { animation-delay: 1.80s; }
+  .hero-title .word:nth-of-type(5) .char:nth-child(3) { animation-delay: 1.85s; }
+  .hero-title .word:nth-of-type(5) .char:nth-child(4) { animation-delay: 1.90s; }
+  .hero-title .word:nth-of-type(5) .char:nth-child(5) { animation-delay: 1.95s; }
+  .hero-title .word:nth-of-type(5) .char:nth-child(6) { animation-delay: 2.00s; }
+  .hero-title .word:nth-of-type(5) .char:nth-child(7) { animation-delay: 2.05s; }
+  .hero-title .word:nth-of-type(5) .char:nth-child(8) { animation-delay: 2.10s; }
+</style>
+<link rel="stylesheet" href="ai-websites.css?v=66">
+</head>
+<body>
+
+<!-- AMBIENT BACKGROUND LAYERS -->
+<div class="bg-mesh" aria-hidden="true"></div>
+
+<!-- SVG filter: single-pass luminance->alpha (keyed-black bg → transparent) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="blackToAlpha" color-interpolation-filters="sRGB"
+            x="0" y="0" width="100%" height="100%">
+      <feColorMatrix type="matrix" values="
+        1 0 0 0 0
+        0 1 0 0 0
+        0 0 1 0 0
+        1.35 1.65 1.35 0 -0.4"/>
+    </filter>
+  </defs>
+</svg>
+
+
+<!-- TOP NAV -->
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="/" aria-label="Erio home">
+      <img src="Erio Logo Original.png" alt="Erio" />
+    </a>
+
+    <div class="nav-pill-slot">
+      <nav class="nav-pill" aria-label="Primary">
+      <a class="nav-drop-trigger" href="#products" aria-haspopup="true">
+        Products
+        <svg class="nav-drop-chevron" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </a>
+      <a href="https://app.erio.ai/">Login</a>
+      <a href="/packages">Packages</a>
+      <div class="nav-pill-sub" role="menu">
+        <div class="nav-pill-sub-inner">
+          <a href="/ai-websites"  role="menuitem">AI Websites</a>
+          <a href="/ai-employees" role="menuitem">AI Employees</a>
+          <a href="#ai-solutions" role="menuitem">AI Solutions</a>
+        </div>
+      </div>
+      </nav>
+    </div>
+
+    <div class="nav-cta">
+      <a class="btn-primary" href="/book">
+        <span>Book</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <!-- MOBILE NAV — single pill with logo (L), Demo text (center), hamburger (R) -->
+    <div class="nav-mobile-pill" role="navigation" aria-label="Mobile">
+      <a class="nav-mobile-logo" href="/" aria-label="Erio home">
+        <img src="Erio Logo Original.png" alt="Erio" />
+      </a>
+      <a class="nav-mobile-demo" href="/book">Book</a>
+      <button class="nav-mobile-burger" type="button" aria-label="Open menu"
+              aria-expanded="false" aria-controls="navMobileMenu">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.6" stroke-linecap="round" aria-hidden="true">
+          <defs>
+            <linearGradient id="burgerGrad" gradientUnits="userSpaceOnUse"
+                            x1="4" y1="7" x2="20" y2="17">
+              <stop offset="0%"   stop-color="#70F0FF"/>
+              <stop offset="55%"  stop-color="#53B9E0"/>
+              <stop offset="100%" stop-color="#337791"/>
+            </linearGradient>
+          </defs>
+          <line x1="4" y1="7"  x2="20" y2="7"  stroke="url(#burgerGrad)"/>
+          <line x1="4" y1="12" x2="20" y2="12" stroke="url(#burgerGrad)"/>
+          <line x1="4" y1="17" x2="20" y2="17" stroke="url(#burgerGrad)"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile dropdown menu — opens beneath the pill -->
+    <div class="nav-mobile-menu" id="navMobileMenu" role="menu" aria-hidden="true">
+      <a href="/packages"     role="menuitem">Packages</a>
+      <a href="/ai-websites"  role="menuitem">AI Websites</a>
+      <a href="/ai-employees" role="menuitem">AI Employees</a>
+      <a href="#ai-solutions" role="menuitem">AI Solutions</a>
+      <a href="https://app.erio.ai/" role="menuitem">Login</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<main class="hero">
+
+  <!-- HEADLINE -->
+  <h1 class="hero-title">
+    <span class="word"><span class="char">A</span><span class="char">I</span></span>
+    <span class="word"><span class="char">E</span><span class="char">m</span><span class="char">p</span><span class="char">l</span><span class="char">o</span><span class="char">y</span><span class="char">e</span><span class="char">e</span><span class="char">s</span></span>
+    <span class="word"><span class="char">F</span><span class="char">o</span><span class="char">r</span></span>
+    <i class="hero-br" aria-hidden="true"></i>
+    <span class="word"><span class="char">H</span><span class="char">o</span><span class="char">m</span><span class="char">e</span></span>
+    <span class="word grad"><span class="char">S</span><span class="char">e</span><span class="char">r</span><span class="char">v</span><span class="char">i</span><span class="char">c</span><span class="char">e</span><span class="char">s</span></span>
+  </h1>
+
+  <p class="hero-sub">AI receptionists that answer, qualify, and book — 24/7.<br/>Built for contractors who never want to miss another job.</p>
+
+  <div class="cta-frame">
+    <svg class="cta-track cta-track-l" viewBox="0 0 300 90" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      <defs>
+        <linearGradient id="trackFadeL" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%"   stop-color="#53D2E0" stop-opacity="0"/>
+          <stop offset="55%"  stop-color="#53D2E0" stop-opacity="0.4"/>
+          <stop offset="100%" stop-color="#A1E8F0" stop-opacity="0.9"/>
+        </linearGradient>
+      </defs>
+      <path id="trackPathL"
+            d="M 5 78 C 80 78, 200 45, 295 45"
+            stroke="url(#trackFadeL)" stroke-width="1.3"
+            stroke-dasharray="2 7" stroke-linecap="round"
+            fill="none"/>
+      <circle r="2.6" fill="#A1E8F0"
+              style="filter: drop-shadow(0 0 4px #53D2E0) drop-shadow(0 0 9px rgba(83,210,224,0.7));">
+        <animateMotion dur="2.6s" repeatCount="indefinite" rotate="auto" keyPoints="0;1" keyTimes="0;1">
+          <mpath href="#trackPathL"/>
+        </animateMotion>
+        <animate attributeName="opacity"
+                 values="0;0.4;1;1;0" keyTimes="0;0.1;0.4;0.85;1"
+                 dur="2.6s" repeatCount="indefinite"/>
+      </circle>
+    </svg>
+
+    <a class="hero-cta" href="/book">
+      <span class="cta-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="6 4 20 12 6 20" fill="currentColor"/>
+        </svg>
+      </span>
+      <span>Schedule Demo</span>
+    </a>
+
+    <svg class="cta-track cta-track-r" viewBox="0 0 300 90" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      <defs>
+        <linearGradient id="trackFadeR" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%"   stop-color="#A1E8F0" stop-opacity="0.9"/>
+          <stop offset="45%"  stop-color="#53D2E0" stop-opacity="0.4"/>
+          <stop offset="100%" stop-color="#53D2E0" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <path id="trackPathR"
+            d="M 5 45 C 100 45, 220 78, 295 78"
+            stroke="url(#trackFadeR)" stroke-width="1.3"
+            stroke-dasharray="2 7" stroke-linecap="round"
+            fill="none"/>
+      <circle r="2.6" fill="#A1E8F0"
+              style="filter: drop-shadow(0 0 4px #53D2E0) drop-shadow(0 0 9px rgba(83,210,224,0.7));">
+        <animateMotion dur="2.6s" repeatCount="indefinite" rotate="auto" keyPoints="1;0" keyTimes="0;1">
+          <mpath href="#trackPathR"/>
+        </animateMotion>
+        <animate attributeName="opacity"
+                 values="0;0.4;1;1;0" keyTimes="0;0.1;0.4;0.85;1"
+                 dur="2.6s" repeatCount="indefinite"/>
+      </circle>
+    </svg>
+  </div>
+
+
+  <!-- ambient tech field around the AI widget orb (decorative; does not touch the widget) -->
+  <div class="emp-orbfx" aria-hidden="true">
+
+    <!-- glyphs stream OUTWARD from the orb's center (--tx/--ty = outward vector) -->
+    <span class="emp-glyph" style="--tx:-520px;--ty:-50px;--s:1.4;--o:.55;--d:0s;--dur:7.5s">{ }</span>
+    <span class="emp-glyph" style="--tx:-660px;--ty:70px;--s:1.0;--o:.4;--d:1.5s;--dur:8.5s">1010</span>
+    <span class="emp-glyph" style="--tx:-440px;--ty:-150px;--s:1.5;--o:.6;--d:3s;--dur:8s">&lt;/&gt;</span>
+    <span class="emp-glyph" style="--tx:-700px;--ty:-30px;--s:.9;--o:.35;--d:4.5s;--dur:9s">0x4F</span>
+    <span class="emp-glyph" style="--tx:-380px;--ty:170px;--s:1.1;--o:.45;--d:2.2s;--dur:7.5s">::</span>
+    <span class="emp-glyph" style="--tx:-580px;--ty:-180px;--s:1.0;--o:.4;--d:5.5s;--dur:9.5s">&#955;</span>
+    <span class="emp-glyph" style="--tx:-480px;--ty:110px;--s:.95;--o:.4;--d:.8s;--dur:8s">++</span>
+    <span class="emp-glyph" style="--tx:-320px;--ty:-110px;--s:1.0;--o:.45;--d:3.8s;--dur:8.5s">AI</span>
+
+    <span class="emp-glyph" style="--tx:540px;--ty:-60px;--s:1.3;--o:.55;--d:.4s;--dur:7.5s">24/7</span>
+    <span class="emp-glyph" style="--tx:440px;--ty:130px;--s:1.4;--o:.5;--d:2s;--dur:8s">[ ]</span>
+    <span class="emp-glyph" style="--tx:660px;--ty:50px;--s:1.0;--o:.4;--d:1.2s;--dur:9s">fn()</span>
+    <span class="emp-glyph" style="--tx:480px;--ty:170px;--s:.9;--o:.35;--d:3.5s;--dur:8.5s">1101</span>
+    <span class="emp-glyph" style="--tx:600px;--ty:-160px;--s:1.3;--o:.45;--d:5s;--dur:9.5s">&#8721;</span>
+    <span class="emp-glyph" style="--tx:380px;--ty:-120px;--s:.95;--o:.5;--d:.9s;--dur:7.5s">//</span>
+    <span class="emp-glyph" style="--tx:640px;--ty:-40px;--s:.95;--o:.38;--d:4.2s;--dur:8.5s">0b11</span>
+    <span class="emp-glyph" style="--tx:420px;--ty:-50px;--s:1.1;--o:.45;--d:6s;--dur:8s">&#8594;</span>
+
+    <!-- MORE characters flowing UPWARD (large negative --ty) -->
+    <span class="emp-glyph" style="--tx:-80px;--ty:-280px;--s:1.0;--o:.42;--d:1.7s;--dur:8s">01</span>
+    <span class="emp-glyph" style="--tx:100px;--ty:-300px;--s:1.1;--o:.48;--d:4s;--dur:8.5s">&lt;/&gt;</span>
+    <span class="emp-glyph" style="--tx:-180px;--ty:-250px;--s:1.0;--o:.4;--d:5.8s;--dur:9s">&#916;</span>
+    <span class="emp-glyph" style="--tx:190px;--ty:-260px;--s:1.1;--o:.45;--d:2.9s;--dur:8.5s">&#8721;</span>
+    <span class="emp-glyph" style="--tx:50px;--ty:-300px;--s:.95;--o:.42;--d:.6s;--dur:8s">1010</span>
+    <span class="emp-glyph" style="--tx:-40px;--ty:-270px;--s:1.0;--o:.45;--d:6.4s;--dur:9s">AI</span>
+    <span class="emp-glyph" style="--tx:250px;--ty:-220px;--s:.9;--o:.4;--d:3.3s;--dur:8.5s">::</span>
+    <span class="emp-glyph" style="--tx:-230px;--ty:-230px;--s:1.0;--o:.4;--d:5.1s;--dur:9s">0x1A</span>
+
+    <!-- a few flowing DOWNWARD -->
+    <span class="emp-glyph" style="--tx:-50px;--ty:240px;--s:1.0;--o:.38;--d:2.6s;--dur:8.5s">1010</span>
+    <span class="emp-glyph" style="--tx:90px;--ty:250px;--s:.9;--o:.45;--d:.5s;--dur:7.5s">&#9679;</span>
+    <span class="emp-glyph" style="--tx:-110px;--ty:240px;--s:1.0;--o:.4;--d:5s;--dur:9s">::</span>
+
+    <!-- particles stream outward too (sparks from the orb) -->
+    <i class="emp-dot" style="--tx:-360px;--ty:-30px;--o:.7;--w:4px;--d:0s;--dur:5.5s"></i>
+    <i class="emp-dot" style="--tx:-520px;--ty:70px;--o:.6;--w:3px;--d:1.4s;--dur:6.5s"></i>
+    <i class="emp-dot" style="--tx:-280px;--ty:130px;--o:.7;--w:5px;--d:.7s;--dur:5s"></i>
+    <i class="emp-dot" style="--tx:-440px;--ty:-120px;--o:.55;--w:3px;--d:2.1s;--dur:7s"></i>
+    <i class="emp-dot" style="--tx:-600px;--ty:20px;--o:.5;--w:3px;--d:1s;--dur:6s"></i>
+    <i class="emp-dot" style="--tx:380px;--ty:-40px;--o:.7;--w:4px;--d:.2s;--dur:5.5s"></i>
+    <i class="emp-dot" style="--tx:540px;--ty:80px;--o:.6;--w:3px;--d:1.6s;--dur:6.5s"></i>
+    <i class="emp-dot" style="--tx:300px;--ty:140px;--o:.7;--w:5px;--d:.9s;--dur:5s"></i>
+    <i class="emp-dot" style="--tx:480px;--ty:-120px;--o:.55;--w:3px;--d:2.3s;--dur:7s"></i>
+    <i class="emp-dot" style="--tx:620px;--ty:-20px;--o:.5;--w:3px;--d:1.1s;--dur:6s"></i>
+
+    <!-- MORE particles flowing UPWARD -->
+    <i class="emp-dot" style="--tx:-60px;--ty:-270px;--o:.6;--w:3px;--d:1.2s;--dur:6s"></i>
+    <i class="emp-dot" style="--tx:80px;--ty:-290px;--o:.55;--w:2.5px;--d:2.6s;--dur:6.5s"></i>
+    <i class="emp-dot" style="--tx:-180px;--ty:-240px;--o:.6;--w:3px;--d:.5s;--dur:6s"></i>
+    <i class="emp-dot" style="--tx:160px;--ty:-260px;--o:.55;--w:3px;--d:1.9s;--dur:6.5s"></i>
+    <i class="emp-dot" style="--tx:-20px;--ty:-300px;--o:.6;--w:2.5px;--d:3.4s;--dur:6s"></i>
+
+    <!-- a couple downward -->
+    <i class="emp-dot" style="--tx:-40px;--ty:240px;--o:.6;--w:3px;--d:.6s;--dur:6s"></i>
+    <i class="emp-dot" style="--tx:70px;--ty:250px;--o:.5;--w:3px;--d:2s;--dur:6.5s"></i>
+  </div>
+
+  <!-- positions the field as a tight band around the orb + matrix-style character changes (read-only on the widget) -->
+  <script>
+  (function () {
+    var fx = document.querySelector('.emp-orbfx'); if (!fx) return;
+    var hero = document.querySelector('.hero');
+    function allRoots(root, out) { out = out || []; var e = root.querySelectorAll('*'); for (var i = 0; i < e.length; i++) { if (e[i].shadowRoot) { out.push(e[i].shadowRoot); allRoots(e[i].shadowRoot, out); } } return out; }
+    function findOrb() {
+      var host = document.querySelector('chat-widget'); if (!host || !host.shadowRoot) return null;
+      var rs = [host.shadowRoot].concat(allRoots(host.shadowRoot)), best = null, ba = 0, r, i, rc, a, cs;
+      for (r = 0; r < rs.length; r++) { cs = rs[r].querySelectorAll('canvas'); for (i = 0; i < cs.length; i++) { rc = cs[i].getBoundingClientRect(); a = rc.width * rc.height; if (a > ba) { ba = a; best = cs[i]; } } }
+      return best;
+    }
+    var PAD = 80;
+    function positionField() {
+      if (!hero) return false;
+      var orb = findOrb(); if (!orb) return false;
+      var o = orb.getBoundingClientRect(), h = hero.getBoundingClientRect();
+      var top = (o.top - h.top) - PAD;
+      if (top < 0) top = 0;
+      fx.style.top = top + 'px';
+      fx.style.bottom = 'auto';
+      fx.style.height = (o.height + PAD * 2) + 'px';
+      return true;
+    }
+    var shown = false;
+    function reveal() { if (!shown) { shown = true; fx.classList.add('is-on'); } }
+    var t = 0, iv = setInterval(function () { t++; if (positionField()) { positionField(); reveal(); clearInterval(iv); } else if (t > 40) { reveal(); clearInterval(iv); } }, 250);
+    window.addEventListener('resize', positionField);
+
+    var glyphs = Array.prototype.slice.call(fx.querySelectorAll('.emp-glyph'));
+
+    /* matrix-style: occasionally swap a glyph's characters with a soft flash */
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      var TOK = ['{ }', '</>', '1010', 'AI', '24/7', 'fn()', '1101', '0x4F', '::', '//', '[ ]', '∑', '●', '→', '01', '10', 'λ', '++', '0b11', '0xFF', '...', '11', '00', 'Δ'];
+      setInterval(function () {
+        if (!glyphs.length) return;
+        var g = glyphs[(Math.random() * glyphs.length) | 0];
+        g.classList.add('emp-flip');
+        setTimeout(function () { g.textContent = TOK[(Math.random() * TOK.length) | 0]; g.classList.remove('emp-flip'); }, 170);
+      }, 800);
+    }
+  })();
+  </script>
+
+  <!-- 30px of separation between the Schedule Demo button above and the orb below -->
+  <div class="emp-orb-spacer" aria-hidden="true" style="height:30px;"></div>
+
+  <!-- LeadConnector AI chat widget (replaces the example site) -->
+  <script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6a131f7b52a22073a7e78a61"></script>
+
+
+</main>
+
+<!-- these two sections are visually swapped via .emp-swap (order) so Calendar & Booking sits in the Service & Area slot, Service & Area in the Calendar slot -->
+<div class="emp-swap">
+
+<!-- ====== Calendar & booking (in the Service & Area slot) ====== -->
+<section class="seo seo--cal" aria-labelledby="seo-title">
+  <div class="seo-bg-grid" aria-hidden="true"></div>
+  <div class="seo-glow" aria-hidden="true"></div>
+
+  <div class="seo-wrap">
+
+    <!-- LEFT · "AI Booking Engine" — checks availability, books onto every calendar, confirms both sides -->
+    <div class="seo-viz" aria-hidden="true">
+      <div class="calbk">
+
+        <!-- calendars the AI books straight into -->
+        <span class="cal-prov cal-prov--g" style="--pd:0s">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="15" rx="2.4"/><path d="M4 9.5h16"/><path d="M8 3v4"/><path d="M16 3v4"/></svg>
+          <span>Google</span>
+        </span>
+        <span class="cal-prov cal-prov--o" style="--pd:.5s">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5.5" width="18" height="13" rx="2.2"/><path d="M3.6 7l8.4 6 8.4-6"/></svg>
+          <span>Outlook</span>
+        </span>
+        <span class="cal-prov cal-prov--c" style="--pd:1s">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
+          <span>Calendly</span>
+        </span>
+
+        <!-- sync wires from each calendar into the booking card -->
+        <svg class="cal-sync" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="calWire" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#40EBFF" stop-opacity="0"/>
+              <stop offset="1" stop-color="#53B9E0" stop-opacity="0.85"/>
+            </linearGradient>
+          </defs>
+          <path id="calW1" class="cal-wire" d="M16 14 C 16 22, 27 21, 27 27"/>
+          <path id="calW2" class="cal-wire" d="M50 11 C 50 19, 50 21, 50 27"/>
+          <path id="calW3" class="cal-wire" d="M84 14 C 84 22, 73 21, 73 27"/>
+          <circle class="cal-flow" r="1.3" fill="#9FDCEF"><animateMotion dur="2.4s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear"><mpath href="#calW1"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.18;0.8;1" dur="2.4s" repeatCount="indefinite"/></circle>
+          <circle class="cal-flow" r="1.3" fill="#9FDCEF"><animateMotion dur="2.4s" begin="-0.8s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear"><mpath href="#calW2"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.18;0.8;1" dur="2.4s" begin="-0.8s" repeatCount="indefinite"/></circle>
+          <circle class="cal-flow" r="1.3" fill="#9FDCEF"><animateMotion dur="2.4s" begin="-1.6s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear"><mpath href="#calW3"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.18;0.8;1" dur="2.4s" begin="-1.6s" repeatCount="indefinite"/></circle>
+        </svg>
+
+        <!-- the calendar card -->
+        <div class="cal-card">
+          <div class="cal-head">
+            <span class="cal-month">June</span>
+            <span class="cal-status"><i></i>AI booking</span>
+          </div>
+          <div class="cal-week"><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span></div>
+          <div class="cal-gridwrap">
+            <div class="cal-grid">
+              <span class="cal-cell is-busy"></span><span class="cal-cell is-free"></span><span class="cal-cell"></span><span class="cal-cell is-busy"></span><span class="cal-cell"></span>
+              <span class="cal-cell"></span><span class="cal-cell is-free"></span><span class="cal-cell is-busy"></span><span class="cal-cell"></span><span class="cal-cell is-free"></span>
+              <span class="cal-cell is-busy"></span><span class="cal-cell"></span><span class="cal-cell is-free"></span><span class="cal-cell is-book"><span class="cal-ring"></span><svg class="cal-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4 10-10"/></svg></span><span class="cal-cell"></span>
+              <span class="cal-cell"></span><span class="cal-cell is-busy"></span><span class="cal-cell is-free"></span><span class="cal-cell"></span><span class="cal-cell is-busy"></span>
+            </div>
+            <span class="cal-scan"></span>
+          </div>
+        </div>
+
+        <!-- output: customer confirmation + owner notification -->
+        <div class="cal-toast t-customer">
+          <span class="cal-toast-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4 4 10-11"/></svg></span>
+          <span class="cal-toast-tx"><b>Confirmation sent</b><i>Date · time · location</i></span>
+        </div>
+        <div class="cal-toast t-owner">
+          <span class="cal-toast-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8.5a6 6 0 1 0-12 0c0 6-2.2 7.5-2.2 7.5h16.4S18 14.5 18 8.5z"/><path d="M13.4 19a2 2 0 0 1-2.8 0"/></svg></span>
+          <span class="cal-toast-tx"><b>New booking</b><i>You're notified instantly</i></span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RIGHT · copy -->
+    <div class="seo-copy">
+      <span class="seo-tag"><span class="seo-tag-dot"></span>[ CALENDAR &amp; BOOKING ]</span>
+      <h2 class="seo-title" id="seo-title">Booked onto your calendar —<br><span class="seo-em">the instant it happens</span></h2>
+      <p class="seo-lead">Your AI receptionist checks your live availability, books the appointment straight onto your calendar, and locks in every detail — all inside the same conversation, without you lifting a finger.</p>
+
+      <div class="seo-points">
+        <div class="seo-point">
+          <span class="seo-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2.2"/><path d="M3 9.5h18"/><path d="M8 2.5v4"/><path d="M16 2.5v4"/><path d="M8.8 14.3l2 2 4-4.2"/></svg></span>
+          <div class="seo-point-body">
+            <h3>Synced with your calendar</h3>
+            <p>Connects straight to Google Calendar, Outlook, or Calendly, reads your real-time availability, and only ever offers slots that are genuinely open.</p>
+          </div>
+        </div>
+        <div class="seo-point">
+          <span class="seo-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8.5a6 6 0 1 0-12 0c0 6.5-2.5 8.5-2.5 8.5h17S18 15 18 8.5z"/><path d="M13.6 20.5a2 2 0 0 1-3.2 0"/></svg></span>
+          <div class="seo-point-body">
+            <h3>Confirmed on both ends</h3>
+            <p>The second a slot is booked, your customer gets an automatic confirmation with the date, time, and location — and you're notified instantly.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="seo-callout">
+        <span class="seo-callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2.2"/><path d="M3 9.5h18"/><path d="M8.5 14.5l2.6 2.6 4.4-4.8"/></svg></span>
+        <p><strong>No phone tag, no double-bookings, no missed details.</strong> From the first message to a confirmed appointment, the entire booking runs itself.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ====== Service pages + service-area pages ====== -->
+<section class="svp svp--flip" aria-labelledby="svp-title">
+  <div class="svp-bg-grid" aria-hidden="true"></div>
+  <div class="svp-glow" aria-hidden="true"></div>
+
+  <div class="svp-wrap">
+
+    <!-- LEFT · "Page Generator" — a rich page for every service & every area -->
+    <div class="svp-viz" aria-hidden="true">
+      <div class="voxbk">
+
+        <!-- the AI's live voice — a free-floating waveform (bars injected by script) -->
+        <div class="vox-wave">
+          <span class="vox-eq"></span>
+          <span class="vox-speak"><i></i><i></i><i></i><em>AI speaking</em></span>
+        </div>
+
+        <!-- simultaneous calls, hovering freely around the voice -->
+        <div class="vox-bub vox-bub--1" style="--bd:0s">
+          <span class="vox-ava"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11 11 0 0 0 3.5.56 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11 11 0 0 0 .56 3.5 1 1 0 0 1-.24 1z"/></svg><span class="vox-live"></span></span>
+          <span class="vox-bub-tx"><b>Incoming</b><i class="vox-time" data-s="84">1:24</i></span>
+        </div>
+        <div class="vox-bub vox-bub--2" style="--bd:1.1s">
+          <span class="vox-ava"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></span>
+          <span class="vox-bub-tx"><b>After-hours</b><i>9:41 PM · answered</i></span>
+        </div>
+        <div class="vox-bub vox-bub--3" style="--bd:2.2s">
+          <span class="vox-ava"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3.5v5c0 4.6-3.2 7.8-8 9.5-4.8-1.7-8-4.9-8-9.5v-5L12 3z"/><path d="M8.8 12l2.2 2.2 4.2-4.4"/></svg></span>
+          <span class="vox-bub-tx"><b>Backup pickup</b><i>No voicemail</i></span>
+        </div>
+        <div class="vox-bub vox-bub--4" style="--bd:3.2s">
+          <span class="vox-ava"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></span>
+          <span class="vox-bub-tx"><b>Instant pickup</b><i>First ring</i></span>
+        </div>
+
+        <!-- free-floating status pills -->
+        <span class="vox-pill vox-pill--top"><span class="vox-dot"></span>Answering live · 24/7</span>
+        <span class="vox-pill vox-pill--bot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11 11 0 0 0 3.5.56 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11 11 0 0 0 .56 3.5 1 1 0 0 1-.24 1z"/></svg>Your number, kept · <b>&#8734; Unlimited</b></span>
+
+      </div>
+    </div>
+
+    <!-- RIGHT · copy -->
+    <div class="svp-copy">
+      <span class="svp-tag"><span class="svp-tag-dot"></span>[ ON YOUR PHONE LINE ]</span>
+      <h2 class="svp-title" id="svp-title">Answers every call —<br><span class="svp-em">on the number you already have</span></h2>
+      <p class="svp-lead">Your AI receptionist lives right on your existing phone line — same number, no new hardware. It picks up with unlimited minutes and messages, so a warm, capable voice is always ready the second someone reaches out.</p>
+
+      <div class="svp-points">
+        <div class="svp-point">
+          <span class="svp-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11 11 0 0 0 3.5.56 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11 11 0 0 0 .56 3.5 1 1 0 0 1-.24 1z"/></svg></span>
+          <div class="svp-point-body">
+            <h3>Backup or front line</h3>
+            <p>Set it to step in when your team can't reach the phone after a few rings, or to pick up first on every call — whichever you prefer.</p>
+          </div>
+        </div>
+        <div class="svp-point">
+          <span class="svp-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+          <div class="svp-point-body">
+            <h3>Always on, never busy</h3>
+            <p>It takes unlimited calls at once, day and night — covering every after-hours call so no one ever hits voicemail or hangs up to call a competitor.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="svp-callout">
+        <span class="svp-callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3.5v5c0 4.6-3.2 7.8-8 9.5-4.8-1.7-8-4.9-8-9.5v-5L12 3z"/><path d="M8.8 12l2.2 2.2 4.2-4.4"/></svg></span>
+        <p><strong>No missed calls. No voicemail. No lost jobs.</strong> Whether you're slammed, closed, or off the clock, every caller reaches a helpful voice that's ready to book the work.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</div>
+<!-- /.emp-swap -->
+
+<!-- builds the live voice-waveform bars + ticks the call timers (AI Employees "live voice" viz) -->
+<script>
+(function () {
+  var eqs = document.querySelectorAll('.voxbk .vox-eq');
+  for (var e = 0; e < eqs.length; e++) {
+    for (var i = 0; i < 42; i++) {
+      var b = document.createElement('i');
+      b.style.setProperty('--pk', (0.28 + Math.random() * 0.72).toFixed(2));
+      b.style.setProperty('--dur', (0.7 + Math.random() * 0.95).toFixed(2) + 's');
+      b.style.setProperty('--del', '-' + (Math.random() * 1.4).toFixed(2) + 's');
+      eqs[e].appendChild(b);
+    }
+  }
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var times = document.querySelectorAll('.voxbk .vox-time'), secs = [];
+  for (var t = 0; t < times.length; t++) { secs[t] = parseInt(times[t].getAttribute('data-s') || '0', 10); }
+  function fmt(s) { var m = Math.floor(s / 60), ss = s % 60; return m + ':' + (ss < 10 ? '0' : '') + ss; }
+  setInterval(function () { for (var t = 0; t < times.length; t++) { secs[t]++; times[t].textContent = fmt(secs[t]); } }, 1000);
+})();
+</script>
+
+<!-- animates the intelligence gauge: booking rate climbs 52% -> 88% through small ups/downs over ~30s, then holds (arc + number in sync) -->
+<script>
+(function () {
+  function init() {
+    var gauge = document.querySelector('.brnbk .brn-gauge');
+    if (!gauge) return;
+    var numEl = gauge.querySelector('.brn-num'), arc = gauge.querySelector('.brn-arc');
+    var C = 314.159;
+    var pts = [52, 59, 57, 64, 61, 68, 62, 76, 71, 81, 78, 85, 83, 88];
+    var SEG = 2300; /* ms per step — 13 steps ≈ 30s total */
+    function setP(p) {
+      if (numEl) numEl.textContent = Math.round(p);
+      if (arc) arc.style.strokeDashoffset = (C * (1 - p / 100)).toFixed(2);
+    }
+    function ease(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+    setP(pts[0]);
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { setP(pts[pts.length - 1]); return; }
+    var i = 0;
+    function seg() {
+      if (i >= pts.length - 1) { setP(pts[pts.length - 1]); return; }
+      var from = pts[i], to = pts[i + 1], start = null;
+      function step(ts) {
+        if (start === null) start = ts;
+        var t = Math.min((ts - start) / SEG, 1);
+        setP(from + (to - from) * ease(t));
+        if (t < 1) requestAnimationFrame(step);
+        else { i++; seg(); }
+      }
+      requestAnimationFrame(step);
+    }
+    seg();
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>
+
+<!-- ticks the "calls answered" counter in sync with the recording timeline playing through -->
+<script>
+(function () {
+  function init() {
+    var fill = document.querySelector('.dshbk .dsh-fill');
+    var nums = document.querySelectorAll('.dshbk .dsh-num');
+    if (!fill || !nums.length) return;
+    var n = 1247;
+    function render() { var t = n.toLocaleString('en-US'); for (var i = 0; i < nums.length; i++) nums[i].textContent = t; }
+    render();
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    fill.addEventListener('animationiteration', function () { n++; render(); });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>
+
+<!-- ====== Real-time automations / speed-to-lead ====== -->
+<section class="spd spd--gauge" aria-labelledby="spd-title">
+  <div class="spd-bg-grid" aria-hidden="true"></div>
+  <div class="spd-glow" aria-hidden="true"></div>
+
+  <div class="spd-wrap">
+
+    <!-- LEFT · copy -->
+    <div class="spd-copy">
+      <span class="spd-tag"><span class="spd-tag-dot"></span>[ CUSTOM TRAINED AI ]</span>
+      <h2 class="spd-title" id="spd-title">It already knows your business —<br><span class="spd-em">and never stops learning</span></h2>
+      <p class="spd-lead">Your receptionist is custom-built around your business — every service, every area, your hours, pricing, history, and FAQs. It's ready the moment it goes live, then sharpens itself with every call it takes.</p>
+
+      <div class="spd-points">
+        <div class="spd-point">
+          <span class="spd-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 1.5v3M15 1.5v3M9 19.5v3M15 19.5v3M1.5 9h3M1.5 15h3M19.5 9h3M19.5 15h3"/></svg></span>
+          <div class="spd-point-body">
+            <h3>Knows your business cold</h3>
+            <p>Your services and service areas, the work you don't take on, your hours, pricing, history, and FAQs — all built in, so every answer sounds like your sharpest employee.</p>
+          </div>
+        </div>
+        <div class="spd-point">
+          <span class="spd-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 7"/><path d="M21 4v3h-3"/><path d="M21 12a9 9 0 0 1-15 6.7L3 17"/><path d="M3 20v-3h3"/></svg></span>
+          <div class="spd-point-body">
+            <h3>Improves with every call</h3>
+            <p>It learns from the calls that book and the ones that don't, getting better on its own — a salesperson you never train, with no salary, benefits, or turnover.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="spd-callout">
+        <span class="spd-callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></span>
+        <p><strong>Hired and trained on day one.</strong> No onboarding, no ramp-up, no off days — it works the moment it's live and only gets sharper from there.</p>
+      </div>
+    </div>
+
+    <!-- RIGHT · "Real-Time Relay" animation -->
+    <div class="spd-viz" aria-hidden="true">
+
+      <div class="brnbk">
+
+        <!-- anchor pill -->
+        <span class="brn-pill"><span class="brn-dot"></span>Trained on your business</span>
+
+        <!-- free-floating accent tags -->
+        <span class="brn-tag brn-tag--l" style="--td:0s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 7"/><path d="M21 4v3h-3"/><path d="M21 12a9 9 0 0 1-15 6.7L3 17"/><path d="M3 20v-3h3"/></svg>Learns every call</span>
+        <span class="brn-tag brn-tag--r" style="--td:1.3s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4 10-10"/></svg>No training</span>
+
+        <!-- the self-improving intelligence gauge -->
+        <div class="brn-gauge">
+          <div class="brn-ticks"></div>
+          <svg class="brn-ring" viewBox="0 0 120 120">
+            <defs>
+              <linearGradient id="brnArc" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#2bb6c8"/>
+                <stop offset="1" stop-color="#6ff0ff"/>
+              </linearGradient>
+            </defs>
+            <circle class="brn-track" cx="60" cy="60" r="50"/>
+            <circle class="brn-arc" cx="60" cy="60" r="50"/>
+          </svg>
+          <div class="brn-readout">
+            <span class="brn-val"><span class="brn-num">52</span><span class="brn-pct">%</span></span>
+            <span class="brn-rlabel">booking rate</span>
+            <span class="brn-trend"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 14l7-7 7 7"/></svg>improving</span>
+          </div>
+        </div>
+
+        <!-- it knows every part of your business -->
+        <span class="brn-knows">
+          <em>Knows</em>
+          <b style="--kd:0s">Services</b><span>·</span><b style="--kd:.5s">Areas</b><span>·</span><b style="--kd:1s">Hours</b><span>·</span><b style="--kd:1.5s">Pricing</b><span>·</span><b style="--kd:2s">FAQs</b>
+        </span>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ====== Fresh content / freshness signal ====== -->
+<section class="frs frs--route" aria-labelledby="frs-title">
+  <div class="frs-bg-grid" aria-hidden="true"></div>
+  <div class="frs-glow" aria-hidden="true"></div>
+
+  <div class="frs-wrap">
+
+    <!-- LEFT · "Freshness Dashboard" animation -->
+    <div class="frs-viz" aria-hidden="true">
+      <div class="rtebk">
+
+        <!-- departments across the top -->
+        <span class="rte-dept rte-dept--1" style="--di:0s">
+          <span class="rte-dept-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg></span>Billing
+        </span>
+        <span class="rte-dept rte-dept--2" style="--di:2s">
+          <span class="rte-dept-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg></span>Sales
+        </span>
+        <span class="rte-dept rte-dept--3" style="--di:4s">
+          <span class="rte-dept-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg></span>Manager
+        </span>
+        <span class="rte-dept rte-dept--4" style="--di:6s">
+          <span class="rte-dept-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1.5v21"/><path d="M17 5.5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>Finance
+        </span>
+        <span class="rte-dept rte-dept--5" style="--di:8s">
+          <span class="rte-dept-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 16H3z"/><path d="M12 10v4"/><path d="M12 17.4v.2"/></svg></span>Emergency
+        </span>
+
+        <!-- crossing arrows from the sensing base up to each department; the matching one lights up -->
+        <svg class="rte-fan" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <defs>
+            <marker id="rteHdDim" markerUnits="userSpaceOnUse" markerWidth="3.6" markerHeight="3.6" refX="2.3" refY="1.8" orient="auto"><path d="M0,0 L3.2,1.8 L0,3.6 Z" fill="rgba(120,200,222,0.35)"/></marker>
+            <marker id="rteHdLit" markerUnits="userSpaceOnUse" markerWidth="3.6" markerHeight="3.6" refX="2.3" refY="1.8" orient="auto"><path d="M0,0 L3.2,1.8 L0,3.6 Z" fill="#40EBFF"/></marker>
+          </defs>
+          <path class="rte-wire" d="M50,82 C 66,60 28,44 14,25" marker-end="url(#rteHdDim)"/>
+          <path class="rte-wire" d="M50,82 C 56,58 40,37 33,18" marker-end="url(#rteHdDim)"/>
+          <path class="rte-wire" d="M50,82 C 49,58 53,36 51,15" marker-end="url(#rteHdDim)"/>
+          <path class="rte-wire" d="M50,82 C 44,58 60,37 69,18" marker-end="url(#rteHdDim)"/>
+          <path class="rte-wire" d="M50,82 C 34,60 72,44 86,25" marker-end="url(#rteHdDim)"/>
+          <path class="rte-lit" style="--di:0s" d="M50,82 C 66,60 28,44 14,25" marker-end="url(#rteHdLit)"/>
+          <path class="rte-lit" style="--di:2s" d="M50,82 C 56,58 40,37 33,18" marker-end="url(#rteHdLit)"/>
+          <path class="rte-lit" style="--di:4s" d="M50,82 C 49,58 53,36 51,15" marker-end="url(#rteHdLit)"/>
+          <path class="rte-lit" style="--di:6s" d="M50,82 C 44,58 60,37 69,18" marker-end="url(#rteHdLit)"/>
+          <path class="rte-lit" style="--di:8s" d="M50,82 C 34,60 72,44 86,25" marker-end="url(#rteHdLit)"/>
+        </svg>
+
+        <!-- the sensing source (base) — cyan-gradient vibe, not a circle -->
+        <div class="rte-base">
+          <span class="rte-base-dot"></span>
+          <span class="rte-base-lbl">Sensing</span>
+          <span class="rte-intent">
+            <b style="--ii:0s">billing question</b>
+            <b style="--ii:2s">ready to buy</b>
+            <b style="--ii:4s">needs a manager</b>
+            <b style="--ii:6s">payment plan</b>
+            <b style="--ii:8s">urgent — now</b>
+          </span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RIGHT · copy -->
+    <div class="frs-copy">
+      <span class="frs-tag"><span class="frs-tag-dot"></span>[ LIVE CALL TRANSFERS ]</span>
+      <h2 class="frs-title" id="frs-title">It reads every caller —<br><span class="frs-em">and routes them to the right team</span></h2>
+      <p class="frs-lead">Your AI receptionist listens for what each caller actually needs — by name, by topic, or by the tone of the conversation — then transfers the call live to the right department or phone line, across as many teams as you run.</p>
+
+      <div class="frs-points">
+        <div class="frs-point">
+          <span class="frs-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/><path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></span>
+          <div class="frs-point-body">
+            <h3>Senses what they need</h3>
+            <p>Ask for someone by name, mention billing, or just sound frustrated — it reads the intent and the mood of the call, then sends the caller to whoever can actually help.</p>
+          </div>
+        </div>
+        <div class="frs-point">
+          <span class="frs-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h4v4"/><path d="M20 4l-7 7"/><path d="M8 20H4v-4"/><path d="M4 20l7-7"/></svg></span>
+          <div class="frs-point-body">
+            <h3>Transfers anywhere, instantly</h3>
+            <p>Hand calls off to billing, sales, a manager — any department or number you choose. And when it's urgent or a sale ready to close, it routes them fast so you never lose the job.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="frs-callout">
+        <span class="frs-callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></span>
+        <p><strong>The right person, every single call.</strong> No misrouted callers, no leads slipping away, no one stuck on hold — just clean live handoffs that protect your time and your revenue.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ====== 24/7 AI chat widget ====== -->
+<section class="aiw aiw--dash" aria-labelledby="aiw-title">
+  <div class="aiw-bg-grid" aria-hidden="true"></div>
+  <div class="aiw-glow" aria-hidden="true"></div>
+
+  <div class="aiw-wrap">
+
+    <!-- LEFT · copy -->
+    <div class="aiw-copy">
+      <span class="aiw-tag"><span class="aiw-tag-dot"></span>[ LIVE CALL ANALYTICS ]</span>
+      <h2 class="aiw-title" id="aiw-title">Every call, documented —<br><span class="aiw-em">and tracked in real time</span></h2>
+      <p class="aiw-lead">Every call is recorded and transcribed automatically, and the moment one ends you get a notification with the full transcript and the caller's details — all flowing into a live dashboard that tracks your AI receptionist's performance.</p>
+
+      <div class="aiw-points">
+        <div class="aiw-point">
+          <span class="aiw-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v4h4"/><path d="M8 13h8M8 17h6"/></svg></span>
+          <div class="aiw-point-body">
+            <h3>A full recap after every call</h3>
+            <p>Seconds after a call ends, you're sent a notification with the complete transcript and the key details — the caller's name, number, and exactly what they wanted.</p>
+          </div>
+        </div>
+        <div class="aiw-point">
+          <span class="aiw-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l3-3 3 2 5-6"/></svg></span>
+          <div class="aiw-point-body">
+            <h3>Live analytics you can act on</h3>
+            <p>Replay any recording on demand and watch the numbers update live — total calls handled, actions taken, and performance trends across any week or month.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="aiw-callout">
+        <span class="aiw-callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></span>
+        <p><strong>Total visibility into every conversation.</strong> Nothing slips by — you have the recordings, the transcripts, and the data to know exactly how your receptionist is performing.</p>
+      </div>
+    </div>
+
+    <!-- RIGHT · "Always-On Assistant" animation -->
+    <div class="aiw-viz" aria-hidden="true">
+      <div class="dshbk">
+
+        <!-- live "calls answered" counter (ticks up in sync with the recording timeline) -->
+        <span class="dsh-tally">
+          <span class="dsh-tally-dot"></span>
+          <b class="dsh-num">1,247</b>
+          <span class="dsh-tally-lbl">calls answered</span>
+        </span>
+
+        <!-- big call-recording player (free) — notification bell sits to the right of the timeline -->
+        <div class="dsh-player">
+          <span class="dsh-pbtn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+          <div class="dsh-tl">
+            <div class="dsh-tl-head">
+              <span class="dsh-tl-name"><span class="dsh-tl-dot"></span>Jordan M. · just now</span>
+              <span class="dsh-tl-time">1:24</span>
+            </div>
+            <div class="dsh-track"><span class="dsh-fill"></span></div>
+          </div>
+          <span class="dsh-bell"><span class="dsh-bell-ring"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8.5a6 6 0 1 0-12 0c0 6.5-2.5 8.5-2.5 8.5h17S18 15 18 8.5z"/><path d="M13.6 20.5a2 2 0 0 1-3.2 0"/></svg></span>
+        </div>
+
+        <!-- two cards beneath: transcript + analytics -->
+        <div class="dsh-cards">
+          <div class="dsh-mini dsh-mini--tx">
+            <span class="dsh-mini-top"><span class="dsh-mini-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v4h4"/></svg></span>Transcript</span>
+            <span class="dsh-tx-line"><em>Caller</em> Kitchen remodel quote?</span>
+            <span class="dsh-tx-line"><em>AI</em> Booked you Tue 2 PM.</span>
+            <span class="dsh-tx-bars"><span></span><span></span></span>
+          </div>
+          <div class="dsh-mini dsh-mini--an">
+            <span class="dsh-mini-top"><span class="dsh-mini-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V11M12 21V4M19 21V14"/></svg></span>Analytics</span>
+            <span class="dsh-an-stat"><b>&#9650; 23%</b><i>more this week</i></span>
+            <span class="dsh-bars"><span style="--h:38%"></span><span style="--h:56%"></span><span style="--h:48%"></span><span style="--h:72%"></span><span style="--h:92%"></span></span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ====== Premium custom design ====== -->
+<section class="prm prm--web" aria-labelledby="prm-title">
+  <div class="prm-bg-grid" aria-hidden="true"></div>
+  <div class="prm-glow" aria-hidden="true"></div>
+
+  <div class="prm-wrap">
+
+    <!-- LEFT · "Premium Artboard" animation -->
+    <div class="prm-viz" aria-hidden="true">
+      <div class="webbk">
+
+        <!-- faint website (your site), the AI is embedded on -->
+        <div class="web-page">
+          <div class="web-page-top"><span class="web-pdot"></span><span class="web-pdot"></span><span class="web-pdot"></span><span class="web-purl">yourbusiness.com</span></div>
+          <div class="web-page-body">
+            <span class="web-blk hero"></span>
+            <span class="web-blk l1"></span>
+            <span class="web-blk l2"></span>
+            <span class="web-row"><span></span><span></span><span></span></span>
+          </div>
+        </div>
+
+        <!-- reads your whole site -->
+        <span class="web-scan"><span class="web-scan-dot"></span>Reads your whole site</span>
+
+        <!-- live answer popping from the widget -->
+        <div class="web-chat">
+          <div class="web-bub q">Do you pull permits for additions?</div>
+          <div class="web-bub a">Yes — we handle the whole permit process.</div>
+          <div class="web-bub q">How soon could someone come out?</div>
+          <div class="web-bub a">
+            <span class="web-ans">I've got Tuesday at 2 PM open.</span>
+            <span class="web-typing"><i></i><i></i><i></i></span>
+          </div>
+          <div class="web-tagline"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg>Answered from your site</div>
+          <div class="web-actions">
+            <span class="web-act"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5 9 4l1.2 3.4-1.8 1.3a10.5 10.5 0 0 0 4.6 4.6l1.3-1.8L17.7 13l.5 2.5a1.4 1.4 0 0 1-1.5 1.7A13.6 13.6 0 0 1 4.3 5a1.4 1.4 0 0 1 1.7-1.5"/></svg>Call</span>
+            <span class="web-act"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8 8 0 0 1-11.6 7.1L4 20.5l1.9-5.3A8 8 0 1 1 21 11.5z"/></svg>Message</span>
+          </div>
+        </div>
+
+        <!-- the embeddable AI receptionist widget -->
+        <div class="web-orb">
+          <span class="web-orb-ring"></span>
+          <span class="web-orb-core"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13a8 8 0 0 1 16 0"/><rect x="2.5" y="13" width="4" height="7" rx="1.6"/><rect x="17.5" y="13" width="4" height="7" rx="1.6"/><path d="M20.5 20v.4a3 3 0 0 1-3 3H14"/></svg></span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RIGHT · copy -->
+    <div class="prm-copy">
+      <span class="prm-tag"><span class="prm-tag-dot"></span>[ EMBEDDED ON YOUR SITE ]</span>
+      <h2 class="prm-title" id="prm-title">Right on your website —<br><span class="prm-em">answering every visitor</span></h2>
+      <p class="prm-lead">Whether we build your site or you keep your current one, the AI receptionist embeds right into it to call or message visitors. It reads every page, so it can answer questions that aren't even in your copy — and turn browsers into booked jobs.</p>
+
+      <div class="prm-points">
+        <div class="prm-point">
+          <span class="prm-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 8h18"/><circle cx="17.5" cy="13.5" r="2.4"/></svg></span>
+          <div class="prm-point-body">
+            <h3>Drops into any website</h3>
+            <p>New build or your existing site — it installs as a call-and-message widget on every page, like a receptionist sitting right on your interface.</p>
+          </div>
+        </div>
+        <div class="prm-point">
+          <span class="prm-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h4"/></svg></span>
+          <div class="prm-point-body">
+            <h3>Knows your whole site</h3>
+            <p>It scans every page and infers the answers, so visitors get real responses to specific questions — then it books them, or takes their details, on the spot.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="prm-callout">
+        <span class="prm-callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8.5 10.5l2 2 4-4"/></svg></span>
+        <p><strong>Answers they can't find anywhere else.</strong> When visitors get instant answers right on your site, more of them stay, trust you, and reach out — which means more traffic and more booked work.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ====== FAQ — contractor questions ====== -->
+<section class="faq" aria-labelledby="faq-title">
+  <div class="faq-grid-bg" aria-hidden="true"></div>
+  <div class="faq-glow" aria-hidden="true"></div>
+  <span class="faq-cross faq-cross-tl" aria-hidden="true"></span>
+  <span class="faq-cross faq-cross-br" aria-hidden="true"></span>
+
+  <div class="faq-wrap">
+    <div class="faq-head">
+      <span class="faq-tag"><span class="faq-dot"></span>[ FAQ ]</span>
+      <h2 class="faq-title" id="faq-title">Everything contractors ask about <span class="faq-em">their AI employees</span></h2>
+    </div>
+
+    <div class="faq-list">
+      <article class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span class="faq-q-text">Do I need a new phone number, or can it use my current line?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner"><p>It works right on your existing phone line — same number, no new hardware. It comes with unlimited minutes and messages, so it can answer every call and message that comes in without you ever changing a thing.</p></div></div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span class="faq-q-text">When does the AI receptionist actually answer calls?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner"><p>However you want it to. It can back up your team when no one picks up after a few rings, pick up first on every call, or handle everything after hours when you're closed. It answers multiple calls at once, 24/7 — so no caller ever hits voicemail or hangs up to dial a competitor.</p></div></div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span class="faq-q-text">How does it know the details about my specific business?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner"><p>We custom-build it around your business — every service and service area, the work you don't take on, your hours, pricing, history, and FAQs. It's ready the moment it goes live, with zero training on your part, and it gets sharper with every call it handles.</p></div></div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span class="faq-q-text">Can it actually book appointments on my calendar?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Yes. It connects to your Google Calendar, Outlook, or Calendly, checks your real-time availability, and books the appointment directly onto your calendar — then sends your customer a confirmation with the date, time, and location, and notifies you the second it happens.</p></div></div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span class="faq-q-text">Can it transfer callers to the right person or department?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner"><p>It listens for what each caller needs — by name, by topic, or by the tone of the conversation — and transfers the call live to the right department or number, whether that's billing, sales, or a manager. Urgent issues and ready-to-close sales get routed fast, so you never lose the job.</p></div></div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span class="faq-q-text">Will I be able to see what happens on every call?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Every call is recorded and transcribed automatically. The moment a call ends you get a notification with the full transcript and the caller's key details, and it all flows into a live dashboard — recordings, calls handled, actions taken, and performance trends over any week or month.</p></div></div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span class="faq-q-text">Does it work on my existing website?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Yes — whether we build your site or you keep your current one, the receptionist embeds right onto it as a call-and-message widget. It reads every page of your site, so it can answer specific questions that aren't even written in your copy, then book the visitor or take their details on the spot.</p></div></div>
+      </article>
+    </div>
+
+    <div class="faq-foot">
+      <span class="faq-foot-text">Still have questions?</span>
+      <a class="faq-foot-cta" href="/book">
+        <span>Ask an expert</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FINAL CTA — let's talk ====== -->
+<section class="finalcta" aria-labelledby="finalcta-title">
+  <div class="finalcta-stage">
+    <div class="finalcta-discs" aria-hidden="true">
+      <span class="fdisc d1"></span>
+      <span class="fdisc d2"></span>
+      <span class="fdisc d3"></span>
+      <span class="fdisc d4"></span>
+    </div>
+    <h2 class="finalcta-title" id="finalcta-title">Let&rsquo;s <span class="finalcta-em">talk.</span></h2>
+    <p class="finalcta-sub">Or better &mdash; call our demo line and let Erio do the talking. Websites, AI&nbsp;employees, and custom solutions, all built around the way your shop actually runs.</p>
+    <div class="finalcta-actions">
+      <a href="/book" class="finalcta-fill">
+        <span>Book Demo</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="2"/><path d="M3 9.5h18"/><path d="M8 2.5v4M16 2.5v4"/></svg>
+      </a>
+      <a href="/packages" class="finalcta-line">
+        <span>View Packages</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8.5"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer class="site-foot">
+  <div class="site-foot-brand">
+    <a href="/"><img class="site-foot-logo" src="Erio-Logo-Text-White-Transparent.png" alt="Erio" /></a>
+    <p>&copy; 2026 Erio LLC &middot; AI websites, employees &amp; solutions.</p>
+    <div class="site-foot-legal">
+      <a href="/privacypolicy" target="_blank" rel="noopener">Privacy</a>
+      <span>|</span>
+      <a href="/termsofservice" target="_blank" rel="noopener">Terms</a>
+    </div>
+  </div>
+
+  <nav class="site-foot-col" aria-label="Explore">
+    <span class="site-foot-head">Explore</span>
+    <a href="/book">Book</a>
+    <a href="/packages">Packages</a>
+    <a href="https://app.erio.ai/">Login</a>
+  </nav>
+
+  <nav class="site-foot-col" aria-label="Products">
+    <span class="site-foot-head">Products</span>
+    <a href="/ai-websites">AI Websites</a>
+    <a href="/ai-employees">AI Employees</a>
+    <a href="#products">AI Solutions</a>
+  </nav>
+
+  <div class="site-foot-col">
+    <span class="site-foot-head">Contact</span>
+    <a href="mailto:info@erio.ai">info@erio.ai</a>
+    <a href="tel:+17867880486">(786) 788-0486</a>
+    <a class="site-foot-addr" href="https://www.google.com/maps/place/Erio/@38.3941829,-171.0053285,3z/data=!4m6!3m5!1s0x4ba0d6ca652a56b:0x278344f4b97a786e!8m2!3d46.423669!4d-129.9427086!16s%2Fg%2F11yk61fcg9?entry=ttu&g_ep=EgoyMDI2MDUyMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">1000 Brickell Ave,<br>Miami, FL 33131</a>
+  </div>
+</footer>
+
+<script>
+  /* ============================================================
+     AI EMPLOYEES VOICE WAVE — 30 vertical bars with multi-frequency
+     speech-like animation. 2D canvas, brand neon cyan palette.
+  ============================================================ */
+  (function initVoiceWave() {
+    const canvas = document.querySelector('.voice-wave-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    let cssW = 0, cssH = 0, time = 0, raf = 0;
+    let visible = true, docVisible = !document.hidden;
+
+    function resize() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const rect = canvas.getBoundingClientRect();
+      cssW = Math.max(1, rect.width);
+      cssH = Math.max(1, rect.height);
+      canvas.width  = Math.round(cssW * dpr);
+      canvas.height = Math.round(cssH * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.lineCap = 'round';
+    }
+    resize();
+    if ('ResizeObserver' in window) new ResizeObserver(resize).observe(canvas);
+    window.addEventListener('resize', resize, { passive: true });
+
+    // 30 animated bars + 1 static mini-bar on each side + 1 dot on each end
+    const BAR_COUNT = 34;
+    const PALE  = [120, 172, 179]; // #78ACB3
+    const NEON  = [44, 165, 179];  // #2CA5B3
+
+    function draw() {
+      raf = 0;
+      if (!visible || !docVisible) return;
+      ctx.clearRect(0, 0, cssW, cssH);
+
+      const visW = cssW * 0.80;
+      const gap = visW / BAR_COUNT;
+      const startX = (cssW - visW) / 2 + gap / 2;
+      const centerY = cssH / 2;
+      const maxHalf = cssH * 0.42;
+
+      for (let i = 0; i < BAR_COUNT; i++) {
+        const x = startX + i * gap;
+
+        // ---- Outermost dots (very edge) ----
+        if (i === 0 || i === BAR_COUNT - 1) {
+          ctx.fillStyle = `rgba(${NEON[0]}, ${NEON[1]}, ${NEON[2]}, 0.22)`;
+          ctx.beginPath();
+          ctx.arc(x, centerY, 4, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.fillStyle = `rgba(${PALE[0]}, ${PALE[1]}, ${PALE[2]}, 0.95)`;
+          ctx.beginPath();
+          ctx.arc(x, centerY, 1.8, 0, Math.PI * 2);
+          ctx.fill();
+          continue;
+        }
+
+        // ---- Static mini-bars (one step inside each dot) ----
+        if (i === 1 || i === BAR_COUNT - 2) {
+          const half = 5;
+          const y1 = centerY - half;
+          const y2 = centerY + half;
+          ctx.lineWidth = 7;
+          ctx.strokeStyle = `rgba(${NEON[0]}, ${NEON[1]}, ${NEON[2]}, 0.22)`;
+          ctx.beginPath();
+          ctx.moveTo(x, y1);
+          ctx.lineTo(x, y2);
+          ctx.stroke();
+          ctx.lineWidth = 2.8;
+          ctx.strokeStyle = `rgb(${NEON[0]}, ${NEON[1]}, ${NEON[2]})`;
+          ctx.beginPath();
+          ctx.moveTo(x, y1);
+          ctx.lineTo(x, y2);
+          ctx.stroke();
+          continue;
+        }
+
+        // ---- Animated bars (i = 2 … BAR_COUNT-3) ----
+        // Re-normalize p over the 30 active bars so the envelope still
+        // peaks at the dead center.
+        const p = (i - 2) / (BAR_COUNT - 5);
+
+        const env = Math.pow(Math.sin(p * Math.PI), 0.7);
+
+        // Phase: time * freq - p * k → features travel low-p to high-p (LEFT → RIGHT)
+        const speech =
+          (Math.sin(time * 1.9 - p * 0.5) * 0.5 + 0.5) * 0.7 +
+          (Math.sin(time * 1.4 - p * 1.2) * 0.5 + 0.5) * 0.3;
+
+        const detail =
+          (Math.sin(time * 5.4 - p * 2.3) * 0.5 + 0.5) * 0.40 +
+          (Math.sin(time * 8.6 - p * 3.7 + 1.5) * 0.5 + 0.5) * 0.35 +
+          (Math.sin(time * 13.2 - p * 5.1) * 0.5 + 0.5) * 0.25;
+
+        const flutter = Math.sin(time * 4.2 - i * 0.7) * 0.3 + 0.7;
+
+        // Higher baseline so the wave sits taller even at its quietest
+        const intensity = Math.min(1, env * (0.62 + speech * detail * 0.55) * flutter);
+        // Larger floor too — outermost bars never collapse below this
+        const half = Math.max(12, intensity * maxHalf);
+        const y1 = centerY - half;
+        const y2 = centerY + half;
+
+        // GLOW pass — wide, low-alpha halo
+        ctx.lineWidth = 9;
+        ctx.strokeStyle = `rgba(${NEON[0]}, ${NEON[1]}, ${NEON[2]}, ${0.08 + intensity * 0.12})`;
+        ctx.beginPath();
+        ctx.moveTo(x, y1);
+        ctx.lineTo(x, y2);
+        ctx.stroke();
+
+        // CORE pass — solid neon (was a per-bar createLinearGradient
+        // allocated every frame — costly). Solid color reads the same
+        // visually because the halo already provides the falloff.
+        ctx.lineWidth = 3;
+        ctx.strokeStyle = `rgb(${NEON[0]}, ${NEON[1]}, ${NEON[2]})`;
+        ctx.beginPath();
+        ctx.moveTo(x, y1);
+        ctx.lineTo(x, y2);
+        ctx.stroke();
+      }
+
+      time += 0.018;
+      raf = requestAnimationFrame(draw);
+    }
+
+    function start() { if (!raf) raf = requestAnimationFrame(draw); }
+    function stop()  { if (raf) { cancelAnimationFrame(raf); raf = 0; } }
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(entries => {
+        for (const e of entries) {
+          visible = e.isIntersecting;
+          if (visible) start(); else stop();
+        }
+      }, { rootMargin: '50px' }).observe(canvas);
+    }
+    document.addEventListener('visibilitychange', () => {
+      docVisible = !document.hidden;
+      if (docVisible) start(); else stop();
+    });
+
+    start();
+  })();
+
+  /* ============================================================
+     MOBILE NAV — hamburger toggles the dropdown menu.
+  ============================================================ */
+  (function initMobileMenu() {
+    const burger = document.querySelector('.nav-mobile-burger');
+    const menu   = document.getElementById('navMobileMenu');
+    if (!burger || !menu) return;
+
+    function setOpen(open) {
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      menu.setAttribute('aria-hidden', open ? 'false' : 'true');
+      burger.classList.toggle('is-open', open);
+      menu.classList.toggle('is-open', open);
+    }
+
+    burger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setOpen(burger.getAttribute('aria-expanded') !== 'true');
+    });
+
+    // close on item tap
+    menu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => setOpen(false));
+    });
+
+    // close on outside tap
+    document.addEventListener('click', (e) => {
+      if (burger.getAttribute('aria-expanded') !== 'true') return;
+      if (menu.contains(e.target) || burger.contains(e.target)) return;
+      setOpen(false);
+    });
+
+    // close on escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') setOpen(false);
+    });
+  })();
+
+  /* ============================================================
+     MOBILE PILL — wider by default; shrinks when scrolling down,
+     expands again when scrolling up (and at the very top).
+  ============================================================ */
+  (function initMobilePillScroll() {
+    const pill = document.querySelector('.nav-mobile-pill');
+    if (!pill) return;
+    let lastY = window.scrollY || 0;
+    let ticking = false;
+
+    function update() {
+      ticking = false;
+      const y = window.scrollY || 0;
+      if (y <= 4) {
+        pill.classList.remove('is-compact');     // expanded at the top
+      } else if (y > lastY + 2) {
+        pill.classList.add('is-compact');         // scrolling down → shrink
+      } else if (y < lastY - 2) {
+        pill.classList.remove('is-compact');      // scrolling up → expand
+      }
+      lastY = y;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+  })();
+
+  /* ============================================================
+     PRODUCTS DROPDOWN — opens ONLY when the cursor enters
+     "Products", then stays open while the cursor is anywhere on
+     the pill, and closes once the cursor leaves the pill entirely.
+  ============================================================ */
+  (function initProductsDropdown() {
+    const pill    = document.querySelector('.nav-pill');
+    const trigger = document.querySelector('.nav-drop-trigger');
+    const sub     = pill && pill.querySelector('.nav-pill-sub');
+    if (!pill || !trigger || !sub) return;
+
+    const open = () => {
+      pill.classList.add('is-open');
+      sub.style.maxHeight = sub.scrollHeight + 'px'; // exact content height
+    };
+    const close = () => {
+      pill.classList.remove('is-open');
+      sub.style.maxHeight = ''; // back to CSS max-height:0
+    };
+
+    // open only from Products (hover or keyboard focus)
+    trigger.addEventListener('mouseenter', open);
+    trigger.addEventListener('focus', open);
+
+    // stay open across the whole pill; close when the cursor leaves it
+    pill.addEventListener('mouseleave', close);
+
+    // keyboard: close once focus leaves the pill
+    pill.addEventListener('focusout', (e) => {
+      if (!pill.contains(e.relatedTarget)) close();
+    });
+  })();
+
+  /* ============================================================
+     CARD SPOTLIGHT — hover-only neon cyan border glow that
+     traces the cursor across each partner card. Desktop only.
+  ============================================================ */
+  (function initCardSpotlight() {
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    const cards = document.querySelectorAll('.partner-card');
+    cards.forEach(card => {
+      card.addEventListener('pointermove', (e) => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--spot-x', (e.clientX - rect.left).toFixed(1));
+        card.style.setProperty('--spot-y', (e.clientY - rect.top).toFixed(1));
+      }, { passive: true });
+    });
+  })();
+
+  // headline gradient: compute per-char background-position once after layout settles,
+  // then recompute on resize debounced to avoid layout thrash
+  function applyHeadlineGradient() {
+    const title = document.querySelector('.hero-title');
+    if (!title) return;
+    const chars = title.querySelectorAll('.char');
+    if (!chars.length) return;
+    // single forced reflow read, then batch writes
+    const titleLeft = title.getBoundingClientRect().left;
+    const total = title.offsetWidth;
+    const writes = [];
+    chars.forEach(c => {
+      const offset = c.getBoundingClientRect().left - titleLeft;
+      writes.push([c, total, -offset]);
+    });
+    writes.forEach(([c, size, pos]) => {
+      c.style.setProperty('--grad-size', size + 'px');
+      c.style.setProperty('--grad-pos', pos + 'px');
+    });
+  }
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(applyHeadlineGradient);
+  } else {
+    window.addEventListener('load', applyHeadlineGradient);
+  }
+  let resizeRaf = 0;
+  window.addEventListener('resize', () => {
+    if (resizeRaf) return;
+    resizeRaf = requestAnimationFrame(() => {
+      resizeRaf = 0;
+      applyHeadlineGradient();
+    });
+  }, { passive: true });
+
+  // growth section: trigger the staged reveal once when scrolled into view
+  const growth = document.querySelector('.growth');
+  if (growth && 'IntersectionObserver' in window) {
+    const growthObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-revealed');
+          growthObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.25 });
+    growthObs.observe(growth);
+  } else if (growth) {
+    growth.classList.add('is-revealed');
+  }
+
+  // logos strip: blur-fade reveal when it scrolls into view
+  const logosStrip = document.querySelector('.logos-strip');
+  if (logosStrip && 'IntersectionObserver' in window) {
+    const logosObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-revealed');
+          logosObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    logosObs.observe(logosStrip);
+  } else if (logosStrip) {
+    logosStrip.classList.add('is-revealed');
+  }
+
+  /* ============================================================
+     THE PROBLEM — counter animations, viz reveals, matrix canvas
+  ============================================================ */
+  (function initProblem() {
+    const root = document.querySelector('.problem');
+    if (!root) return;
+
+    // Reveal + run viz animations once when section scrolls in
+    let activated = false;
+    function activate() {
+      if (activated) return;
+      activated = true;
+      root.classList.add('is-revealed');
+
+      // Inner-viz CSS reveal finishes ~2.1s in. Generation animations
+      // start a bit before that so they're visibly mid-action when the
+      // wipe completes, and run at half-speed so every tick is readable.
+      const GEN_START = 1500;
+
+      setTimeout(() => {
+        // Big-number counters — easeOutCubic ramp from 0 to data-count.
+        root.querySelectorAll('[data-count]').forEach(el => {
+          const target = parseInt(el.dataset.count, 10);
+          // 2× the previous durations so people can actually watch them roll.
+          const dur = target > 10000 ? 4400 : 3200;
+          const start = performance.now();
+          function tick(now) {
+            const t = Math.min(1, (now - start) / dur);
+            const eased = 1 - Math.pow(1 - t, 3);
+            const v = Math.round(target * eased);
+            el.textContent = v.toLocaleString();
+            if (t < 1) requestAnimationFrame(tick);
+          }
+          requestAnimationFrame(tick);
+        });
+
+        // Donut: stroke-dashoffset reveals the 62% arc
+        const donut = root.querySelector('.donut-fg');
+        if (donut) {
+          const C = 2 * Math.PI * 42;
+          donut.style.strokeDasharray = C;
+          donut.style.strokeDashoffset = C;
+          requestAnimationFrame(() => {
+            donut.style.transition = 'stroke-dashoffset 3.6s cubic-bezier(0.22, 1, 0.36, 1) 0.2s';
+            donut.style.strokeDashoffset = String(C * (1 - 0.62));
+          });
+        }
+
+        // Sparkline: draw in from left
+        const line = root.querySelector('.line-path');
+        if (line) {
+          const L = line.getTotalLength();
+          line.style.strokeDasharray = L;
+          line.style.strokeDashoffset = L;
+          requestAnimationFrame(() => {
+            line.style.transition = 'stroke-dashoffset 3.2s cubic-bezier(0.22, 1, 0.36, 1) 0.3s';
+            line.style.strokeDashoffset = '0';
+          });
+        }
+        const lineFill = root.querySelector('.line-fill');
+        if (lineFill) {
+          lineFill.style.opacity = '0';
+          lineFill.style.transition = 'opacity 2.4s var(--ease-velvet, ease-out) 2.0s';
+          requestAnimationFrame(() => { lineFill.style.opacity = '1'; });
+        }
+
+        // Comparison bars: grow from 0 to data-fill width
+        root.querySelectorAll('.pcomp-fill').forEach((fill, i) => {
+          const target = fill.dataset.fill || '0%';
+          fill.style.setProperty('--fill', '0%');
+          setTimeout(() => {
+            fill.animate(
+              [{ width: '0%' }, { width: target }],
+              { duration: 2000, easing: 'cubic-bezier(0.22, 1, 0.36, 1)', fill: 'forwards' }
+            );
+          }, 600 + i * 260);
+        });
+
+        // 24-hour heatmap: sweep in the after-hours cells with stagger.
+        root.querySelectorAll('.phr.is-off').forEach(cell => cell.classList.remove('is-off'));
+        root.querySelectorAll('.phr').forEach((cell, i) => {
+          const isAfterHours = i < 8 || i >= 18;
+          if (isAfterHours) {
+            setTimeout(() => cell.classList.add('is-off'), 400 + i * 70);
+          }
+        });
+      }, GEN_START);
+    }
+
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver(entries => {
+        for (const e of entries) {
+          if (e.isIntersecting) { activate(); obs.unobserve(e.target); }
+        }
+      }, { threshold: 0.18 });
+      obs.observe(root);
+    } else {
+      activate();
+    }
+
+    /* Gauge needle + fill arc are pure-CSS via .is-revealed; readout
+       value is animated by the [data-count] loop above. */
+
+    /* === BENEFITS spotlight + 3 grid-line beams === */
+    initBenefitsInteractions();
+  })();
+
+  function initBenefitsInteractions() {
+    const root = document.querySelector('.benefits');
+    if (!root) return;
+    const grid = root.querySelector('.benefits-grid');
+    const sparkLayer = root.querySelector('.benefits-sparks');
+    if (!grid) return;
+
+    const bricks = Array.from(grid.querySelectorAll('.bt, .bt-filler'));
+
+    // Cache per-brick offsets (relative to grid) so we can compute each
+    // brick's local cursor coords without per-event getBoundingClientRect()
+    // on every brick (which would be expensive).
+    let brickRects = [];
+    function recomputeBrickRects() {
+      const gr = grid.getBoundingClientRect();
+      brickRects = bricks.map(b => {
+        const r = b.getBoundingClientRect();
+        return { el: b, left: r.left - gr.left, top: r.top - gr.top };
+      });
+    }
+    recomputeBrickRects();
+    if ('ResizeObserver' in window) {
+      new ResizeObserver(recomputeBrickRects).observe(grid);
+    } else {
+      window.addEventListener('resize', recomputeBrickRects, { passive: true });
+    }
+    window.addEventListener('scroll', recomputeBrickRects, { passive: true });
+
+    /* Grid-level pointer tracking: writes --spot-x / --spot-y onto EVERY
+       brick (in that brick's own local coords). The brick under the
+       cursor gets its bloom (::before, panel-level :hover); every other
+       brick's edge ring (::after) uses its own cursor-local coords so
+       the side nearest the cursor lights up — adjacent bricks share
+       seamlessly lit seams. */
+    grid.addEventListener('pointerenter', () => grid.classList.add('is-hovered'));
+    grid.addEventListener('pointerleave', () => grid.classList.remove('is-hovered'));
+
+    /* Spark particle pool (≈25% more spawn density than the prior tuning) */
+    const POOL_SIZE = 18;
+    const pool = [];
+    if (sparkLayer) {
+      for (let i = 0; i < POOL_SIZE; i++) {
+        const s = document.createElement('span');
+        s.className = 'spark';
+        sparkLayer.appendChild(s);
+        pool.push(s);
+      }
+    }
+    let poolIdx = 0;
+    let lastSpark = 0;
+    function spawnSpark(gx, gy) {
+      // Hold off sparks until the bricks finish gliding into place
+      if (!root.classList.contains('is-bricks-ready')) return;
+      const now = performance.now();
+      if (now - lastSpark < 56) return;
+      lastSpark = now;
+      const s = pool[poolIdx];
+      poolIdx = (poolIdx + 1) % POOL_SIZE;
+      const angle = Math.random() * Math.PI * 2;
+      const dist = 18 + Math.random() * 26;
+      s.style.left = gx + 'px';
+      s.style.top  = gy + 'px';
+      s.style.setProperty('--dx', (Math.cos(angle) * dist) + 'px');
+      s.style.setProperty('--dy', (Math.sin(angle) * dist) + 'px');
+      s.classList.remove('is-on');
+      // Force reflow so the animation restarts from 0
+      // eslint-disable-next-line no-unused-expressions
+      s.offsetWidth;
+      s.classList.add('is-on');
+    }
+
+    grid.addEventListener('pointermove', e => {
+      const gr = grid.getBoundingClientRect();
+      const gx = e.clientX - gr.left;
+      const gy = e.clientY - gr.top;
+      // Update every brick's local cursor coords
+      for (const r of brickRects) {
+        r.el.style.setProperty('--spot-x', (gx - r.left) + 'px');
+        r.el.style.setProperty('--spot-y', (gy - r.top)  + 'px');
+      }
+      // Spark
+      if (pool.length) spawnSpark(gx, gy);
+    });
+  }
+
+  /* ============================================================
+     BENEFITS — counters + popping calc-snippet canvas + cursor glow
+  ============================================================ */
+  (function initBenefits() {
+    const root = document.querySelector('.benefits');
+    if (!root) return;
+
+    // Reveal observer
+    let activated = false;
+    function activate() {
+      if (activated) return;
+      activated = true;
+      root.classList.add('is-revealed');
+
+      // Last brick locks into place at 1.65s + 1.2s transition = 2.85s.
+      // After that, spotlight + sparks become active.
+      setTimeout(() => root.classList.add('is-bricks-ready'), 2850);
+
+      // Slow 2.4 s counter ramp once the tiles' wipe-in starts (~1.5 s in)
+      setTimeout(() => {
+        root.querySelectorAll('[data-bcount]').forEach(el => {
+          const target = parseFloat(el.dataset.bcount);
+          const decimals = (el.dataset.bcount.split('.')[1] || '').length;
+          const dur = 2400;
+          const startT = performance.now();
+          function tick(now) {
+            const t = Math.min(1, (now - startT) / dur);
+            const eased = 1 - Math.pow(1 - t, 3);
+            const v = target * eased;
+            el.textContent = decimals > 0 ? v.toFixed(decimals) : Math.round(v).toLocaleString();
+            if (t < 1) requestAnimationFrame(tick);
+          }
+          requestAnimationFrame(tick);
+        });
+      }, 1500);
+    }
+
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver(es => {
+        for (const e of es) {
+          if (e.isIntersecting) { activate(); obs.unobserve(e.target); }
+        }
+      }, { threshold: 0.18 });
+      obs.observe(root);
+    } else {
+      activate();
+    }
+
+    /* Crosshair is fixed at the dead center of the grid — pure CSS.
+       Beams + core fade in once via `.is-revealed` on the section. */
+  })();
+
+  /* ============================================================
+     WHY ERIO — scroll reveal (alternating slide-ins + divider draw)
+  ============================================================ */
+  /* ============================================================
+     FAQ — accordion (single open) + scroll reveal
+  ============================================================ */
+  (function initFaq() {
+    const root = document.querySelector('.faq');
+    if (!root) return;
+
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('is-revealed'); obs.unobserve(e.target); }
+        });
+      }, { threshold: 0.15 });
+      obs.observe(root);
+    } else {
+      root.classList.add('is-revealed');
+    }
+
+    // Reveal-on-scroll. For each, we observe an inner "watch" element so the
+    // fade fires when the actual content enters the viewport (the voice
+    // section has tall top padding, which otherwise triggered it too early).
+    [
+      { root: '.finalcta', watch: '.finalcta-stage', th: 0.25 },
+      { root: '.voice',    watch: '.voice-stage',    th: 0.35 },
+      { root: '.seo',      watch: '.seo-wrap',       th: 0.2 },
+      { root: '.svp',      watch: '.svp-wrap',       th: 0.2 },
+      { root: '.spd',      watch: '.spd-wrap',       th: 0.2 },
+      { root: '.frs',      watch: '.frs-wrap',       th: 0.2 },
+      { root: '.aiw',      watch: '.aiw-wrap',       th: 0.2 },
+      { root: '.prm',      watch: '.prm-wrap',       th: 0.2 }
+    ].forEach(({ root: rootSel, watch, th }) => {
+      const el = document.querySelector(rootSel);
+      if (!el) return;
+      const target = el.querySelector(watch) || el;
+      if ('IntersectionObserver' in window) {
+        const o = new IntersectionObserver(es => {
+          es.forEach(e => { if (e.isIntersecting) { el.classList.add('is-revealed'); o.disconnect(); } });
+        }, { threshold: th });
+        o.observe(target);
+      } else {
+        el.classList.add('is-revealed');
+      }
+    });
+
+    const items = Array.from(root.querySelectorAll('.faq-item'));
+    items.forEach(item => {
+      const btn = item.querySelector('.faq-q');
+      if (!btn) return;
+      btn.addEventListener('click', () => {
+        const open = item.classList.contains('is-open');
+        // close all, then open the clicked one (single-open accordion)
+        items.forEach(it => {
+          it.classList.remove('is-open');
+          const b = it.querySelector('.faq-q');
+          if (b) b.setAttribute('aria-expanded', 'false');
+        });
+        if (!open) {
+          item.classList.add('is-open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  })();
+
+  (function initWhyErio() {
+    const root = document.querySelector('.whyerio');
+    if (!root) return;
+
+    const stage = root.querySelector('.why-stage') || root;
+
+    // Reveal cascade (fires once when the pinned stage scrolls into view)
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { root.classList.add('is-revealed'); obs.unobserve(e.target); }
+        });
+      }, { threshold: 0.3 });
+      obs.observe(stage);
+    } else {
+      root.classList.add('is-revealed');
+    }
+
+    // Left sub-content per reason (headline stays "Built for contractors";
+    // the right column never changes).
+    const VARIANTS = [
+      { eyebrow: "An AI partner that's actually", line1: "Built for", line2: "contractors",
+        lead: "We don't vanish into a six-month build. Your site and AI receptionist go live and start booking jobs within a week — so you see results while the season's still hot.",
+        ftitle: "Live in days, not months",
+        fdesc: "From kickoff to answering your calls in about a week — fast, without cutting corners." },
+      { eyebrow: "Real people who", line1: "Know the", line2: "trades",
+        lead: "Behind the AI is a real team that knows the trades — building it, training it on your services, and answering when you call. No ticket queues, no bot about your bot.",
+        ftitle: "A real team in your corner",
+        fdesc: "People who build, tune, and support your system — and actually pick up the phone." },
+      { eyebrow: "Shaped around", line1: "How you", line2: "work",
+        lead: "Your setup is shaped around how you run jobs — the truck, the crew, the after-hours callback. Erio fits your workflow instead of forcing you into someone else's.",
+        ftitle: "Made for how you work",
+        fdesc: "Tuned to your trade, your service area, and your schedule — never a generic template." }
+    ];
+
+    const swap      = root.querySelector('.why-swap');
+    const elEye     = root.querySelector('[data-why-eyebrow]');
+    const elEm      = root.querySelector('[data-why-em]');
+    const elLead    = root.querySelector('[data-why-lead]');
+    const elFt      = root.querySelector('[data-why-ftitle]');
+    const elFd      = root.querySelector('[data-why-fdesc]');
+    const railItems = Array.from(root.querySelectorAll('.why-rail-item'));
+    if (!swap || railItems.length < 3) return;
+
+    const mq = window.matchMedia('(max-width: 980px)');
+    let active = -1;
+    let raf = 0;
+
+    function render(i) {
+      const v = VARIANTS[i];
+      if (elEye)  elEye.textContent = v.eyebrow;
+      if (elEm)   elEm.innerHTML = v.line1 + '<br>' + v.line2;
+      if (elLead) elLead.textContent = v.lead;
+      if (elFt)   elFt.textContent = v.ftitle;
+      if (elFd)   elFd.textContent = v.fdesc;
+      railItems.forEach((r, ri) => r.classList.toggle('is-active', ri === i));
+    }
+
+    function setActive(i) {
+      if (i === active) return;
+      const first = active === -1;
+      active = i;
+      if (first) { render(i); return; }
+      swap.classList.add('is-swapping');
+      setTimeout(() => { render(i); swap.classList.remove('is-swapping'); }, 260);
+    }
+
+    function pick() {
+      raf = 0;
+      if (mq.matches) { setActive(0); return; }
+      // Map scroll progress through the pinned track → active index 0/1/2.
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      const rect = root.getBoundingClientRect();
+      const total = root.offsetHeight - vh;
+      const scrolled = Math.min(Math.max(-rect.top, 0), Math.max(1, total));
+      const p = total > 0 ? scrolled / total : 0;
+      const idx = Math.min(VARIANTS.length - 1, Math.floor(p * VARIANTS.length));
+      setActive(idx);
+    }
+    function schedule() { if (!raf) raf = requestAnimationFrame(pick); }
+
+    render(0);
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+    pick();
+  })();
+
+  /* ============================================================
+     WHAT ERIO BUILDS — console reveal + tab switcher + counters
+  ============================================================ */
+  (function initBuilds() {
+    const root = document.querySelector('.builds');
+    if (!root) return;
+
+    const tabs       = Array.from(root.querySelectorAll('.builds-tab'));
+    const indicator  = root.querySelector('.builds-switch-indicator');
+    const panes      = Array.from(root.querySelectorAll('.bcon-pane'));
+    const routeText  = root.querySelector('[data-route]');
+    const console_   = root.querySelector('.builds-console');
+    const counters   = new Map(); // pane → list of counter spans
+    panes.forEach(p => counters.set(p, Array.from(p.querySelectorAll('[data-count]'))));
+
+    const ROUTES = {
+      websites:  'erio.os / websites / live',
+      employees: 'erio.os / employees / live',
+      solutions: 'erio.os / solutions / live'
+    };
+    const CTAS = {
+      websites:  '/ai-websites',
+      employees: 'ai-employees.html',
+      solutions: 'ai-solutions.html'
+    };
+    const footCta = root.querySelector('[data-deep-cta]');
+
+    function positionIndicator(tab) {
+      if (!indicator || !tab) return;
+      const switchEl = tab.parentElement;
+      const sRect = switchEl.getBoundingClientRect();
+      const tRect = tab.getBoundingClientRect();
+      indicator.style.width     = tRect.width  + 'px';
+      indicator.style.transform = `translateX(${tRect.left - sRect.left - 6}px)`;
+    }
+
+    function runCounters(pane) {
+      const items = counters.get(pane) || [];
+      items.forEach(el => {
+        if (el.dataset.counted === '1') return;
+        const target = +el.dataset.count;
+        const dur = 1100;
+        const start = performance.now();
+        function step(now) {
+          const p = Math.min(1, (now - start) / dur);
+          const eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(target * eased).toLocaleString();
+          if (p < 1) requestAnimationFrame(step);
+          else { el.textContent = target.toLocaleString(); el.dataset.counted = '1'; }
+        }
+        requestAnimationFrame(step);
+      });
+    }
+
+    function activate(name) {
+      tabs.forEach(t => {
+        const on = t.dataset.tab === name;
+        t.classList.toggle('is-active', on);
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        if (on) positionIndicator(t);
+      });
+      panes.forEach(p => {
+        const on = p.dataset.pane === name;
+        p.classList.toggle('is-active', on);
+        if (on) {
+          // restart any width-based bar animations
+          p.querySelectorAll('.bab-fill').forEach(b => {
+            b.style.animation = 'none';
+            b.getBoundingClientRect();
+            b.style.animation = '';
+          });
+          // reset and re-run counters for this pane
+          (counters.get(p) || []).forEach(el => { el.dataset.counted = ''; el.textContent = '0'; });
+          setTimeout(() => runCounters(p), 120);
+        }
+      });
+      if (routeText) routeText.textContent = ROUTES[name] || '';
+      if (console_) console_.dataset.active = name;
+      if (footCta) footCta.setAttribute('href', CTAS[name] || '#');
+    }
+
+    tabs.forEach(t => t.addEventListener('click', () => activate(t.dataset.tab)));
+
+    // Reveal on scroll-in
+    function onReveal() {
+      const firstActive = tabs.find(t => t.classList.contains('is-active')) || tabs[0];
+      // Wait for the console's transform transition to start before sizing the indicator
+      requestAnimationFrame(() => positionIndicator(firstActive));
+      // Run counters on the visible pane only
+      const activePane = panes.find(p => p.classList.contains('is-active')) || panes[0];
+      setTimeout(() => runCounters(activePane), 1100);
+    }
+
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('is-revealed');
+            onReveal();
+            obs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.18 });
+      obs.observe(root);
+    } else {
+      root.classList.add('is-revealed');
+      onReveal();
+    }
+
+    // Keep the indicator aligned on resize
+    window.addEventListener('resize', () => {
+      const active = tabs.find(t => t.classList.contains('is-active'));
+      positionIndicator(active);
+    });
+
+    /* ── Scroll-tied tilt for the console ──────────────────────────
+       Mirrors the Framer-Motion ContainerScroll math in vanilla JS:
+       rotateX: 20deg → 0,  scale: 1.05 → 1 (1.05 → 1 on desktop;
+       0.7 → 0.9 on mobile),  translateY: 0 → -100.
+       Progress = (vh - sectionTop) / (sectionHeight + vh), clamped 0..1.
+       Updated inside rAF so scroll stays smooth in both directions. */
+    (function initBuildsScrollTilt() {
+      const target = console_;
+      if (!target) return;
+
+      let isMobile = window.matchMedia('(max-width: 768px)').matches;
+      let raf = 0;
+
+      function apply() {
+        raf = 0;
+        // Mobile: no scroll-tied animation, no tilt — sit flat.
+        if (isMobile) {
+          target.style.transform = 'none';
+          return;
+        }
+        const rect = target.getBoundingClientRect();
+        const vh   = window.innerHeight || document.documentElement.clientHeight;
+        // Progress = 0 when the console's top hits the viewport bottom,
+        // Progress = 1 noticeably before the console centres on screen.
+        const total    = (vh / 2 + rect.height / 2) * 0.86;
+        const consumed = vh - rect.top;
+        const p = Math.max(0, Math.min(1, consumed / total));
+
+        const rotate = 20 - 20 * p;                       // 20 → 0
+        const sFrom  = isMobile ? 0.7  : 1.05;
+        const sTo    = isMobile ? 0.9  : 1.0;
+        const scale  = sFrom + (sTo - sFrom) * p;         // mobile: 0.7→0.9, desktop: 1.05→1
+        const ty     = -100 * p;                          // 0 → -100
+
+        target.style.transform =
+          `perspective(1000px) rotateX(${rotate.toFixed(3)}deg) scale(${scale.toFixed(4)}) translateY(${ty.toFixed(2)}px)`;
+      }
+
+      function schedule() { if (!raf) raf = requestAnimationFrame(apply); }
+
+      window.addEventListener('scroll', schedule, { passive: true });
+      window.addEventListener('resize', () => {
+        isMobile = window.matchMedia('(max-width: 768px)').matches;
+        schedule();
+      });
+      apply();
+    })();
+  })();
+
+  /* ============================================================
+     HOW IT WORKS — auto-rotating step deck + flowing mist canvas
+  ============================================================ */
+  (function initHowItWorks() {
+    const root = document.querySelector('.howit');
+    if (!root) return;
+
+    // Reveal on scroll-in
+    if ('IntersectionObserver' in window) {
+      const revObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('is-revealed');
+            revObs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      revObs.observe(root);
+    } else {
+      root.classList.add('is-revealed');
+    }
+
+    // Step cycling — single source of truth for cycle length
+    const CYCLE_MS = 3200; // reduced by ~1/3 from 4800ms
+    // Time the section's static cascade takes to settle before step 1 lights up.
+    const CASCADE_MS = 1400;
+    root.style.setProperty('--howit-cycle', (CYCLE_MS / 1000) + 's');
+    const tabs = root.querySelectorAll('.howit-tab');
+    const mocks = root.querySelectorAll('.howit-mock');
+    let active = 0;
+    let timer = 0;
+    let cycleStart = 0;
+    let cycleRemaining = CYCLE_MS;
+
+    function restartActiveBar() {
+      // Force the active tab's progress animation (a pseudo-element) to
+      // restart by briefly setting its animation-name to 'none' via a
+      // CSS variable, then clearing it.
+      const tab = root.querySelector('.howit-tab.is-active');
+      if (!tab) return;
+      tab.style.setProperty('--howit-anim', 'none');
+      // force reflow so the variable change registers before clearing
+      // eslint-disable-next-line no-unused-expressions
+      tab.offsetWidth;
+      tab.style.removeProperty('--howit-anim');
+    }
+
+    function activate(step) {
+      if (step === active) {
+        restartActiveBar();
+        return;
+      }
+      active = step;
+      tabs.forEach(t => t.classList.toggle('is-active', +t.dataset.step === step));
+      mocks.forEach(m => m.classList.toggle('is-active', +m.dataset.step === step));
+      restartActiveBar();
+    }
+    function advance() {
+      timer = 0;
+      activate((active % 3) + 1);
+      startCycle();
+      // If cursor is still over the new active tab, pause immediately.
+      if (typeof syncPauseState === 'function') syncPauseState();
+    }
+    function startCycle() {
+      stopCycle();
+      if (active === 0) return; // wait for cascade-deferred first activation
+      restartActiveBar();
+      cycleStart = performance.now();
+      cycleRemaining = CYCLE_MS;
+      timer = setTimeout(advance, cycleRemaining);
+    }
+    function stopCycle() {
+      if (timer) { clearTimeout(timer); timer = 0; }
+      cycleRemaining = CYCLE_MS;
+    }
+    /* Pause: save the remaining time, clear the pending timeout. The bar's
+       CSS animation pauses automatically via the .howit-steps:hover rule. */
+    function pauseCycle() {
+      if (!timer) return;
+      cycleRemaining = Math.max(0, CYCLE_MS - (performance.now() - cycleStart));
+      clearTimeout(timer);
+      timer = 0;
+    }
+    /* Resume: re-schedule the advance for the remaining time. The CSS
+       animation resumes from its paused position once :hover is gone. */
+    function resumeCycle() {
+      if (timer || active === 0) return;
+      if (cycleRemaining >= CYCLE_MS) { startCycle(); return; }
+      cycleStart = performance.now() - (CYCLE_MS - cycleRemaining);
+      timer = setTimeout(advance, cycleRemaining);
+    }
+
+    /* Plan-card shuffle (Step 1 mockup) — rotates each card's
+       position class so the front card cycles every SHUFFLE_MS. */
+    const cards = root.querySelectorAll('.hm-plan-stack .hm-card');
+    const SHUFFLE_MS = 1900;
+    const POS = ['is-front', 'is-mid', 'is-back'];
+    let shuffleTick = 0;
+    let shuffleTimer = 0;
+    function shuffleCards() {
+      shuffleTick = (shuffleTick + 1) % cards.length;
+      cards.forEach((c, i) => {
+        const pos = ((i - shuffleTick) % cards.length + cards.length) % cards.length;
+        c.classList.remove(...POS);
+        c.classList.add(POS[pos]);
+      });
+    }
+    function startShuffle() {
+      stopShuffle();
+      if (!cards.length) return; // step 1 no longer uses a shuffled card stack
+      shuffleTimer = setInterval(shuffleCards, SHUFFLE_MS);
+    }
+    function stopShuffle() {
+      if (shuffleTimer) { clearInterval(shuffleTimer); shuffleTimer = 0; }
+    }
+
+    /* Pause only when the user hovers the *active* step's column.
+       Hovering a different step never pauses. After every activate()
+       we re-check, because the active tab can change underneath the
+       cursor (auto-advance) or via click. */
+    function isActiveHovered() {
+      const tab = root.querySelector('.howit-tab.is-active');
+      return !!(tab && tab.matches(':hover'));
+    }
+    function syncPauseState() {
+      if (isActiveHovered()) pauseCycle();
+      else resumeCycle();
+    }
+
+    tabs.forEach(t => {
+      t.addEventListener('click', () => {
+        activate(+t.dataset.step);
+        startCycle();
+        syncPauseState();
+      });
+      t.addEventListener('mouseenter', syncPauseState);
+      t.addEventListener('mouseleave', syncPauseState);
+    });
+
+    // First-time reveal: wait for the static cascade to settle, then
+    // activate step 1, start the step cycle, and start the card shuffle.
+    // On re-entry (scroll away + back) we just resume both.
+    let firstSeen = false;
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(entries => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            if (!firstSeen) {
+              firstSeen = true;
+              setTimeout(() => {
+                activate(1);
+                startCycle();
+                startShuffle();
+              }, CASCADE_MS);
+            } else {
+              startCycle();
+              startShuffle();
+            }
+          } else {
+            stopCycle();
+            stopShuffle();
+          }
+        }
+      }, { threshold: 0.2 }).observe(root);
+    } else {
+      activate(1);
+      startCycle();
+      startShuffle();
+    }
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) { stopCycle(); stopShuffle(); }
+      else if (active !== 0) { startCycle(); startShuffle(); }
+    });
+
+    /* MIST CANVAS — slow horizontal cyan/teal waveband flowing across the stage */
+    const canvas = root.querySelector('.howit-mist');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let cssW = 0, cssH = 0, time = 0, raf = 0;
+    let visible = true, docVisible = !document.hidden;
+
+    function resize() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const rect = canvas.getBoundingClientRect();
+      cssW = Math.max(1, rect.width);
+      cssH = Math.max(1, rect.height);
+      canvas.width  = Math.round(cssW * dpr);
+      canvas.height = Math.round(cssH * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.lineCap = 'round';
+    }
+    resize();
+    if ('ResizeObserver' in window) new ResizeObserver(resize).observe(canvas);
+    window.addEventListener('resize', resize, { passive: true });
+
+    // Brand cyan gradient (#40EBFF light → #1699A8 teal).
+    const SILK_LIGHT = [64,  235, 255]; // #40EBFF
+    const SILK_DEEP  = [22,  153, 168]; // #1699A8
+
+    // Flowing silk ribbons: broad, layered, translucent filled bands that
+    // sweep diagonally across the card. Concentrated left-of-centre with
+    // long tails trailing to the right (echoes the reference composition).
+    const RIBBONS = [
+      // yФrac, ampPx, thickPx, slope, speed, phase, alpha
+      { y: 0.34, amp: 46, thick: 150, slope: 0.10, speed: 0.55, phase: 0.0, alpha: 0.060 },
+      { y: 0.46, amp: 60, thick: 200, slope: 0.16, speed: 0.42, phase: 1.7, alpha: 0.075 },
+      { y: 0.56, amp: 52, thick: 170, slope: 0.13, speed: 0.62, phase: 3.1, alpha: 0.065 },
+      { y: 0.62, amp: 40, thick: 120, slope: 0.08, speed: 0.50, phase: 4.6, alpha: 0.055 },
+      { y: 0.50, amp: 72, thick: 90,  slope: 0.18, speed: 0.36, phase: 2.3, alpha: 0.050 },
+    ];
+
+    function lerpColor(t) {
+      const r = Math.round(SILK_LIGHT[0] + (SILK_DEEP[0] - SILK_LIGHT[0]) * t);
+      const g = Math.round(SILK_LIGHT[1] + (SILK_DEEP[1] - SILK_LIGHT[1]) * t);
+      const b = Math.round(SILK_LIGHT[2] + (SILK_DEEP[2] - SILK_LIGHT[2]) * t);
+      return [r, g, b];
+    }
+
+    function ribbonCenter(rib, t) {
+      // t = 0..1 across the width; concentrate the wave on the left third
+      const localPhase = time * rib.speed + rib.phase;
+      const flow =
+          Math.sin(t * Math.PI * 1.4 + localPhase) * rib.amp
+        + Math.sin(t * Math.PI * 3.0 + localPhase * 1.3) * rib.amp * 0.35
+        + Math.cos(t * Math.PI * 0.7 + localPhase * 0.6) * rib.amp * 0.5;
+      const x = t * cssW;
+      return rib.y * cssH + flow + (x - cssW * 0.5) * rib.slope;
+    }
+
+    function draw() {
+      raf = 0;
+      if (!visible || !docVisible) return;
+      ctx.clearRect(0, 0, cssW, cssH);
+
+      const segs = 64;
+      ctx.globalCompositeOperation = 'lighter';
+
+      for (const rib of RIBBONS) {
+        // taper thickness: thick toward the left-centre, trailing thin to edges
+        const thickAt = (t) => rib.thick * Math.pow(Math.sin(t * Math.PI), 0.55) * (1 - t * 0.35);
+
+        // ── soft body fill ──
+        ctx.beginPath();
+        for (let j = 0; j <= segs; j++) {
+          const t = j / segs;
+          const yc = ribbonCenter(rib, t);
+          const y = yc - thickAt(t) * 0.5;
+          if (j === 0) ctx.moveTo(t * cssW, y); else ctx.lineTo(t * cssW, y);
+        }
+        for (let j = segs; j >= 0; j--) {
+          const t = j / segs;
+          const yc = ribbonCenter(rib, t);
+          ctx.lineTo(t * cssW, yc + thickAt(t) * 0.5);
+        }
+        ctx.closePath();
+
+        const grad = ctx.createLinearGradient(0, 0, cssW, cssH);
+        const [lr, lg, lb] = lerpColor(0);
+        const [dr, dg, db] = lerpColor(1);
+        grad.addColorStop(0,   `rgba(${lr},${lg},${lb},0)`);
+        grad.addColorStop(0.18,`rgba(${lr},${lg},${lb},${rib.alpha})`);
+        grad.addColorStop(0.6, `rgba(${dr},${dg},${db},${rib.alpha * 0.9})`);
+        grad.addColorStop(1,   `rgba(${dr},${dg},${db},0)`);
+        ctx.fillStyle = grad;
+        ctx.fill();
+
+        // ── silky sheen highlight along the centreline ──
+        ctx.beginPath();
+        for (let j = 0; j <= segs; j++) {
+          const t = j / segs;
+          const yc = ribbonCenter(rib, t) - thickAt(t) * 0.18;
+          if (j === 0) ctx.moveTo(t * cssW, yc); else ctx.lineTo(t * cssW, yc);
+        }
+        ctx.lineWidth = 1.2;
+        const [hr, hg, hb] = lerpColor(0.2);
+        ctx.strokeStyle = `rgba(${hr},${hg},${hb},${rib.alpha * 1.8})`;
+        ctx.stroke();
+      }
+
+      ctx.globalCompositeOperation = 'source-over';
+      time += 0.012;
+      raf = requestAnimationFrame(draw);
+    }
+
+    function start() { if (!raf) raf = requestAnimationFrame(draw); }
+    function stop()  { if (raf) { cancelAnimationFrame(raf); raf = 0; } }
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(entries => {
+        for (const e of entries) {
+          visible = e.isIntersecting;
+          if (visible) start(); else stop();
+        }
+      }, { rootMargin: '50px' }).observe(canvas);
+    }
+    document.addEventListener('visibilitychange', () => {
+      docVisible = !document.hidden;
+      if (docVisible) start(); else stop();
+    });
+
+    start();
+  })();
+</script>
+
+<!-- ============================================================
+     HERO WAVES — Sonic-waveform style, one on each side of the
+     wordmark. Each canvas is a 2D rasterized field of curves
+     blended additively. CSS mask handles the inner/outer fade.
+============================================================ -->
+<script>
+(function initHeroWaves() {
+  const canvases = document.querySelectorAll('.hero-wave-canvas');
+  if (!canvases.length) return;
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  canvases.forEach((canvas) => {
+    const ctx = canvas.getContext('2d');
+    const isRight = canvas.classList.contains('hero-wave-r');
+    let raf = 0, time = isRight ? 1.7 : 0;
+    let visible = true, docVisible = !document.hidden;
+    let cssW = 0, cssH = 0;
+
+    function resize() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const rect = canvas.getBoundingClientRect();
+      cssW = Math.max(1, rect.width);
+      cssH = Math.max(1, rect.height);
+      canvas.width  = Math.round(cssW * dpr);
+      canvas.height = Math.round(cssH * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.lineCap  = 'round';
+      ctx.lineJoin = 'round';
+    }
+
+    function draw() {
+      raf = 0;
+      if (!visible || !docVisible) return;
+
+      // Crystal-clear redraw every frame — no motion-trail smear so each
+      // line stays sharp instead of accumulating ghost echoes.
+      ctx.clearRect(0, 0, cssW, cssH);
+
+      const centerY = cssH * 0.5;
+      const lineCount = 44;
+      const segmentCount = 96;
+
+      // Amplitude scales with canvas height so it reads on mobile too
+      const ampScale = Math.min(1.15, cssH / 320);
+
+      // Brand wave palette
+      const C0 = [22, 153, 168];   // #1699A8 deep cyan
+      const C1 = [112, 240, 255];  // #70F0FF neon sky cyan
+
+      for (let i = 0; i < lineCount; i++) {
+        const progress = i / (lineCount - 1);
+        const intensity = Math.sin(progress * Math.PI);
+
+        const r = Math.round(C0[0] + (C1[0] - C0[0]) * intensity);
+        const g = Math.round(C0[1] + (C1[1] - C0[1]) * intensity);
+        const b = Math.round(C0[2] + (C1[2] - C0[2]) * intensity);
+
+        ctx.beginPath();
+        for (let j = 0; j <= segmentCount; j++) {
+          const x = (j / segmentCount) * cssW;
+
+          // NEGATIVE time → features travel from outer edge toward inner
+          // (and the right canvas is scaleX(-1) so it mirrors symmetrically
+          // toward the wordmark).
+          const noise =
+              Math.sin(j * 0.10 - time + i * 0.20) * 16 * ampScale
+            + Math.sin(j * 0.04 - time * 0.6 + i * 0.07) * 6 * ampScale;
+
+          const spike =
+              Math.cos(j * 0.20 - time + i * 0.10)
+            * Math.sin(j * 0.05 - time * 0.85)
+            * 38 * ampScale;
+
+          const y = centerY + noise + spike;
+
+          if (j === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+
+        // Subtle neon glow: wide low-alpha halo (cheap, no shadowBlur)
+        ctx.lineWidth = 3.2;
+        ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${0.04 + intensity * 0.10})`;
+        ctx.stroke();
+
+        // Crisp core stroke
+        ctx.lineWidth = 1.1;
+        ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${0.32 + intensity * 0.50})`;
+        ctx.stroke();
+      }
+
+      time += 0.018;
+      if (!prefersReduced) raf = requestAnimationFrame(draw);
+    }
+
+    function start() { if (!raf) raf = requestAnimationFrame(draw); }
+    function stop()  { if (raf) { cancelAnimationFrame(raf); raf = 0; } }
+
+    resize();
+    if ('ResizeObserver' in window) new ResizeObserver(resize).observe(canvas);
+    window.addEventListener('resize', resize, { passive: true });
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        for (const e of entries) {
+          visible = e.isIntersecting;
+          if (visible) start(); else stop();
+        }
+      }, { rootMargin: '50px' }).observe(canvas);
+    }
+    document.addEventListener('visibilitychange', () => {
+      docVisible = !document.hidden;
+      if (docVisible) start(); else stop();
+    });
+
+    if (prefersReduced) {
+      // Render one frame so the wave is visible without animating
+      draw();
+    } else {
+      start();
+    }
+  });
+})();
+</script>
+
+<!-- ============================================================
+     AI SOLUTIONS GLOBE — D3 wireframe + halftone-dotted earth.
+     Visual only: auto-rotates. No drag, no zoom, no input handlers.
+============================================================ -->
+<script type="module">
+  import * as d3 from 'https://esm.sh/d3@7';
+
+  const canvas = document.querySelector('.globe-canvas');
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let cssW = 0, cssH = 0, radius = 0;
+    let projection, pathGen;
+    let landFeatures = null;
+    const allDots = [];
+    const rotation = [0, 0];
+    const ROTATION_SPEED = 0.3;   // degrees per frame
+    let visible = true;
+    let docVisible = !document.hidden;
+    let dataLoaded = false;
+    let raf = 0;
+
+    function setupCanvas() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const rect = canvas.getBoundingClientRect();
+      cssW = Math.max(1, rect.width);
+      cssH = Math.max(1, rect.height);
+      radius = Math.min(cssW, cssH) / 2.4 * 0.9;
+      canvas.width  = Math.round(cssW * dpr);
+      canvas.height = Math.round(cssH * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      projection = d3.geoOrthographic()
+        .scale(radius)
+        .translate([cssW / 2, cssH / 2])
+        .clipAngle(90)
+        .rotate(rotation);
+      pathGen = d3.geoPath().projection(projection).context(ctx);
+    }
+
+    function pointInPolygon(point, polygon) {
+      const [x, y] = point;
+      let inside = false;
+      for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+        const [xi, yi] = polygon[i];
+        const [xj, yj] = polygon[j];
+        if ((yi > y) !== (yj > y) && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) {
+          inside = !inside;
+        }
+      }
+      return inside;
+    }
+    function pointInFeature(point, feature) {
+      const g = feature.geometry;
+      if (g.type === 'Polygon') {
+        if (!pointInPolygon(point, g.coordinates[0])) return false;
+        for (let i = 1; i < g.coordinates.length; i++) {
+          if (pointInPolygon(point, g.coordinates[i])) return false;
+        }
+        return true;
+      } else if (g.type === 'MultiPolygon') {
+        for (const poly of g.coordinates) {
+          if (pointInPolygon(point, poly[0])) {
+            let inHole = false;
+            for (let i = 1; i < poly.length; i++) {
+              if (pointInPolygon(point, poly[i])) { inHole = true; break; }
+            }
+            if (!inHole) return true;
+          }
+        }
+      }
+      return false;
+    }
+    function generateDots(feature, dotSpacing = 16) {
+      const dots = [];
+      const [[minLng, minLat], [maxLng, maxLat]] = d3.geoBounds(feature);
+      const step = dotSpacing * 0.08;
+      for (let lng = minLng; lng <= maxLng; lng += step) {
+        for (let lat = minLat; lat <= maxLat; lat += step) {
+          if (pointInFeature([lng, lat], feature)) dots.push([lng, lat]);
+        }
+      }
+      return dots;
+    }
+
+    function render() {
+      if (!cssW || !cssH) return;
+      ctx.clearRect(0, 0, cssW, cssH);
+      const currentScale = projection.scale();
+      const scaleFactor = currentScale / radius;
+
+      // Ocean disk
+      ctx.beginPath();
+      ctx.arc(cssW / 2, cssH / 2, currentScale, 0, 2 * Math.PI);
+      ctx.fillStyle = '#00000000';
+      ctx.fill();
+      ctx.strokeStyle = '#78ACB3';
+      ctx.lineWidth = 2 * scaleFactor;
+      ctx.stroke();
+
+      if (!landFeatures) return;
+
+      // Graticule
+      const graticule = d3.geoGraticule();
+      ctx.beginPath();
+      pathGen(graticule());
+      ctx.strokeStyle = '#78ACB3';
+      ctx.lineWidth = 1 * scaleFactor;
+      ctx.globalAlpha = 0.25;
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+
+      // Land outlines
+      ctx.beginPath();
+      for (const f of landFeatures.features) pathGen(f);
+      ctx.strokeStyle = '#78ACB3';
+      ctx.lineWidth = 1 * scaleFactor;
+      ctx.stroke();
+
+      // Halftone dots
+      ctx.fillStyle = '#2CA5B3';
+      const r = 1.2 * scaleFactor;
+      for (let i = 0; i < allDots.length; i++) {
+        const p = projection(allDots[i]);
+        if (p && p[0] >= 0 && p[0] <= cssW && p[1] >= 0 && p[1] <= cssH) {
+          ctx.beginPath();
+          ctx.arc(p[0], p[1], r, 0, 2 * Math.PI);
+          ctx.fill();
+        }
+      }
+    }
+
+    async function loadWorldData() {
+      try {
+        const res = await fetch(
+          'https://raw.githubusercontent.com/martynafford/natural-earth-geojson/refs/heads/master/110m/physical/ne_110m_land.json'
+        );
+        if (!res.ok) throw new Error('Failed to load land data');
+        landFeatures = await res.json();
+        for (const f of landFeatures.features) {
+          for (const d of generateDots(f, 16)) allDots.push(d);
+        }
+        dataLoaded = true;
+        canvas.style.opacity = '1';
+      } catch (err) {
+        console.warn('Globe data load failed:', err);
+      }
+    }
+
+    function animate() {
+      raf = 0;
+      if (!visible || !docVisible) return;
+      rotation[0] += ROTATION_SPEED;
+      projection.rotate(rotation);
+      render();
+      raf = requestAnimationFrame(animate);
+    }
+    function startLoop() { if (!raf) raf = requestAnimationFrame(animate); }
+    function stopLoop()  { if (raf) { cancelAnimationFrame(raf); raf = 0; } }
+
+    function init() {
+      setupCanvas();
+      if ('ResizeObserver' in window) {
+        new ResizeObserver(() => { setupCanvas(); render(); }).observe(canvas);
+      }
+      window.addEventListener('resize', () => { setupCanvas(); render(); }, { passive: true });
+
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver((entries) => {
+          for (const e of entries) {
+            visible = e.isIntersecting;
+            if (visible) startLoop(); else stopLoop();
+          }
+        }, { rootMargin: '50px' }).observe(canvas);
+      }
+      document.addEventListener('visibilitychange', () => {
+        docVisible = !document.hidden;
+        if (docVisible) startLoop(); else stopLoop();
+      });
+
+      loadWorldData();
+      startLoop();
+    }
+
+    if (canvas.offsetWidth > 0) {
+      init();
+    } else {
+      const ro = new ResizeObserver((entries) => {
+        if (entries[0]?.contentRect.width > 0) { ro.disconnect(); init(); }
+      });
+      ro.observe(canvas);
+    }
+  }
+</script>
+
+<script>
+  /* ============================================================
+     CONTRACTOR-WEBSITE PREVIEW — carousel auto-play + pointer parallax
+  ============================================================ */
+  (function cwInit() {
+    const stage = document.querySelector('.cw-stage');
+    if (!stage) return;
+
+    /* ── analytics carousel ── */
+    const carousel = stage.querySelector('[data-cw-carousel]');
+    const track    = carousel && carousel.querySelector('.cw-track');
+    const dotsWrap = stage.querySelector('[data-cw-dots]');
+    const dots     = dotsWrap ? Array.from(dotsWrap.children) : [];
+    if (track && dots.length) {
+      const slides = track.children.length;
+      let idx = 0, timer = 0;
+      const go = (i) => {
+        idx = (i + slides) % slides;
+        track.style.transform = 'translateX(' + (-idx * 100) + '%)';
+        dots.forEach((d, di) => d.classList.toggle('is-active', di === idx));
+      };
+      const stop  = () => { if (timer) { clearInterval(timer); timer = 0; } };
+      const start = () => { stop(); timer = setInterval(() => go(idx + 1), 3600); };
+      dots.forEach((d, di) => d.addEventListener('click', () => { go(di); start(); }));
+      carousel.addEventListener('pointerenter', stop);
+      carousel.addEventListener('pointerleave', start);
+      document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
+      go(0); start();
+    }
+
+    /* ── pointer parallax (fine-pointer, motion-allowed) ── */
+    const okMotion = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const finePtr  = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (okMotion && finePtr) {
+      const floats = Array.from(stage.querySelectorAll('.cw-float'));
+      let raf = 0, nx = 0, ny = 0;
+      const apply = () => {
+        raf = 0;
+        floats.forEach((f) => {
+          const d = parseFloat(f.dataset.depth || '4');
+          f.style.transform = 'translate3d(' + (nx * d * 2.4).toFixed(2) + 'px,' + (ny * d * 2.4).toFixed(2) + 'px,0)';
+        });
+      };
+      stage.addEventListener('pointermove', (e) => {
+        const r = stage.getBoundingClientRect();
+        nx = (e.clientX - r.left) / r.width - 0.5;
+        ny = (e.clientY - r.top) / r.height - 0.5;
+        if (!raf) raf = requestAnimationFrame(apply);
+      }, { passive: true });
+      stage.addEventListener('pointerleave', () => { nx = 0; ny = 0; if (!raf) raf = requestAnimationFrame(apply); });
+    }
+
+    /* ── Facebook feed — one post at a time, cross-fading on a continuous loop ── */
+    const feed = stage.querySelector('[data-cw-feed]');
+    if (feed && okMotion) {
+      const posts = Array.from(feed.children);
+      if (posts.length) {
+        let idx = posts.findIndex((p) => p.classList.contains('is-active'));
+        if (idx < 0) idx = 0;
+        posts.forEach((p, i) => p.classList.toggle('is-active', i === idx));
+        let timer = 0;
+        const advance = () => {
+          posts[idx].classList.remove('is-active');
+          idx = (idx + 1) % posts.length;          /* loops forever: 1 → 2 → 3 → 1 … */
+          posts[idx].classList.add('is-active');
+        };
+        const start = () => { if (!timer) timer = setInterval(() => { if (!document.hidden) advance(); }, 3800); };
+        const stop  = () => { if (timer) { clearInterval(timer); timer = 0; } };
+        /* pause while a visitor hovers a post, then resume so it never stalls */
+        feed.addEventListener('pointerenter', stop);
+        feed.addEventListener('pointerleave', start);
+        document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
+        start();
+      }
+    }
+
+    /* ── quote form — fields typed in real time, on a loop ── */
+    const typeTargets = Array.from(stage.querySelectorAll('.cw-form [data-cw-type]'));
+    if (typeTargets.length) {
+      const texts = typeTargets.map((t) => t.getAttribute('data-cw-type'));
+      const caret = document.createElement('span');
+      caret.className = 'cw-caret';
+
+      if (!okMotion) {
+        typeTargets.forEach((t, i) => { t.textContent = texts[i]; });
+        typeTargets[typeTargets.length - 1].appendChild(caret);
+      } else {
+        const setActive = (i) => typeTargets.forEach((t, k) => {
+          const f = t.closest('.cw-field');
+          if (f) f.classList.toggle('cw-field-active', k === i);
+        });
+        const clearAll = () => typeTargets.forEach((t) => { t.textContent = ''; });
+        let fi = 0, ci = 0;
+
+        const typeChar = () => {
+          const t = texts[fi], el = typeTargets[fi];
+          if (ci < t.length) {
+            ci++;
+            el.textContent = t.slice(0, ci);
+            el.appendChild(caret);
+            const ch = t[ci - 1];
+            let d = 48 + Math.random() * 60;          // natural keystroke rhythm
+            if (ch === ' ') d += 45;
+            if ('.,—&'.indexOf(ch) > -1) d += 110;
+            setTimeout(typeChar, d);
+          } else if (fi < texts.length - 1) {
+            fi++; ci = 0;
+            setTimeout(nextField, 560);               // pause between fields
+          } else {
+            setTimeout(restart, 3000);                // hold, then loop
+          }
+        };
+        const nextField = () => {
+          setActive(fi);
+          typeTargets[fi].textContent = '';
+          typeTargets[fi].appendChild(caret);         // caret waits in the empty field
+          setTimeout(typeChar, 380);
+        };
+        const restart = () => { clearAll(); fi = 0; ci = 0; nextField(); };
+
+        clearAll();
+        nextField();
+      }
+    }
+
+    /* ── hero headline — second line swaps on a smooth, continuous loop ── */
+    const swap = stage.querySelector('.cw-headline .cw-grad');
+    if (swap && okMotion) {
+      const phrases = ['built right.', 'on time.', 'in trusted hands.'];
+      let pi = 0;
+      const HOLD = 2200, MOVE = 460;
+      setInterval(() => {
+        swap.classList.add('cw-swap-out');          // glide current word up + fade out
+        setTimeout(() => {
+          pi = (pi + 1) % phrases.length;
+          swap.style.transition = 'none';           // snap to the "enter" start state
+          swap.classList.remove('cw-swap-out');
+          swap.classList.add('cw-swap-in');
+          swap.textContent = phrases[pi];
+          void swap.offsetWidth;                     // commit before re-enabling motion
+          swap.style.transition = '';
+          swap.classList.remove('cw-swap-in');       // glide new word up into place
+        }, MOVE);
+      }, HOLD + MOVE);
+    }
+  })();
+</script>
+
+</body>
+</html>
