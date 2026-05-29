@@ -3,9 +3,15 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- ===== Primary SEO ===== -->
+<title>AI Solutions | Erio</title>
 <meta name="robots" content="noindex, nofollow" />
 <meta name="googlebot" content="noindex, nofollow" />
-<title>Erio Trial Packages</title>
+<meta name="author" content="Erio" />
+<meta name="theme-color" content="#0B1E28" />
+<link rel="canonical" href="https://erio.ai/ai-solutions" />
+
 <link rel="icon" type="image/png" href="favicon.png?v=3" />
 <link rel="shortcut icon" type="image/png" href="favicon.png?v=3" />
 <link rel="apple-touch-icon" href="favicon.png?v=3" />
@@ -14,153 +20,40 @@
 <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
-  /* Headline has 4 words ("Choose Your AI Package"), staggered with the same
-     +0.05s/char, +0.10s/word cadence so every character animates in left-to-right. */
-  /* Choose */
+  /* Headline now has 5 words ("AI Websites for Home Services"), so re-stagger
+     the per-character fade-in delays — same +0.05s/char, +0.10s/word cadence
+     as the home page — so every character animates in left-to-right. */
   .hero-title .word:nth-of-type(1) .char:nth-child(1) { animation-delay: 0.65s; }
   .hero-title .word:nth-of-type(1) .char:nth-child(2) { animation-delay: 0.70s; }
-  .hero-title .word:nth-of-type(1) .char:nth-child(3) { animation-delay: 0.75s; }
-  .hero-title .word:nth-of-type(1) .char:nth-child(4) { animation-delay: 0.80s; }
-  .hero-title .word:nth-of-type(1) .char:nth-child(5) { animation-delay: 0.85s; }
-  .hero-title .word:nth-of-type(1) .char:nth-child(6) { animation-delay: 0.90s; }
-  /* Your */
-  .hero-title .word:nth-of-type(2) .char:nth-child(1) { animation-delay: 1.00s; }
-  .hero-title .word:nth-of-type(2) .char:nth-child(2) { animation-delay: 1.05s; }
-  .hero-title .word:nth-of-type(2) .char:nth-child(3) { animation-delay: 1.10s; }
-  .hero-title .word:nth-of-type(2) .char:nth-child(4) { animation-delay: 1.15s; }
-  /* AI */
+  /* Websites */
+  .hero-title .word:nth-of-type(2) .char:nth-child(1) { animation-delay: 0.80s; }
+  .hero-title .word:nth-of-type(2) .char:nth-child(2) { animation-delay: 0.85s; }
+  .hero-title .word:nth-of-type(2) .char:nth-child(3) { animation-delay: 0.90s; }
+  .hero-title .word:nth-of-type(2) .char:nth-child(4) { animation-delay: 0.95s; }
+  .hero-title .word:nth-of-type(2) .char:nth-child(5) { animation-delay: 1.00s; }
+  .hero-title .word:nth-of-type(2) .char:nth-child(6) { animation-delay: 1.05s; }
+  .hero-title .word:nth-of-type(2) .char:nth-child(7) { animation-delay: 1.10s; }
+  .hero-title .word:nth-of-type(2) .char:nth-child(8) { animation-delay: 1.15s; }
+  /* for */
   .hero-title .word:nth-of-type(3) .char:nth-child(1) { animation-delay: 1.25s; }
   .hero-title .word:nth-of-type(3) .char:nth-child(2) { animation-delay: 1.30s; }
-  /* Package */
-  .hero-title .word:nth-of-type(4) .char:nth-child(1) { animation-delay: 1.40s; }
-  .hero-title .word:nth-of-type(4) .char:nth-child(2) { animation-delay: 1.45s; }
-  .hero-title .word:nth-of-type(4) .char:nth-child(3) { animation-delay: 1.50s; }
-  .hero-title .word:nth-of-type(4) .char:nth-child(4) { animation-delay: 1.55s; }
-  .hero-title .word:nth-of-type(4) .char:nth-child(5) { animation-delay: 1.60s; }
-  .hero-title .word:nth-of-type(4) .char:nth-child(6) { animation-delay: 1.65s; }
-  .hero-title .word:nth-of-type(4) .char:nth-child(7) { animation-delay: 1.70s; }
-  /* keep "Choose Your AI Package" on a single line */
-  .hero .hero-title { font-size: clamp(38px, 6.2vw, 82px); }
-  /* extend the per-character gradient below the baseline so descenders (the "g") aren't clipped */
-  .hero .hero-title .char { background-size: var(--grad-size, 100%) 165%; padding-bottom: 0.08em; }
-
-  /* ===== Pricing section (packages page only) ===== */
-  /* tighten the gap between the Schedule Demo button and the pricing block to ≈25% of the original */
-  .hero { padding-bottom: 9px; }
-  /* fully visible so the top of the light fades up across the section seam (no clipped line);
-     horizontal scroll is already prevented globally by html/body overflow-x: clip, and Safari
-     mis-handles per-axis clip (it re-clips the visible axis), so don't clip here at all */
-  .pkg-pricing { position: relative; isolation: isolate; padding: clamp(5px, 0.75vw, 10px) 24px clamp(48px, 7vw, 92px); overflow: visible; font-family: 'Exo 2', system-ui, sans-serif; }
-
-  /* soft diffuse glow that washes over the whole cards area, with twinkling particles */
-  /* light "hovers" above the card row: brightest across the top of the cards, then dims
-     gradually downward so it reads as a soft source illuminating them from above */
-  .pkg-beam { position: absolute; left: 50%; top: 30px; transform: translateX(-50%); width: min(1969px, 101%); height: 100%;
-    background: radial-gradient(ellipse 74% 50% at 50% 32%,
-        rgba(64,235,255,0.26) 0%,
-        rgba(64,235,255,0.25) 28%,
-        rgba(64,235,255,0.125) 52%,
-        rgba(64,235,255,0.044) 72%,
-        transparent 90%);
-    filter: blur(46px); pointer-events: none; z-index: 0; }
-  /* concentrated bright core right where the source sits, just above the card tops */
-  .pkg-beam::before { content: ''; position: absolute; top: 28%; left: 50%; transform: translate(-50%, -50%); width: 758px; height: 250px; border-radius: 50%;
-    background: radial-gradient(ellipse at center, rgba(150,248,255,0.375), rgba(64,235,255,0.10) 52%, transparent 76%); filter: blur(38px); }
-  .pkg-particles { position: absolute; left: 50%; top: calc(2% + 30px); transform: translateX(-50%); width: min(1488px, 83%); height: 44%; overflow: visible; pointer-events: none; z-index: 3; }
-  /* extra sparkle fields for the 2nd/3rd cards — mobile only (see media query below) */
-  .pkg-particles--m2, .pkg-particles--m3 { display: none; }
-  .pkg-dot { position: absolute; border-radius: 50%; background: rgba(180,250,255,0.95); box-shadow: 0 0 6px rgba(120,235,255,0.75); opacity: 0; animation: pkgFall 11s linear infinite; }
-  /* particles drift slowly downward and fade out the lower they get (fully gone ~25% earlier) */
-  @keyframes pkgFall { 0% { opacity: 0; transform: translateY(-6px); } 12% { opacity: 0.9; } 32% { opacity: 0.45; } 50% { opacity: 0; } 100% { opacity: 0; transform: translateY(var(--fall, 280px)); } }
-  .pkg-head { position: relative; z-index: 2; text-align: center; max-width: 760px; margin: 0 auto clamp(38px, 5vw, 60px); display: flex; flex-direction: column; align-items: center; gap: 15px; }
-  .pkg-tag { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; color: #9FDCEF; }
-  .pkg-tag-dot { width: 7px; height: 7px; border-radius: 50%; background: #40EBFF; box-shadow: 0 0 8px rgba(64,235,255,0.85); animation: pkgPulse 1.8s ease-in-out infinite; }
-  @keyframes pkgPulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.35; transform: scale(0.82); } }
-  .pkg-title { font-size: clamp(30px, 4.6vw, 54px); font-weight: 700; line-height: 1.07; letter-spacing: -0.022em; color: #EAF6FB; margin: 0; }
-  .pkg-em { background: linear-gradient(110deg, #53B9E0 0%, #9FDCEF 46%, #F5C842 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
-
-  .pkg-grid { position: relative; z-index: 2; max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; align-items: start; }
-  .pkg-card {
-    position: relative; overflow: hidden; display: flex; flex-direction: column; border-radius: 22px; padding: 30px 26px 32px;
-    background: rgba(255, 255, 255, 0.06);
-    -webkit-backdrop-filter: blur(28px) saturate(170%); backdrop-filter: blur(28px) saturate(170%);
-    box-shadow: 0 20px 52px rgba(0, 0, 0, 0.5), inset 0 -3px 0 rgba(0, 0, 0, 0.58), inset 0 -17px 24px -14px rgba(0, 0, 0, 0.42), inset 1px 0 0 rgba(0, 0, 0, 0.58), inset -1px 0 0 rgba(0, 0, 0, 0.58);
-    transition: transform 0.4s var(--ease-velvet, cubic-bezier(0.22,1,0.36,1)), box-shadow 0.4s, filter 0.35s ease, opacity 0.35s ease;
-  }
-  .pkg-card:hover { transform: translateY(-6px); box-shadow: 0 28px 64px rgba(0, 0, 0, 0.55), inset 0 -3px 0 rgba(0, 0, 0, 0.58), inset 0 -17px 24px -14px rgba(0, 0, 0, 0.42), inset 1px 0 0 rgba(0, 0, 0, 0.58), inset -1px 0 0 rgba(0, 0, 0, 0.58); }
-
-  /* gradient top banner (same cyan gradient as the brand CTA) holding the plan name */
-  .pkg-banner { margin: -30px -26px 22px; padding: 16px 24px; text-align: center; font-size: 19px; font-weight: 800; letter-spacing: -0.01em; color: #062029; background: linear-gradient(135deg, #6ff0ff, #2bb6c8); box-shadow: inset 0 3px 0 rgba(255,255,255,0.6), inset 1px 0 0 rgba(0,0,0,0.58), inset -1px 0 0 rgba(0,0,0,0.58); }
-  .pkg-desc { font-size: 13px; color: rgba(178,204,214,0.78); margin: 6px 0 0; }
-  .pkg-price { display: flex; align-items: baseline; gap: 7px; margin: 22px 0; }
-  .pkg-setup { margin: 14px 0 -8px; font-size: 13.5px; font-weight: 600; letter-spacing: -0.01em; color: #9FDCEF; }
-  .pkg-setup-amount { font-size: 44px; font-weight: 800; color: #fff; letter-spacing: -0.025em; line-height: 1; }
-  .pkg-save { display: inline-block; align-self: center; vertical-align: middle; margin-left: 8px; padding: 2px 8px; border-radius: 999px; background: #F5C842; color: #062029; font-size: 10.5px; font-weight: 800; letter-spacing: 0.01em; white-space: nowrap; }
-  .pkg-amount { font-size: 24px; font-weight: 600; color: #fff; letter-spacing: -0.025em; line-height: 1; }
-  .pkg-per { font-size: 13.5px; font-weight: 600; color: #9FDCEF; }
-  /* subtle line beneath the price that fades out toward the edges */
-  .pkg-div { height: 1px; margin: 0 0 16px; background: linear-gradient(90deg, transparent, rgba(120,200,222,0.32), transparent); }
-  /* "What's included:" label in the banner's cyan gradient */
-  .pkg-included { display: block; font-size: 12px; font-weight: 700; letter-spacing: 0.04em; margin-bottom: 16px; background: linear-gradient(135deg, #6ff0ff, #2bb6c8); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
-  /* CTA pinned to the bottom of the card, fit-content width, cyan gradient like the banner */
-  .pkg-cta {
-    align-self: center; margin-top: auto; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; cursor: pointer;
-    font-size: 14.5px; font-weight: 700; color: #062029; padding: 13px 30px; border-radius: 999px;
-    background: linear-gradient(135deg, #6ff0ff, #2bb6c8); border: none;
-    box-shadow: 0 12px 28px -10px rgba(64,235,255,0.55), inset 0 0 0 1px rgba(255,255,255,0.28);
-    transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
-  }
-  .pkg-cta:hover { background: linear-gradient(135deg, #6ff0ff, #2bb6c8); box-shadow: 0 16px 34px -10px rgba(64,235,255,0.72), inset 0 0 0 1px rgba(255,255,255,0.34); transform: translateY(-2px); }
-  .pkg-features { display: flex; flex-direction: column; gap: 16px; margin-bottom: 26px; }
-  .pkg-feat { display: flex; align-items: center; gap: 12px; font-size: 13.5px; font-weight: 500; color: #DCEEF3; }
-  .pkg-feat svg { width: 20px; height: 20px; flex: 0 0 auto; color: #40EBFF; }
-  /* on-load fade + blur reveal for the [ PLANS ] tag, the headline, and the cards */
-  @keyframes pkgReveal { from { opacity: 0; transform: translateY(18px); filter: blur(14px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
-  .pkg-tag, .pkg-title, .pkg-card { animation: pkgReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) backwards; }
-  .pkg-tag { animation-delay: 0.15s; }
-  .pkg-title { animation-delay: 0.28s; }
-  .pkg-grid .pkg-card:nth-child(1) { animation-delay: 0.42s; }
-  .pkg-grid .pkg-card:nth-child(2) { animation-delay: 0.54s; }
-  .pkg-grid .pkg-card:nth-child(3) { animation-delay: 0.66s; }
-  @media (max-width: 980px) {
-    .pkg-grid { grid-template-columns: 1fr; max-width: 440px; gap: 26px; }
-  }
-  /* mobile only: raise the glow + sparkles, and replicate the same light + sparkles
-     over the 2nd (AI Employee) and 3rd (AI Solution) cards as well */
-  @media (max-width: 768px) {
-    .pkg-beam {
-      top: -145px;
-      background:
-        radial-gradient(ellipse 74% 50% at 50% 32%, rgba(64,235,255,0.21) 0%, rgba(64,235,255,0.20) 28%, rgba(64,235,255,0.10) 52%, rgba(64,235,255,0.035) 72%, transparent 90%),
-        radial-gradient(ellipse 74% 50% at 50% 60%, rgba(64,235,255,0.21) 0%, rgba(64,235,255,0.20) 28%, rgba(64,235,255,0.10) 52%, rgba(64,235,255,0.035) 72%, transparent 90%),
-        radial-gradient(ellipse 74% 50% at 50% 88%, rgba(64,235,255,0.21) 0%, rgba(64,235,255,0.20) 28%, rgba(64,235,255,0.10) 52%, rgba(64,235,255,0.035) 72%, transparent 90%);
-    }
-    .pkg-particles { top: calc(2% - 45px); }
-    .pkg-particles--m2 { display: block; top: calc(30% - 45px); }
-    .pkg-particles--m3 { display: block; top: calc(58% - 45px); }
-    /* halve the sparkles on mobile (drop every other one, keeps even spacing) */
-    .pkg-dot:nth-child(even) { display: none; }
-  }
-  /* non-mobile only: halve the gap between the Schedule Demo button and [ PLANS ] */
-  @media (min-width: 769px) {
-    .hero { padding-bottom: 1.1px; }
-    .pkg-pricing { padding-top: clamp(0.6px, 0.094vw, 1.25px); }
-  }
-  /* raise the AI Bundle (middle) card a little for prominence — only in the 3-column layout */
-  @media (min-width: 981px) {
-    .pkg-card--raised { transform: translateY(-18px); }
-    .pkg-card--raised:hover { transform: translateY(-24px); }
-    /* hovering one card softly blurs the others so the focused one stands out (desktop only) */
-    .pkg-grid:has(.pkg-card:hover) .pkg-card:not(:hover) { filter: blur(5px); opacity: 0.85; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .pkg-tag-dot { animation: none; }
-    .pkg-dot { animation: none; opacity: 0; }
-    .pkg-card, .pkg-card:hover, .pkg-cta:hover { transition: none; }
-    .pkg-tag, .pkg-title, .pkg-card { animation: none; }
-  }
+  .hero-title .word:nth-of-type(3) .char:nth-child(3) { animation-delay: 1.35s; }
+  /* Home */
+  .hero-title .word:nth-of-type(4) .char:nth-child(1) { animation-delay: 1.45s; }
+  .hero-title .word:nth-of-type(4) .char:nth-child(2) { animation-delay: 1.50s; }
+  .hero-title .word:nth-of-type(4) .char:nth-child(3) { animation-delay: 1.55s; }
+  .hero-title .word:nth-of-type(4) .char:nth-child(4) { animation-delay: 1.60s; }
+  /* Services */
+  .hero-title .word:nth-of-type(5) .char:nth-child(1) { animation-delay: 1.70s; }
+  .hero-title .word:nth-of-type(5) .char:nth-child(2) { animation-delay: 1.75s; }
+  .hero-title .word:nth-of-type(5) .char:nth-child(3) { animation-delay: 1.80s; }
+  .hero-title .word:nth-of-type(5) .char:nth-child(4) { animation-delay: 1.85s; }
+  .hero-title .word:nth-of-type(5) .char:nth-child(5) { animation-delay: 1.90s; }
+  .hero-title .word:nth-of-type(5) .char:nth-child(6) { animation-delay: 1.95s; }
+  .hero-title .word:nth-of-type(5) .char:nth-child(7) { animation-delay: 2.00s; }
+  .hero-title .word:nth-of-type(5) .char:nth-child(8) { animation-delay: 2.05s; }
 </style>
-<link rel="stylesheet" href="ai-websites.css?v=66">
+<link rel="stylesheet" href="ai-websites.css?v=47">
 </head>
 <body>
 
@@ -254,13 +147,15 @@
 
   <!-- HEADLINE -->
   <h1 class="hero-title">
-    <span class="word"><span class="char">C</span><span class="char">h</span><span class="char">o</span><span class="char">o</span><span class="char">s</span><span class="char">e</span></span>
-    <span class="word"><span class="char">Y</span><span class="char">o</span><span class="char">u</span><span class="char">r</span></span>
     <span class="word"><span class="char">A</span><span class="char">I</span></span>
-    <span class="word grad"><span class="char">P</span><span class="char">a</span><span class="char">c</span><span class="char">k</span><span class="char">a</span><span class="char">g</span><span class="char">e</span></span>
+    <span class="word"><span class="char">W</span><span class="char">e</span><span class="char">b</span><span class="char">s</span><span class="char">i</span><span class="char">t</span><span class="char">e</span><span class="char">s</span></span>
+    <span class="word"><span class="char">F</span><span class="char">o</span><span class="char">r</span></span>
+    <i class="hero-br" aria-hidden="true"></i>
+    <span class="word"><span class="char">H</span><span class="char">o</span><span class="char">m</span><span class="char">e</span></span>
+    <span class="word grad"><span class="char">S</span><span class="char">e</span><span class="char">r</span><span class="char">v</span><span class="char">i</span><span class="char">c</span><span class="char">e</span><span class="char">s</span></span>
   </h1>
 
-  <p class="hero-sub">AI packages for your business — websites, employees, or bundled.<br/>For contractors who want to win more jobs with less effort.</p>
+  <p class="hero-sub">Custom-built websites that turn local searches into booked jobs.<br/>Designed for contractors who want more work.</p>
 
   <div class="cta-frame">
     <svg class="cta-track cta-track-l" viewBox="0 0 300 90" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
@@ -321,169 +216,776 @@
     </svg>
   </div>
 
+  <!-- ============================================================
+       FLOATING CONTRACTOR-WEBSITE PREVIEW — layered glass panels
+       (transparent stage; a hero background image can sit behind it)
+  ============================================================ -->
+  <div class="cw-stage" aria-label="Example general-contractor website" role="img">
+    <div class="cw-aura" aria-hidden="true"></div>
+
+    <!-- ───── floating nav bar ───── -->
+    <div class="cw-float cw-pos-nav" data-depth="7" style="--fdur:8s; --fph:-1.2s;">
+      <nav class="cw-panel cw-nav" style="--rev:.10s">
+        <div class="cw-brand">
+          <span class="cw-brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 L12 5 L21 20"/><path d="M7.6 20 L12 12 L16.4 20"/></svg>
+          </span>
+          <span class="cw-brand-name">SUMMIT<em>Build&nbsp;Co.</em></span>
+        </div>
+        <div class="cw-nav-links">
+          <span class="is-active">Services</span>
+          <span>Service Areas</span>
+          <span>Projects</span>
+          <span>About</span>
+          <span>Contact</span>
+        </div>
+        <div class="cw-nav-right">
+          <a class="cw-nav-phone" href="tel:+17867880486">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5 9 4l1.2 3.4-1.8 1.3a10.5 10.5 0 0 0 4.6 4.6l1.3-1.8L17.7 13l.5 2.5a1.4 1.4 0 0 1-1.5 1.7A13.6 13.6 0 0 1 4.3 5a1.4 1.4 0 0 1 1.7-1.5"/></svg>
+            (786)&nbsp;788-0486
+          </a>
+          <a class="cw-nav-cta" href="/book">Book Appointment</a>
+        </div>
+      </nav>
+    </div>
+
+    <!-- ───── hero text panel ───── -->
+    <div class="cw-float cw-pos-hero" data-depth="3" style="--fdur:9.5s; --fph:-3s;">
+      <div class="cw-panel cw-hero" style="--rev:.24s">
+        <span class="cw-eyebrow"><span class="cw-eyebrow-dot"></span>Licensed &amp; Insured · Since 2008</span>
+        <h3 class="cw-headline">Your project,<br><span class="cw-grad">built right.</span></h3>
+        <p class="cw-sub">Remodels, repairs &amp; new builds from a crew you can trust — clear quotes, clean job sites, finished on schedule.</p>
+        <div class="cw-hero-actions">
+          <a class="cw-btn cw-btn-fill" href="/book">Get a Free Quote
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <a class="cw-btn cw-btn-ghost" href="/book">View Projects</a>
+        </div>
+        <div class="cw-trust">
+          <span class="cw-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Free estimates</span>
+          <span class="cw-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>5-yr warranty</span>
+          <span class="cw-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>On-time guarantee</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ───── review badge (floating chip) ───── -->
+    <div class="cw-float cw-pos-review" data-depth="12" style="--fdur:7s; --fph:-5s;">
+      <div class="cw-panel cw-review" style="--rev:.56s">
+        <div class="cw-review-stars" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 5.9 6.6.9-4.8 4.6 1.1 6.5L12 21.3 6.2 20.4l1.1-6.5-4.8-4.6 6.6-.9z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 5.9 6.6.9-4.8 4.6 1.1 6.5L12 21.3 6.2 20.4l1.1-6.5-4.8-4.6 6.6-.9z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 5.9 6.6.9-4.8 4.6 1.1 6.5L12 21.3 6.2 20.4l1.1-6.5-4.8-4.6 6.6-.9z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 5.9 6.6.9-4.8 4.6 1.1 6.5L12 21.3 6.2 20.4l1.1-6.5-4.8-4.6 6.6-.9z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 5.9 6.6.9-4.8 4.6 1.1 6.5L12 21.3 6.2 20.4l1.1-6.5-4.8-4.6 6.6-.9z"/></svg>
+        </div>
+        <div class="cw-review-meta"><strong>4.9</strong><span>280+ verified reviews</span></div>
+        <div class="cw-avatars" aria-hidden="true">
+          <span><img src="Profile%20Pictures/happy-male-photographer-showing-result-of-content-2025-03-18-16-21-22-utc.png" alt="" loading="lazy"></span>
+          <span><img src="Profile%20Pictures/happy-young-smiling-woman-taking-a-self-portrait-p-2025-01-08-14-17-44-utc.png" alt="" loading="lazy"></span>
+          <span><img src="Profile%20Pictures/man-photographing-family-2025-03-15-08-22-07-utc.png" alt="" loading="lazy"></span>
+          <span><img src="Profile%20Pictures/young-couple-walking-in-the-background-of-a-large-2024-10-17-13-22-40-utc.png" alt="" loading="lazy"></span>
+          <span class="cw-av-more">+9</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ───── get-a-free-quote form ───── -->
+    <div class="cw-float cw-pos-form" data-depth="6" style="--fdur:8.6s; --fph:-2s;">
+      <form class="cw-panel cw-form" style="--rev:.36s" onsubmit="return false">
+        <div class="cw-form-head">
+          <span class="cw-form-title">Get a Free Quote</span>
+          <span class="cw-form-pill">~1&nbsp;hr reply</span>
+        </div>
+        <div class="cw-field">
+          <span class="cw-field-label">Full name</span>
+          <span class="cw-field-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg>
+            <span class="cw-field-val" data-cw-type="Jordan Mitchell">Jordan Mitchell</span>
+          </span>
+        </div>
+        <div class="cw-field-row">
+          <div class="cw-field">
+            <span class="cw-field-label">Phone</span>
+            <span class="cw-field-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5 9 4l1.2 3.4-1.8 1.3a10.5 10.5 0 0 0 4.6 4.6l1.3-1.8L17.7 13l.5 2.5a1.4 1.4 0 0 1-1.5 1.7A13.6 13.6 0 0 1 4.3 5a1.4 1.4 0 0 1 1.7-1.5"/></svg>
+              <span class="cw-field-val" data-cw-type="(305) 555-0142">(305) 555-0142</span>
+            </span>
+          </div>
+          <div class="cw-field">
+            <span class="cw-field-label">Zip</span>
+            <span class="cw-field-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+              <span class="cw-field-val" data-cw-type="33131">33131</span>
+            </span>
+          </div>
+        </div>
+        <div class="cw-field">
+          <span class="cw-field-label">Service needed</span>
+          <span class="cw-field-box cw-field-select">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 6a3.5 3.5 0 0 0-4.6 4.3L4 16.2 7.8 20l5.9-5.9A3.5 3.5 0 0 0 18 9.5l-2.3 2.3-2-2L16 7.5z"/></svg>
+            <span class="cw-field-val" data-cw-type="Kitchen Remodel">Kitchen Remodel</span>
+            <svg class="cw-field-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </span>
+        </div>
+        <div class="cw-field">
+          <span class="cw-field-label">Project details</span>
+          <span class="cw-field-box cw-field-area">
+            <span class="cw-field-val" data-cw-type="Full kitchen reno — cabinets, counters &amp; island">Full kitchen reno — cabinets, counters &amp; island</span>
+          </span>
+        </div>
+        <a class="cw-submit" href="/book">Get My Free Quote
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <span class="cw-form-foot">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+          No spam · No obligation
+        </span>
+      </form>
+    </div>
+
+    <!-- ───── analytics carousel ───── -->
+    <div class="cw-float cw-pos-analytics" data-depth="4" style="--fdur:10s; --fph:-6s;">
+      <div class="cw-panel cw-analytics" style="--rev:.48s">
+        <div class="cw-ticker">
+          <div class="cw-ticker-track">
+            <!-- ── credibility ticker · set A ── -->
+            <div class="cw-stat"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5.5"/><path d="M8.5 13.5 7 22l5-2.7L17 22l-1.5-8.5"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">20+</span><span class="cw-stat-label">Years in business</span></span></div>
+            <div class="cw-stat"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 19 6v5c0 4.4-3 7.4-7 9-4-1.6-7-4.6-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">100%</span><span class="cw-stat-label">Insured &amp; bonded</span></span></div>
+            <div class="cw-stat"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="8.5" r="3"/><path d="M4 20a5.5 5.5 0 0 1 11 0"/><path d="M16 6a3 3 0 0 1 0 5.7"/><path d="M18.5 20a5.5 5.5 0 0 0-2.6-4.7"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">10,000+</span><span class="cw-stat-label">Customers served</span></span></div>
+            <div class="cw-stat"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.4-6-10a6 6 0 0 1 12 0c0 4.6-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">Local</span><span class="cw-stat-label">Owned &amp; operated</span></span></div>
+            <div class="cw-stat"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7 14.85 8.45 21.2 9.35 16.6 13.8 17.7 20.1 12 17.1 6.3 20.1 7.4 13.8 2.8 9.35 9.15 8.45 Z"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">280+</span><span class="cw-stat-label">5-star reviews</span></span></div>
+            <div class="cw-stat"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 1.8"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">98%</span><span class="cw-stat-label">On-time completion</span></span></div>
+            <div class="cw-stat"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3.5" width="16" height="12" rx="2"/><path d="M8.5 19.5 12 18l3.5 1.5v-4"/><path d="M8 7.5h8M8 10.5h5"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">Licensed</span><span class="cw-stat-label">GC&nbsp;#B-1184</span></span></div>
+            <div class="cw-stat"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 6a3.5 3.5 0 0 0-4.6 4.3L4 16.2 7.8 20l5.9-5.9A3.5 3.5 0 0 0 18 9.5l-2.3 2.3-2-2L16 7.5z"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">5-Year</span><span class="cw-stat-label">Workmanship warranty</span></span></div>
+            <!-- ── set B (duplicate for a seamless loop) ── -->
+            <div class="cw-stat" aria-hidden="true"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5.5"/><path d="M8.5 13.5 7 22l5-2.7L17 22l-1.5-8.5"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">20+</span><span class="cw-stat-label">Years in business</span></span></div>
+            <div class="cw-stat" aria-hidden="true"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 19 6v5c0 4.4-3 7.4-7 9-4-1.6-7-4.6-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">100%</span><span class="cw-stat-label">Insured &amp; bonded</span></span></div>
+            <div class="cw-stat" aria-hidden="true"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="8.5" r="3"/><path d="M4 20a5.5 5.5 0 0 1 11 0"/><path d="M16 6a3 3 0 0 1 0 5.7"/><path d="M18.5 20a5.5 5.5 0 0 0-2.6-4.7"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">10,000+</span><span class="cw-stat-label">Customers served</span></span></div>
+            <div class="cw-stat" aria-hidden="true"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.4-6-10a6 6 0 0 1 12 0c0 4.6-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">Local</span><span class="cw-stat-label">Owned &amp; operated</span></span></div>
+            <div class="cw-stat" aria-hidden="true"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7 14.85 8.45 21.2 9.35 16.6 13.8 17.7 20.1 12 17.1 6.3 20.1 7.4 13.8 2.8 9.35 9.15 8.45 Z"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">280+</span><span class="cw-stat-label">5-star reviews</span></span></div>
+            <div class="cw-stat" aria-hidden="true"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 1.8"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">98%</span><span class="cw-stat-label">On-time completion</span></span></div>
+            <div class="cw-stat" aria-hidden="true"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3.5" width="16" height="12" rx="2"/><path d="M8.5 19.5 12 18l3.5 1.5v-4"/><path d="M8 7.5h8M8 10.5h5"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">Licensed</span><span class="cw-stat-label">GC&nbsp;#B-1184</span></span></div>
+            <div class="cw-stat" aria-hidden="true"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 6a3.5 3.5 0 0 0-4.6 4.3L4 16.2 7.8 20l5.9-5.9A3.5 3.5 0 0 0 18 9.5l-2.3 2.3-2-2L16 7.5z"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">5-Year</span><span class="cw-stat-label">Workmanship warranty</span></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════ Facebook live feed (2/3) + call/text chat (1/3) ═══════ -->
+    <div class="cw-float cw-pos-extra" data-depth="4">
+      <div class="cw-extra">
+
+        <!-- LEFT · Facebook feed, auto-published to the site -->
+        <section class="cw-panel cw-feed" style="--rev:.5s">
+          <header class="cw-feed-head">
+            <span class="cw-fb-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.52 1.5-3.91 3.78-3.91 1.1 0 2.24.2 2.24.2v2.47H15.2c-1.24 0-1.63.78-1.63 1.57v1.88h2.78l-.44 2.9h-2.34V22c4.78-.79 8.43-4.94 8.43-9.94z"/></svg>
+            </span>
+            <div class="cw-feed-title">
+              <strong>Facebook Feed</strong>
+              <span>Auto-published to your website</span>
+            </div>
+            <span class="cw-feed-live" aria-hidden="true"><i></i>LIVE</span>
+          </header>
+
+          <div class="cw-feed-scroll">
+            <div class="cw-feed-list" data-cw-feed>
+              <!-- Three posts. One shows at a time and cross-fades on a
+                   continuous loop: bathroom → living room → bedroom → … -->
+              <article class="cw-post is-active">
+                <div class="cw-post-top">
+                  <span class="cw-post-av" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15"/><path d="M7.6 20 12 12l4.4 8"/></svg></span>
+                  <div class="cw-post-meta"><strong>Summit Build&nbsp;Co.</strong><span class="cw-post-time">Just now</span></div>
+                  <svg class="cw-post-src" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.52 1.5-3.91 3.78-3.91 1.1 0 2.24.2 2.24.2v2.47H15.2c-1.24 0-1.63.78-1.63 1.57v1.88h2.78l-.44 2.9h-2.34V22c4.78-.79 8.43-4.94 8.43-9.94z"/></svg>
+                </div>
+                <div class="cw-post-body">
+                  <div class="cw-post-media"><img src="post-bathroom.jpg" alt="Bathroom remodel by Summit Build Co." loading="lazy"></div>
+                  <div class="cw-post-side">
+                    <p class="cw-post-cap">Spa-style primary bath, handed over this morning — heated floors, rainfall shower, and that freestanding soaker tub. 🛁✨</p>
+                    <div class="cw-post-foot">
+                      <span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 10.5h3.5V22H2zM22 11.2a1.9 1.9 0 0 0-1.9-1.9h-4.7l.74-3.78A1.55 1.55 0 0 0 13 4.7L8 10.5V22h9.3a1.9 1.9 0 0 0 1.87-1.5l1.28-7a1.9 1.9 0 0 0 .05-.3z"/></svg>248</span>
+                      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M21 11.5a8 8 0 0 1-11.6 7.1L4 20.5l1.9-5.3A8 8 0 1 1 21 11.5z"/></svg>32</span>
+                      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M16 6l-4-4-4 4M12 2v13"/></svg>11</span>
+                    </div>
+                    <span class="cw-post-more">View all 32 comments</span>
+                    <div class="cw-post-comments">
+                      <div class="cw-cmt"><span class="cw-cmt-av">J</span><p><strong>Jessica&nbsp;R.</strong> Absolutely stunning 😍 the tub is everything</p></div>
+                      <div class="cw-cmt"><span class="cw-cmt-av">M</span><p><strong>Marcus&nbsp;D.</strong> That marble work is unreal. Booking you next.</p></div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+              <article class="cw-post">
+                <div class="cw-post-top">
+                  <span class="cw-post-av" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15"/><path d="M7.6 20 12 12l4.4 8"/></svg></span>
+                  <div class="cw-post-meta"><strong>Summit Build&nbsp;Co.</strong><span class="cw-post-time">Just now</span></div>
+                  <svg class="cw-post-src" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.52 1.5-3.91 3.78-3.91 1.1 0 2.24.2 2.24.2v2.47H15.2c-1.24 0-1.63.78-1.63 1.57v1.88h2.78l-.44 2.9h-2.34V22c4.78-.79 8.43-4.94 8.43-9.94z"/></svg>
+                </div>
+                <div class="cw-post-body">
+                  <div class="cw-post-media"><img src="post-living.jpg" alt="Living room remodel by Summit Build Co." loading="lazy"></div>
+                  <div class="cw-post-side">
+                    <p class="cw-post-cap">Living room transformation complete — custom built-ins, white-oak floors, and a statement fireplace wall. 🔥</p>
+                    <div class="cw-post-foot">
+                      <span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 10.5h3.5V22H2zM22 11.2a1.9 1.9 0 0 0-1.9-1.9h-4.7l.74-3.78A1.55 1.55 0 0 0 13 4.7L8 10.5V22h9.3a1.9 1.9 0 0 0 1.87-1.5l1.28-7a1.9 1.9 0 0 0 .05-.3z"/></svg>312</span>
+                      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M21 11.5a8 8 0 0 1-11.6 7.1L4 20.5l1.9-5.3A8 8 0 1 1 21 11.5z"/></svg>44</span>
+                      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M16 6l-4-4-4 4M12 2v13"/></svg>19</span>
+                    </div>
+                    <span class="cw-post-more">View all 44 comments</span>
+                    <div class="cw-post-comments">
+                      <div class="cw-cmt"><span class="cw-cmt-av">S</span><p><strong>Sofia&nbsp;M.</strong> Obsessed with those built-ins! 👏</p></div>
+                      <div class="cw-cmt"><span class="cw-cmt-av">A</span><p><strong>Aaron&nbsp;P.</strong> Best crew in town, hands down.</p></div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+              <article class="cw-post">
+                <div class="cw-post-top">
+                  <span class="cw-post-av" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15"/><path d="M7.6 20 12 12l4.4 8"/></svg></span>
+                  <div class="cw-post-meta"><strong>Summit Build&nbsp;Co.</strong><span class="cw-post-time">Just now</span></div>
+                  <svg class="cw-post-src" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.52 1.5-3.91 3.78-3.91 1.1 0 2.24.2 2.24.2v2.47H15.2c-1.24 0-1.63.78-1.63 1.57v1.88h2.78l-.44 2.9h-2.34V22c4.78-.79 8.43-4.94 8.43-9.94z"/></svg>
+                </div>
+                <div class="cw-post-body">
+                  <div class="cw-post-media"><img src="post-bedroom.jpg" alt="Bedroom remodel by Summit Build Co." loading="lazy"></div>
+                  <div class="cw-post-side">
+                    <p class="cw-post-cap">Primary bedroom reveal — warm white oak, soft linens, and so much natural light. Calm, clean, done. ☀️</p>
+                    <div class="cw-post-foot">
+                      <span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 10.5h3.5V22H2zM22 11.2a1.9 1.9 0 0 0-1.9-1.9h-4.7l.74-3.78A1.55 1.55 0 0 0 13 4.7L8 10.5V22h9.3a1.9 1.9 0 0 0 1.87-1.5l1.28-7a1.9 1.9 0 0 0 .05-.3z"/></svg>176</span>
+                      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M21 11.5a8 8 0 0 1-11.6 7.1L4 20.5l1.9-5.3A8 8 0 1 1 21 11.5z"/></svg>21</span>
+                      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M16 6l-4-4-4 4M12 2v13"/></svg>7</span>
+                    </div>
+                    <span class="cw-post-more">View all 21 comments</span>
+                    <div class="cw-post-comments">
+                      <div class="cw-cmt"><span class="cw-cmt-av">H</span><p><strong>Hannah&nbsp;W.</strong> So peaceful — I could move right in 😍</p></div>
+                      <div class="cw-cmt"><span class="cw-cmt-av">L</span><p><strong>Leo&nbsp;F.</strong> Quality is next level. 🙌</p></div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- RIGHT · call / text chat widget -->
+        <aside class="cw-panel cw-chat" style="--rev:.58s">
+          <header class="cw-chat-head">
+            <span class="cw-chat-photo" aria-label="Representative photo"><img src="chat-rep.jpg" alt="" loading="lazy"></span>
+            <div class="cw-chat-id">
+              <strong>Chat with Summit</strong>
+              <span class="cw-chat-status"><i></i>Online now · replies in ~5&nbsp;sec</span>
+            </div>
+          </header>
+          <div class="cw-chat-thread">
+            <div class="cw-chat-msg">Hi there! 👋 How can we help with your project today?</div>
+            <div class="cw-chat-msg cw-chat-me">Hi! I'd love a quote to remodel my kitchen 🙂</div>
+            <div class="cw-chat-typing" aria-hidden="true"><i></i><i></i><i></i></div>
+          </div>
+          <div class="cw-chat-cta">
+            <a class="cw-chat-btn cw-chat-call" href="/ai-employees">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5 9 4l1.2 3.4-1.8 1.3a10.5 10.5 0 0 0 4.6 4.6l1.3-1.8L17.7 13l.5 2.5a1.4 1.4 0 0 1-1.5 1.7A13.6 13.6 0 0 1 4.3 5a1.4 1.4 0 0 1 1.7-1.5"/></svg>
+              Call
+            </a>
+            <span class="cw-chat-btn cw-chat-text">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5h16v10H8l-4 3.5z"/></svg>
+              Text
+            </span>
+          </div>
+          <div class="cw-chat-input">
+            <span>Type your message…</span>
+            <span class="cw-chat-send" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h14M12 5l7 7-7 7"/></svg></span>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+
+  </div>
 
 </main>
 
-<!-- ====== Pricing — AI packages ====== -->
-<section class="pkg-pricing" aria-labelledby="pricing-title">
-  <div class="pkg-beam" aria-hidden="true"></div>
-  <div class="pkg-particles" aria-hidden="true">
-    <span class="pkg-dot" style="left:50%; top:9%;  width:3px;   height:3px;   animation-delay:0s;      --fall:320px;"></span>
-    <span class="pkg-dot" style="left:30%; top:13%; width:2px;   height:2px;   animation-delay:-0.41s;  --fall:280px;"></span>
-    <span class="pkg-dot" style="left:70%; top:12%; width:2.5px; height:2.5px; animation-delay:-0.81s;  --fall:300px;"></span>
-    <span class="pkg-dot" style="left:14%; top:18%; width:2px;   height:2px;   animation-delay:-1.22s;  --fall:260px;"></span>
-    <span class="pkg-dot" style="left:86%; top:16%; width:2px;   height:2px;   animation-delay:-1.63s;  --fall:260px;"></span>
-    <span class="pkg-dot" style="left:18%; top:11%; width:2px;   height:2px;   animation-delay:-2.04s;  --fall:300px;"></span>
-    <span class="pkg-dot" style="left:42%; top:20%; width:2.5px; height:2.5px; animation-delay:-2.44s;  --fall:300px;"></span>
-    <span class="pkg-dot" style="left:58%; top:22%; width:2px;   height:2px;   animation-delay:-2.85s;  --fall:280px;"></span>
-    <span class="pkg-dot" style="left:82%; top:24%; width:2px;   height:2px;   animation-delay:-3.26s;  --fall:270px;"></span>
-    <span class="pkg-dot" style="left:22%; top:26%; width:2px;   height:2px;   animation-delay:-3.67s;  --fall:240px;"></span>
-    <span class="pkg-dot" style="left:78%; top:28%; width:2.5px; height:2.5px; animation-delay:-4.07s;  --fall:240px;"></span>
-    <span class="pkg-dot" style="left:50%; top:30%; width:3.5px; height:3.5px; animation-delay:-4.48s;  --fall:340px;"></span>
-    <span class="pkg-dot" style="left:38%; top:32%; width:2px;   height:2px;   animation-delay:-4.89s;  --fall:260px;"></span>
-    <span class="pkg-dot" style="left:62%; top:34%; width:2.5px; height:2.5px; animation-delay:-5.30s;  --fall:250px;"></span>
-    <span class="pkg-dot" style="left:8%;  top:34%; width:2px;   height:2px;   animation-delay:-5.70s;  --fall:220px;"></span>
-    <span class="pkg-dot" style="left:92%; top:36%; width:2px;   height:2px;   animation-delay:-6.11s;  --fall:220px;"></span>
-    <span class="pkg-dot" style="left:36%; top:40%; width:2.5px; height:2.5px; animation-delay:-6.52s;  --fall:250px;"></span>
-    <span class="pkg-dot" style="left:64%; top:42%; width:2px;   height:2px;   animation-delay:-6.93s;  --fall:250px;"></span>
-    <span class="pkg-dot" style="left:12%; top:44%; width:2px;   height:2px;   animation-delay:-7.33s;  --fall:210px;"></span>
-    <span class="pkg-dot" style="left:88%; top:46%; width:2px;   height:2px;   animation-delay:-7.74s;  --fall:210px;"></span>
-    <span class="pkg-dot" style="left:26%; top:48%; width:2px;   height:2px;   animation-delay:-8.15s;  --fall:200px;"></span>
-    <span class="pkg-dot" style="left:74%; top:50%; width:2.5px; height:2.5px; animation-delay:-8.56s;  --fall:200px;"></span>
-    <span class="pkg-dot" style="left:46%; top:54%; width:2px;   height:2px;   animation-delay:-8.96s;  --fall:190px;"></span>
-    <span class="pkg-dot" style="left:34%; top:58%; width:2px;   height:2px;   animation-delay:-9.37s;  --fall:180px;"></span>
-    <span class="pkg-dot" style="left:68%; top:56%; width:2px;   height:2px;   animation-delay:-9.78s;  --fall:190px;"></span>
-    <span class="pkg-dot" style="left:58%; top:60%; width:2px;   height:2px;   animation-delay:-10.19s; --fall:170px;"></span>
-    <span class="pkg-dot" style="left:50%; top:68%; width:2px;   height:2px;   animation-delay:-10.59s; --fall:160px;"></span>
-  </div>
-  <div class="pkg-particles pkg-particles--m2" aria-hidden="true">
-    <span class="pkg-dot" style="left:50%; top:9%;  width:3px;   height:3px;   animation-delay:0s;      --fall:320px;"></span>
-    <span class="pkg-dot" style="left:30%; top:13%; width:2px;   height:2px;   animation-delay:-0.41s;  --fall:280px;"></span>
-    <span class="pkg-dot" style="left:70%; top:12%; width:2.5px; height:2.5px; animation-delay:-0.81s;  --fall:300px;"></span>
-    <span class="pkg-dot" style="left:14%; top:18%; width:2px;   height:2px;   animation-delay:-1.22s;  --fall:260px;"></span>
-    <span class="pkg-dot" style="left:86%; top:16%; width:2px;   height:2px;   animation-delay:-1.63s;  --fall:260px;"></span>
-    <span class="pkg-dot" style="left:18%; top:11%; width:2px;   height:2px;   animation-delay:-2.04s;  --fall:300px;"></span>
-    <span class="pkg-dot" style="left:42%; top:20%; width:2.5px; height:2.5px; animation-delay:-2.44s;  --fall:300px;"></span>
-    <span class="pkg-dot" style="left:58%; top:22%; width:2px;   height:2px;   animation-delay:-2.85s;  --fall:280px;"></span>
-    <span class="pkg-dot" style="left:82%; top:24%; width:2px;   height:2px;   animation-delay:-3.26s;  --fall:270px;"></span>
-    <span class="pkg-dot" style="left:22%; top:26%; width:2px;   height:2px;   animation-delay:-3.67s;  --fall:240px;"></span>
-    <span class="pkg-dot" style="left:78%; top:28%; width:2.5px; height:2.5px; animation-delay:-4.07s;  --fall:240px;"></span>
-    <span class="pkg-dot" style="left:50%; top:30%; width:3.5px; height:3.5px; animation-delay:-4.48s;  --fall:340px;"></span>
-    <span class="pkg-dot" style="left:38%; top:32%; width:2px;   height:2px;   animation-delay:-4.89s;  --fall:260px;"></span>
-    <span class="pkg-dot" style="left:62%; top:34%; width:2.5px; height:2.5px; animation-delay:-5.30s;  --fall:250px;"></span>
-    <span class="pkg-dot" style="left:8%;  top:34%; width:2px;   height:2px;   animation-delay:-5.70s;  --fall:220px;"></span>
-    <span class="pkg-dot" style="left:92%; top:36%; width:2px;   height:2px;   animation-delay:-6.11s;  --fall:220px;"></span>
-    <span class="pkg-dot" style="left:36%; top:40%; width:2.5px; height:2.5px; animation-delay:-6.52s;  --fall:250px;"></span>
-    <span class="pkg-dot" style="left:64%; top:42%; width:2px;   height:2px;   animation-delay:-6.93s;  --fall:250px;"></span>
-    <span class="pkg-dot" style="left:12%; top:44%; width:2px;   height:2px;   animation-delay:-7.33s;  --fall:210px;"></span>
-    <span class="pkg-dot" style="left:88%; top:46%; width:2px;   height:2px;   animation-delay:-7.74s;  --fall:210px;"></span>
-    <span class="pkg-dot" style="left:26%; top:48%; width:2px;   height:2px;   animation-delay:-8.15s;  --fall:200px;"></span>
-    <span class="pkg-dot" style="left:74%; top:50%; width:2.5px; height:2.5px; animation-delay:-8.56s;  --fall:200px;"></span>
-    <span class="pkg-dot" style="left:46%; top:54%; width:2px;   height:2px;   animation-delay:-8.96s;  --fall:190px;"></span>
-    <span class="pkg-dot" style="left:34%; top:58%; width:2px;   height:2px;   animation-delay:-9.37s;  --fall:180px;"></span>
-    <span class="pkg-dot" style="left:68%; top:56%; width:2px;   height:2px;   animation-delay:-9.78s;  --fall:190px;"></span>
-    <span class="pkg-dot" style="left:58%; top:60%; width:2px;   height:2px;   animation-delay:-10.19s; --fall:170px;"></span>
-    <span class="pkg-dot" style="left:50%; top:68%; width:2px;   height:2px;   animation-delay:-10.59s; --fall:160px;"></span>
-  </div>
-  <div class="pkg-particles pkg-particles--m3" aria-hidden="true">
-    <span class="pkg-dot" style="left:50%; top:9%;  width:3px;   height:3px;   animation-delay:0s;      --fall:320px;"></span>
-    <span class="pkg-dot" style="left:30%; top:13%; width:2px;   height:2px;   animation-delay:-0.41s;  --fall:280px;"></span>
-    <span class="pkg-dot" style="left:70%; top:12%; width:2.5px; height:2.5px; animation-delay:-0.81s;  --fall:300px;"></span>
-    <span class="pkg-dot" style="left:14%; top:18%; width:2px;   height:2px;   animation-delay:-1.22s;  --fall:260px;"></span>
-    <span class="pkg-dot" style="left:86%; top:16%; width:2px;   height:2px;   animation-delay:-1.63s;  --fall:260px;"></span>
-    <span class="pkg-dot" style="left:18%; top:11%; width:2px;   height:2px;   animation-delay:-2.04s;  --fall:300px;"></span>
-    <span class="pkg-dot" style="left:42%; top:20%; width:2.5px; height:2.5px; animation-delay:-2.44s;  --fall:300px;"></span>
-    <span class="pkg-dot" style="left:58%; top:22%; width:2px;   height:2px;   animation-delay:-2.85s;  --fall:280px;"></span>
-    <span class="pkg-dot" style="left:82%; top:24%; width:2px;   height:2px;   animation-delay:-3.26s;  --fall:270px;"></span>
-    <span class="pkg-dot" style="left:22%; top:26%; width:2px;   height:2px;   animation-delay:-3.67s;  --fall:240px;"></span>
-    <span class="pkg-dot" style="left:78%; top:28%; width:2.5px; height:2.5px; animation-delay:-4.07s;  --fall:240px;"></span>
-    <span class="pkg-dot" style="left:50%; top:30%; width:3.5px; height:3.5px; animation-delay:-4.48s;  --fall:340px;"></span>
-    <span class="pkg-dot" style="left:38%; top:32%; width:2px;   height:2px;   animation-delay:-4.89s;  --fall:260px;"></span>
-    <span class="pkg-dot" style="left:62%; top:34%; width:2.5px; height:2.5px; animation-delay:-5.30s;  --fall:250px;"></span>
-    <span class="pkg-dot" style="left:8%;  top:34%; width:2px;   height:2px;   animation-delay:-5.70s;  --fall:220px;"></span>
-    <span class="pkg-dot" style="left:92%; top:36%; width:2px;   height:2px;   animation-delay:-6.11s;  --fall:220px;"></span>
-    <span class="pkg-dot" style="left:36%; top:40%; width:2.5px; height:2.5px; animation-delay:-6.52s;  --fall:250px;"></span>
-    <span class="pkg-dot" style="left:64%; top:42%; width:2px;   height:2px;   animation-delay:-6.93s;  --fall:250px;"></span>
-    <span class="pkg-dot" style="left:12%; top:44%; width:2px;   height:2px;   animation-delay:-7.33s;  --fall:210px;"></span>
-    <span class="pkg-dot" style="left:88%; top:46%; width:2px;   height:2px;   animation-delay:-7.74s;  --fall:210px;"></span>
-    <span class="pkg-dot" style="left:26%; top:48%; width:2px;   height:2px;   animation-delay:-8.15s;  --fall:200px;"></span>
-    <span class="pkg-dot" style="left:74%; top:50%; width:2.5px; height:2.5px; animation-delay:-8.56s;  --fall:200px;"></span>
-    <span class="pkg-dot" style="left:46%; top:54%; width:2px;   height:2px;   animation-delay:-8.96s;  --fall:190px;"></span>
-    <span class="pkg-dot" style="left:34%; top:58%; width:2px;   height:2px;   animation-delay:-9.37s;  --fall:180px;"></span>
-    <span class="pkg-dot" style="left:68%; top:56%; width:2px;   height:2px;   animation-delay:-9.78s;  --fall:190px;"></span>
-    <span class="pkg-dot" style="left:58%; top:60%; width:2px;   height:2px;   animation-delay:-10.19s; --fall:170px;"></span>
-    <span class="pkg-dot" style="left:50%; top:68%; width:2px;   height:2px;   animation-delay:-10.59s; --fall:160px;"></span>
-  </div>
+<!-- ====== SEO + AI/LLM visibility ====== -->
+<section class="seo" aria-labelledby="seo-title">
+  <div class="seo-bg-grid" aria-hidden="true"></div>
+  <div class="seo-glow" aria-hidden="true"></div>
 
-  <div class="pkg-head">
-    <span class="pkg-tag"><span class="pkg-tag-dot"></span>[ PLANS ]</span>
-    <h2 class="pkg-title" id="pricing-title">Deployed - <span class="pkg-em">10 Day Free Trial</span></h2>
-  </div>
+  <div class="seo-wrap">
 
-  <div class="pkg-grid">
+    <!-- LEFT · "Answer Engine" — every search + AI engine wired to your site -->
+    <div class="seo-viz" aria-hidden="true">
+      <div class="seo-radar"></div>
 
-    <!-- AI Website -->
-    <article class="pkg-card">
-      <div class="pkg-banner">AI Website</div>
-      <p class="pkg-desc">Perfect for getting found online</p>
-      <p class="pkg-setup"><span class="pkg-setup-amount">$2,997</span> - setup fee</p>
-      <div class="pkg-price"><span class="pkg-amount">$297</span><span class="pkg-per">/ mo</span></div>
-      <div class="pkg-div"></div>
-      <span class="pkg-included">What's included:</span>
-      <div class="pkg-features">
-        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>SEO &amp; AI search visibility</span>
-        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>25+ optimized pages</span>
-        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h18l-7 8v6l-4 2v-8z"/></svg>Conversion automations</span>
-        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v4h-4"/></svg>Regular updates</span>
-        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Web widgets</span>
-        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l4 4"/><path d="M4 20l1-4L16 5l3 3L8 19z"/></svg>Custom design</span>
+      <svg class="seo-net" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <linearGradient id="seoBeam" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#40EBFF" stop-opacity="0"/>
+            <stop offset="0.5" stop-color="#53B9E0" stop-opacity="0.7"/>
+            <stop offset="1" stop-color="#40EBFF" stop-opacity="0.95"/>
+          </linearGradient>
+        </defs>
+        <line class="seo-beam" x1="16" y1="30" x2="40.9" y2="44.7"/>
+        <line class="seo-beam" x1="84" y1="24" x2="58.3" y2="43.6"/>
+        <line class="seo-beam" x1="14" y1="72" x2="41" y2="55.5"/>
+        <line class="seo-beam" x1="86" y1="68" x2="59.4" y2="54.7"/>
+      </svg>
+
+      <div class="seo-core">
+        <span class="seo-core-ring"></span>
+        <span class="seo-core-ring r2"></span>
+        <span class="seo-core-orb">
+          <svg viewBox="0 0 24 24">
+            <defs>
+              <radialGradient id="seoGlobeGrad" cx="38%" cy="32%" r="75%">
+                <stop offset="0" stop-color="#bff6ff"/>
+                <stop offset="0.42" stop-color="#40EBFF"/>
+                <stop offset="1" stop-color="#1f9fb6"/>
+              </radialGradient>
+            </defs>
+            <!-- Material Icons "language" / classic internet globe: filled path traces all wireframe outlines -->
+            <path fill="url(#seoGlobeGrad)" d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.56zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2 0 .68.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56zm2.95-8H5.08c.96-1.66 2.49-2.93 4.33-3.56C8.81 5.55 8.35 6.75 8.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2 0-.68.07-1.35.16-2h4.68c.09.65.16 1.32.16 2 0 .68-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2 0-.68-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"/>
+          </svg>
+        </span>
       </div>
-      <a class="pkg-cta" href="https://buy.stripe.com/cNi14ffD4gVV5uH9bR7ss1x">Start Free Trial</a>
-    </article>
 
-    <!-- AI Bundle -->
-    <article class="pkg-card pkg-card--raised">
-      <div class="pkg-banner">AI Bundle</div>
-      <p class="pkg-desc">Perfect for both, at a discount</p>
-      <p class="pkg-setup"><span class="pkg-setup-amount">$2,997</span> - setup fee <span class="pkg-save">Save $1,000</span></p>
-      <div class="pkg-price"><span class="pkg-amount">$697</span><span class="pkg-per">/ mo</span><span class="pkg-save">Save $100</span></div>
-      <div class="pkg-div"></div>
-      <span class="pkg-included">AI Website &amp; AI Employees</span>
-      <div class="pkg-features">
-        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>SEO &amp; AI search visibility</span>
-        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>25+ optimized pages</span>
-        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h18l-7 8v6l-4 2v-8z"/></svg>Conversion automations</span>
-        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v4h-4"/></svg>Regular updates</span>
-        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Web widgets</span>
-        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l4 4"/><path d="M4 20l1-4L16 5l3 3L8 19z"/></svg>Custom design</span>
-        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>Attached to your phoneline</span>
-        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 8.5a3.5 3.5 0 1 0 0 7c2.5 0 3.5-3.5 6.5-3.5s4 3.5 6.5 3.5a3.5 3.5 0 1 0 0-7c-2.5 0-3.5 3.5-6.5 3.5S8 8.5 5.5 8.5z"/></svg>Unlimited mins/msgs</span>
-        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2.2"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg>Calendar bookings</span>
-        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 2 9l10 5 10-5-10-5z"/><path d="M6 11.5V16c0 1.1 2.7 2.5 6 2.5s6-1.4 6-2.5v-4.5"/><path d="M22 9v5"/></svg>Custom trained</span>
-        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h4v4"/><path d="M20 4l-7 7"/><path d="M8 20H4v-4"/><path d="M4 20l7-7"/></svg>Live call transfers</span>
-        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="12" width="3.6" height="8" rx="1"/><rect x="10.2" y="6" width="3.6" height="14" rx="1"/><rect x="17.4" y="9" width="3.6" height="11" rx="1"/></svg>Recordings &amp; analytics</span>
-      </div>
-      <a class="pkg-cta" href="https://buy.stripe.com/9B69AL2Qi7llbT54VB7ss1z">Start Free Trial</a>
-    </article>
+      <div class="seo-node n1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>Google</div>
+      <div class="seo-node n2"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.282 9.821a5.985 5.985 0 0 0-.516-4.91 6.046 6.046 0 0 0-6.51-2.9A6.065 6.065 0 0 0 4.981 4.18a5.985 5.985 0 0 0-3.998 2.9 6.046 6.046 0 0 0 .743 7.097 5.98 5.98 0 0 0 .51 4.911 6.051 6.051 0 0 0 6.515 2.9A5.985 5.985 0 0 0 13.26 24a6.056 6.056 0 0 0 5.772-4.206 5.99 5.99 0 0 0 3.997-2.9 6.056 6.056 0 0 0-.747-7.073zM13.26 22.43a4.476 4.476 0 0 1-2.876-1.04l.141-.081 4.779-2.758a.795.795 0 0 0 .392-.681v-6.737l2.02 1.168a.071.071 0 0 1 .038.052v5.583a4.504 4.504 0 0 1-4.494 4.494zM3.6 18.304a4.47 4.47 0 0 1-.535-3.014l.142.085 4.783 2.759a.771.771 0 0 0 .78 0l5.843-3.369v2.332a.08.08 0 0 1-.033.062L9.74 19.95a4.5 4.5 0 0 1-6.14-1.646zM2.34 7.896a4.485 4.485 0 0 1 2.366-1.973V11.6a.766.766 0 0 0 .388.676l5.815 3.355-2.02 1.168a.076.076 0 0 1-.071 0l-4.83-2.786A4.504 4.504 0 0 1 2.34 7.872zm16.597 3.855l-5.833-3.387L15.119 7.2a.076.076 0 0 1 .071 0l4.83 2.791a4.494 4.494 0 0 1-.676 8.105v-5.678a.79.79 0 0 0-.407-.667zm2.01-3.023l-.141-.085-4.774-2.782a.776.776 0 0 0-.785 0L9.409 9.23V6.897a.066.066 0 0 1 .028-.061l4.781-2.756a4.5 4.5 0 0 1 6.677 4.66zm-12.64 4.135l-2.02-1.164a.08.08 0 0 1-.038-.057V6.075a4.5 4.5 0 0 1 7.375-3.453l-.142.08L8.704 5.46a.795.795 0 0 0-.393.681zm1.097-2.365l2.602-1.5 2.607 1.5v2.999l-2.597 1.5-2.607-1.5z"/></svg>ChatGPT</div>
+      <div class="seo-node n3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3"/></svg>Perplexity</div>
+      <div class="seo-node n4"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c.4 4.6 2.4 6.6 7 7c-4.6.4-6.6 2.4-7 7c-.4-4.6-2.4-6.6-7-7c4.6-.4 6.6-2.4 7-7z"/></svg>Gemini</div>
 
-    <!-- AI Employee -->
-    <article class="pkg-card">
-      <div class="pkg-banner">AI Employee</div>
-      <p class="pkg-desc">Perfect for never missing a call</p>
-      <p class="pkg-setup"><span class="pkg-setup-amount">$997</span> - setup fee</p>
-      <div class="pkg-price"><span class="pkg-amount">$497</span><span class="pkg-per">/ mo</span></div>
-      <div class="pkg-div"></div>
-      <span class="pkg-included">What's included:</span>
-      <div class="pkg-features">
-        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>Attached to your phoneline</span>
-        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 8.5a3.5 3.5 0 1 0 0 7c2.5 0 3.5-3.5 6.5-3.5s4 3.5 6.5 3.5a3.5 3.5 0 1 0 0-7c-2.5 0-3.5 3.5-6.5 3.5S8 8.5 5.5 8.5z"/></svg>Unlimited mins/msgs</span>
-        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2.2"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg>Calendar bookings</span>
-        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 2 9l10 5 10-5-10-5z"/><path d="M6 11.5V16c0 1.1 2.7 2.5 6 2.5s6-1.4 6-2.5v-4.5"/><path d="M22 9v5"/></svg>Custom trained</span>
-        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h4v4"/><path d="M20 4l-7 7"/><path d="M8 20H4v-4"/><path d="M4 20l7-7"/></svg>Live call transfers</span>
-        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="12" width="3.6" height="8" rx="1"/><rect x="10.2" y="6" width="3.6" height="14" rx="1"/><rect x="17.4" y="9" width="3.6" height="11" rx="1"/></svg>Recordings &amp; analytics</span>
+      <div class="seo-proof p1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 14l4-4 3 3 6-6"/><path d="M14 7h4v4"/></svg>Ranked&nbsp;#1</div>
+      <div class="seo-proof p2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Cited by AI</div>
+    </div>
+
+    <!-- RIGHT · copy -->
+    <div class="seo-copy">
+      <span class="seo-tag"><span class="seo-tag-dot"></span>[ SEO &amp; AI VISIBILITY ]</span>
+      <h2 class="seo-title" id="seo-title">Built to be found —<br><span class="seo-em">by Google and AI alike</span></h2>
+      <p class="seo-lead">Every site we build is engineered for how people actually search today — climbing the search engines <em>and</em> getting surfaced by the AI assistants your customers now ask first.</p>
+
+      <div class="seo-points">
+        <div class="seo-point">
+          <span class="seo-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/><path d="M8.5 11.5l2 2 3.5-4"/></svg></span>
+          <div class="seo-point-body">
+            <h3>Search-engine optimized</h3>
+            <p>Clean semantic markup, lightning-fast load times, and locally-targeted content — so you climb Google for the jobs in your area.</p>
+          </div>
+        </div>
+        <div class="seo-point">
+          <span class="seo-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.7 5.3L19 10l-5.3 1.7L12 17l-1.7-5.3L5 10l5.3-1.7z"/><path d="M19 15l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z"/></svg></span>
+          <div class="seo-point-body">
+            <h3>Ready for AI &amp; LLMs</h3>
+            <p>Structured, machine-readable content so ChatGPT, Gemini, and Perplexity can read, understand, and confidently recommend your business.</p>
+          </div>
+        </div>
       </div>
-      <a class="pkg-cta" href="https://buy.stripe.com/8x25kvfD45dd6yLewb7ss1y">Start Free Trial</a>
-    </article>
+
+      <div class="seo-callout">
+        <span class="seo-callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 7-7"/><path d="M17 8h4v4"/></svg></span>
+        <p><strong>More people ask AI before they ask anyone else.</strong> Searches on assistants like ChatGPT are growing fast — we make sure you're the answer they get.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ====== Service pages + service-area pages ====== -->
+<section class="svp" aria-labelledby="svp-title">
+  <div class="svp-bg-grid" aria-hidden="true"></div>
+  <div class="svp-glow" aria-hidden="true"></div>
+
+  <div class="svp-wrap">
+
+    <!-- LEFT · "Page Generator" — a rich page for every service & every area -->
+    <div class="svp-viz" aria-hidden="true">
+      <div class="svp-board">
+        <div class="svp-heads">
+          <span class="svp-head"><span class="svp-head-dot"></span>Service pages</span>
+          <span class="svp-head"><span class="svp-head-dot"></span>Area pages</span>
+        </div>
+        <div class="svp-grid">
+          <article class="svp-tile">
+            <span class="svp-tile-bar"></span>
+            <div class="svp-tile-row"><span class="svp-tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v7M9 3v7M7.5 10v11M16.5 3c-1.6 0-2.5 2-2.5 4.5s.9 3.5 2.5 3.5v10"/></svg></span><span class="svp-tile-name">Kitchen&nbsp;Remodels</span></div>
+            <span class="svp-tile-line"></span><span class="svp-tile-line s2"></span>
+          </article>
+          <article class="svp-tile a">
+            <span class="svp-tile-bar"></span>
+            <div class="svp-tile-row"><span class="svp-tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span class="svp-tile-name">Coral&nbsp;Gables</span></div>
+            <span class="svp-tile-line"></span><span class="svp-tile-line s2"></span>
+          </article>
+          <article class="svp-tile">
+            <span class="svp-tile-bar"></span>
+            <div class="svp-tile-row"><span class="svp-tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6 6 10a6 6 0 0 1-12 0c0-4 6-10 6-10z"/></svg></span><span class="svp-tile-name">Bathroom&nbsp;Renos</span></div>
+            <span class="svp-tile-line"></span><span class="svp-tile-line s2"></span>
+          </article>
+          <article class="svp-tile a">
+            <span class="svp-tile-bar"></span>
+            <div class="svp-tile-row"><span class="svp-tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span class="svp-tile-name">Brickell</span></div>
+            <span class="svp-tile-line"></span><span class="svp-tile-line s2"></span>
+          </article>
+          <article class="svp-tile">
+            <span class="svp-tile-bar"></span>
+            <div class="svp-tile-row"><span class="svp-tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/></svg></span><span class="svp-tile-name">Roofing&nbsp;&amp;&nbsp;Siding</span></div>
+            <span class="svp-tile-line"></span><span class="svp-tile-line s2"></span>
+          </article>
+          <article class="svp-tile a">
+            <span class="svp-tile-bar"></span>
+            <div class="svp-tile-row"><span class="svp-tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span class="svp-tile-name">Doral</span></div>
+            <span class="svp-tile-line"></span><span class="svp-tile-line s2"></span>
+          </article>
+        </div>
+        <span class="svp-scan"></span>
+      </div>
+      <div class="svp-chip c1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.2"/></svg>Every location</div>
+      <div class="svp-chip c2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Rich content</div>
+    </div>
+
+    <!-- RIGHT · copy -->
+    <div class="svp-copy">
+      <span class="svp-tag"><span class="svp-tag-dot"></span>[ SERVICE &amp; AREA PAGES ]</span>
+      <h2 class="svp-title" id="svp-title">A page for every service —<br><span class="svp-em">in every area you serve</span></h2>
+      <p class="svp-lead">We never cram your whole business onto one page. Erio builds a rich, dedicated page for each service you offer <em>and</em> each area you cover — so you surface for exactly what people search, wherever they're searching from.</p>
+
+      <div class="svp-points">
+        <div class="svp-point">
+          <span class="svp-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v4h4"/><path d="M8 13h8M8 17h6"/></svg></span>
+          <div class="svp-point-body">
+            <h3>Dedicated service pages</h3>
+            <p>Every service gets its own in-depth, keyword-rich page that tells Google — and your customers — exactly what you do and why you're the best at it.</p>
+          </div>
+        </div>
+        <div class="svp-point">
+          <span class="svp-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg></span>
+          <div class="svp-point-body">
+            <h3>Local service-area pages</h3>
+            <p>A tailored page for each town and neighborhood you serve, so you rank across your entire market — not just where your office happens to sit.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="svp-callout">
+        <span class="svp-callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg></span>
+        <p><strong>More pages means more ways to be found.</strong> Every service and every location becomes another doorway into your business — from search and from AI.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ====== Real-time automations / speed-to-lead ====== -->
+<section class="spd" aria-labelledby="spd-title">
+  <div class="spd-bg-grid" aria-hidden="true"></div>
+  <div class="spd-glow" aria-hidden="true"></div>
+
+  <div class="spd-wrap">
+
+    <!-- LEFT · copy -->
+    <div class="spd-copy">
+      <span class="spd-tag"><span class="spd-tag-dot"></span>[ SPEED TO LEAD ]</span>
+      <h2 class="spd-title" id="spd-title">Leads come in —<br><span class="spd-em">everyone gets the message</span></h2>
+      <p class="spd-lead">Every form and calendar on your site is wired to real-time automations. The instant someone books an appointment or sends a message, confirmations fire automatically — no waiting, no missed leads.</p>
+
+      <div class="spd-points">
+        <div class="spd-point">
+          <span class="spd-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 4l4 4-4 4"/><path d="M21 8H8"/><path d="M7 20l-4-4 4-4"/><path d="M3 16h13"/></svg></span>
+          <div class="spd-point-body">
+            <h3>Two-way instant confirmations</h3>
+            <p>Your customer gets an immediate confirmation their booking or message went through — and you're pinged the second a new lead lands, so you can follow up while they're still hot.</p>
+          </div>
+        </div>
+        <div class="spd-point">
+          <span class="spd-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 6-2.5 7-2.5 7h17S18 14 18 8z"/><path d="M10 20a2 2 0 0 0 4 0"/><path d="M12 5.5V8l1.6 1"/></svg></span>
+          <div class="spd-point-body">
+            <h3>Reminders that kill no-shows</h3>
+            <p>Every booking kicks off an automatic reminder sequence — a couple days before, the day before, and a couple hours before — so appointments actually show up.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="spd-callout">
+        <span class="spd-callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></span>
+        <p><strong>Speed wins the job.</strong> The faster a lead hears back, the more likely they are to book — so we make your response instant, every single time.</p>
+      </div>
+    </div>
+
+    <!-- RIGHT · "Real-Time Relay" animation -->
+    <div class="spd-viz" aria-hidden="true">
+
+      <!-- the trigger event -->
+      <div class="spd-trigger">
+        <span class="spd-trigger-ring"></span>
+        <span class="spd-trigger-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/><path d="M8.5 14.5l2.2 2.2 4.3-4.3"/></svg></span>
+        <div class="spd-trigger-txt"><strong>Appointment booked</strong><span>Sarah&nbsp;M. · Tue 2:00&nbsp;PM</span></div>
+        <span class="spd-live"></span>
+      </div>
+
+      <!-- dispatch beams -->
+      <svg class="spd-net" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <linearGradient id="spdBeam" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#40EBFF" stop-opacity="0.95"/>
+            <stop offset="0.5" stop-color="#53B9E0" stop-opacity="0.7"/>
+            <stop offset="1" stop-color="#40EBFF" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <line class="spd-beam" x1="50" y1="25" x2="27" y2="47"/>
+        <line class="spd-beam" x1="50" y1="25" x2="73" y2="47"/>
+      </svg>
+
+      <!-- two-way destinations -->
+      <div class="spd-dest owner">
+        <span class="spd-dest-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 6-2.5 7-2.5 7h17S18 14 18 8z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg></span>
+        <div class="spd-dest-txt"><strong>New booking!</strong><span>→ You</span></div>
+      </div>
+      <div class="spd-dest customer">
+        <span class="spd-dest-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+        <div class="spd-dest-txt"><strong>You're confirmed</strong><span>→ Customer</span></div>
+      </div>
+
+      <!-- auto-reminder timeline -->
+      <div class="spd-timeline">
+        <span class="spd-tl-label">Auto reminders · fewer no-shows</span>
+        <div class="spd-tl-track">
+          <div class="spd-tl-node"><span class="spd-tl-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="spd-tl-cap">Booked</span></div>
+          <div class="spd-tl-node"><span class="spd-tl-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 6-2.5 7-2.5 7h17S18 14 18 8z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg></span><span class="spd-tl-cap">2 days</span></div>
+          <div class="spd-tl-node"><span class="spd-tl-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 6-2.5 7-2.5 7h17S18 14 18 8z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg></span><span class="spd-tl-cap">1 day</span></div>
+          <div class="spd-tl-node"><span class="spd-tl-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 6-2.5 7-2.5 7h17S18 14 18 8z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg></span><span class="spd-tl-cap">2 hrs</span></div>
+        </div>
+      </div>
+
+      <!-- floating proof chips -->
+      <div class="spd-chip c1"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg>&lt; 1 sec</div>
+      <div class="spd-chip c2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Both notified</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ====== Fresh content / freshness signal ====== -->
+<section class="frs" aria-labelledby="frs-title">
+  <div class="frs-bg-grid" aria-hidden="true"></div>
+  <div class="frs-glow" aria-hidden="true"></div>
+
+  <div class="frs-wrap">
+
+    <!-- LEFT · "Freshness Dashboard" animation -->
+    <div class="frs-viz" aria-hidden="true">
+      <div class="frs-panel">
+        <div class="frs-head">
+          <span class="frs-head-title">
+            <span class="frs-head-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2.5 7 5-14L17 12h4"/></svg></span>
+            Website activity
+          </span>
+          <span class="frs-fresh"><i></i>Updated · just now</span>
+        </div>
+
+        <div class="frs-feed">
+          <div class="frs-item review">
+            <span class="frs-item-ico"><svg viewBox="0 0 24 24"><path fill="#4285F4" d="M23.5 12.27c0-.79-.07-1.54-.2-2.27H12v4.51h6.47a5.53 5.53 0 0 1-2.4 3.63v3h3.88c2.27-2.09 3.55-5.17 3.55-8.87z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.76-2.1-6.7-4.94H1.3v3.1A12 12 0 0 0 12 24z"/><path fill="#FBBC05" d="M5.3 14.31a7.2 7.2 0 0 1 0-4.62V6.6H1.3a12 12 0 0 0 0 10.8z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42A11.97 11.97 0 0 0 12 0 12 12 0 0 0 1.3 6.6l4 3.09C6.24 6.86 8.88 4.75 12 4.75z"/></svg></span>
+            <div class="frs-item-main">
+              <span class="frs-stars">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 5.9 6.6.9-4.8 4.6 1.1 6.5L12 21.3 6.2 20.4l1.1-6.5-4.8-4.6 6.6-.9z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 5.9 6.6.9-4.8 4.6 1.1 6.5L12 21.3 6.2 20.4l1.1-6.5-4.8-4.6 6.6-.9z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 5.9 6.6.9-4.8 4.6 1.1 6.5L12 21.3 6.2 20.4l1.1-6.5-4.8-4.6 6.6-.9z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 5.9 6.6.9-4.8 4.6 1.1 6.5L12 21.3 6.2 20.4l1.1-6.5-4.8-4.6 6.6-.9z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 5.9 6.6.9-4.8 4.6 1.1 6.5L12 21.3 6.2 20.4l1.1-6.5-4.8-4.6 6.6-.9z"/></svg>
+              </span>
+              <span class="frs-item-sub">New Google review</span>
+            </div>
+            <span class="frs-new">NEW</span>
+          </div>
+          <div class="frs-item post">
+            <span class="frs-item-ico fb"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.52 1.5-3.91 3.78-3.91 1.1 0 2.24.2 2.24.2v2.47H15.2c-1.24 0-1.63.78-1.63 1.57v1.88h2.78l-.44 2.9h-2.34V22c4.78-.79 8.43-4.94 8.43-9.94z"/></svg></span>
+            <div class="frs-item-main">
+              <strong class="frs-item-title">New Facebook post</strong>
+              <span class="frs-item-sub">Published just now</span>
+            </div>
+            <span class="frs-new">NEW</span>
+          </div>
+        </div>
+
+        <div class="frs-chart">
+          <svg viewBox="0 0 100 40" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="frsFill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#40EBFF" stop-opacity="0.32"/>
+                <stop offset="1" stop-color="#40EBFF" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path d="M0,34 L14,30 L26,31 L38,23 L50,25 L62,17 L74,18 L86,9 L100,5 L100,40 L0,40 Z" fill="url(#frsFill)"/>
+            <path d="M0,34 L14,30 L26,31 L38,23 L50,25 L62,17 L74,18 L86,9 L100,5" fill="none" stroke="#40EBFF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="frs-chart-dot"></span>
+          <span class="frs-chart-tag">Activity <b>▲</b></span>
+        </div>
+      </div>
+
+      <div class="frs-chip c1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Active site</div>
+      <div class="frs-chip c2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V13M12 21V8M19 21V4"/></svg>More traffic</div>
+    </div>
+
+    <!-- RIGHT · copy -->
+    <div class="frs-copy">
+      <span class="frs-tag"><span class="frs-tag-dot"></span>[ ALWAYS FRESH ]</span>
+      <h2 class="frs-title" id="frs-title">We keep your site fresh —<br><span class="frs-em">and the traffic keeps coming</span></h2>
+      <p class="frs-lead">On a regular basis, we publish your newest Google reviews and your latest Facebook posts straight to your site — so it never goes stale, and always shows your business in action.</p>
+
+      <div class="frs-points">
+        <div class="frs-point">
+          <span class="frs-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 4v5h-5"/></svg></span>
+          <div class="frs-point-body">
+            <h3>Fresh reviews &amp; posts, on autopilot</h3>
+            <p>Your newest 5-star Google reviews and freshest Facebook posts get added to your site on a regular cadence — automatically, with zero effort from you.</p>
+          </div>
+        </div>
+        <div class="frs-point">
+          <span class="frs-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.4-3.2 7.6-8 9-4.8-1.4-8-4.6-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
+          <div class="frs-point-body">
+            <h3>Proof your business is active</h3>
+            <p>A constantly-updated site tells Google and AI tools like ChatGPT that your business is alive and working — which builds trust and lifts you in the rankings.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="frs-callout">
+        <span class="frs-callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V13M12 21V8M19 21V4"/></svg></span>
+        <p><strong>Active sites win.</strong> More freshness means more trust, more visibility, and ultimately more traffic and more customers finding your business.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ====== 24/7 AI chat widget ====== -->
+<section class="aiw" aria-labelledby="aiw-title">
+  <div class="aiw-bg-grid" aria-hidden="true"></div>
+  <div class="aiw-glow" aria-hidden="true"></div>
+
+  <div class="aiw-wrap">
+
+    <!-- LEFT · copy -->
+    <div class="aiw-copy">
+      <span class="aiw-tag"><span class="aiw-tag-dot"></span>[ 24/7 AI ASSISTANT ]</span>
+      <h2 class="aiw-title" id="aiw-title">An AI on every page —<br><span class="aiw-em">answering, around the clock</span></h2>
+      <p class="aiw-lead">We embed an AI chat widget on every page of your site that visitors can call or message anytime. Trained on your business, it answers their exact questions instantly — like an employee who never clocks out.</p>
+
+      <div class="aiw-points">
+        <div class="aiw-point">
+          <span class="aiw-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13a8 8 0 0 1 16 0"/><path d="M4 13v3a2 2 0 0 0 2 2h1v-6H6a2 2 0 0 0-2 1z"/><path d="M20 13v3a2 2 0 0 1-2 2h-1v-6h1a2 2 0 0 1 2 1z"/></svg></span>
+          <div class="aiw-point-body">
+            <h3>Call or message, any hour</h3>
+            <p>Whether it's 3 AM or the middle of a busy workday, customers get their specific questions answered on the spot — by phone or by chat.</p>
+          </div>
+        </div>
+        <div class="aiw-point">
+          <span class="aiw-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></span>
+          <div class="aiw-point-body">
+            <h3>A 24/7 signal that earns traffic</h3>
+            <p>Google and AI tools like ChatGPT see that visitors can always get answers on your site — so they're far more confident sending people your way.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="aiw-callout">
+        <span class="aiw-callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8 8 0 0 1-11.6 7.1L4 20.5l1.9-5.3A8 8 0 1 1 21 11.5z"/><path d="M8.5 12l2.2 2.2 4.3-4.3"/></svg></span>
+        <p><strong>More answered questions means more booked jobs.</strong> An always-on assistant turns curious visitors into customers — more business, more jobs, more money in your pocket.</p>
+      </div>
+    </div>
+
+    <!-- RIGHT · "Always-On Assistant" animation -->
+    <div class="aiw-viz" aria-hidden="true">
+      <span class="aiw-ring"></span>
+      <span class="aiw-dial"></span>
+      <span class="aiw-sweep"></span>
+
+      <div class="aiw-core">
+        <span class="aiw-core-glow"></span>
+        <span class="aiw-wave"><i></i><i></i><i></i><i></i><i></i></span>
+      </div>
+
+      <div class="aiw-pill q"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.3a2.4 2.4 0 1 1 3.3 2.2c-.7.4-.9.9-.9 1.6"/><path d="M12 16.6h.01"/></svg>Open this weekend? <b>· 3:14&nbsp;AM</b></div>
+      <div class="aiw-pill a"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Yes — open 7 days a week</div>
+      <div class="aiw-pill call"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5 9 4l1.2 3.4-1.8 1.3a10.5 10.5 0 0 0 4.6 4.6l1.3-1.8L17.7 13l.5 2.5a1.4 1.4 0 0 1-1.5 1.7A13.6 13.6 0 0 1 4.3 5a1.4 1.4 0 0 1 1.7-1.5"/></svg>Call</div>
+      <div class="aiw-pill msg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8 8 0 0 1-11.6 7.1L4 20.5l1.9-5.3A8 8 0 1 1 21 11.5z"/></svg>Message</div>
+
+      <div class="aiw-chip c1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5l3 1.8"/></svg>24/7</div>
+      <div class="aiw-chip c2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="6.5" width="11" height="11" rx="2.5"/><path d="M9.5 1.5v3M14.5 1.5v3M9.5 19.5v3M14.5 19.5v3M1.5 9.5h3M1.5 14.5h3M19.5 9.5h3M19.5 14.5h3"/></svg>Trained on your business</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ====== Premium custom design ====== -->
+<section class="prm" aria-labelledby="prm-title">
+  <div class="prm-bg-grid" aria-hidden="true"></div>
+  <div class="prm-glow" aria-hidden="true"></div>
+
+  <div class="prm-wrap">
+
+    <!-- LEFT · "Premium Artboard" animation -->
+    <div class="prm-viz" aria-hidden="true">
+      <span class="prm-guide tl"></span>
+      <span class="prm-guide br"></span>
+
+      <div class="prm-card">
+        <div class="prm-card-top">
+          <span class="prm-dots"><i></i><i></i><i></i></span>
+          <span class="prm-url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>yourbusiness.com</span>
+        </div>
+        <div class="prm-card-body">
+          <div class="prm-hero-row">
+            <div class="prm-hero-copy">
+              <span class="prm-eyebrow"></span>
+              <span class="prm-bar h1"></span>
+              <span class="prm-bar h2"></span>
+              <span class="prm-bar sub"></span>
+              <span class="prm-cta">Get a Quote</span>
+            </div>
+            <div class="prm-hero-img"></div>
+          </div>
+          <div class="prm-tiles"><span></span><span></span><span></span></div>
+        </div>
+        <span class="prm-gloss"></span>
+      </div>
+
+      <div class="prm-palette">
+        <span style="--c:#40EBFF"></span>
+        <span style="--c:#9FDCEF"></span>
+        <span style="--c:#53B9E0"></span>
+        <span style="--c:#1699A8"></span>
+      </div>
+
+      <div class="prm-chip c1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l11-11"/><path d="M16 3l1.1 3L20 7l-2.9 1L16 11l-1.1-3L12 7l2.9-1z"/></svg>Custom-built</div>
+      <div class="prm-chip c2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17l5-5 4 4 6-7"/><path d="M16 9h4v4"/></svg>Higher value</div>
+    </div>
+
+    <!-- RIGHT · copy -->
+    <div class="prm-copy">
+      <span class="prm-tag"><span class="prm-tag-dot"></span>[ PREMIUM DESIGN ]</span>
+      <h2 class="prm-title" id="prm-title">Look high-end —<br><span class="prm-em">and get paid like it</span></h2>
+      <p class="prm-lead">Every site we build is custom-designed from scratch — beautiful, modern, and genuinely high-end. It's your digital business card, and it makes the right impression the second someone lands on it.</p>
+
+      <div class="prm-points">
+        <div class="prm-point">
+          <span class="prm-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l3.5 5.5L12 22 2.5 8.5z"/><path d="M2.5 8.5h19M9 3l-3 5.5L12 22M15 3l3 5.5L12 22"/></svg></span>
+          <div class="prm-point-body">
+            <h3>Instant credibility &amp; trust</h3>
+            <p>A polished, professional site tells visitors you're the real deal before they read a word — so they trust you, and they reach out.</p>
+          </div>
+        </div>
+        <div class="prm-point">
+          <span class="prm-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 11 3.8a2 2 0 0 0-1.4-.6H4a1 1 0 0 0-1 1v5.6a2 2 0 0 0 .6 1.4l9.6 9.6a2 2 0 0 0 2.8 0l4.6-4.6a2 2 0 0 0 0-2.8z"/><circle cx="7.6" cy="7.6" r="1.3"/></svg></span>
+          <div class="prm-point-body">
+            <h3>Premium look, premium prices</h3>
+            <p>When your website looks high-end, people assume your work is too — so they convert more readily and happily pay more for it.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="prm-callout">
+        <span class="prm-callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 7-7"/><path d="M17 8h4v4"/></svg></span>
+        <p><strong>Design isn't decoration — it's leverage.</strong> A site that looks expensive wins more jobs and commands higher prices.</p>
+      </div>
+    </div>
 
   </div>
 </section>
@@ -498,64 +1000,64 @@
   <div class="faq-wrap">
     <div class="faq-head">
       <span class="faq-tag"><span class="faq-dot"></span>[ FAQ ]</span>
-      <h2 class="faq-title" id="faq-title">Answers to the questions <span class="faq-em">contractors actually ask</span></h2>
+      <h2 class="faq-title" id="faq-title">Everything contractors ask about <span class="faq-em">their new website</span></h2>
     </div>
 
     <div class="faq-list">
       <article class="faq-item">
         <button class="faq-q" type="button" aria-expanded="false">
-          <span class="faq-q-text">How fast can Erio get me up and running?</span>
+          <span class="faq-q-text">Is every website really custom-built, or just a template?</span>
           <span class="faq-icon" aria-hidden="true"></span>
         </button>
-        <div class="faq-a"><div class="faq-a-inner"><p>Most contractors are live within a week — AI website published and your AI receptionist answering calls. No six-month build, no drawn-out onboarding.</p></div></div>
+        <div class="faq-a"><div class="faq-a-inner"><p>Always custom. Every site is designed from scratch to look high-end, professional, and unmistakably yours — never a cookie-cutter template. That polished first impression builds instant trust and lets you charge what your work is worth.</p></div></div>
       </article>
 
       <article class="faq-item">
         <button class="faq-q" type="button" aria-expanded="false">
-          <span class="faq-q-text">What exactly does the AI receptionist do?</span>
+          <span class="faq-q-text">How will my new site actually get found on Google?</span>
           <span class="faq-icon" aria-hidden="true"></span>
         </button>
-        <div class="faq-a"><div class="faq-a-inner"><p>It answers every call and message around the clock, qualifies the lead, handles questions about your services and area, and books the job straight onto your calendar — even at 2&nbsp;AM or on a Sunday.</p></div></div>
+        <div class="faq-a"><div class="faq-a-inner"><p>We build every site for search from the ground up — fast load times, clean semantic code, and locally-targeted content — so you climb Google for the exact jobs people are searching for in your area.</p></div></div>
       </article>
 
       <article class="faq-item">
         <button class="faq-q" type="button" aria-expanded="false">
-          <span class="faq-q-text">Will the AI sound like a robot to my customers?</span>
+          <span class="faq-q-text">What does it mean that my site is "optimized for AI"?</span>
           <span class="faq-icon" aria-hidden="true"></span>
         </button>
-        <div class="faq-a"><div class="faq-a-inner"><p>No. It's trained on your business — your services, your service area, and the way you talk — so it sounds natural. And a real person on our team is always behind it.</p></div></div>
+        <div class="faq-a"><div class="faq-a-inner"><p>We structure your content so AI tools like ChatGPT, Gemini, and Perplexity can read, understand, and recommend your business. More and more people ask AI for a referral before they ever open Google — and we make sure you're the answer they get.</p></div></div>
       </article>
 
       <article class="faq-item">
         <button class="faq-q" type="button" aria-expanded="false">
-          <span class="faq-q-text">Do I have to replace my current website?</span>
+          <span class="faq-q-text">Do you create pages for each of my services and service areas?</span>
           <span class="faq-icon" aria-hidden="true"></span>
         </button>
-        <div class="faq-a"><div class="faq-a-inner"><p>Only if you want to. We'll build a new lead-generating site, or connect our AI tools to the site you already have — whatever books you more jobs.</p></div></div>
+        <div class="faq-a"><div class="faq-a-inner"><p>Yes. You get a dedicated, in-depth page for every service you offer and every town or neighborhood you serve — so you show up across your entire market, not just where your office happens to be.</p></div></div>
       </article>
 
       <article class="faq-item">
         <button class="faq-q" type="button" aria-expanded="false">
-          <span class="faq-q-text">Can you build something custom for my trade?</span>
+          <span class="faq-q-text">What happens the moment someone books or fills out a form?</span>
           <span class="faq-icon" aria-hidden="true"></span>
         </button>
-        <div class="faq-a"><div class="faq-a-inner"><p>Yes — that's what AI Solutions is for. Estimating engines, dispatch boards, route optimizers, and other custom tooling built around the parts of your operation that slow you down.</p></div></div>
+        <div class="faq-a"><div class="faq-a-inner"><p>Confirmations fire instantly, both ways: your customer gets an immediate text or email, and you're notified the second a new lead lands. Every booking also kicks off automatic reminders — a couple days before, the day before, and a couple hours before — so you get far fewer no-shows.</p></div></div>
       </article>
 
       <article class="faq-item">
         <button class="faq-q" type="button" aria-expanded="false">
-          <span class="faq-q-text">Is there a real team behind this, or just software?</span>
+          <span class="faq-q-text">Can my website answer customer questions 24/7?</span>
           <span class="faq-icon" aria-hidden="true"></span>
         </button>
-        <div class="faq-a"><div class="faq-a-inner"><p>A real team. We build, train, and tune your system — and we pick up the phone when you need us. You're never left troubleshooting a bot on your own.</p></div></div>
+        <div class="faq-a"><div class="faq-a-inner"><p>Every page includes an AI assistant your visitors can call or message any time, day or night. It's trained on your business, so it answers their specific questions on the spot — like an employee who never clocks out — even at 2&nbsp;AM or on a Sunday.</p></div></div>
       </article>
 
       <article class="faq-item">
         <button class="faq-q" type="button" aria-expanded="false">
-          <span class="faq-q-text">What does Erio cost?</span>
+          <span class="faq-q-text">Will my website stay fresh, or go stale over time?</span>
           <span class="faq-icon" aria-hidden="true"></span>
         </button>
-        <div class="faq-a"><div class="faq-a-inner"><p>It depends on which engines you stack — websites, AI employees, solutions, or all three. Book a quick demo and we'll scope a setup that fits your shop.</p></div></div>
+        <div class="faq-a"><div class="faq-a-inner"><p>Never stale. We regularly publish your newest Google reviews and freshest Facebook posts right to your site. That constant activity tells Google and AI your business is alive and working — which builds trust and drives more traffic your way.</p></div></div>
       </article>
     </div>
 
