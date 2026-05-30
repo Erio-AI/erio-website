@@ -1835,6 +1835,293 @@
     .frs-conn-pulses { display: none !important; }
   }
 
+  /* ════════════════════════════════════════════════════════════════════
+     SCALABLE & SECURE section (.aiw--fort) —
+     "Fortress Mesh". A 19-hex cluster auto-scales (ring-1 then ring-2
+     light up sequentially), the central shielded core pulses encryption
+     rings outward, a live load meter sits at the top, and three status
+     badges anchor the message at the bottom. Single 12s master cycle.
+  ════════════════════════════════════════════════════════════════════ */
+
+  /* hide the inherited Assistant viz pieces */
+  .aiw--fort .aiw-ring,
+  .aiw--fort .aiw-dial,
+  .aiw--fort .aiw-sweep,
+  .aiw--fort .aiw-core,
+  .aiw--fort .aiw-pill,
+  .aiw--fort .aiw-chip { display: none !important; }
+
+  /* viz frame — override inherited aspect-ratio so we can fit the
+     meter + hex cluster + badges stacked vertically */
+  .aiw--fort .aiw-viz {
+    position: relative;
+    aspect-ratio: auto;
+    max-width: 380px;
+    width: 100%;
+    margin: 0 auto;
+    min-height: 380px;
+    padding: 0;
+    display: flex; flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 6px;
+  }
+
+  /* ──────── load meter (top) ──────── */
+  .aiw-meter {
+    display: flex; align-items: center;
+    gap: 9px;
+    padding: 6px 10px;
+    border-radius: 10px;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01) 40%),
+      linear-gradient(180deg, rgba(11,28,37,0.75), rgba(6,15,21,0.85));
+    border: 1px solid rgba(120, 200, 222, 0.22);
+    backdrop-filter: blur(8px) saturate(160%);
+    -webkit-backdrop-filter: blur(8px) saturate(160%);
+  }
+  .aiw-meter-label {
+    font-family: 'Exo 2', system-ui, sans-serif;
+    font-size: 8.5px; font-weight: 800;
+    letter-spacing: 0.22em;
+    color: rgba(159, 220, 239, 0.85);
+  }
+  .aiw-meter-track {
+    flex: 1; position: relative;
+    height: 5px;
+    border-radius: 999px;
+    background: rgba(64, 235, 255, 0.1);
+    overflow: hidden;
+    box-shadow: inset 0 0 0 1px rgba(64, 235, 255, 0.18);
+  }
+  .aiw-meter-fill {
+    display: block;
+    width: 12%; height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #6ff0ff, #2bb6c8);
+    box-shadow: 0 0 6px rgba(64, 235, 255, 0.85);
+    animation: aiwMeterFill 12s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  }
+  @keyframes aiwMeterFill {
+    0%, 5%       { width: 12%; }
+    24%          { width: 92%; }
+    28%, 62%     { width: 100%; }
+    78%          { width: 22%; }
+    88%, 100%    { width: 12%; }
+  }
+  .aiw-meter-value {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 9.5px; font-weight: 600;
+    letter-spacing: 0.04em;
+    color: rgba(234, 246, 251, 0.85);
+    min-width: 70px; text-align: right;
+  }
+  .aiw-meter-value b {
+    color: #40EBFF;
+    font-weight: 700;
+    animation: aiwMeterValue 12s steps(1) infinite;
+  }
+  @keyframes aiwMeterValue {
+    0%, 6%       { content: ""; }
+  }
+  /* swap the number via ::before pseudo on a span — simpler: just
+     animate the existing b text color/glow to draw the eye. */
+
+  /* ──────── hex fortress SVG ──────── */
+  .aiw-fort {
+    flex: 1 1 auto;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    max-height: 280px;
+    overflow: visible;
+  }
+
+  /* default hex (off/dim state) */
+  .aiw-hex {
+    fill: rgba(64, 235, 255, 0.08);
+    stroke: rgba(120, 200, 222, 0.32);
+    stroke-width: 0.35;
+    transition: none;
+  }
+  /* ring-2 hexes — dimmer base, fade in/out on cycle */
+  .aiw-hex.r2 {
+    animation: aiwHexBeat 12s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    fill: rgba(64, 235, 255, 0.08);
+  }
+  .aiw-hex.r2.n1  { animation-delay: 1.45s; }
+  .aiw-hex.r2.n2  { animation-delay: 1.55s; }
+  .aiw-hex.r2.n3  { animation-delay: 1.65s; }
+  .aiw-hex.r2.n4  { animation-delay: 1.75s; }
+  .aiw-hex.r2.n5  { animation-delay: 1.85s; }
+  .aiw-hex.r2.n6  { animation-delay: 1.95s; }
+  .aiw-hex.r2.n7  { animation-delay: 2.05s; }
+  .aiw-hex.r2.n8  { animation-delay: 2.15s; }
+  .aiw-hex.r2.n9  { animation-delay: 2.25s; }
+  .aiw-hex.r2.n10 { animation-delay: 2.35s; }
+  .aiw-hex.r2.n11 { animation-delay: 2.45s; }
+  .aiw-hex.r2.n12 { animation-delay: 2.55s; }
+
+  /* ring-1 hexes — fade in earlier, scale-up first wave */
+  .aiw-hex.r1 {
+    animation: aiwHexBeat 12s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  }
+  .aiw-hex.r1.n1 { animation-delay: 0.70s; }
+  .aiw-hex.r1.n2 { animation-delay: 0.85s; }
+  .aiw-hex.r1.n3 { animation-delay: 1.00s; }
+  .aiw-hex.r1.n4 { animation-delay: 1.15s; }
+  .aiw-hex.r1.n5 { animation-delay: 1.30s; }
+  .aiw-hex.r1.n6 { animation-delay: 1.45s; }
+
+  @keyframes aiwHexBeat {
+    0%   { fill: rgba(64, 235, 255, 0.06); stroke: rgba(120, 200, 222, 0.18); }
+    4%   { fill: url(#aiwHexGrad);          stroke: rgba(64, 235, 255, 0.75); filter: drop-shadow(0 0 1.2px rgba(64, 235, 255, 0.9)); }
+    55%  { fill: url(#aiwHexGrad);          stroke: rgba(64, 235, 255, 0.75); filter: drop-shadow(0 0 1.2px rgba(64, 235, 255, 0.9)); }
+    62%  { fill: rgba(64, 235, 255, 0.06); stroke: rgba(120, 200, 222, 0.18); filter: none; }
+    100% { fill: rgba(64, 235, 255, 0.06); stroke: rgba(120, 200, 222, 0.18); }
+  }
+
+  /* center hex (the shield core) — always lit, gentle pulse */
+  .aiw-hex.c {
+    fill: url(#aiwCoreGrad);
+    stroke: none;
+    filter: drop-shadow(0 0 1.6px rgba(64, 235, 255, 0.95));
+    animation: aiwCoreHex 3s ease-in-out infinite;
+    transform-origin: 50px 50px;
+  }
+  .aiw-hex.c-stroke {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.55);
+    stroke-width: 0.32;
+    pointer-events: none;
+  }
+  @keyframes aiwCoreHex {
+    0%, 100% { filter: drop-shadow(0 0 1.6px rgba(64, 235, 255, 0.95)) drop-shadow(0 0 3px rgba(64, 235, 255, 0.4)); }
+    50%      { filter: drop-shadow(0 0 2.6px rgba(64, 235, 255, 1))    drop-shadow(0 0 6px rgba(64, 235, 255, 0.65)); }
+  }
+
+  /* shield icon at center — gentle pulse-in on each scale-up phase */
+  .aiw-shield {
+    transform-origin: 50px 50px;
+    animation: aiwShieldPulse 12s ease-in-out infinite;
+  }
+  @keyframes aiwShieldPulse {
+    0%, 30%, 60%, 100% { transform: translate(50px, 50px) scale(1); }
+    35%                 { transform: translate(50px, 50px) scale(1.12); }
+  }
+
+  /* encryption pulse rings — three rings emanating from center.
+     Each runs on a 4s cycle, staggered 1.33s apart so a ring is
+     always expanding. */
+  .aiw-pulse {
+    transform-origin: 50px 50px;
+    animation: aiwPulseRing 4s ease-out infinite;
+    opacity: 0;
+  }
+  .aiw-pulse.p1 { animation-delay: 0s; }
+  .aiw-pulse.p2 { animation-delay: -1.33s; }
+  .aiw-pulse.p3 { animation-delay: -2.66s; }
+  @keyframes aiwPulseRing {
+    0%   { transform: scale(0.4); opacity: 0; }
+    18%  { opacity: 0.85; }
+    100% { transform: scale(3.8); opacity: 0; }
+  }
+
+  /* tiny health LEDs on each non-center hex — green = healthy */
+  .aiw-led {
+    fill: #62f5b8;
+    filter: drop-shadow(0 0 0.6px rgba(98, 245, 184, 0.9));
+    opacity: 0;
+    animation: aiwLedBlink 12s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  }
+  .aiw-led.l-r1-n1 { animation-delay: 0.85s; }
+  .aiw-led.l-r1-n2 { animation-delay: 1.00s; }
+  .aiw-led.l-r1-n3 { animation-delay: 1.15s; }
+  .aiw-led.l-r1-n4 { animation-delay: 1.30s; }
+  .aiw-led.l-r1-n5 { animation-delay: 1.45s; }
+  .aiw-led.l-r1-n6 { animation-delay: 1.60s; }
+  .aiw-led.l-r2-n1  { animation-delay: 1.60s; }
+  .aiw-led.l-r2-n2  { animation-delay: 1.70s; }
+  .aiw-led.l-r2-n3  { animation-delay: 1.80s; }
+  .aiw-led.l-r2-n4  { animation-delay: 1.90s; }
+  .aiw-led.l-r2-n5  { animation-delay: 2.00s; }
+  .aiw-led.l-r2-n6  { animation-delay: 2.10s; }
+  .aiw-led.l-r2-n7  { animation-delay: 2.20s; }
+  .aiw-led.l-r2-n8  { animation-delay: 2.30s; }
+  .aiw-led.l-r2-n9  { animation-delay: 2.40s; }
+  .aiw-led.l-r2-n10 { animation-delay: 2.50s; }
+  .aiw-led.l-r2-n11 { animation-delay: 2.60s; }
+  .aiw-led.l-r2-n12 { animation-delay: 2.70s; }
+  @keyframes aiwLedBlink {
+    0%, 5%       { opacity: 0; }
+    8%, 56%      { opacity: 1; }
+    62%, 100%    { opacity: 0; }
+  }
+
+  /* ──────── status badges (bottom) ──────── */
+  .aiw-badges {
+    display: flex; align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    padding: 2px 0;
+  }
+  .aiw-badge {
+    display: inline-flex; align-items: center;
+    gap: 5px;
+    padding: 5px 9px;
+    border-radius: 999px;
+    font-family: 'Exo 2', system-ui, sans-serif;
+    font-size: 9.5px; font-weight: 700;
+    letter-spacing: 0.05em;
+    color: #EAF6FB;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01) 40%),
+      linear-gradient(180deg, rgba(11,28,37,0.78), rgba(6,15,21,0.86));
+    border: 1px solid rgba(64, 235, 255, 0.32);
+    box-shadow: 0 6px 14px -8px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px) saturate(160%);
+    -webkit-backdrop-filter: blur(8px) saturate(160%);
+    white-space: nowrap;
+  }
+  .aiw-badge-ico {
+    display: inline-grid; place-items: center;
+    width: 14px; height: 14px;
+    color: #40EBFF;
+  }
+  .aiw-badge-ico svg { width: 11px; height: 11px; }
+  .aiw-badge.encrypted { animation: aiwBadgeBlink 12s ease-in-out infinite; }
+  .aiw-badge.scaled    { animation: aiwBadgeBlink 12s ease-in-out 0.5s infinite; }
+  .aiw-badge.uptime    { animation: aiwBadgeBlink 12s ease-in-out 1.0s infinite; }
+  @keyframes aiwBadgeBlink {
+    0%, 28%, 65%, 100% { border-color: rgba(64, 235, 255, 0.32); box-shadow: 0 6px 14px -8px rgba(0, 0, 0, 0.6); }
+    32%, 60%           { border-color: rgba(64, 235, 255, 0.65); box-shadow: 0 6px 14px -8px rgba(0, 0, 0, 0.6), 0 0 16px -4px rgba(64, 235, 255, 0.55); }
+  }
+
+  @media (max-width: 920px) {
+    .aiw--fort .aiw-viz { max-width: 360px; min-height: 360px; }
+    .aiw-fort           { max-height: 260px; }
+  }
+  @media (max-width: 540px) {
+    .aiw--fort .aiw-viz { max-width: 320px; min-height: 330px; }
+    .aiw-fort           { max-height: 230px; }
+    .aiw-badge          { font-size: 8.5px; padding: 4px 7px; gap: 4px; }
+    .aiw-badge-ico      { width: 12px; height: 12px; }
+    .aiw-badge-ico svg  { width: 10px; height: 10px; }
+    .aiw-meter-value    { min-width: 60px; font-size: 8.5px; }
+    .aiw-meter-label    { font-size: 8px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .aiw-hex.r1, .aiw-hex.r2,
+    .aiw-hex.c, .aiw-shield,
+    .aiw-pulse, .aiw-led,
+    .aiw-meter-fill,
+    .aiw-badge { animation: none !important; }
+    .aiw-hex.r1, .aiw-hex.r2 {
+      fill: url(#aiwHexGrad); stroke: rgba(64, 235, 255, 0.45);
+    }
+    .aiw-led { opacity: 1; }
+    .aiw-meter-fill { width: 78%; }
+  }
+
   /* ═════ AI COMPOSITOR overlay (Generate-time loading effect) ═════
      Sits over the entire preview frame while the AI "composes" the
      proposal. Pulsing cyan orb, blinking AI tag, 6-step ticking
@@ -3653,7 +3940,7 @@
 </section>
 
 <!-- ====== 24/7 AI chat widget ====== -->
-<section class="aiw" aria-labelledby="aiw-title">
+<section class="aiw aiw--fort" aria-labelledby="aiw-title">
   <div class="aiw-bg-grid" aria-hidden="true"></div>
   <div class="aiw-glow" aria-hidden="true"></div>
 
@@ -3661,51 +3948,139 @@
 
     <!-- LEFT · copy -->
     <div class="aiw-copy">
-      <span class="aiw-tag"><span class="aiw-tag-dot"></span>[ 24/7 AI ASSISTANT ]</span>
-      <h2 class="aiw-title" id="aiw-title">An AI on every page —<br><span class="aiw-em">answering, around the clock</span></h2>
-      <p class="aiw-lead">We embed an AI chat widget on every page of your site that visitors can call or message anytime. Trained on your business, it answers their exact questions instantly — like an employee who never clocks out.</p>
+      <span class="aiw-tag"><span class="aiw-tag-dot"></span>[ SCALABLE &amp; SECURE ]</span>
+      <h2 class="aiw-title" id="aiw-title">Scales when you scale —<br><span class="aiw-em">locked down by default</span></h2>
+      <p class="aiw-lead">Your tool runs on enterprise cloud infrastructure — encrypted end to end, scaled automatically to match demand, and protected by role-based access. It stays fast and safe whether your team is five people or five hundred.</p>
 
       <div class="aiw-points">
         <div class="aiw-point">
-          <span class="aiw-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13a8 8 0 0 1 16 0"/><path d="M4 13v3a2 2 0 0 0 2 2h1v-6H6a2 2 0 0 0-2 1z"/><path d="M20 13v3a2 2 0 0 1-2 2h-1v-6h1a2 2 0 0 1 2 1z"/></svg></span>
+          <span class="aiw-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-5 3 3 8-8"/><path d="M15 7h6v6"/></svg></span>
           <div class="aiw-point-body">
-            <h3>Call or message, any hour</h3>
-            <p>Whether it's 3 AM or the middle of a busy workday, customers get their specific questions answered on the spot — by phone or by chat.</p>
+            <h3>Scales as your business scales</h3>
+            <p>One user or one thousand — the tool grows with you in real time. No re-engineering, no downtime, no surprise fees when you add a crew, a region, or a new branch.</p>
           </div>
         </div>
         <div class="aiw-point">
-          <span class="aiw-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></span>
+          <span class="aiw-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.4-3.2 7.6-8 9-4.8-1.4-8-4.6-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
           <div class="aiw-point-body">
-            <h3>A 24/7 signal that earns traffic</h3>
-            <p>Google and AI tools like ChatGPT see that visitors can always get answers on your site — so they're far more confident sending people your way.</p>
+            <h3>Locked down by default</h3>
+            <p>End-to-end encryption, role-based access controls, and full audit trails. Your customer records and operational data stay yours — never shared, never sold, never used to train someone else's model.</p>
           </div>
         </div>
       </div>
 
       <div class="aiw-callout">
-        <span class="aiw-callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8 8 0 0 1-11.6 7.1L4 20.5l1.9-5.3A8 8 0 1 1 21 11.5z"/><path d="M8.5 12l2.2 2.2 4.3-4.3"/></svg></span>
-        <p><strong>More answered questions means more booked jobs.</strong> An always-on assistant turns curious visitors into customers — more business, more jobs, more money in your pocket.</p>
+        <span class="aiw-callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 19a4 4 0 0 1-.6-7.96 6 6 0 0 1 11.6 1.96A4 4 0 0 1 18 19z"/><path d="M8 14l2 2 4-4"/></svg></span>
+        <p><strong>Enterprise-grade infrastructure — contractor-grade pricing.</strong> The same cloud platforms powering the world's largest software companies, sized for your business.</p>
       </div>
     </div>
 
-    <!-- RIGHT · "Always-On Assistant" animation -->
+    <!-- RIGHT · "Fortress Mesh" animation —
+         a 19-hex auto-scaling cluster + central shield core that
+         pulses encryption rings outward; load meter at top, security
+         and uptime badges at the bottom. Pure CSS / SVG only. -->
     <div class="aiw-viz" aria-hidden="true">
-      <span class="aiw-ring"></span>
-      <span class="aiw-dial"></span>
-      <span class="aiw-sweep"></span>
 
-      <div class="aiw-core">
-        <span class="aiw-core-glow"></span>
-        <span class="aiw-wave"><i></i><i></i><i></i><i></i><i></i></span>
+      <!-- top: live load meter -->
+      <div class="aiw-meter">
+        <span class="aiw-meter-label">LOAD</span>
+        <span class="aiw-meter-track"><i class="aiw-meter-fill"></i></span>
+        <span class="aiw-meter-value"><b>1.2M</b> req/s</span>
       </div>
 
-      <div class="aiw-pill q"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.3a2.4 2.4 0 1 1 3.3 2.2c-.7.4-.9.9-.9 1.6"/><path d="M12 16.6h.01"/></svg>Open this weekend? <b>· 3:14&nbsp;AM</b></div>
-      <div class="aiw-pill a"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Yes — open 7 days a week</div>
-      <div class="aiw-pill call"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5 9 4l1.2 3.4-1.8 1.3a10.5 10.5 0 0 0 4.6 4.6l1.3-1.8L17.7 13l.5 2.5a1.4 1.4 0 0 1-1.5 1.7A13.6 13.6 0 0 1 4.3 5a1.4 1.4 0 0 1 1.7-1.5"/></svg>Call</div>
-      <div class="aiw-pill msg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8 8 0 0 1-11.6 7.1L4 20.5l1.9-5.3A8 8 0 1 1 21 11.5z"/></svg>Message</div>
+      <!-- hexagonal fortress mesh -->
+      <svg class="aiw-fort" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <radialGradient id="aiwCoreGrad" cx="50%" cy="38%" r="62%">
+            <stop offset="0%"   stop-color="#bff6ff"/>
+            <stop offset="55%"  stop-color="#40EBFF"/>
+            <stop offset="100%" stop-color="#1f9fb6"/>
+          </radialGradient>
+          <linearGradient id="aiwHexGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#40EBFF" stop-opacity="0.45"/>
+            <stop offset="100%" stop-color="#2bb6c8" stop-opacity="0.2"/>
+          </linearGradient>
+          <filter id="aiwHexGlow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="0.6" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
 
-      <div class="aiw-chip c1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5l3 1.8"/></svg>24/7</div>
-      <div class="aiw-chip c2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="6.5" width="11" height="11" rx="2.5"/><path d="M9.5 1.5v3M14.5 1.5v3M9.5 19.5v3M14.5 19.5v3M1.5 9.5h3M1.5 14.5h3M19.5 9.5h3M19.5 14.5h3"/></svg>Trained on your business</div>
+        <!-- Ring 2 (12 outer hexes, drawn first so they sit behind) -->
+        <polygon class="aiw-hex r2 n1"  points="70,58.66 67.5,62.99 62.5,62.99 60,58.66 62.5,54.33 67.5,54.33"/>
+        <polygon class="aiw-hex r2 n2"  points="70,50    67.5,54.33 62.5,54.33 60,50    62.5,45.67 67.5,45.67"/>
+        <polygon class="aiw-hex r2 n3"  points="70,41.34 67.5,45.67 62.5,45.67 60,41.34 62.5,37.01 67.5,37.01"/>
+        <polygon class="aiw-hex r2 n4"  points="62.5,37.01 60,41.34 55,41.34 52.5,37.01 55,32.68 60,32.68"/>
+        <polygon class="aiw-hex r2 n5"  points="55,32.68  52.5,37.01 47.5,37.01 45,32.68 47.5,28.35 52.5,28.35"/>
+        <polygon class="aiw-hex r2 n6"  points="47.5,37.01 45,41.34   40,41.34   37.5,37.01 40,32.68 45,32.68"/>
+        <polygon class="aiw-hex r2 n7"  points="40,41.34   37.5,45.67 32.5,45.67 30,41.34   32.5,37.01 37.5,37.01"/>
+        <polygon class="aiw-hex r2 n8"  points="40,50      37.5,54.33 32.5,54.33 30,50      32.5,45.67 37.5,45.67"/>
+        <polygon class="aiw-hex r2 n9"  points="40,58.66   37.5,62.99 32.5,62.99 30,58.66   32.5,54.33 37.5,54.33"/>
+        <polygon class="aiw-hex r2 n10" points="47.5,62.99 45,67.32 40,67.32 37.5,62.99 40,58.66 45,58.66"/>
+        <polygon class="aiw-hex r2 n11" points="55,67.32  52.5,71.65 47.5,71.65 45,67.32 47.5,62.99 52.5,62.99"/>
+        <polygon class="aiw-hex r2 n12" points="62.5,62.99 60,67.32 55,67.32 52.5,62.99 55,58.66 60,58.66"/>
+
+        <!-- Ring 1 (6 inner-ring hexes) -->
+        <polygon class="aiw-hex r1 n1" points="55,41.34   52.5,45.67 47.5,45.67 45,41.34 47.5,37.01 52.5,37.01"/>
+        <polygon class="aiw-hex r1 n2" points="62.5,45.67 60,50      55,50      52.5,45.67 55,41.34 60,41.34"/>
+        <polygon class="aiw-hex r1 n3" points="62.5,54.33 60,58.66 55,58.66 52.5,54.33 55,50     60,50"/>
+        <polygon class="aiw-hex r1 n4" points="55,58.66   52.5,62.99 47.5,62.99 45,58.66 47.5,54.33 52.5,54.33"/>
+        <polygon class="aiw-hex r1 n5" points="47.5,54.33 45,58.66 40,58.66 37.5,54.33 40,50    45,50"/>
+        <polygon class="aiw-hex r1 n6" points="47.5,45.67 45,50    40,50    37.5,45.67 40,41.34 45,41.34"/>
+
+        <!-- Encryption pulse rings emanating from center -->
+        <circle class="aiw-pulse p1" cx="50" cy="50" r="6" fill="none" stroke="#40EBFF" stroke-width="0.4"/>
+        <circle class="aiw-pulse p2" cx="50" cy="50" r="6" fill="none" stroke="#40EBFF" stroke-width="0.4"/>
+        <circle class="aiw-pulse p3" cx="50" cy="50" r="6" fill="none" stroke="#40EBFF" stroke-width="0.4"/>
+
+        <!-- Center hex (the shielded core) -->
+        <polygon class="aiw-hex c" points="55,50 52.5,54.33 47.5,54.33 45,50 47.5,45.67 52.5,45.67"/>
+        <polygon class="aiw-hex c-stroke" points="55,50 52.5,54.33 47.5,54.33 45,50 47.5,45.67 52.5,45.67"/>
+
+        <!-- Center shield + check icon -->
+        <g class="aiw-shield" transform="translate(50,50)">
+          <path d="M0,-3.3 L2.8,-2 L2.8,1.2 C2.8,2.6 1.5,3.4 0,3.8 C-1.5,3.4 -2.8,2.6 -2.8,1.2 L-2.8,-2 Z" fill="rgba(11,30,40,0.85)" stroke="#EAF6FB" stroke-width="0.28" stroke-linejoin="round"/>
+          <path d="M-1.3,0.3 L-0.2,1.4 L1.5,-0.9" fill="none" stroke="#40EBFF" stroke-width="0.55" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+
+        <!-- Tiny health LEDs on each non-center hex -->
+        <g class="aiw-leds">
+          <circle class="aiw-led l-r1-n1" cx="50"   cy="38.5" r="0.5"/>
+          <circle class="aiw-led l-r1-n2" cx="58.6" cy="43.5" r="0.5"/>
+          <circle class="aiw-led l-r1-n3" cx="58.6" cy="56.5" r="0.5"/>
+          <circle class="aiw-led l-r1-n4" cx="50"   cy="61.5" r="0.5"/>
+          <circle class="aiw-led l-r1-n5" cx="41.4" cy="56.5" r="0.5"/>
+          <circle class="aiw-led l-r1-n6" cx="41.4" cy="43.5" r="0.5"/>
+          <circle class="aiw-led l-r2-n1" cx="66"   cy="56.5" r="0.45"/>
+          <circle class="aiw-led l-r2-n2" cx="66"   cy="48"   r="0.45"/>
+          <circle class="aiw-led l-r2-n3" cx="66"   cy="39.5" r="0.45"/>
+          <circle class="aiw-led l-r2-n4" cx="58.6" cy="35"   r="0.45"/>
+          <circle class="aiw-led l-r2-n5" cx="50"   cy="30.5" r="0.45"/>
+          <circle class="aiw-led l-r2-n6" cx="41.4" cy="35"   r="0.45"/>
+          <circle class="aiw-led l-r2-n7" cx="34"   cy="39.5" r="0.45"/>
+          <circle class="aiw-led l-r2-n8" cx="34"   cy="48"   r="0.45"/>
+          <circle class="aiw-led l-r2-n9" cx="34"   cy="56.5" r="0.45"/>
+          <circle class="aiw-led l-r2-n10" cx="41.4" cy="65"   r="0.45"/>
+          <circle class="aiw-led l-r2-n11" cx="50"   cy="69.5" r="0.45"/>
+          <circle class="aiw-led l-r2-n12" cx="58.6" cy="65"   r="0.45"/>
+        </g>
+      </svg>
+
+      <!-- bottom: security / uptime badges -->
+      <div class="aiw-badges">
+        <span class="aiw-badge encrypted">
+          <span class="aiw-badge-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+          Encrypted
+        </span>
+        <span class="aiw-badge scaled">
+          <span class="aiw-badge-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-5 3 3 8-8"/><path d="M15 7h6v6"/></svg></span>
+          Auto-scaled
+        </span>
+        <span class="aiw-badge uptime">
+          <span class="aiw-badge-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg></span>
+          99.9% uptime
+        </span>
+      </div>
     </div>
 
   </div>
