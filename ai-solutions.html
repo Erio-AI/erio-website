@@ -232,44 +232,17 @@
     <div class="prop-grid" aria-hidden="true">
       <div class="prop-grid-pattern"></div>
 
-      <!-- Trace A — top-left of the field, clockwise orbit -->
-      <svg class="prop-grid-trace prop-grid-trace-1" viewBox="0 0 336 224" aria-hidden="true" fill="none">
-        <defs>
-          <!-- 5 × 3 cell rectangle (280 × 168) with 28 px corner radii.
-               Path anchors at grid intersections, so the comet appears
-               to flow along the grid lines. -->
-          <path id="propOrbit1" d="M 56 28 H 280 Q 308 28 308 56 V 168 Q 308 196 280 196 H 56 Q 28 196 28 168 V 56 Q 28 28 56 28 Z" fill="none"/>
-        </defs>
-        <g class="prop-comet">
-          <circle r="2.4" fill="#A1E8F0"><animateMotion dur="16s" begin="0s" repeatCount="indefinite"><mpath href="#propOrbit1"/></animateMotion></circle>
-          <circle r="2.2" fill="#40EBFF" opacity="0.85"><animateMotion dur="16s" begin="-0.18s" repeatCount="indefinite"><mpath href="#propOrbit1"/></animateMotion></circle>
-          <circle r="1.9" fill="#40EBFF" opacity="0.7"><animateMotion dur="16s" begin="-0.36s" repeatCount="indefinite"><mpath href="#propOrbit1"/></animateMotion></circle>
-          <circle r="1.7" fill="#40EBFF" opacity="0.55"><animateMotion dur="16s" begin="-0.54s" repeatCount="indefinite"><mpath href="#propOrbit1"/></animateMotion></circle>
-          <circle r="1.4" fill="#40EBFF" opacity="0.42"><animateMotion dur="16s" begin="-0.72s" repeatCount="indefinite"><mpath href="#propOrbit1"/></animateMotion></circle>
-          <circle r="1.2" fill="#40EBFF" opacity="0.3"><animateMotion dur="16s" begin="-0.9s" repeatCount="indefinite"><mpath href="#propOrbit1"/></animateMotion></circle>
-          <circle r="1.0" fill="#40EBFF" opacity="0.2"><animateMotion dur="16s" begin="-1.08s" repeatCount="indefinite"><mpath href="#propOrbit1"/></animateMotion></circle>
-          <circle r="0.8" fill="#40EBFF" opacity="0.12"><animateMotion dur="16s" begin="-1.26s" repeatCount="indefinite"><mpath href="#propOrbit1"/></animateMotion></circle>
-        </g>
-      </svg>
-
-      <!-- Trace B — bottom-right of the field, counter-clockwise orbit
-           (keyPoints "1;0" reverses motion direction along the same path). -->
-      <svg class="prop-grid-trace prop-grid-trace-2" viewBox="0 0 280 168" aria-hidden="true" fill="none">
-        <defs>
-          <!-- 4 × 2 cell rectangle (224 × 112) with 28 px corner radii. -->
-          <path id="propOrbit2" d="M 56 28 H 224 Q 252 28 252 56 V 112 Q 252 140 224 140 H 56 Q 28 140 28 112 V 56 Q 28 28 56 28 Z" fill="none"/>
-        </defs>
-        <g class="prop-comet">
-          <circle r="2.4" fill="#A1E8F0"><animateMotion dur="18s" begin="-7s" keyPoints="1;0" keyTimes="0;1" repeatCount="indefinite"><mpath href="#propOrbit2"/></animateMotion></circle>
-          <circle r="2.2" fill="#40EBFF" opacity="0.85"><animateMotion dur="18s" begin="-7.2s" keyPoints="1;0" keyTimes="0;1" repeatCount="indefinite"><mpath href="#propOrbit2"/></animateMotion></circle>
-          <circle r="1.9" fill="#40EBFF" opacity="0.7"><animateMotion dur="18s" begin="-7.4s" keyPoints="1;0" keyTimes="0;1" repeatCount="indefinite"><mpath href="#propOrbit2"/></animateMotion></circle>
-          <circle r="1.7" fill="#40EBFF" opacity="0.55"><animateMotion dur="18s" begin="-7.6s" keyPoints="1;0" keyTimes="0;1" repeatCount="indefinite"><mpath href="#propOrbit2"/></animateMotion></circle>
-          <circle r="1.4" fill="#40EBFF" opacity="0.42"><animateMotion dur="18s" begin="-7.8s" keyPoints="1;0" keyTimes="0;1" repeatCount="indefinite"><mpath href="#propOrbit2"/></animateMotion></circle>
-          <circle r="1.2" fill="#40EBFF" opacity="0.3"><animateMotion dur="18s" begin="-8s" keyPoints="1;0" keyTimes="0;1" repeatCount="indefinite"><mpath href="#propOrbit2"/></animateMotion></circle>
-          <circle r="1.0" fill="#40EBFF" opacity="0.2"><animateMotion dur="18s" begin="-8.2s" keyPoints="1;0" keyTimes="0;1" repeatCount="indefinite"><mpath href="#propOrbit2"/></animateMotion></circle>
-          <circle r="0.8" fill="#40EBFF" opacity="0.12"><animateMotion dur="18s" begin="-8.4s" keyPoints="1;0" keyTimes="0;1" repeatCount="indefinite"><mpath href="#propOrbit2"/></animateMotion></circle>
-        </g>
-      </svg>
+      <!-- Vertical rising beams — 3 per side, in the empty band beyond
+           the containers. Each is a short cyan streak (1 cell tall) that
+           briefly enters at full brand cyan, glides upward a few cells,
+           and fades out. Staggered delays keep ~2-3 visible per side at
+           all times. -->
+      <span class="prop-beam left-1"></span>
+      <span class="prop-beam left-2"></span>
+      <span class="prop-beam left-3"></span>
+      <span class="prop-beam right-1"></span>
+      <span class="prop-beam right-2"></span>
+      <span class="prop-beam right-3"></span>
     </div>
 
     <div class="prop-stage">
@@ -767,58 +740,70 @@
     position: absolute;
     inset: 0;
     background-image:
-      linear-gradient(rgba(83, 185, 224, 0.13) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(83, 185, 224, 0.13) 1px, transparent 1px);
+      linear-gradient(rgba(83, 185, 224, 0.22) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(83, 185, 224, 0.22) 1px, transparent 1px);
     /* doubled from the home page's 28 px */
     background-size: 56px 56px;
-    /* anchor cells at the viewport center so the comet orbits below
-       land exactly on grid intersections */
+    /* anchor cells at the viewport center so beams land on grid lines */
     background-position: 50% 50%;
   }
   /* Lift the actual content above the grid */
   .prop-stage, .prop-foot { position: relative; z-index: 1; }
 
-  /* Comet trace SVGs — placed so they orbit grid intersections inside
-     the visible halo, not where the form / preview sit. */
-  .prop-grid-trace {
+  /* Vertical rising beams — short cyan streaks (one cell tall) that
+     enter at full brand cyan, glide up a few cells, and fade out.
+     Anchored in the empty edge bands beyond the two containers. */
+  .prop-beam {
     position: absolute;
+    width: 1.6px;
+    height: 56px;
     pointer-events: none;
-    overflow: visible;
+    background: linear-gradient(180deg, transparent 0%, #40EBFF 26%, #40EBFF 74%, transparent 100%);
+    border-radius: 1px;
+    filter: drop-shadow(0 0 4px rgba(64, 235, 255, 0.6))
+            drop-shadow(0 0 10px rgba(64, 235, 255, 0.3));
+    opacity: 0;
+    will-change: transform, opacity;
+    animation: propBeamRise 3.6s ease-out infinite;
   }
-  .prop-grid-trace-1 {
-    top: 14px;
-    left: 14vw;
-    width: 336px;
-    height: 224px;
-  }
-  .prop-grid-trace-2 {
-    bottom: 14px;
-    right: 14vw;
-    width: 280px;
-    height: 168px;
-  }
-  .prop-comet {
-    filter:
-      drop-shadow(0 0 3px rgba(64, 235, 255, 0.7))
-      drop-shadow(0 0 9px rgba(64, 235, 255, 0.35));
+  /* Left side — three rising lanes inside the left edge band */
+  .prop-beam.left-1  { left:  5%; top: 78%; animation-delay: 0s;    }
+  .prop-beam.left-2  { left:  9%; top: 58%; animation-delay: -1.2s; }
+  .prop-beam.left-3  { left: 12%; top: 86%; animation-delay: -2.4s; }
+  /* Right side — three rising lanes inside the right edge band */
+  .prop-beam.right-1 { right:  5%; top: 70%; animation-delay: -0.6s; }
+  .prop-beam.right-2 { right:  9%; top: 50%; animation-delay: -1.8s; }
+  .prop-beam.right-3 { right: 12%; top: 82%; animation-delay: -3.0s; }
+
+  @keyframes propBeamRise {
+    0%   { opacity: 0; transform: translateY(0);     }
+    14%  { opacity: 1; }
+    62%  { opacity: 1; }
+    100% { opacity: 0; transform: translateY(-220px); }
   }
 
   @media (max-width: 920px) {
-    /* Mobile: the section becomes much taller (stacked layout), so
-       loosen the mask vertically and shrink the comet orbits so
-       they fit comfortably above / below the containers. */
+    /* Mobile: stacked layout — much taller section. Loosen the edge
+       mask, push the beams in closer to the viewport edges so they
+       stay in the empty band flanking the single column of containers. */
     .prop-grid {
       -webkit-mask-image: radial-gradient(ellipse 80% 86% at 50% 50%, rgba(0,0,0,1) 28%, rgba(0,0,0,0.7) 60%, rgba(0,0,0,0.3) 86%, transparent 100%);
               mask-image: radial-gradient(ellipse 80% 86% at 50% 50%, rgba(0,0,0,1) 28%, rgba(0,0,0,0.7) 60%, rgba(0,0,0,0.3) 86%, transparent 100%);
     }
-    .prop-grid-trace-1 { top: 10px;    left: 4vw;  width: 224px; height: 168px; }
-    .prop-grid-trace-2 { bottom: 10px; right: 4vw; width: 224px; height: 168px; }
+    .prop-beam.left-1  { left: 3%; }
+    .prop-beam.left-2  { left: 6%; }
+    .prop-beam.left-3  { left: 9%; }
+    .prop-beam.right-1 { right: 3%; }
+    .prop-beam.right-2 { right: 6%; }
+    .prop-beam.right-3 { right: 9%; }
   }
   @media (max-width: 480px) {
-    .prop-grid-trace-2 { display: none; }
+    /* On the smallest phones the field is narrow — keep just two
+       beams per side so the background doesn't feel busy. */
+    .prop-beam.left-3, .prop-beam.right-3 { display: none; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .prop-comet { opacity: 0.35; }
+    .prop-beam { animation: none !important; opacity: 0.35; }
   }
 
   /* ═════ AI COMPOSITOR overlay (Generate-time loading effect) ═════
