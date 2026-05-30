@@ -845,13 +845,13 @@
     .prop-scan-h, .prop-tag-dot, .prop-live-dot, .prop-page-1, .prop-cf, .prop-scan { animation: none !important; }
   }
 
-  /* ai-solutions only: halve the empty space between the "Schedule Demo"
+  /* ai-solutions only: tune the empty space between the "Schedule Demo"
      CTA and the AI Proposal Generator tool below it. Scoped via this
      page-local <style> block so other pages keep the original spacing. */
-  .cta-frame { margin-bottom: 80px; }
-  @media (max-width: 720px) { .cta-frame { margin-bottom: 56px; } }
-  @media (max-width: 520px) { .cta-frame { margin-bottom: 48px; } }
-  .prop { margin-top: clamp(9px, 1vw, 18px); }
+  .cta-frame { margin-bottom: 120px; }
+  @media (max-width: 720px) { .cta-frame { margin-bottom: 84px; } }
+  @media (max-width: 520px) { .cta-frame { margin-bottom: 72px; } }
+  .prop { margin-top: clamp(14px, 1.5vw, 27px); }
 </style>
 
 <!-- jsPDF for browser-side PDF generation -->
