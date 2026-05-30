@@ -766,14 +766,18 @@
     will-change: transform, opacity;
     animation: propBeamRise 3.6s ease-out infinite;
   }
-  /* Left side — three rising lanes inside the left edge band */
-  .prop-beam.left-1  { left:  5%; top: 78%; animation-delay: 0s;    }
-  .prop-beam.left-2  { left:  9%; top: 58%; animation-delay: -1.2s; }
-  .prop-beam.left-3  { left: 12%; top: 86%; animation-delay: -2.4s; }
-  /* Right side — three rising lanes inside the right edge band */
-  .prop-beam.right-1 { right:  5%; top: 70%; animation-delay: -0.6s; }
-  .prop-beam.right-2 { right:  9%; top: 50%; animation-delay: -1.8s; }
-  .prop-beam.right-3 { right: 12%; top: 82%; animation-delay: -3.0s; }
+  /* Beams snap to the lattice's vertical grid lines. The grid is anchored
+     `background-position: 50% 50%`, so lines fall at `50vw + 56k − 28`
+     from the viewport's left edge for any integer cell index k. We center
+     each 1.6 px-wide beam on a line with `left: calc(50% + 56k − 28.8px)`.
+     The top values cluster around 50–64 % so the beam's visible band
+     (≈14–62 % of the keyframe) straddles the form's vertical centre. */
+  .prop-beam.left-1  { left: calc(50% - 588.8px); top: 60%; animation-delay: 0s;    }   /* k=-10 */
+  .prop-beam.left-2  { left: calc(50% - 532.8px); top: 52%; animation-delay: -1.2s; }   /* k=-9  */
+  .prop-beam.left-3  { left: calc(50% - 644.8px); top: 64%; animation-delay: -2.4s; }   /* k=-11 */
+  .prop-beam.right-1 { left: calc(50% + 531.2px); top: 56%; animation-delay: -0.6s; }   /* k=+10 */
+  .prop-beam.right-2 { left: calc(50% + 475.2px); top: 50%; animation-delay: -1.8s; }   /* k=+9  */
+  .prop-beam.right-3 { left: calc(50% + 587.2px); top: 62%; animation-delay: -3.0s; }   /* k=+11 */
 
   @keyframes propBeamRise {
     0%   { opacity: 0; transform: translateY(0);     }
@@ -790,12 +794,15 @@
       -webkit-mask-image: radial-gradient(ellipse 80% 86% at 50% 50%, rgba(0,0,0,1) 28%, rgba(0,0,0,0.7) 60%, rgba(0,0,0,0.3) 86%, transparent 100%);
               mask-image: radial-gradient(ellipse 80% 86% at 50% 50%, rgba(0,0,0,1) 28%, rgba(0,0,0,0.7) 60%, rgba(0,0,0,0.3) 86%, transparent 100%);
     }
-    .prop-beam.left-1  { left: 3%; }
-    .prop-beam.left-2  { left: 6%; }
-    .prop-beam.left-3  { left: 9%; }
-    .prop-beam.right-1 { right: 3%; }
-    .prop-beam.right-2 { right: 6%; }
-    .prop-beam.right-3 { right: 9%; }
+    /* Mobile snap: pull beams to closer-in vertical grid lines (k=±5..±7)
+       so they stay in the visible band that flanks the single stacked
+       column on phones. Top values already centre on the form vertically. */
+    .prop-beam.left-1  { left: calc(50% - 308.8px); }  /* k=-5 */
+    .prop-beam.left-2  { left: calc(50% - 252.8px); }  /* k=-4 */
+    .prop-beam.left-3  { left: calc(50% - 364.8px); }  /* k=-6 */
+    .prop-beam.right-1 { left: calc(50% + 251.2px); }  /* k=+5 */
+    .prop-beam.right-2 { left: calc(50% + 195.2px); }  /* k=+4 */
+    .prop-beam.right-3 { left: calc(50% + 307.2px); }  /* k=+6 */
   }
   @media (max-width: 480px) {
     /* On the smallest phones the field is narrow — keep just two
