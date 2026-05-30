@@ -224,6 +224,54 @@
   ============================================================ -->
   <section class="prop">
 
+    <!-- ═════ Grid background — viewport-wide 56px lattice behind the two
+         containers. Echoes the [How it works] bracket-grid treatment on
+         the home page, but doubled cell size, viewport-wide, faded to
+         transparent at all four edges. Two subtle comet traces orbit
+         rounded-rectangle paths anchored on grid intersections. ═════ -->
+    <div class="prop-grid" aria-hidden="true">
+      <div class="prop-grid-pattern"></div>
+
+      <!-- Trace A — top-left of the field, clockwise orbit -->
+      <svg class="prop-grid-trace prop-grid-trace-1" viewBox="0 0 336 224" aria-hidden="true" fill="none">
+        <defs>
+          <!-- 5 × 3 cell rectangle (280 × 168) with 28 px corner radii.
+               Path anchors at grid intersections, so the comet appears
+               to flow along the grid lines. -->
+          <path id="propOrbit1" d="M 56 28 H 280 Q 308 28 308 56 V 168 Q 308 196 280 196 H 56 Q 28 196 28 168 V 56 Q 28 28 56 28 Z" fill="none"/>
+        </defs>
+        <g class="prop-comet">
+          <circle r="2.4" fill="#A1E8F0"><animateMotion dur="16s" begin="0s" repeatCount="indefinite"><mpath href="#propOrbit1"/></animateMotion></circle>
+          <circle r="2.2" fill="#40EBFF" opacity="0.85"><animateMotion dur="16s" begin="-0.18s" repeatCount="indefinite"><mpath href="#propOrbit1"/></animateMotion></circle>
+          <circle r="1.9" fill="#40EBFF" opacity="0.7"><animateMotion dur="16s" begin="-0.36s" repeatCount="indefinite"><mpath href="#propOrbit1"/></animateMotion></circle>
+          <circle r="1.7" fill="#40EBFF" opacity="0.55"><animateMotion dur="16s" begin="-0.54s" repeatCount="indefinite"><mpath href="#propOrbit1"/></animateMotion></circle>
+          <circle r="1.4" fill="#40EBFF" opacity="0.42"><animateMotion dur="16s" begin="-0.72s" repeatCount="indefinite"><mpath href="#propOrbit1"/></animateMotion></circle>
+          <circle r="1.2" fill="#40EBFF" opacity="0.3"><animateMotion dur="16s" begin="-0.9s" repeatCount="indefinite"><mpath href="#propOrbit1"/></animateMotion></circle>
+          <circle r="1.0" fill="#40EBFF" opacity="0.2"><animateMotion dur="16s" begin="-1.08s" repeatCount="indefinite"><mpath href="#propOrbit1"/></animateMotion></circle>
+          <circle r="0.8" fill="#40EBFF" opacity="0.12"><animateMotion dur="16s" begin="-1.26s" repeatCount="indefinite"><mpath href="#propOrbit1"/></animateMotion></circle>
+        </g>
+      </svg>
+
+      <!-- Trace B — bottom-right of the field, counter-clockwise orbit
+           (keyPoints "1;0" reverses motion direction along the same path). -->
+      <svg class="prop-grid-trace prop-grid-trace-2" viewBox="0 0 280 168" aria-hidden="true" fill="none">
+        <defs>
+          <!-- 4 × 2 cell rectangle (224 × 112) with 28 px corner radii. -->
+          <path id="propOrbit2" d="M 56 28 H 224 Q 252 28 252 56 V 112 Q 252 140 224 140 H 56 Q 28 140 28 112 V 56 Q 28 28 56 28 Z" fill="none"/>
+        </defs>
+        <g class="prop-comet">
+          <circle r="2.4" fill="#A1E8F0"><animateMotion dur="18s" begin="-7s" keyPoints="1;0" keyTimes="0;1" repeatCount="indefinite"><mpath href="#propOrbit2"/></animateMotion></circle>
+          <circle r="2.2" fill="#40EBFF" opacity="0.85"><animateMotion dur="18s" begin="-7.2s" keyPoints="1;0" keyTimes="0;1" repeatCount="indefinite"><mpath href="#propOrbit2"/></animateMotion></circle>
+          <circle r="1.9" fill="#40EBFF" opacity="0.7"><animateMotion dur="18s" begin="-7.4s" keyPoints="1;0" keyTimes="0;1" repeatCount="indefinite"><mpath href="#propOrbit2"/></animateMotion></circle>
+          <circle r="1.7" fill="#40EBFF" opacity="0.55"><animateMotion dur="18s" begin="-7.6s" keyPoints="1;0" keyTimes="0;1" repeatCount="indefinite"><mpath href="#propOrbit2"/></animateMotion></circle>
+          <circle r="1.4" fill="#40EBFF" opacity="0.42"><animateMotion dur="18s" begin="-7.8s" keyPoints="1;0" keyTimes="0;1" repeatCount="indefinite"><mpath href="#propOrbit2"/></animateMotion></circle>
+          <circle r="1.2" fill="#40EBFF" opacity="0.3"><animateMotion dur="18s" begin="-8s" keyPoints="1;0" keyTimes="0;1" repeatCount="indefinite"><mpath href="#propOrbit2"/></animateMotion></circle>
+          <circle r="1.0" fill="#40EBFF" opacity="0.2"><animateMotion dur="18s" begin="-8.2s" keyPoints="1;0" keyTimes="0;1" repeatCount="indefinite"><mpath href="#propOrbit2"/></animateMotion></circle>
+          <circle r="0.8" fill="#40EBFF" opacity="0.12"><animateMotion dur="18s" begin="-8.4s" keyPoints="1;0" keyTimes="0;1" repeatCount="indefinite"><mpath href="#propOrbit2"/></animateMotion></circle>
+        </g>
+      </svg>
+    </div>
+
     <div class="prop-stage">
 
       <!-- ───── LEFT · composer (input) ───── -->
@@ -693,6 +741,85 @@
     transition: background 0.2s, transform 0.2s var(--ease-velvet, ease);
   }
   .prop-drop-x:hover { background: rgba(11, 30, 40, 0.95); transform: scale(1.08); }
+
+  /* ═════ GRID BACKDROP — viewport-wide 56 px cyan lattice behind the
+     two containers, mirroring the home page's [How it works] bracket
+     grid treatment but doubled in cell size and fading transparent
+     in every direction. Two SVG comet traces orbit subtle rounded
+     paths anchored on grid intersections so they appear to trace
+     the grid itself. The whole field sits at z-index 0; the form
+     card and PDF preview ride above on z-index 1. ═════ */
+  .prop-grid {
+    position: absolute;
+    left: 50%;
+    top: -30px;
+    width: 100vw;
+    height: calc(100% + 60px);
+    transform: translateX(-50%);
+    z-index: 0;
+    pointer-events: none;
+    /* Fade out at all four edges — softer than a hard mask so the
+       grid bleeds organically into the dark hero. */
+    -webkit-mask-image: radial-gradient(ellipse 60% 72% at 50% 50%, rgba(0,0,0,1) 32%, rgba(0,0,0,0.72) 56%, rgba(0,0,0,0.3) 80%, transparent 100%);
+            mask-image: radial-gradient(ellipse 60% 72% at 50% 50%, rgba(0,0,0,1) 32%, rgba(0,0,0,0.72) 56%, rgba(0,0,0,0.3) 80%, transparent 100%);
+  }
+  .prop-grid-pattern {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(83, 185, 224, 0.13) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(83, 185, 224, 0.13) 1px, transparent 1px);
+    /* doubled from the home page's 28 px */
+    background-size: 56px 56px;
+    /* anchor cells at the viewport center so the comet orbits below
+       land exactly on grid intersections */
+    background-position: 50% 50%;
+  }
+  /* Lift the actual content above the grid */
+  .prop-stage, .prop-foot { position: relative; z-index: 1; }
+
+  /* Comet trace SVGs — placed so they orbit grid intersections inside
+     the visible halo, not where the form / preview sit. */
+  .prop-grid-trace {
+    position: absolute;
+    pointer-events: none;
+    overflow: visible;
+  }
+  .prop-grid-trace-1 {
+    top: 14px;
+    left: 14vw;
+    width: 336px;
+    height: 224px;
+  }
+  .prop-grid-trace-2 {
+    bottom: 14px;
+    right: 14vw;
+    width: 280px;
+    height: 168px;
+  }
+  .prop-comet {
+    filter:
+      drop-shadow(0 0 3px rgba(64, 235, 255, 0.7))
+      drop-shadow(0 0 9px rgba(64, 235, 255, 0.35));
+  }
+
+  @media (max-width: 920px) {
+    /* Mobile: the section becomes much taller (stacked layout), so
+       loosen the mask vertically and shrink the comet orbits so
+       they fit comfortably above / below the containers. */
+    .prop-grid {
+      -webkit-mask-image: radial-gradient(ellipse 80% 86% at 50% 50%, rgba(0,0,0,1) 28%, rgba(0,0,0,0.7) 60%, rgba(0,0,0,0.3) 86%, transparent 100%);
+              mask-image: radial-gradient(ellipse 80% 86% at 50% 50%, rgba(0,0,0,1) 28%, rgba(0,0,0,0.7) 60%, rgba(0,0,0,0.3) 86%, transparent 100%);
+    }
+    .prop-grid-trace-1 { top: 10px;    left: 4vw;  width: 224px; height: 168px; }
+    .prop-grid-trace-2 { bottom: 10px; right: 4vw; width: 224px; height: 168px; }
+  }
+  @media (max-width: 480px) {
+    .prop-grid-trace-2 { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .prop-comet { opacity: 0.35; }
+  }
 
   /* ═════ AI COMPOSITOR overlay (Generate-time loading effect) ═════
      Sits over the entire preview frame while the AI "composes" the
