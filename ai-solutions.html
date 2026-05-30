@@ -1297,6 +1297,364 @@
     .svp-ex-table-row { animation: none !important; opacity: 1 !important; }
   }
 
+  /* ════════════════════════════════════════════════════════════════════
+     END-TO-END AUTOMATION section (.spd--auto) —
+     "Pipeline Cascade". Five stacked step cards (Capture, Extract,
+     Transform, Deliver, Sync) connected by short vertical links.
+     Each step cascades idle → running → done in sequence on a shared
+     10s loop so the eye reads one input flowing through every stage,
+     untouched by hand. Mirrors the "end-to-end" headline literally.
+  ════════════════════════════════════════════════════════════════════ */
+
+  /* Hide the inherited "Real-Time Relay" elements */
+  .spd--auto .spd-trigger,
+  .spd--auto .spd-net,
+  .spd--auto .spd-dest,
+  .spd--auto .spd-timeline,
+  .spd--auto .spd-chip { display: none !important; }
+
+  /* viz frame — override the inherited `aspect-ratio: 1/1` so the
+     5-card stack can size to its full content height. */
+  .spd--auto .spd-viz {
+    aspect-ratio: auto;
+    max-width: 380px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  /* ──────── pipeline container ──────── */
+  .spd-pipe {
+    display: flex; flex-direction: column;
+    align-items: stretch;
+  }
+
+  /* ──────── step card ──────── */
+  .spd-step {
+    position: relative;
+    display: grid;
+    grid-template-columns: 28px 28px 1fr auto;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 12px;
+    border-radius: 11px;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.012) 42%),
+      linear-gradient(180deg, rgba(11, 28, 37, 0.7), rgba(6, 15, 21, 0.78));
+    border: 1px solid rgba(120, 200, 222, 0.18);
+    box-shadow: 0 14px 32px -18px rgba(0, 0, 0, 0.7);
+    transition: border-color 0.5s, background 0.5s, box-shadow 0.5s;
+  }
+  .spd-step-num {
+    font-family: 'Exo 2', system-ui, sans-serif;
+    font-size: 9px; font-weight: 800;
+    letter-spacing: 0.14em;
+    color: rgba(159, 220, 239, 0.55);
+    text-align: center;
+  }
+  .spd-step-ico {
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    display: grid; place-items: center;
+    background: rgba(64, 235, 255, 0.06);
+    border: 1px solid rgba(64, 235, 255, 0.18);
+    color: var(--seo-pale, #9FDCEF);
+    transition: background 0.4s, border-color 0.4s, color 0.4s, box-shadow 0.4s;
+  }
+  .spd-step-ico svg { width: 14px; height: 14px; }
+  .spd-step-body {
+    display: flex; flex-direction: column;
+    line-height: 1.2; min-width: 0;
+  }
+  .spd-step-name {
+    font-family: 'Exo 2', system-ui, sans-serif;
+    font-size: 12.5px; font-weight: 700;
+    color: #EAF6FB;
+    letter-spacing: -0.005em;
+  }
+  .spd-step-meta {
+    font-family: 'Exo 2', system-ui, sans-serif;
+    font-size: 9.5px; font-weight: 500;
+    color: rgba(159, 220, 239, 0.55);
+    letter-spacing: 0.04em;
+    margin-top: 2px;
+  }
+  /* status pill on the right side of each step */
+  .spd-step-pill {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 4px 8px;
+    border-radius: 999px;
+    background: rgba(159, 220, 239, 0.06);
+    border: 1px solid rgba(120, 200, 222, 0.18);
+    font-family: 'Exo 2', system-ui, sans-serif;
+    font-size: 8.5px; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(159, 220, 239, 0.55);
+    white-space: nowrap;
+    transition: background 0.4s, border-color 0.4s, color 0.4s, box-shadow 0.4s;
+  }
+  .spd-step-pill-dot {
+    width: 5px; height: 5px; border-radius: 50%;
+    background: rgba(159, 220, 239, 0.4);
+    transition: background 0.4s, box-shadow 0.4s;
+  }
+
+  /* ──────── connector between steps ──────── */
+  .spd-link {
+    position: relative;
+    width: 1px; height: 14px;
+    margin: 0 auto;
+    background: rgba(120, 200, 222, 0.18);
+    overflow: hidden;
+  }
+  .spd-link::after {
+    /* a small cyan packet drops down each link when the upstream step
+       completes — communicates "data handoff to next step" */
+    content: "";
+    position: absolute; left: -1.5px; top: -6px;
+    width: 4px; height: 6px;
+    border-radius: 2px;
+    background: linear-gradient(180deg, transparent, #40EBFF, transparent);
+    filter: drop-shadow(0 0 3px rgba(64, 235, 255, 0.9));
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  /* link packets fire just as their upstream step transitions to done */
+  .spd-link.l1::after { animation: spdLink1 10s linear infinite; }
+  .spd-link.l2::after { animation: spdLink2 10s linear infinite; }
+  .spd-link.l3::after { animation: spdLink3 10s linear infinite; }
+  .spd-link.l4::after { animation: spdLink4 10s linear infinite; }
+  @keyframes spdLink1 {
+    0%, 14%   { opacity: 0; transform: translateY(-100%); }
+    16%       { opacity: 1; }
+    20%       { opacity: 1; transform: translateY(100%); }
+    22%, 100% { opacity: 0; transform: translateY(100%); }
+  }
+  @keyframes spdLink2 {
+    0%, 32%   { opacity: 0; transform: translateY(-100%); }
+    34%       { opacity: 1; }
+    38%       { opacity: 1; transform: translateY(100%); }
+    40%, 100% { opacity: 0; transform: translateY(100%); }
+  }
+  @keyframes spdLink3 {
+    0%, 50%   { opacity: 0; transform: translateY(-100%); }
+    52%       { opacity: 1; }
+    56%       { opacity: 1; transform: translateY(100%); }
+    58%, 100% { opacity: 0; transform: translateY(100%); }
+  }
+  @keyframes spdLink4 {
+    0%, 68%   { opacity: 0; transform: translateY(-100%); }
+    70%       { opacity: 1; }
+    74%       { opacity: 1; transform: translateY(100%); }
+    76%, 100% { opacity: 0; transform: translateY(100%); }
+  }
+
+  /* ──────── step state cascade ────────
+     Each step has its own keyframe set so the idle → running → done
+     transition cascades through the pipeline in sequence on the
+     shared 10s loop. Pill label is swapped via a tiny pseudo-element
+     overlay (kept text-only — the dot + colour communicate state). */
+  .spd-step.s1 { animation: spdStep1 10s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+  .spd-step.s2 { animation: spdStep2 10s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+  .spd-step.s3 { animation: spdStep3 10s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+  .spd-step.s4 { animation: spdStep4 10s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+  .spd-step.s5 { animation: spdStep5 10s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+
+  /* per-step state cascade — each keyframe carries the card-border,
+     pill-bg + colour, num-colour, and icon-bg through idle/running/
+     done over its sync slot of the 10s cycle. */
+  @keyframes spdStep1 {
+    0%, 6%   { border-color: rgba(120, 200, 222, 0.18); box-shadow: 0 14px 32px -18px rgba(0,0,0,.7); }
+    10%, 14% { border-color: rgba(64, 235, 255, 0.55); box-shadow: 0 14px 32px -18px rgba(0,0,0,.7), 0 0 22px -8px rgba(64,235,255,0.55); }
+    18%, 90% { border-color: rgba(64, 235, 255, 0.42); box-shadow: 0 14px 32px -18px rgba(0,0,0,.7), 0 0 14px -10px rgba(64,235,255,0.35); }
+    96%,100% { border-color: rgba(120, 200, 222, 0.18); }
+  }
+  @keyframes spdStep2 {
+    0%, 24%  { border-color: rgba(120, 200, 222, 0.18); box-shadow: 0 14px 32px -18px rgba(0,0,0,.7); }
+    28%, 32% { border-color: rgba(64, 235, 255, 0.55); box-shadow: 0 14px 32px -18px rgba(0,0,0,.7), 0 0 22px -8px rgba(64,235,255,0.55); }
+    36%, 90% { border-color: rgba(64, 235, 255, 0.42); box-shadow: 0 14px 32px -18px rgba(0,0,0,.7), 0 0 14px -10px rgba(64,235,255,0.35); }
+    96%,100% { border-color: rgba(120, 200, 222, 0.18); }
+  }
+  @keyframes spdStep3 {
+    0%, 42%  { border-color: rgba(120, 200, 222, 0.18); box-shadow: 0 14px 32px -18px rgba(0,0,0,.7); }
+    46%, 50% { border-color: rgba(64, 235, 255, 0.55); box-shadow: 0 14px 32px -18px rgba(0,0,0,.7), 0 0 22px -8px rgba(64,235,255,0.55); }
+    54%, 90% { border-color: rgba(64, 235, 255, 0.42); box-shadow: 0 14px 32px -18px rgba(0,0,0,.7), 0 0 14px -10px rgba(64,235,255,0.35); }
+    96%,100% { border-color: rgba(120, 200, 222, 0.18); }
+  }
+  @keyframes spdStep4 {
+    0%, 60%  { border-color: rgba(120, 200, 222, 0.18); box-shadow: 0 14px 32px -18px rgba(0,0,0,.7); }
+    64%, 68% { border-color: rgba(64, 235, 255, 0.55); box-shadow: 0 14px 32px -18px rgba(0,0,0,.7), 0 0 22px -8px rgba(64,235,255,0.55); }
+    72%, 90% { border-color: rgba(64, 235, 255, 0.42); box-shadow: 0 14px 32px -18px rgba(0,0,0,.7), 0 0 14px -10px rgba(64,235,255,0.35); }
+    96%,100% { border-color: rgba(120, 200, 222, 0.18); }
+  }
+  @keyframes spdStep5 {
+    0%, 78%  { border-color: rgba(120, 200, 222, 0.18); box-shadow: 0 14px 32px -18px rgba(0,0,0,.7); }
+    82%, 86% { border-color: rgba(64, 235, 255, 0.55); box-shadow: 0 14px 32px -18px rgba(0,0,0,.7), 0 0 22px -8px rgba(64,235,255,0.55); }
+    90%      { border-color: rgba(64, 235, 255, 0.42); box-shadow: 0 14px 32px -18px rgba(0,0,0,.7), 0 0 14px -10px rgba(64,235,255,0.35); }
+    96%,100% { border-color: rgba(120, 200, 222, 0.18); }
+  }
+
+  /* icon container glows when its step is active */
+  .spd-step.s1 .spd-step-ico { animation: spdIco1 10s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+  .spd-step.s2 .spd-step-ico { animation: spdIco2 10s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+  .spd-step.s3 .spd-step-ico { animation: spdIco3 10s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+  .spd-step.s4 .spd-step-ico { animation: spdIco4 10s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+  .spd-step.s5 .spd-step-ico { animation: spdIco5 10s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+  @keyframes spdIco1 {
+    0%, 6%   { background: rgba(64, 235, 255, 0.06); border-color: rgba(64, 235, 255, 0.18); color: var(--seo-pale, #9FDCEF); }
+    10%, 14% { background: rgba(64, 235, 255, 0.18); border-color: rgba(64, 235, 255, 0.55); color: #fff; box-shadow: 0 0 12px rgba(64,235,255,0.55); }
+    18%, 90% { background: linear-gradient(135deg, #6ff0ff, #2bb6c8); border-color: transparent; color: #04141b; box-shadow: 0 4px 10px -4px rgba(64,235,255,0.55); }
+    96%,100% { background: rgba(64, 235, 255, 0.06); color: var(--seo-pale, #9FDCEF); }
+  }
+  @keyframes spdIco2 {
+    0%, 24%  { background: rgba(64, 235, 255, 0.06); border-color: rgba(64, 235, 255, 0.18); color: var(--seo-pale, #9FDCEF); }
+    28%, 32% { background: rgba(64, 235, 255, 0.18); border-color: rgba(64, 235, 255, 0.55); color: #fff; box-shadow: 0 0 12px rgba(64,235,255,0.55); }
+    36%, 90% { background: linear-gradient(135deg, #6ff0ff, #2bb6c8); border-color: transparent; color: #04141b; box-shadow: 0 4px 10px -4px rgba(64,235,255,0.55); }
+    96%,100% { background: rgba(64, 235, 255, 0.06); color: var(--seo-pale, #9FDCEF); }
+  }
+  @keyframes spdIco3 {
+    0%, 42%  { background: rgba(64, 235, 255, 0.06); border-color: rgba(64, 235, 255, 0.18); color: var(--seo-pale, #9FDCEF); }
+    46%, 50% { background: rgba(64, 235, 255, 0.18); border-color: rgba(64, 235, 255, 0.55); color: #fff; box-shadow: 0 0 12px rgba(64,235,255,0.55); }
+    54%, 90% { background: linear-gradient(135deg, #6ff0ff, #2bb6c8); border-color: transparent; color: #04141b; box-shadow: 0 4px 10px -4px rgba(64,235,255,0.55); }
+    96%,100% { background: rgba(64, 235, 255, 0.06); color: var(--seo-pale, #9FDCEF); }
+  }
+  @keyframes spdIco4 {
+    0%, 60%  { background: rgba(64, 235, 255, 0.06); border-color: rgba(64, 235, 255, 0.18); color: var(--seo-pale, #9FDCEF); }
+    64%, 68% { background: rgba(64, 235, 255, 0.18); border-color: rgba(64, 235, 255, 0.55); color: #fff; box-shadow: 0 0 12px rgba(64,235,255,0.55); }
+    72%, 90% { background: linear-gradient(135deg, #6ff0ff, #2bb6c8); border-color: transparent; color: #04141b; box-shadow: 0 4px 10px -4px rgba(64,235,255,0.55); }
+    96%,100% { background: rgba(64, 235, 255, 0.06); color: var(--seo-pale, #9FDCEF); }
+  }
+  @keyframes spdIco5 {
+    0%, 78%  { background: rgba(64, 235, 255, 0.06); border-color: rgba(64, 235, 255, 0.18); color: var(--seo-pale, #9FDCEF); }
+    82%, 86% { background: rgba(64, 235, 255, 0.18); border-color: rgba(64, 235, 255, 0.55); color: #fff; box-shadow: 0 0 12px rgba(64,235,255,0.55); }
+    90%      { background: linear-gradient(135deg, #6ff0ff, #2bb6c8); border-color: transparent; color: #04141b; box-shadow: 0 4px 10px -4px rgba(64,235,255,0.55); }
+    96%,100% { background: rgba(64, 235, 255, 0.06); color: var(--seo-pale, #9FDCEF); }
+  }
+
+  /* status pill cascade */
+  .spd-step.s1 .spd-step-pill { animation: spdPill1 10s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+  .spd-step.s2 .spd-step-pill { animation: spdPill2 10s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+  .spd-step.s3 .spd-step-pill { animation: spdPill3 10s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+  .spd-step.s4 .spd-step-pill { animation: spdPill4 10s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+  .spd-step.s5 .spd-step-pill { animation: spdPill5 10s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+  @keyframes spdPill1 {
+    0%, 6%   { background: rgba(159, 220, 239, 0.06); border-color: rgba(120, 200, 222, 0.18); color: rgba(159, 220, 239, 0.55); }
+    10%, 14% { background: rgba(64, 235, 255, 0.18); border-color: rgba(64, 235, 255, 0.5); color: #fff; }
+    18%, 90% { background: linear-gradient(135deg, rgba(111, 240, 255, 0.95), rgba(43, 182, 200, 0.95)); border-color: transparent; color: #04141b; }
+    96%,100% { background: rgba(159, 220, 239, 0.06); color: rgba(159, 220, 239, 0.55); }
+  }
+  @keyframes spdPill2 {
+    0%, 24%  { background: rgba(159, 220, 239, 0.06); border-color: rgba(120, 200, 222, 0.18); color: rgba(159, 220, 239, 0.55); }
+    28%, 32% { background: rgba(64, 235, 255, 0.18); border-color: rgba(64, 235, 255, 0.5); color: #fff; }
+    36%, 90% { background: linear-gradient(135deg, rgba(111, 240, 255, 0.95), rgba(43, 182, 200, 0.95)); border-color: transparent; color: #04141b; }
+    96%,100% { background: rgba(159, 220, 239, 0.06); color: rgba(159, 220, 239, 0.55); }
+  }
+  @keyframes spdPill3 {
+    0%, 42%  { background: rgba(159, 220, 239, 0.06); border-color: rgba(120, 200, 222, 0.18); color: rgba(159, 220, 239, 0.55); }
+    46%, 50% { background: rgba(64, 235, 255, 0.18); border-color: rgba(64, 235, 255, 0.5); color: #fff; }
+    54%, 90% { background: linear-gradient(135deg, rgba(111, 240, 255, 0.95), rgba(43, 182, 200, 0.95)); border-color: transparent; color: #04141b; }
+    96%,100% { background: rgba(159, 220, 239, 0.06); color: rgba(159, 220, 239, 0.55); }
+  }
+  @keyframes spdPill4 {
+    0%, 60%  { background: rgba(159, 220, 239, 0.06); border-color: rgba(120, 200, 222, 0.18); color: rgba(159, 220, 239, 0.55); }
+    64%, 68% { background: rgba(64, 235, 255, 0.18); border-color: rgba(64, 235, 255, 0.5); color: #fff; }
+    72%, 90% { background: linear-gradient(135deg, rgba(111, 240, 255, 0.95), rgba(43, 182, 200, 0.95)); border-color: transparent; color: #04141b; }
+    96%,100% { background: rgba(159, 220, 239, 0.06); color: rgba(159, 220, 239, 0.55); }
+  }
+  @keyframes spdPill5 {
+    0%, 78%  { background: rgba(159, 220, 239, 0.06); border-color: rgba(120, 200, 222, 0.18); color: rgba(159, 220, 239, 0.55); }
+    82%, 86% { background: rgba(64, 235, 255, 0.18); border-color: rgba(64, 235, 255, 0.5); color: #fff; }
+    90%      { background: linear-gradient(135deg, rgba(111, 240, 255, 0.95), rgba(43, 182, 200, 0.95)); border-color: transparent; color: #04141b; }
+    96%,100% { background: rgba(159, 220, 239, 0.06); color: rgba(159, 220, 239, 0.55); }
+  }
+
+  /* pill dot also pulses cyan during running */
+  .spd-step.s1 .spd-step-pill-dot { animation: spdDot1 10s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+  .spd-step.s2 .spd-step-pill-dot { animation: spdDot2 10s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+  .spd-step.s3 .spd-step-pill-dot { animation: spdDot3 10s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+  .spd-step.s4 .spd-step-pill-dot { animation: spdDot4 10s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+  .spd-step.s5 .spd-step-pill-dot { animation: spdDot5 10s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+  @keyframes spdDot1 {
+    0%, 6%   { background: rgba(159, 220, 239, 0.4); }
+    10%, 14% { background: #40EBFF; box-shadow: 0 0 6px rgba(64, 235, 255, 0.85); }
+    18%, 90% { background: #04141b; box-shadow: none; }
+    96%,100% { background: rgba(159, 220, 239, 0.4); }
+  }
+  @keyframes spdDot2 {
+    0%, 24%  { background: rgba(159, 220, 239, 0.4); }
+    28%, 32% { background: #40EBFF; box-shadow: 0 0 6px rgba(64, 235, 255, 0.85); }
+    36%, 90% { background: #04141b; box-shadow: none; }
+    96%,100% { background: rgba(159, 220, 239, 0.4); }
+  }
+  @keyframes spdDot3 {
+    0%, 42%  { background: rgba(159, 220, 239, 0.4); }
+    46%, 50% { background: #40EBFF; box-shadow: 0 0 6px rgba(64, 235, 255, 0.85); }
+    54%, 90% { background: #04141b; box-shadow: none; }
+    96%,100% { background: rgba(159, 220, 239, 0.4); }
+  }
+  @keyframes spdDot4 {
+    0%, 60%  { background: rgba(159, 220, 239, 0.4); }
+    64%, 68% { background: #40EBFF; box-shadow: 0 0 6px rgba(64, 235, 255, 0.85); }
+    72%, 90% { background: #04141b; box-shadow: none; }
+    96%,100% { background: rgba(159, 220, 239, 0.4); }
+  }
+  @keyframes spdDot5 {
+    0%, 78%  { background: rgba(159, 220, 239, 0.4); }
+    82%, 86% { background: #40EBFF; box-shadow: 0 0 6px rgba(64, 235, 255, 0.85); }
+    90%      { background: #04141b; box-shadow: none; }
+    96%,100% { background: rgba(159, 220, 239, 0.4); }
+  }
+
+  /* num colour cascade — cyan when step is active or done */
+  .spd-step.s1 .spd-step-num { animation: spdNum1 10s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+  .spd-step.s2 .spd-step-num { animation: spdNum2 10s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+  .spd-step.s3 .spd-step-num { animation: spdNum3 10s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+  .spd-step.s4 .spd-step-num { animation: spdNum4 10s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+  .spd-step.s5 .spd-step-num { animation: spdNum5 10s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+  @keyframes spdNum1 {
+    0%, 6%   { color: rgba(159, 220, 239, 0.55); }
+    10%, 90% { color: #40EBFF; }
+    96%,100% { color: rgba(159, 220, 239, 0.55); }
+  }
+  @keyframes spdNum2 {
+    0%, 24%  { color: rgba(159, 220, 239, 0.55); }
+    28%, 90% { color: #40EBFF; }
+    96%,100% { color: rgba(159, 220, 239, 0.55); }
+  }
+  @keyframes spdNum3 {
+    0%, 42%  { color: rgba(159, 220, 239, 0.55); }
+    46%, 90% { color: #40EBFF; }
+    96%,100% { color: rgba(159, 220, 239, 0.55); }
+  }
+  @keyframes spdNum4 {
+    0%, 60%  { color: rgba(159, 220, 239, 0.55); }
+    64%, 90% { color: #40EBFF; }
+    96%,100% { color: rgba(159, 220, 239, 0.55); }
+  }
+  @keyframes spdNum5 {
+    0%, 78%  { color: rgba(159, 220, 239, 0.55); }
+    82%, 90% { color: #40EBFF; }
+    96%,100% { color: rgba(159, 220, 239, 0.55); }
+  }
+
+  @media (max-width: 920px) {
+    .spd--auto .spd-viz { max-width: 360px; }
+  }
+  @media (max-width: 540px) {
+    .spd--auto .spd-viz { max-width: 320px; }
+    .spd-step { padding: 8px 10px; gap: 8px; }
+    .spd-step-name { font-size: 12px; }
+    .spd-step-meta { font-size: 9px; }
+    .spd-step-pill { font-size: 8px; padding: 3px 7px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .spd-step,
+    .spd-step-ico,
+    .spd-step-pill,
+    .spd-step-pill-dot,
+    .spd-step-num,
+    .spd-link::after { animation: none !important; }
+  }
+
   /* ═════ AI COMPOSITOR overlay (Generate-time loading effect) ═════
      Sits over the entire preview frame while the AI "composes" the
      proposal. Pulsing cyan orb, blinking AI tag, 6-step ticking
@@ -2858,7 +3216,7 @@
 </section>
 
 <!-- ====== Real-time automations / speed-to-lead ====== -->
-<section class="spd" aria-labelledby="spd-title">
+<section class="spd spd--auto" aria-labelledby="spd-title">
   <div class="spd-bg-grid" aria-hidden="true"></div>
   <div class="spd-glow" aria-hidden="true"></div>
 
@@ -2866,81 +3224,105 @@
 
     <!-- LEFT · copy -->
     <div class="spd-copy">
-      <span class="spd-tag"><span class="spd-tag-dot"></span>[ SPEED TO LEAD ]</span>
-      <h2 class="spd-title" id="spd-title">Leads come in —<br><span class="spd-em">everyone gets the message</span></h2>
-      <p class="spd-lead">Every form and calendar on your site is wired to real-time automations. The instant someone books an appointment or sends a message, confirmations fire automatically — no waiting, no missed leads.</p>
+      <span class="spd-tag"><span class="spd-tag-dot"></span>[ END-TO-END AUTOMATION ]</span>
+      <h2 class="spd-title" id="spd-title">From first input to —<br><span class="spd-em">final delivery, untouched by hand</span></h2>
+      <p class="spd-lead">Every step of the workflow — the data in, the logic between, the document out, the notification after — handled by one system you actually own. Nothing falls between the cracks because nothing needs a hand-off.</p>
 
       <div class="spd-points">
         <div class="spd-point">
-          <span class="spd-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 4l4 4-4 4"/><path d="M21 8H8"/><path d="M7 20l-4-4 4-4"/><path d="M3 16h13"/></svg></span>
+          <span class="spd-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></span>
           <div class="spd-point-body">
-            <h3>Two-way instant confirmations</h3>
-            <p>Your customer gets an immediate confirmation their booking or message went through — and you're pinged the second a new lead lands, so you can follow up while they're still hot.</p>
+            <h3>One system, every step</h3>
+            <p>Inputs trigger the next step automatically — extraction feeds the analysis, the analysis writes the output, the output reaches the right inbox. No manual stitch-work in between.</p>
           </div>
         </div>
         <div class="spd-point">
-          <span class="spd-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 6-2.5 7-2.5 7h17S18 14 18 8z"/><path d="M10 20a2 2 0 0 0 4 0"/><path d="M12 5.5V8l1.6 1"/></svg></span>
+          <span class="spd-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.4"/><circle cx="18" cy="6" r="2.4"/><circle cx="12" cy="18" r="2.4"/><path d="M6 8.4v2A3 3 0 0 0 9 13.4h6a3 3 0 0 0 3-3v-2"/><path d="M12 13.4v2.2"/></svg></span>
           <div class="spd-point-body">
-            <h3>Reminders that kill no-shows</h3>
-            <p>Every booking kicks off an automatic reminder sequence — a couple days before, the day before, and a couple hours before — so appointments actually show up.</p>
+            <h3>Triggers, schedules, integrations — all wired</h3>
+            <p>Webhooks, CRMs, calendars, Drive, email — the tool fires the right action in the right place at the right time. Your team stops being the messenger between systems.</p>
           </div>
         </div>
       </div>
 
       <div class="spd-callout">
-        <span class="spd-callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></span>
-        <p><strong>Speed wins the job.</strong> The faster a lead hears back, the more likely they are to book — so we make your response instant, every single time.</p>
+        <span class="spd-callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        <p><strong>When every step talks to the next,</strong> nothing slips through the cracks. We wire the whole pipe end to end — input, logic, output, hand-off.</p>
       </div>
     </div>
 
-    <!-- RIGHT · "Real-Time Relay" animation -->
+    <!-- RIGHT · "Pipeline Cascade" animation — 5 stacked step cards
+         that cascade idle → running → done on a synchronized 10s loop,
+         visualizing one input flowing through every stage of an
+         automation pipeline without manual hand-offs. -->
     <div class="spd-viz" aria-hidden="true">
+      <div class="spd-pipe">
 
-      <!-- the trigger event -->
-      <div class="spd-trigger">
-        <span class="spd-trigger-ring"></span>
-        <span class="spd-trigger-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/><path d="M8.5 14.5l2.2 2.2 4.3-4.3"/></svg></span>
-        <div class="spd-trigger-txt"><strong>Appointment booked</strong><span>Sarah&nbsp;M. · Tue 2:00&nbsp;PM</span></div>
-        <span class="spd-live"></span>
+        <article class="spd-step s1">
+          <span class="spd-step-num">01</span>
+          <span class="spd-step-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16v2a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2"/><path d="M7 11l5 5 5-5"/><path d="M12 4v12"/></svg>
+          </span>
+          <div class="spd-step-body">
+            <span class="spd-step-name">Capture</span>
+            <span class="spd-step-meta">form · PDF · email</span>
+          </div>
+          <span class="spd-step-pill"><span class="spd-step-pill-dot"></span><span class="spd-step-pill-label">Queued</span></span>
+        </article>
+        <span class="spd-link l1" aria-hidden="true"></span>
+
+        <article class="spd-step s2">
+          <span class="spd-step-num">02</span>
+          <span class="spd-step-ico">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z"/></svg>
+          </span>
+          <div class="spd-step-body">
+            <span class="spd-step-name">Extract</span>
+            <span class="spd-step-meta">AI reads the source</span>
+          </div>
+          <span class="spd-step-pill"><span class="spd-step-pill-dot"></span><span class="spd-step-pill-label">Queued</span></span>
+        </article>
+        <span class="spd-link l2" aria-hidden="true"></span>
+
+        <article class="spd-step s3">
+          <span class="spd-step-num">03</span>
+          <span class="spd-step-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.7l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-1.7-.3 1.6 1.6 0 0 0-1 1.5V21a2 2 0 0 1-4 0v-.1a1.6 1.6 0 0 0-1-1.5 1.6 1.6 0 0 0-1.7.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0 .3-1.7 1.6 1.6 0 0 0-1.5-1H3a2 2 0 0 1 0-4h.1A1.6 1.6 0 0 0 4.6 9 1.6 1.6 0 0 0 4.3 7.3l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 1.7.3H9a1.6 1.6 0 0 0 1-1.5V3a2 2 0 0 1 4 0v.1a1.6 1.6 0 0 0 1 1.5 1.6 1.6 0 0 0 1.7-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0-.3 1.7V9a1.6 1.6 0 0 0 1.5 1H21a2 2 0 0 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z"/></svg>
+          </span>
+          <div class="spd-step-body">
+            <span class="spd-step-name">Transform</span>
+            <span class="spd-step-meta">format · structure · validate</span>
+          </div>
+          <span class="spd-step-pill"><span class="spd-step-pill-dot"></span><span class="spd-step-pill-label">Queued</span></span>
+        </article>
+        <span class="spd-link l3" aria-hidden="true"></span>
+
+        <article class="spd-step s4">
+          <span class="spd-step-num">04</span>
+          <span class="spd-step-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+          </span>
+          <div class="spd-step-body">
+            <span class="spd-step-name">Deliver</span>
+            <span class="spd-step-meta">PDF · spreadsheet · message</span>
+          </div>
+          <span class="spd-step-pill"><span class="spd-step-pill-dot"></span><span class="spd-step-pill-label">Queued</span></span>
+        </article>
+        <span class="spd-link l4" aria-hidden="true"></span>
+
+        <article class="spd-step s5">
+          <span class="spd-step-num">05</span>
+          <span class="spd-step-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>
+          </span>
+          <div class="spd-step-body">
+            <span class="spd-step-name">Sync</span>
+            <span class="spd-step-meta">CRM · calendar · sheet</span>
+          </div>
+          <span class="spd-step-pill"><span class="spd-step-pill-dot"></span><span class="spd-step-pill-label">Queued</span></span>
+        </article>
+
       </div>
-
-      <!-- dispatch beams -->
-      <svg class="spd-net" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
-        <defs>
-          <linearGradient id="spdBeam" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0" stop-color="#40EBFF" stop-opacity="0.95"/>
-            <stop offset="0.5" stop-color="#53B9E0" stop-opacity="0.7"/>
-            <stop offset="1" stop-color="#40EBFF" stop-opacity="0"/>
-          </linearGradient>
-        </defs>
-        <line class="spd-beam" x1="50" y1="25" x2="27" y2="47"/>
-        <line class="spd-beam" x1="50" y1="25" x2="73" y2="47"/>
-      </svg>
-
-      <!-- two-way destinations -->
-      <div class="spd-dest owner">
-        <span class="spd-dest-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 6-2.5 7-2.5 7h17S18 14 18 8z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg></span>
-        <div class="spd-dest-txt"><strong>New booking!</strong><span>→ You</span></div>
-      </div>
-      <div class="spd-dest customer">
-        <span class="spd-dest-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
-        <div class="spd-dest-txt"><strong>You're confirmed</strong><span>→ Customer</span></div>
-      </div>
-
-      <!-- auto-reminder timeline -->
-      <div class="spd-timeline">
-        <span class="spd-tl-label">Auto reminders · fewer no-shows</span>
-        <div class="spd-tl-track">
-          <div class="spd-tl-node"><span class="spd-tl-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="spd-tl-cap">Booked</span></div>
-          <div class="spd-tl-node"><span class="spd-tl-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 6-2.5 7-2.5 7h17S18 14 18 8z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg></span><span class="spd-tl-cap">2 days</span></div>
-          <div class="spd-tl-node"><span class="spd-tl-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 6-2.5 7-2.5 7h17S18 14 18 8z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg></span><span class="spd-tl-cap">1 day</span></div>
-          <div class="spd-tl-node"><span class="spd-tl-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 6-2.5 7-2.5 7h17S18 14 18 8z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg></span><span class="spd-tl-cap">2 hrs</span></div>
-        </div>
-      </div>
-
-      <!-- floating proof chips -->
-      <div class="spd-chip c1"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg>&lt; 1 sec</div>
-      <div class="spd-chip c2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Both notified</div>
     </div>
 
   </div>
