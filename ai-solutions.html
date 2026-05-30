@@ -561,6 +561,20 @@
     -webkit-backdrop-filter: blur(24px) saturate(165%);
     transition: border-color 0.5s, box-shadow 0.5s;
     overflow: hidden;
+    animation: propHeroFade 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.2s backwards;
+  }
+  /* Match the fade on the slanted PDF preview stack so both hero
+     containers settle in together, mirroring the Summit Build Co.
+     example fade on the AI Websites page. */
+  .prop-preview-frame {
+    animation: propHeroFade 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.36s backwards;
+  }
+  @keyframes propHeroFade {
+    from { opacity: 0; transform: translateY(26px); }
+    to   { opacity: 1; transform: translateY(0);    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .prop-form-card, .prop-preview-frame { animation: none !important; }
   }
   .prop-form-card::before {
     content: "";

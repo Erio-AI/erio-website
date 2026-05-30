@@ -115,6 +115,20 @@
   .hero-title .word:nth-of-type(5) .char:nth-child(6) { animation-delay: 2.00s; }
   .hero-title .word:nth-of-type(5) .char:nth-child(7) { animation-delay: 2.05s; }
   .hero-title .word:nth-of-type(5) .char:nth-child(8) { animation-delay: 2.10s; }
+
+  /* Fade the embedded LeadConnector chat-widget in smoothly when it
+     mounts — matches the timing/curve of the .cw-panel fade used by
+     the Summit Build Co. example on the AI Websites page. */
+  chat-widget {
+    animation: empWidgetFadeIn 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.45s backwards;
+  }
+  @keyframes empWidgetFadeIn {
+    from { opacity: 0; transform: translateY(26px); }
+    to   { opacity: 1; transform: translateY(0);    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    chat-widget { animation: none !important; }
+  }
 </style>
 <link rel="stylesheet" href="ai-websites.css?v=66">
 </head>

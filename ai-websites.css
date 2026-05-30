@@ -877,7 +877,6 @@ a.cw-chat-btn { text-decoration: none; }
   opacity: 0;
 }
 .seo-node svg { width: 14px; height: 14px; color: var(--seo-cyan); flex: 0 0 auto; }
-.seo-node.n4 svg { width: 24.5px; height: 24.5px; }
 .seo.is-revealed .seo-node { animation: seoNodeIn 0.7s var(--ease-velvet) forwards, seoFloat 6s ease-in-out infinite; }
 .seo-node.n1 { left: 16%; top: 30%; }
 .seo-node.n2 { left: 84%; top: 24%; }
