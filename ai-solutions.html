@@ -1042,7 +1042,9 @@
   .svp--extract .svp-board,
   .svp--extract .svp-chip { display: none !important; }
 
-  /* viz frame — single column, stacked layout */
+  /* viz frame — single column, stacked layout. Override the inherited
+     `aspect-ratio: 1 / 1` from ai-websites.css so the doc + table stack
+     can size to its own content (otherwise Miami FL clips). */
   .svp--extract .svp-viz {
     position: relative;
     display: flex; flex-direction: column;
@@ -1050,7 +1052,7 @@
     max-width: 380px;
     width: 100%;
     margin: 0 auto;
-    /* viz inherits an opacity reveal — let parent handle that */
+    aspect-ratio: auto;
   }
 
   /* ──────── source document ──────── */
@@ -1123,54 +1125,74 @@
     white-space: nowrap;
     flex: 0 0 auto;
   }
-  /* scan beam sweeping down the doc */
+  /* scan beam sweeping down the doc.
+     Single master clock = 10s. Scan dwells briefly at each of the four
+     extractable values (v1, v2, v3, v4); the same percentage triggers
+     the value's pulse AND its table-row reveal — keeping the visual
+     event "scan → light up → row populated" perfectly synchronized. */
   .svp-ex-scan {
     position: absolute;
     left: 0; right: 0; top: 0;
-    height: 28px;
-    background: linear-gradient(180deg, transparent 0%, rgba(64, 235, 255, 0.45) 50%, transparent 100%);
+    height: 26px;
+    background: linear-gradient(180deg, transparent 0%, rgba(64, 235, 255, 0.55) 50%, transparent 100%);
     filter: blur(1px);
     opacity: 0;
     pointer-events: none;
     z-index: 3;
     mix-blend-mode: screen;
-    animation: svpExScan 9.6s cubic-bezier(0.55, 0.05, 0.55, 0.95) infinite;
+    animation: svpExScan 10s cubic-bezier(0.4, 0, 0.4, 1) infinite;
   }
   @keyframes svpExScan {
-    0%   { opacity: 0; transform: translateY(-20%); }
-    6%   { opacity: 1; }
-    78%  { opacity: 1; transform: translateY(360%); }
-    88%  { opacity: 0; }
-    100% { opacity: 0; transform: translateY(360%); }
+    0%   { opacity: 0; transform: translateY(-30%); }
+    4%   { opacity: 1; }
+    /* land on v1 ── all four sync points share the same % across scan,
+       value-pulse, and table-row keyframes */
+    18%  { transform: translateY(160%); }
+    23%  { transform: translateY(180%); }
+    /* land on v2 */
+    36%  { transform: translateY(290%); }
+    41%  { transform: translateY(310%); }
+    /* land on v3 */
+    54%  { transform: translateY(420%); }
+    59%  { transform: translateY(440%); }
+    /* land on v4 */
+    72%  { transform: translateY(530%); }
+    77%  { transform: translateY(560%); }
+    /* exit */
+    86%  { opacity: 1; transform: translateY(680%); }
+    93%  { opacity: 0; }
+    100% { opacity: 0; transform: translateY(680%); }
   }
 
-  /* values pulse as the scan crosses them — each on the shared 9.6 s
-     master cycle, with its own keyframe so the timing aligns with the
-     scan arrival point. */
-  .svp-ex-val { animation: svpExValIdle 9.6s linear infinite; }
-  .svp-ex-val.v1 { animation-name: svpExVal1; }
-  .svp-ex-val.v2 { animation-name: svpExVal2; }
-  .svp-ex-val.v3 { animation-name: svpExVal3; }
-  .svp-ex-val.v4 { animation-name: svpExVal4; }
+  /* values light up at their sync percentage (18 / 36 / 54 / 72) and
+     stay in their "extracted" state for the rest of the cycle. */
+  .svp-ex-val.v1 { animation: svpExVal1 10s linear infinite; }
+  .svp-ex-val.v2 { animation: svpExVal2 10s linear infinite; }
+  .svp-ex-val.v3 { animation: svpExVal3 10s linear infinite; }
+  .svp-ex-val.v4 { animation: svpExVal4 10s linear infinite; }
   @keyframes svpExVal1 {
-    0%, 14%   { background: rgba(64, 235, 255, 0.12); color: #9FDCEF; box-shadow: none; }
-    18%       { background: rgba(64, 235, 255, 0.42); color: #fff; box-shadow: 0 0 14px rgba(64, 235, 255, 0.7); }
-    26%, 100% { background: rgba(64, 235, 255, 0.22); color: #EAF6FB; box-shadow: 0 0 6px rgba(64, 235, 255, 0.3); }
+    0%, 16%   { background: rgba(64, 235, 255, 0.12); color: #9FDCEF; box-shadow: none; }
+    18%       { background: rgba(64, 235, 255, 0.48); color: #fff; box-shadow: 0 0 14px rgba(64, 235, 255, 0.75); }
+    24%, 96%  { background: rgba(64, 235, 255, 0.22); color: #EAF6FB; box-shadow: 0 0 6px rgba(64, 235, 255, 0.32); }
+    100%      { background: rgba(64, 235, 255, 0.12); color: #9FDCEF; box-shadow: none; }
   }
   @keyframes svpExVal2 {
-    0%, 32%   { background: rgba(64, 235, 255, 0.12); color: #9FDCEF; box-shadow: none; }
-    36%       { background: rgba(64, 235, 255, 0.42); color: #fff; box-shadow: 0 0 14px rgba(64, 235, 255, 0.7); }
-    44%, 100% { background: rgba(64, 235, 255, 0.22); color: #EAF6FB; box-shadow: 0 0 6px rgba(64, 235, 255, 0.3); }
+    0%, 34%   { background: rgba(64, 235, 255, 0.12); color: #9FDCEF; box-shadow: none; }
+    36%       { background: rgba(64, 235, 255, 0.48); color: #fff; box-shadow: 0 0 14px rgba(64, 235, 255, 0.75); }
+    42%, 96%  { background: rgba(64, 235, 255, 0.22); color: #EAF6FB; box-shadow: 0 0 6px rgba(64, 235, 255, 0.32); }
+    100%      { background: rgba(64, 235, 255, 0.12); color: #9FDCEF; box-shadow: none; }
   }
   @keyframes svpExVal3 {
-    0%, 50%   { background: rgba(64, 235, 255, 0.12); color: #9FDCEF; box-shadow: none; }
-    54%       { background: rgba(64, 235, 255, 0.42); color: #fff; box-shadow: 0 0 14px rgba(64, 235, 255, 0.7); }
-    62%, 100% { background: rgba(64, 235, 255, 0.22); color: #EAF6FB; box-shadow: 0 0 6px rgba(64, 235, 255, 0.3); }
+    0%, 52%   { background: rgba(64, 235, 255, 0.12); color: #9FDCEF; box-shadow: none; }
+    54%       { background: rgba(64, 235, 255, 0.48); color: #fff; box-shadow: 0 0 14px rgba(64, 235, 255, 0.75); }
+    60%, 96%  { background: rgba(64, 235, 255, 0.22); color: #EAF6FB; box-shadow: 0 0 6px rgba(64, 235, 255, 0.32); }
+    100%      { background: rgba(64, 235, 255, 0.12); color: #9FDCEF; box-shadow: none; }
   }
   @keyframes svpExVal4 {
-    0%, 64%   { background: rgba(64, 235, 255, 0.12); color: #9FDCEF; box-shadow: none; }
-    68%       { background: rgba(64, 235, 255, 0.42); color: #fff; box-shadow: 0 0 14px rgba(64, 235, 255, 0.7); }
-    76%, 100% { background: rgba(64, 235, 255, 0.22); color: #EAF6FB; box-shadow: 0 0 6px rgba(64, 235, 255, 0.3); }
+    0%, 70%   { background: rgba(64, 235, 255, 0.12); color: #9FDCEF; box-shadow: none; }
+    72%       { background: rgba(64, 235, 255, 0.48); color: #fff; box-shadow: 0 0 14px rgba(64, 235, 255, 0.75); }
+    78%, 96%  { background: rgba(64, 235, 255, 0.22); color: #EAF6FB; box-shadow: 0 0 6px rgba(64, 235, 255, 0.32); }
+    100%      { background: rgba(64, 235, 255, 0.12); color: #9FDCEF; box-shadow: none; }
   }
 
   /* ──────── arrow connector ──────── */
@@ -1232,32 +1254,32 @@
     text-align: left;
   }
 
-  /* each row appears at a different point of the 9.6 s master loop —
-     timed so each row reveals just AFTER the scan has crossed its
-     corresponding value in the doc above. */
-  .svp-ex-table-row.r1 { animation: svpExRow1 9.6s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
-  .svp-ex-table-row.r2 { animation: svpExRow2 9.6s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
-  .svp-ex-table-row.r3 { animation: svpExRow3 9.6s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
-  .svp-ex-table-row.r4 { animation: svpExRow4 9.6s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+  /* Rows reveal at the EXACT same percentage as their value's pulse
+     and the scan-beam's dwell — 10s master clock shared across all
+     four animations so every event is locked in lockstep. */
+  .svp-ex-table-row.r1 { animation: svpExRow1 10s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+  .svp-ex-table-row.r2 { animation: svpExRow2 10s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+  .svp-ex-table-row.r3 { animation: svpExRow3 10s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+  .svp-ex-table-row.r4 { animation: svpExRow4 10s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
   @keyframes svpExRow1 {
-    0%, 18%   { opacity: 0; transform: translateX(-6px); }
-    22%, 90%  { opacity: 1; transform: translateX(0); }
-    98%, 100% { opacity: 0; }
+    0%, 16%   { opacity: 0; transform: translateX(-6px); }
+    18%, 96%  { opacity: 1; transform: translateX(0); }
+    100%      { opacity: 0; }
   }
   @keyframes svpExRow2 {
-    0%, 36%   { opacity: 0; transform: translateX(-6px); }
-    40%, 90%  { opacity: 1; transform: translateX(0); }
-    98%, 100% { opacity: 0; }
+    0%, 34%   { opacity: 0; transform: translateX(-6px); }
+    36%, 96%  { opacity: 1; transform: translateX(0); }
+    100%      { opacity: 0; }
   }
   @keyframes svpExRow3 {
-    0%, 54%   { opacity: 0; transform: translateX(-6px); }
-    58%, 90%  { opacity: 1; transform: translateX(0); }
-    98%, 100% { opacity: 0; }
+    0%, 52%   { opacity: 0; transform: translateX(-6px); }
+    54%, 96%  { opacity: 1; transform: translateX(0); }
+    100%      { opacity: 0; }
   }
   @keyframes svpExRow4 {
     0%, 70%   { opacity: 0; transform: translateX(-6px); }
-    74%, 90%  { opacity: 1; transform: translateX(0); }
-    98%, 100% { opacity: 0; }
+    72%, 96%  { opacity: 1; transform: translateX(0); }
+    100%      { opacity: 0; }
   }
 
   @media (max-width: 920px) {
