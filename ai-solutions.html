@@ -1655,6 +1655,186 @@
     .spd-link::after { animation: none !important; }
   }
 
+  /* ════════════════════════════════════════════════════════════════════
+     SEAMLESS INTEGRATIONS section (.frs--connect) —
+     "Bidirectional Connection Diagram". Five service tiles stack on
+     the left, a central tool hub sits on the right, curved SVG paths
+     connect each service to the hub, and cyan packets flow in BOTH
+     directions on every path — communicating "two-way sync, plugs
+     into the systems your team already runs."
+  ════════════════════════════════════════════════════════════════════ */
+
+  /* hide the inherited Freshness Dashboard elements */
+  .frs--connect .frs-panel,
+  .frs--connect .frs-chip { display: none !important; }
+
+  /* viz frame — override inherited aspect-ratio so the diagram has
+     room for the 5-tile stack on the left side */
+  .frs--connect .frs-viz {
+    position: relative;
+    aspect-ratio: auto;
+    max-width: 380px;
+    width: 100%;
+    margin: 0 auto;
+    min-height: 360px;
+    padding: 8px 0;
+  }
+
+  /* ──────── service tile stack (left column) ──────── */
+  .frs-conn-stack {
+    position: relative;
+    display: flex; flex-direction: column;
+    gap: 10px;
+    width: 38%;
+    z-index: 2;
+  }
+  .frs-conn-svc {
+    display: flex; align-items: center;
+    gap: 8px;
+    padding: 6px 9px;
+    border-radius: 9px;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.012) 42%),
+      linear-gradient(180deg, rgba(11, 28, 37, 0.78), rgba(6, 15, 21, 0.84));
+    border: 1px solid rgba(120, 200, 222, 0.22);
+    box-shadow: 0 10px 22px -12px rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(10px) saturate(160%);
+    -webkit-backdrop-filter: blur(10px) saturate(160%);
+  }
+  .frs-conn-svc-ico {
+    flex: 0 0 auto;
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    display: grid; place-items: center;
+    background: rgba(64, 235, 255, 0.1);
+    border: 1px solid rgba(64, 235, 255, 0.24);
+    color: var(--frs-cyan, #40EBFF);
+  }
+  .frs-conn-svc-ico svg { width: 12px; height: 12px; }
+  .frs-conn-svc-body {
+    display: flex; flex-direction: column;
+    line-height: 1.2; min-width: 0;
+  }
+  .frs-conn-svc-name {
+    font-family: 'Exo 2', system-ui, sans-serif;
+    font-size: 11px; font-weight: 800;
+    letter-spacing: 0.04em;
+    color: #EAF6FB;
+  }
+  .frs-conn-svc-sub {
+    font-family: 'Exo 2', system-ui, sans-serif;
+    font-size: 8.5px; font-weight: 500;
+    letter-spacing: 0.04em;
+    color: rgba(159, 220, 239, 0.6);
+    margin-top: 1px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  /* per-tile cyan-pulse glow when its connection is "active" — each
+     tile pulses on the shared 4.2s connection cycle, staggered. */
+  .frs-conn-svc.s1 { animation: frsConnSvc 4.2s ease-in-out 0s     infinite; }
+  .frs-conn-svc.s2 { animation: frsConnSvc 4.2s ease-in-out -0.8s  infinite; }
+  .frs-conn-svc.s3 { animation: frsConnSvc 4.2s ease-in-out -1.6s  infinite; }
+  .frs-conn-svc.s4 { animation: frsConnSvc 4.2s ease-in-out -2.4s  infinite; }
+  .frs-conn-svc.s5 { animation: frsConnSvc 4.2s ease-in-out -3.2s  infinite; }
+  @keyframes frsConnSvc {
+    0%, 85%, 100% { border-color: rgba(120, 200, 222, 0.22); box-shadow: 0 10px 22px -12px rgba(0, 0, 0, 0.65); }
+    8%, 18%       { border-color: rgba(64, 235, 255, 0.55); box-shadow: 0 10px 22px -12px rgba(0, 0, 0, 0.65), 0 0 18px -6px rgba(64, 235, 255, 0.6); }
+  }
+
+  /* ──────── connection lines + bidirectional pulses (SVG layer) ──────── */
+  .frs-conn-net {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    overflow: visible;
+    z-index: 1;
+  }
+  .frs-conn-line {
+    stroke: rgba(64, 235, 255, 0.22);
+    stroke-width: 0.4;
+    fill: none;
+    stroke-linecap: round;
+  }
+  .frs-conn-pulses circle {
+    filter: drop-shadow(0 0 1.5px rgba(64, 235, 255, 1))
+            drop-shadow(0 0 3.5px rgba(64, 235, 255, 0.55));
+  }
+
+  /* ──────── central tool hub (right side) ──────── */
+  .frs-conn-hub {
+    position: absolute;
+    right: 4%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 78px; height: 78px;
+    display: grid; place-items: center;
+    z-index: 2;
+  }
+  .frs-conn-hub-core {
+    position: relative;
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    display: grid; place-items: center;
+    background: radial-gradient(circle at 32% 28%, #bff6ff, #2bb6c8 70%, #1f9fb6);
+    box-shadow:
+      0 0 18px rgba(64, 235, 255, 0.85),
+      0 0 36px rgba(64, 235, 255, 0.35),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+    color: #fff;
+    animation: frsConnHubPulse 4.2s ease-in-out infinite;
+  }
+  .frs-conn-hub-core svg {
+    width: 24px; height: 24px;
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.5));
+  }
+  @keyframes frsConnHubPulse {
+    0%, 100% { box-shadow: 0 0 18px rgba(64, 235, 255, 0.85), 0 0 36px rgba(64, 235, 255, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.35); }
+    50%      { box-shadow: 0 0 26px rgba(64, 235, 255, 1),    0 0 50px rgba(64, 235, 255, 0.5),  inset 0 0 0 1px rgba(255, 255, 255, 0.5); }
+  }
+  .frs-conn-hub-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1.4px solid rgba(64, 235, 255, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    animation: frsConnHubRing 3.2s ease-out infinite;
+  }
+  .frs-conn-hub-ring.r2 { animation-delay: 1.6s; }
+  @keyframes frsConnHubRing {
+    0%   { transform: scale(0.6); opacity: 0; }
+    20%  { opacity: 0.85; }
+    100% { transform: scale(1.85); opacity: 0; }
+  }
+  .frs-conn-hub-label {
+    position: absolute;
+    bottom: -22px;
+    left: 50%; transform: translateX(-50%);
+    font-family: 'Exo 2', system-ui, sans-serif;
+    font-size: 8.5px; font-weight: 800;
+    letter-spacing: 0.22em;
+    color: var(--frs-pale, #9FDCEF);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 920px) {
+    .frs--connect .frs-viz { max-width: 360px; }
+  }
+  @media (max-width: 540px) {
+    .frs--connect .frs-viz { max-width: 320px; min-height: 340px; }
+    .frs-conn-svc-sub { display: none; }
+    .frs-conn-hub { width: 64px; height: 64px; }
+    .frs-conn-hub-core { width: 46px; height: 46px; }
+    .frs-conn-hub-core svg { width: 20px; height: 20px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .frs-conn-svc,
+    .frs-conn-hub-core,
+    .frs-conn-hub-ring { animation: none !important; }
+    .frs-conn-pulses { display: none !important; }
+  }
+
   /* ═════ AI COMPOSITOR overlay (Generate-time loading effect) ═════
      Sits over the entire preview frame while the AI "composes" the
      proposal. Pulsing cyan orb, blinking AI tag, 6-step ticking
@@ -3329,94 +3509,143 @@
 </section>
 
 <!-- ====== Fresh content / freshness signal ====== -->
-<section class="frs" aria-labelledby="frs-title">
+<section class="frs frs--connect" aria-labelledby="frs-title">
   <div class="frs-bg-grid" aria-hidden="true"></div>
   <div class="frs-glow" aria-hidden="true"></div>
 
   <div class="frs-wrap">
 
-    <!-- LEFT · "Freshness Dashboard" animation -->
+    <!-- LEFT · "Bidirectional Connection Diagram" — 5 service tiles
+         on the left, a central tool hub on the right, with curved
+         SVG paths and bidirectional cyan packets flowing in both
+         directions on every connection. -->
     <div class="frs-viz" aria-hidden="true">
-      <div class="frs-panel">
-        <div class="frs-head">
-          <span class="frs-head-title">
-            <span class="frs-head-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2.5 7 5-14L17 12h4"/></svg></span>
-            Website activity
+
+      <!-- service tiles stacked on the left -->
+      <div class="frs-conn-stack">
+        <div class="frs-conn-svc s1">
+          <span class="frs-conn-svc-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 21a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.4"/><path d="M14.5 21a4 4 0 0 1 7 0"/></svg>
           </span>
-          <span class="frs-fresh"><i></i>Updated · just now</span>
-        </div>
-
-        <div class="frs-feed">
-          <div class="frs-item review">
-            <span class="frs-item-ico"><svg viewBox="0 0 24 24"><path fill="#4285F4" d="M23.5 12.27c0-.79-.07-1.54-.2-2.27H12v4.51h6.47a5.53 5.53 0 0 1-2.4 3.63v3h3.88c2.27-2.09 3.55-5.17 3.55-8.87z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.76-2.1-6.7-4.94H1.3v3.1A12 12 0 0 0 12 24z"/><path fill="#FBBC05" d="M5.3 14.31a7.2 7.2 0 0 1 0-4.62V6.6H1.3a12 12 0 0 0 0 10.8z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42A11.97 11.97 0 0 0 12 0 12 12 0 0 0 1.3 6.6l4 3.09C6.24 6.86 8.88 4.75 12 4.75z"/></svg></span>
-            <div class="frs-item-main">
-              <span class="frs-stars">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 5.9 6.6.9-4.8 4.6 1.1 6.5L12 21.3 6.2 20.4l1.1-6.5-4.8-4.6 6.6-.9z"/></svg>
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 5.9 6.6.9-4.8 4.6 1.1 6.5L12 21.3 6.2 20.4l1.1-6.5-4.8-4.6 6.6-.9z"/></svg>
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 5.9 6.6.9-4.8 4.6 1.1 6.5L12 21.3 6.2 20.4l1.1-6.5-4.8-4.6 6.6-.9z"/></svg>
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 5.9 6.6.9-4.8 4.6 1.1 6.5L12 21.3 6.2 20.4l1.1-6.5-4.8-4.6 6.6-.9z"/></svg>
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 5.9 6.6.9-4.8 4.6 1.1 6.5L12 21.3 6.2 20.4l1.1-6.5-4.8-4.6 6.6-.9z"/></svg>
-              </span>
-              <span class="frs-item-sub">New Google review</span>
-            </div>
-            <span class="frs-new">NEW</span>
-          </div>
-          <div class="frs-item post">
-            <span class="frs-item-ico fb"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.52 1.5-3.91 3.78-3.91 1.1 0 2.24.2 2.24.2v2.47H15.2c-1.24 0-1.63.78-1.63 1.57v1.88h2.78l-.44 2.9h-2.34V22c4.78-.79 8.43-4.94 8.43-9.94z"/></svg></span>
-            <div class="frs-item-main">
-              <strong class="frs-item-title">New Facebook post</strong>
-              <span class="frs-item-sub">Published just now</span>
-            </div>
-            <span class="frs-new">NEW</span>
+          <div class="frs-conn-svc-body">
+            <span class="frs-conn-svc-name">CRM</span>
+            <span class="frs-conn-svc-sub">Salesforce · HubSpot</span>
           </div>
         </div>
-
-        <div class="frs-chart">
-          <svg viewBox="0 0 100 40" preserveAspectRatio="none">
-            <defs>
-              <linearGradient id="frsFill" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="#40EBFF" stop-opacity="0.32"/>
-                <stop offset="1" stop-color="#40EBFF" stop-opacity="0"/>
-              </linearGradient>
-            </defs>
-            <path d="M0,34 L14,30 L26,31 L38,23 L50,25 L62,17 L74,18 L86,9 L100,5 L100,40 L0,40 Z" fill="url(#frsFill)"/>
-            <path d="M0,34 L14,30 L26,31 L38,23 L50,25 L62,17 L74,18 L86,9 L100,5" fill="none" stroke="#40EBFF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <span class="frs-chart-dot"></span>
-          <span class="frs-chart-tag">Activity <b>▲</b></span>
+        <div class="frs-conn-svc s2">
+          <span class="frs-conn-svc-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg>
+          </span>
+          <div class="frs-conn-svc-body">
+            <span class="frs-conn-svc-name">Calendar</span>
+            <span class="frs-conn-svc-sub">Google · Outlook</span>
+          </div>
+        </div>
+        <div class="frs-conn-svc s3">
+          <span class="frs-conn-svc-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a5 5 0 0 1-.6-9.96 6 6 0 0 1 11.6 1.96A4.5 4.5 0 0 1 17.5 18z"/></svg>
+          </span>
+          <div class="frs-conn-svc-body">
+            <span class="frs-conn-svc-name">Storage</span>
+            <span class="frs-conn-svc-sub">Drive · Dropbox</span>
+          </div>
+        </div>
+        <div class="frs-conn-svc s4">
+          <span class="frs-conn-svc-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 7 9-7"/></svg>
+          </span>
+          <div class="frs-conn-svc-body">
+            <span class="frs-conn-svc-name">Email</span>
+            <span class="frs-conn-svc-sub">Gmail · Outlook</span>
+          </div>
+        </div>
+        <div class="frs-conn-svc s5">
+          <span class="frs-conn-svc-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
+          </span>
+          <div class="frs-conn-svc-body">
+            <span class="frs-conn-svc-name">Sheets</span>
+            <span class="frs-conn-svc-sub">Excel · Airtable</span>
+          </div>
         </div>
       </div>
 
-      <div class="frs-chip c1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Active site</div>
-      <div class="frs-chip c2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V13M12 21V8M19 21V4"/></svg>More traffic</div>
+      <!-- connecting paths + bidirectional pulses -->
+      <svg class="frs-conn-net" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <defs>
+          <!-- five curved paths from each service tile to the hub.
+               Each starts at the service's right edge (x ≈ 38) and
+               curves to the hub's left edge (x ≈ 76, y = 50). -->
+          <path id="frsConn1" d="M 38 13 C 56 13, 60 32, 76 50" fill="none"/>
+          <path id="frsConn2" d="M 38 31 C 56 31, 60 41, 76 50" fill="none"/>
+          <path id="frsConn3" d="M 38 50 L 76 50" fill="none"/>
+          <path id="frsConn4" d="M 38 69 C 56 69, 60 59, 76 50" fill="none"/>
+          <path id="frsConn5" d="M 38 87 C 56 87, 60 68, 76 50" fill="none"/>
+        </defs>
+
+        <!-- faint static curves -->
+        <use href="#frsConn1" class="frs-conn-line"/>
+        <use href="#frsConn2" class="frs-conn-line"/>
+        <use href="#frsConn3" class="frs-conn-line"/>
+        <use href="#frsConn4" class="frs-conn-line"/>
+        <use href="#frsConn5" class="frs-conn-line"/>
+
+        <!-- bidirectional packets: one flowing service → hub (default
+             direction along the path), one flowing hub → service
+             (reverse via keyPoints="1;0"). Each path carries both. -->
+        <g class="frs-conn-pulses">
+          <!-- service → hub -->
+          <circle r="0.85" fill="#40EBFF"><animateMotion dur="4.2s" begin="0s"     repeatCount="indefinite"><mpath href="#frsConn1"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.85;1" dur="4.2s" begin="0s"     repeatCount="indefinite"/></circle>
+          <circle r="0.85" fill="#40EBFF"><animateMotion dur="4.2s" begin="-0.8s"  repeatCount="indefinite"><mpath href="#frsConn2"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.85;1" dur="4.2s" begin="-0.8s"  repeatCount="indefinite"/></circle>
+          <circle r="0.85" fill="#40EBFF"><animateMotion dur="4.2s" begin="-1.6s"  repeatCount="indefinite"><mpath href="#frsConn3"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.85;1" dur="4.2s" begin="-1.6s"  repeatCount="indefinite"/></circle>
+          <circle r="0.85" fill="#40EBFF"><animateMotion dur="4.2s" begin="-2.4s"  repeatCount="indefinite"><mpath href="#frsConn4"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.85;1" dur="4.2s" begin="-2.4s"  repeatCount="indefinite"/></circle>
+          <circle r="0.85" fill="#40EBFF"><animateMotion dur="4.2s" begin="-3.2s"  repeatCount="indefinite"><mpath href="#frsConn5"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.85;1" dur="4.2s" begin="-3.2s"  repeatCount="indefinite"/></circle>
+          <!-- hub → service (reverse direction via keyPoints) -->
+          <circle r="0.85" fill="#9FDCEF"><animateMotion dur="4.2s" begin="-2.1s"  keyPoints="1;0" keyTimes="0;1" repeatCount="indefinite"><mpath href="#frsConn1"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.85;1" dur="4.2s" begin="-2.1s"  repeatCount="indefinite"/></circle>
+          <circle r="0.85" fill="#9FDCEF"><animateMotion dur="4.2s" begin="-2.9s"  keyPoints="1;0" keyTimes="0;1" repeatCount="indefinite"><mpath href="#frsConn2"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.85;1" dur="4.2s" begin="-2.9s"  repeatCount="indefinite"/></circle>
+          <circle r="0.85" fill="#9FDCEF"><animateMotion dur="4.2s" begin="-3.7s"  keyPoints="1;0" keyTimes="0;1" repeatCount="indefinite"><mpath href="#frsConn3"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.85;1" dur="4.2s" begin="-3.7s"  repeatCount="indefinite"/></circle>
+          <circle r="0.85" fill="#9FDCEF"><animateMotion dur="4.2s" begin="-0.3s"  keyPoints="1;0" keyTimes="0;1" repeatCount="indefinite"><mpath href="#frsConn4"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.85;1" dur="4.2s" begin="-0.3s"  repeatCount="indefinite"/></circle>
+          <circle r="0.85" fill="#9FDCEF"><animateMotion dur="4.2s" begin="-1.1s"  keyPoints="1;0" keyTimes="0;1" repeatCount="indefinite"><mpath href="#frsConn5"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.85;1" dur="4.2s" begin="-1.1s"  repeatCount="indefinite"/></circle>
+        </g>
+      </svg>
+
+      <!-- central tool hub on the right -->
+      <div class="frs-conn-hub">
+        <span class="frs-conn-hub-ring"></span>
+        <span class="frs-conn-hub-ring r2"></span>
+        <span class="frs-conn-hub-core">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z"/></svg>
+        </span>
+        <span class="frs-conn-hub-label">YOUR TOOL</span>
+      </div>
     </div>
 
     <!-- RIGHT · copy -->
     <div class="frs-copy">
-      <span class="frs-tag"><span class="frs-tag-dot"></span>[ ALWAYS FRESH ]</span>
-      <h2 class="frs-title" id="frs-title">We keep your site fresh —<br><span class="frs-em">and the traffic keeps coming</span></h2>
-      <p class="frs-lead">On a regular basis, we publish your newest Google reviews and your latest Facebook posts straight to your site — so it never goes stale, and always shows your business in action.</p>
+      <span class="frs-tag"><span class="frs-tag-dot"></span>[ SEAMLESS INTEGRATIONS ]</span>
+      <h2 class="frs-title" id="frs-title">Plugs into the tools —<br><span class="frs-em">your team already runs</span></h2>
+      <p class="frs-lead">Your tool doesn't replace what works. It connects directly to the systems your team already lives in — the CRM, the calendar, the inbox, the storage — and quietly handles the work between them.</p>
 
       <div class="frs-points">
         <div class="frs-point">
-          <span class="frs-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 4v5h-5"/></svg></span>
+          <span class="frs-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 15l6-6"/><path d="M11 6l1.5-1.5a4 4 0 0 1 5.7 5.7L16 12"/><path d="M13 18l-1.5 1.5a4 4 0 0 1-5.7-5.7L8 12"/></svg></span>
           <div class="frs-point-body">
-            <h3>Fresh reviews &amp; posts, on autopilot</h3>
-            <p>Your newest 5-star Google reviews and freshest Facebook posts get added to your site on a regular cadence — automatically, with zero effort from you.</p>
+            <h3>Built around your stack</h3>
+            <p>Salesforce, HubSpot, Google Workspace, Microsoft 365, QuickBooks, Stripe — we wire your tool into whatever your team already uses. No platform migration, no retraining.</p>
           </div>
         </div>
         <div class="frs-point">
-          <span class="frs-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.4-3.2 7.6-8 9-4.8-1.4-8-4.6-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
+          <span class="frs-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 4l4 4-4 4"/><path d="M21 8H8"/><path d="M7 20l-4-4 4-4"/><path d="M3 16h13"/></svg></span>
           <div class="frs-point-body">
-            <h3>Proof your business is active</h3>
-            <p>A constantly-updated site tells Google and AI tools like ChatGPT that your business is alive and working — which builds trust and lifts you in the rankings.</p>
+            <h3>Two-way sync, not one-way data</h3>
+            <p>Information flows in both directions — updates made in your CRM show up in the tool, and outputs from the tool land back in your systems automatically.</p>
           </div>
         </div>
       </div>
 
       <div class="frs-callout">
-        <span class="frs-callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V13M12 21V8M19 21V4"/></svg></span>
-        <p><strong>Active sites win.</strong> More freshness means more trust, more visibility, and ultimately more traffic and more customers finding your business.</p>
+        <span class="frs-callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 15l6-6"/><path d="M11 6l1.5-1.5a4 4 0 0 1 5.7 5.7L16 12"/><path d="M13 18l-1.5 1.5a4 4 0 0 1-5.7-5.7L8 12"/></svg></span>
+        <p><strong>Integrations aren't an afterthought — they're the point.</strong> We build the connections first, then the tool on top. Your stack stays exactly as it is.</p>
       </div>
     </div>
 
