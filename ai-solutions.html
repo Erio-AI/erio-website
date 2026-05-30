@@ -1257,9 +1257,22 @@
   }
 
   .prop-foot {
+    position: relative;
     margin: clamp(28px, 3vw, 44px) auto 0;
     max-width: 760px; text-align: center;
     font-size: 12.5px; color: var(--p-mute); line-height: 1.55; font-style: italic;
+  }
+  /* Soft brand-tinted scrim behind the disclaimer so the text reads
+     clearly over the moving grid + beams — mirrors the .finalcta-sub
+     scrim used in the final "Let's talk" CTA. */
+  .prop-foot::before {
+    content: "";
+    position: absolute; inset: -16px -44px; z-index: -1;
+    background:
+      radial-gradient(58% 130% at 50% 50%, rgba(3, 11, 14, 0.7) 0%, rgba(6, 26, 34, 0.55) 45%, transparent 78%),
+      radial-gradient(70% 150% at 50% 50%, rgba(64, 235, 255, 0.1), transparent 72%);
+    filter: blur(14px);
+    border-radius: 999px;
   }
   .prop-foot em { font-style: normal; color: var(--p-cyan); margin-right: 4px; font-weight: 700; }
 
