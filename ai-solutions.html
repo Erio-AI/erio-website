@@ -558,6 +558,13 @@
     background: rgba(64, 235, 255, 0.05);
     box-shadow: 0 0 0 3px rgba(64, 235, 255, 0.14), 0 0 22px -6px rgba(64, 235, 255, 0.4);
   }
+  /* Estimated Total + Timeline fields: only the outer .prop-input-wrap
+     should show the cyan focus halo. Suppress the inner input's own
+     focus background + glow so there's no double-highlight inside. */
+  .prop-input-wrap .prop-input:focus {
+    background: transparent;
+    box-shadow: none;
+  }
 
   /* trade chips */
   .prop-chip-row {
