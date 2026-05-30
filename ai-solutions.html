@@ -1763,13 +1763,15 @@
 
   /* ──────── service tile stack (left column) ──────── */
   .frs-conn-stack {
-    position: relative;
-    display: flex; flex-direction: column;
-    gap: 10px;
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
     width: 38%;
     z-index: 2;
   }
   .frs-conn-svc {
+    position: absolute;
+    left: 0; right: 0;
+    transform: translateY(-50%);
     display: flex; align-items: center;
     gap: 8px;
     padding: 6px 9px;
@@ -1812,11 +1814,11 @@
   }
   /* per-tile cyan-pulse glow when its connection is "active" — each
      tile pulses on the shared 4.2s connection cycle, staggered. */
-  .frs-conn-svc.s1 { animation: frsConnSvc 4.2s ease-in-out 0s     infinite; }
-  .frs-conn-svc.s2 { animation: frsConnSvc 4.2s ease-in-out -0.8s  infinite; }
-  .frs-conn-svc.s3 { animation: frsConnSvc 4.2s ease-in-out -1.6s  infinite; }
-  .frs-conn-svc.s4 { animation: frsConnSvc 4.2s ease-in-out -2.4s  infinite; }
-  .frs-conn-svc.s5 { animation: frsConnSvc 4.2s ease-in-out -3.2s  infinite; }
+  .frs-conn-svc.s1 { top: 10%; animation: frsConnSvc 4.2s ease-in-out 0s     infinite; }
+  .frs-conn-svc.s2 { top: 30%; animation: frsConnSvc 4.2s ease-in-out -0.8s  infinite; }
+  .frs-conn-svc.s3 { top: 50%; animation: frsConnSvc 4.2s ease-in-out -1.6s  infinite; }
+  .frs-conn-svc.s4 { top: 70%; animation: frsConnSvc 4.2s ease-in-out -2.4s  infinite; }
+  .frs-conn-svc.s5 { top: 90%; animation: frsConnSvc 4.2s ease-in-out -3.2s  infinite; }
   @keyframes frsConnSvc {
     0%, 85%, 100% { border-color: rgba(120, 200, 222, 0.22); box-shadow: 0 10px 22px -12px rgba(0, 0, 0, 0.65); }
     8%, 18%       { border-color: rgba(64, 235, 255, 0.55); box-shadow: 0 10px 22px -12px rgba(0, 0, 0, 0.65), 0 0 18px -6px rgba(64, 235, 255, 0.6); }
@@ -4283,11 +4285,11 @@
           <!-- five curved paths from each service tile to the hub.
                Each starts at the service's right edge (x ≈ 38) and
                curves to the hub's left edge (x ≈ 76, y = 50). -->
-          <path id="frsConn1" d="M 38 13 C 56 13, 60 32, 76 50" fill="none"/>
-          <path id="frsConn2" d="M 38 31 C 56 31, 60 41, 76 50" fill="none"/>
+          <path id="frsConn1" d="M 38 10 C 56 10, 60 30, 76 50" fill="none"/>
+          <path id="frsConn2" d="M 38 30 C 56 30, 62 40, 76 50" fill="none"/>
           <path id="frsConn3" d="M 38 50 L 76 50" fill="none"/>
-          <path id="frsConn4" d="M 38 69 C 56 69, 60 59, 76 50" fill="none"/>
-          <path id="frsConn5" d="M 38 87 C 56 87, 60 68, 76 50" fill="none"/>
+          <path id="frsConn4" d="M 38 70 C 56 70, 62 60, 76 50" fill="none"/>
+          <path id="frsConn5" d="M 38 90 C 56 90, 60 70, 76 50" fill="none"/>
         </defs>
 
         <!-- faint static curves -->
