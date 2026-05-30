@@ -2122,6 +2122,331 @@
     .aiw-meter-fill { width: 78%; }
   }
 
+  /* ════════════════════════════════════════════════════════════════════
+     CONTINUOUS SUPPORT section (.prm--support) —
+     "Live Support Feed". Status header (3 engineer avatars + Online·24/7
+     badge + scrolling cyan ECG heartbeat), a vertical activity feed
+     with 5 tickets continuously scrolling upward — each enters with a
+     cyan pulsing dot then transitions to a green check mid-flight —
+     and 3 anchor stat tiles (24/7 monitoring · ~2 hr response · ∞ updates).
+  ════════════════════════════════════════════════════════════════════ */
+
+  /* hide the inherited Premium Artboard viz pieces */
+  .prm--support .prm-guide,
+  .prm--support .prm-card,
+  .prm--support .prm-palette,
+  .prm--support .prm-chip { display: none !important; }
+
+  /* viz frame — override aspect ratio, stack header / feed / stats */
+  .prm--support .prm-viz {
+    position: relative;
+    aspect-ratio: auto;
+    max-width: 380px;
+    width: 100%;
+    margin: 0 auto;
+    min-height: 380px;
+    padding: 0;
+    display: flex; flex-direction: column;
+    gap: 10px;
+  }
+
+  /* ──────── header: team + online badge + ECG ──────── */
+  .prm-sup-header {
+    display: flex; flex-direction: column;
+    gap: 8px;
+    padding: 9px 11px 9px 11px;
+    border-radius: 11px;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.01) 40%),
+      linear-gradient(180deg, rgba(11,28,37,0.78), rgba(6,15,21,0.86));
+    border: 1px solid rgba(120, 200, 222, 0.24);
+    box-shadow: 0 10px 22px -12px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px) saturate(160%);
+    -webkit-backdrop-filter: blur(10px) saturate(160%);
+  }
+  .prm-sup-team {
+    display: flex; align-items: center;
+    gap: 8px;
+  }
+  .prm-sup-av {
+    display: inline-grid; place-items: center;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6ff0ff, #2bb6c8);
+    color: #042029;
+    font-family: 'Exo 2', system-ui, sans-serif;
+    font-size: 8.5px; font-weight: 800;
+    letter-spacing: 0.02em;
+    box-shadow: 0 0 0 1.5px rgba(11, 28, 37, 0.85), 0 0 8px rgba(64, 235, 255, 0.4);
+    margin-left: -7px;
+    animation: prmSupAvBreath 3s ease-in-out infinite;
+  }
+  .prm-sup-av.av1 { margin-left: 0; animation-delay: 0s; }
+  .prm-sup-av.av2 { animation-delay: 0.5s; background: linear-gradient(135deg, #9FDCEF, #53B9E0); }
+  .prm-sup-av.av3 { animation-delay: 1.0s; background: linear-gradient(135deg, #40EBFF, #337791); color: #EAF6FB; }
+  @keyframes prmSupAvBreath {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.08); }
+  }
+  .prm-sup-online {
+    display: inline-flex; align-items: center;
+    gap: 6px;
+    margin-left: auto;
+    padding: 4px 9px;
+    border-radius: 999px;
+    background: rgba(64, 235, 255, 0.1);
+    border: 1px solid rgba(64, 235, 255, 0.32);
+    font-family: 'Exo 2', system-ui, sans-serif;
+    font-size: 9px; font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #EAF6FB;
+  }
+  .prm-sup-online-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #62f5b8;
+    box-shadow: 0 0 6px rgba(98, 245, 184, 0.95);
+    animation: prmSupOnlineBlink 1.6s ease-in-out infinite;
+  }
+  @keyframes prmSupOnlineBlink {
+    0%, 100% { opacity: 1;   box-shadow: 0 0 6px rgba(98, 245, 184, 0.95); }
+    50%      { opacity: 0.55; box-shadow: 0 0 10px rgba(98, 245, 184, 1); }
+  }
+  .prm-sup-ecg-wrap {
+    width: 100%;
+    height: 22px;
+    overflow: hidden;
+    border-radius: 4px;
+    background:
+      linear-gradient(180deg, rgba(64,235,255,0.04), rgba(64,235,255,0)),
+      radial-gradient(ellipse at center, rgba(64, 235, 255, 0.08), transparent 70%);
+    position: relative;
+  }
+  .prm-sup-ecg {
+    width: 100%; height: 100%;
+    display: block;
+    filter: drop-shadow(0 0 2px rgba(64, 235, 255, 0.7));
+  }
+
+  /* ──────── activity feed (middle) — fixed height, scrolling cards ──────── */
+  .prm-sup-feed {
+    position: relative;
+    flex: 1 1 auto;
+    height: 240px;
+    overflow: hidden;
+    border-radius: 11px;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.01) 40%),
+      linear-gradient(180deg, rgba(11,28,37,0.72), rgba(6,15,21,0.82));
+    border: 1px solid rgba(120, 200, 222, 0.18);
+    box-shadow: 0 14px 28px -18px rgba(0, 0, 0, 0.65);
+  }
+
+  /* top/bottom fade masks so cards softly appear/disappear at edges */
+  .prm-sup-feed-fade {
+    position: absolute; left: 0; right: 0;
+    height: 28px;
+    pointer-events: none;
+    z-index: 3;
+  }
+  .prm-sup-feed-fade.top {
+    top: 0;
+    background: linear-gradient(180deg, rgba(11, 28, 37, 0.95), rgba(11, 28, 37, 0));
+  }
+  .prm-sup-feed-fade.bottom {
+    bottom: 0;
+    background: linear-gradient(0deg, rgba(11, 28, 37, 0.95), rgba(11, 28, 37, 0));
+  }
+
+  /* card */
+  .prm-sup-card {
+    position: absolute;
+    left: 9px; right: 9px;
+    display: flex; align-items: center;
+    gap: 9px;
+    padding: 7px 10px;
+    border-radius: 9px;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.012) 42%),
+      linear-gradient(180deg, rgba(15, 35, 45, 0.85), rgba(8, 20, 27, 0.9));
+    border: 1px solid rgba(120, 200, 222, 0.25);
+    box-shadow: 0 8px 18px -10px rgba(0, 0, 0, 0.65);
+    will-change: transform, opacity;
+    animation: prmSupCardScroll 14s linear infinite;
+  }
+  /* stagger each card by 1/5 of the cycle */
+  .prm-sup-card.c1 { animation-delay: 0s;     }
+  .prm-sup-card.c2 { animation-delay: -2.8s;  }
+  .prm-sup-card.c3 { animation-delay: -5.6s;  }
+  .prm-sup-card.c4 { animation-delay: -8.4s;  }
+  .prm-sup-card.c5 { animation-delay: -11.2s; }
+
+  @keyframes prmSupCardScroll {
+    0%   { transform: translateY(240px); opacity: 0; }
+    4%   { opacity: 1; }
+    50%  { transform: translateY(120px); opacity: 1; }
+    96%  { transform: translateY(-44px); opacity: 1; }
+    100% { transform: translateY(-64px); opacity: 0; }
+  }
+
+  /* state indicator — dot + check overlap; opacity-swap mid-flight */
+  .prm-sup-state {
+    position: relative;
+    flex: 0 0 auto;
+    width: 18px; height: 18px;
+    display: grid; place-items: center;
+  }
+  .prm-sup-state-dot {
+    position: absolute; inset: 0;
+    margin: auto;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: #40EBFF;
+    box-shadow: 0 0 6px rgba(64, 235, 255, 0.95);
+    animation: prmSupDotPulse 1s ease-in-out infinite, prmSupDotShow 14s linear infinite;
+  }
+  .prm-sup-state-check {
+    position: absolute; inset: 0;
+    width: 18px; height: 18px;
+    color: #62f5b8;
+    filter: drop-shadow(0 0 3px rgba(98, 245, 184, 0.85));
+    opacity: 0;
+    animation: prmSupCheckShow 14s linear infinite;
+  }
+  /* match each card's stagger so the dot→check swap stays in sync */
+  .prm-sup-card.c1 .prm-sup-state-dot,
+  .prm-sup-card.c1 .prm-sup-state-check { animation-delay: 1s, 0s; }
+  .prm-sup-card.c2 .prm-sup-state-dot,
+  .prm-sup-card.c2 .prm-sup-state-check { animation-delay: 1s, -2.8s; }
+  .prm-sup-card.c3 .prm-sup-state-dot,
+  .prm-sup-card.c3 .prm-sup-state-check { animation-delay: 1s, -5.6s; }
+  .prm-sup-card.c4 .prm-sup-state-dot,
+  .prm-sup-card.c4 .prm-sup-state-check { animation-delay: 1s, -8.4s; }
+  .prm-sup-card.c5 .prm-sup-state-dot,
+  .prm-sup-card.c5 .prm-sup-state-check { animation-delay: 1s, -11.2s; }
+
+  @keyframes prmSupDotPulse {
+    0%, 100% { transform: scale(1);   opacity: 1; }
+    50%      { transform: scale(1.4); opacity: 0.6; }
+  }
+  @keyframes prmSupDotShow {
+    0%, 48%   { opacity: 1; }
+    52%, 100% { opacity: 0; }
+  }
+  @keyframes prmSupCheckShow {
+    0%, 48%   { opacity: 0; transform: scale(0.5); }
+    52%, 56%  { opacity: 1; transform: scale(1.25); }
+    62%, 100% { opacity: 1; transform: scale(1); }
+  }
+
+  .prm-sup-card-ico {
+    flex: 0 0 auto;
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    display: grid; place-items: center;
+    background: rgba(64, 235, 255, 0.08);
+    border: 1px solid rgba(64, 235, 255, 0.22);
+    color: var(--prm-cyan, #40EBFF);
+  }
+  .prm-sup-card-ico svg { width: 12px; height: 12px; }
+
+  .prm-sup-card-body {
+    display: flex; flex-direction: column;
+    min-width: 0; line-height: 1.2;
+  }
+  .prm-sup-card-title {
+    font-family: 'Exo 2', system-ui, sans-serif;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.005em;
+    color: #EAF6FB;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .prm-sup-card-meta {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 8.5px; font-weight: 500;
+    letter-spacing: 0.04em;
+    color: rgba(159, 220, 239, 0.65);
+    margin-top: 2px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+
+  /* ──────── stats (bottom) ──────── */
+  .prm-sup-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 7px;
+  }
+  .prm-sup-stat {
+    display: flex; flex-direction: column;
+    align-items: center;
+    padding: 7px 4px 6px;
+    border-radius: 9px;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01) 40%),
+      linear-gradient(180deg, rgba(11,28,37,0.78), rgba(6,15,21,0.86));
+    border: 1px solid rgba(120, 200, 222, 0.22);
+    box-shadow: 0 8px 16px -10px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px) saturate(160%);
+    -webkit-backdrop-filter: blur(8px) saturate(160%);
+    animation: prmSupStatPulse 6s ease-in-out infinite;
+  }
+  .prm-sup-stat.s1 { animation-delay: 0s; }
+  .prm-sup-stat.s2 { animation-delay: 2s; }
+  .prm-sup-stat.s3 { animation-delay: 4s; }
+  @keyframes prmSupStatPulse {
+    0%, 80%, 100% { border-color: rgba(120, 200, 222, 0.22); box-shadow: 0 8px 16px -10px rgba(0, 0, 0, 0.6); }
+    10%, 25%      { border-color: rgba(64, 235, 255, 0.55); box-shadow: 0 8px 16px -10px rgba(0, 0, 0, 0.6), 0 0 18px -6px rgba(64, 235, 255, 0.6); }
+  }
+  .prm-sup-stat-val {
+    font-family: 'Exo 2', system-ui, sans-serif;
+    font-size: 16px; font-weight: 800;
+    letter-spacing: -0.01em;
+    background: linear-gradient(135deg, #bff6ff, #40EBFF 55%, #2bb6c8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    line-height: 1.05;
+  }
+  .prm-sup-stat-label {
+    font-family: 'Exo 2', system-ui, sans-serif;
+    font-size: 8.5px; font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(159, 220, 239, 0.72);
+    margin-top: 2px;
+  }
+
+  @media (max-width: 920px) {
+    .prm--support .prm-viz { max-width: 360px; min-height: 360px; }
+    .prm-sup-feed          { height: 220px; }
+  }
+  @media (max-width: 540px) {
+    .prm--support .prm-viz { max-width: 320px; min-height: 340px; }
+    .prm-sup-feed          { height: 200px; }
+    .prm-sup-card-title    { font-size: 10px; }
+    .prm-sup-card-meta     { font-size: 8px; }
+    .prm-sup-stat-val      { font-size: 14px; }
+    .prm-sup-stat-label    { font-size: 7.5px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .prm-sup-av,
+    .prm-sup-online-dot,
+    .prm-sup-ecg-scroll,
+    .prm-sup-card,
+    .prm-sup-state-dot,
+    .prm-sup-state-check,
+    .prm-sup-stat { animation: none !important; }
+    .prm-sup-card { position: relative; transform: none; opacity: 1; }
+    .prm-sup-card.c1 { transform: translateY(0); }
+    .prm-sup-card.c2 { transform: translateY(48px); }
+    .prm-sup-card.c3 { transform: translateY(96px); }
+    .prm-sup-card.c4 { transform: translateY(144px); }
+    .prm-sup-card.c5 { display: none; }
+    .prm-sup-state-check { opacity: 1; }
+    .prm-sup-state-dot   { opacity: 0; }
+  }
+
   /* ═════ AI COMPOSITOR overlay (Generate-time loading effect) ═════
      Sits over the entire preview frame while the AI "composes" the
      proposal. Pulsing cyan orb, blinking AI tag, 6-step ticking
@@ -4087,75 +4412,157 @@
 </section>
 
 <!-- ====== Premium custom design ====== -->
-<section class="prm" aria-labelledby="prm-title">
+<section class="prm prm--support" aria-labelledby="prm-title">
   <div class="prm-bg-grid" aria-hidden="true"></div>
   <div class="prm-glow" aria-hidden="true"></div>
 
   <div class="prm-wrap">
 
-    <!-- LEFT · "Premium Artboard" animation -->
+    <!-- LEFT · "Live Support Feed" animation —
+         status header with engineer avatars + online badge + scrolling
+         heartbeat ECG, vertical activity feed where 5 tickets continually
+         scroll upward (each enters with a cyan pulsing dot, transitions
+         to a green check mid-flight), and 3 support stat tiles. -->
     <div class="prm-viz" aria-hidden="true">
-      <span class="prm-guide tl"></span>
-      <span class="prm-guide br"></span>
 
-      <div class="prm-card">
-        <div class="prm-card-top">
-          <span class="prm-dots"><i></i><i></i><i></i></span>
-          <span class="prm-url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>yourbusiness.com</span>
+      <!-- top: status header -->
+      <div class="prm-sup-header">
+        <div class="prm-sup-team">
+          <span class="prm-sup-av av1">JM</span>
+          <span class="prm-sup-av av2">EH</span>
+          <span class="prm-sup-av av3">RK</span>
+          <span class="prm-sup-online">
+            <span class="prm-sup-online-dot"></span>
+            Online · 24/7
+          </span>
         </div>
-        <div class="prm-card-body">
-          <div class="prm-hero-row">
-            <div class="prm-hero-copy">
-              <span class="prm-eyebrow"></span>
-              <span class="prm-bar h1"></span>
-              <span class="prm-bar h2"></span>
-              <span class="prm-bar sub"></span>
-              <span class="prm-cta">Get a Quote</span>
-            </div>
-            <div class="prm-hero-img"></div>
+        <div class="prm-sup-ecg-wrap">
+          <svg class="prm-sup-ecg" viewBox="0 0 100 24" preserveAspectRatio="none">
+            <g class="prm-sup-ecg-scroll">
+              <animateTransform attributeName="transform" type="translate" from="0 0" to="-100 0" dur="3.2s" repeatCount="indefinite"/>
+              <path d="M0,12 L24,12 L27,12 L29,5 L31,19 L33,5 L35,12 L52,12 L75,12 L78,12 L80,5 L82,19 L84,5 L86,12 L100,12" fill="none" stroke="#40EBFF" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M0,12 L24,12 L27,12 L29,5 L31,19 L33,5 L35,12 L52,12 L75,12 L78,12 L80,5 L82,19 L84,5 L86,12 L100,12" fill="none" stroke="#40EBFF" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" transform="translate(100,0)"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <!-- middle: scrolling activity feed -->
+      <div class="prm-sup-feed">
+        <div class="prm-sup-card c1">
+          <span class="prm-sup-state">
+            <span class="prm-sup-state-dot"></span>
+            <svg class="prm-sup-state-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4.5 4.5L19 7"/></svg>
+          </span>
+          <span class="prm-sup-card-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4l4 4-10 10-4 0 0-4z"/><path d="M13 5l4 4"/></svg>
+          </span>
+          <div class="prm-sup-card-body">
+            <strong class="prm-sup-card-title">Bug fix · Quote PDF spacing</strong>
+            <span class="prm-sup-card-meta">11 min ago</span>
           </div>
-          <div class="prm-tiles"><span></span><span></span><span></span></div>
         </div>
-        <span class="prm-gloss"></span>
+        <div class="prm-sup-card c2">
+          <span class="prm-sup-state">
+            <span class="prm-sup-state-dot"></span>
+            <svg class="prm-sup-state-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4.5 4.5L19 7"/></svg>
+          </span>
+          <span class="prm-sup-card-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c.6 4.4 2.3 6.2 6.6 6.6c-4.4.6-6 2.4-6.6 6.6c-.6-4.4-2.3-6.2-6.6-6.6c4.4-.6 6-2.4 6.6-6.6z"/><path d="M18 16l1 2 2 1-2 1-1 2-1-2-2-1 2-1z"/></svg>
+          </span>
+          <div class="prm-sup-card-body">
+            <strong class="prm-sup-card-title">Feature · Slack notifications</strong>
+            <span class="prm-sup-card-meta">Shipped 1 hr ago</span>
+          </div>
+        </div>
+        <div class="prm-sup-card c3">
+          <span class="prm-sup-state">
+            <span class="prm-sup-state-dot"></span>
+            <svg class="prm-sup-state-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4.5 4.5L19 7"/></svg>
+          </span>
+          <span class="prm-sup-card-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>
+          </span>
+          <div class="prm-sup-card-body">
+            <strong class="prm-sup-card-title">Optimization · −180ms response</strong>
+            <span class="prm-sup-card-meta">28 min ago</span>
+          </div>
+        </div>
+        <div class="prm-sup-card c4">
+          <span class="prm-sup-state">
+            <span class="prm-sup-state-dot"></span>
+            <svg class="prm-sup-state-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4.5 4.5L19 7"/></svg>
+          </span>
+          <span class="prm-sup-card-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 4v5h-5"/></svg>
+          </span>
+          <div class="prm-sup-card-body">
+            <strong class="prm-sup-card-title">Update · QuickBooks API v3</strong>
+            <span class="prm-sup-card-meta">Synced 4 min ago</span>
+          </div>
+        </div>
+        <div class="prm-sup-card c5">
+          <span class="prm-sup-state">
+            <span class="prm-sup-state-dot"></span>
+            <svg class="prm-sup-state-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4.5 4.5L19 7"/></svg>
+          </span>
+          <span class="prm-sup-card-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.4-3.2 7.6-8 9-4.8-1.4-8-4.6-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
+          </span>
+          <div class="prm-sup-card-body">
+            <strong class="prm-sup-card-title">Backup · Customer database</strong>
+            <span class="prm-sup-card-meta">Complete · 2 hr ago</span>
+          </div>
+        </div>
+
+        <!-- top + bottom fade masks -->
+        <span class="prm-sup-feed-fade top" aria-hidden="true"></span>
+        <span class="prm-sup-feed-fade bottom" aria-hidden="true"></span>
       </div>
 
-      <div class="prm-palette">
-        <span style="--c:#40EBFF"></span>
-        <span style="--c:#9FDCEF"></span>
-        <span style="--c:#53B9E0"></span>
-        <span style="--c:#1699A8"></span>
+      <!-- bottom: support stat tiles -->
+      <div class="prm-sup-stats">
+        <div class="prm-sup-stat s1">
+          <span class="prm-sup-stat-val">24/7</span>
+          <span class="prm-sup-stat-label">Monitoring</span>
+        </div>
+        <div class="prm-sup-stat s2">
+          <span class="prm-sup-stat-val">~2 hr</span>
+          <span class="prm-sup-stat-label">Response</span>
+        </div>
+        <div class="prm-sup-stat s3">
+          <span class="prm-sup-stat-val">∞</span>
+          <span class="prm-sup-stat-label">Updates</span>
+        </div>
       </div>
-
-      <div class="prm-chip c1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l11-11"/><path d="M16 3l1.1 3L20 7l-2.9 1L16 11l-1.1-3L12 7l2.9-1z"/></svg>Custom-built</div>
-      <div class="prm-chip c2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17l5-5 4 4 6-7"/><path d="M16 9h4v4"/></svg>Higher value</div>
     </div>
 
     <!-- RIGHT · copy -->
     <div class="prm-copy">
-      <span class="prm-tag"><span class="prm-tag-dot"></span>[ PREMIUM DESIGN ]</span>
-      <h2 class="prm-title" id="prm-title">Look high-end —<br><span class="prm-em">and get paid like it</span></h2>
-      <p class="prm-lead">Every site we build is custom-designed from scratch — beautiful, modern, and genuinely high-end. It's your digital business card, and it makes the right impression the second someone lands on it.</p>
+      <span class="prm-tag"><span class="prm-tag-dot"></span>[ CONTINUOUS SUPPORT ]</span>
+      <h2 class="prm-title" id="prm-title">We don't ship and disappear —<br><span class="prm-em">we stay with you for the long run</span></h2>
+      <p class="prm-lead">When your tool goes live, our work doesn't stop. Real engineers monitor it, maintain it, and evolve it as your business grows — fixing the small things before you notice them and adding new features as you ask.</p>
 
       <div class="prm-points">
         <div class="prm-point">
-          <span class="prm-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l3.5 5.5L12 22 2.5 8.5z"/><path d="M2.5 8.5h19M9 3l-3 5.5L12 22M15 3l3 5.5L12 22"/></svg></span>
+          <span class="prm-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8 8 0 0 1-11.6 7.1L4 20.5l1.9-5.3A8 8 0 1 1 21 11.5z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg></span>
           <div class="prm-point-body">
-            <h3>Instant credibility &amp; trust</h3>
-            <p>A polished, professional site tells visitors you're the real deal before they read a word — so they trust you, and they reach out.</p>
+            <h3>A team that answers fast</h3>
+            <p>Hit a snag, want a tweak, have a new idea — message us through Slack, email, or phone and you get a real engineer back within hours, not weeks.</p>
           </div>
         </div>
         <div class="prm-point">
-          <span class="prm-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 11 3.8a2 2 0 0 0-1.4-.6H4a1 1 0 0 0-1 1v5.6a2 2 0 0 0 .6 1.4l9.6 9.6a2 2 0 0 0 2.8 0l4.6-4.6a2 2 0 0 0 0-2.8z"/><circle cx="7.6" cy="7.6" r="1.3"/></svg></span>
+          <span class="prm-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 4v5h-5"/></svg></span>
           <div class="prm-point-body">
-            <h3>Premium look, premium prices</h3>
-            <p>When your website looks high-end, people assume your work is too — so they convert more readily and happily pay more for it.</p>
+            <h3>Always evolving with you</h3>
+            <p>Your tool isn't a static product — it's a living one. As your processes change, we update the tool to match. New features, refinements, integrations — included, not extra.</p>
           </div>
         </div>
       </div>
 
       <div class="prm-callout">
-        <span class="prm-callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 7-7"/><path d="M17 8h4v4"/></svg></span>
-        <p><strong>Design isn't decoration — it's leverage.</strong> A site that looks expensive wins more jobs and commands higher prices.</p>
+        <span class="prm-callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.4-3.2 7.6-8 9-4.8-1.4-8-4.6-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
+        <p><strong>You'll never be left holding the bag.</strong> Monitoring, fixes, and improvements run continuously in the background — you keep doing the work, we keep the tool running.</p>
       </div>
     </div>
 
