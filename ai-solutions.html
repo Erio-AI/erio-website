@@ -1029,6 +1029,252 @@
     .seo-lab-pulses { display: none !important; }
   }
 
+  /* ════════════════════════════════════════════════════════════════════
+     AI-POWERED DATA EXTRACTION section (.svp--extract) —
+     "Document → Extracted Table". A faux PDF sits at top with cyan-
+     highlighted values inline; a scan beam sweeps down on a long loop;
+     a structured key/value table below reveals row-by-row in sync
+     with the scan, so the user reads the metaphor instantly:
+     "AI reads the doc, pulls the values, writes them into a table."
+  ════════════════════════════════════════════════════════════════════ */
+
+  /* Hide the inherited service/area page-grid board */
+  .svp--extract .svp-board,
+  .svp--extract .svp-chip { display: none !important; }
+
+  /* viz frame — single column, stacked layout */
+  .svp--extract .svp-viz {
+    position: relative;
+    display: flex; flex-direction: column;
+    gap: 8px;
+    max-width: 380px;
+    width: 100%;
+    margin: 0 auto;
+    /* viz inherits an opacity reveal — let parent handle that */
+  }
+
+  /* ──────── source document ──────── */
+  .svp-ex-doc {
+    position: relative;
+    border-radius: 13px;
+    padding: 13px 14px 16px;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.012) 42%),
+      linear-gradient(180deg, rgba(11, 28, 37, 0.74), rgba(6, 15, 21, 0.82));
+    border: 1px solid rgba(120, 200, 222, 0.22);
+    box-shadow: 0 20px 50px -22px rgba(0, 0, 0, 0.78), inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+    overflow: hidden;
+  }
+  .svp-ex-doc-head {
+    display: flex; align-items: center; gap: 8px;
+    padding-bottom: 10px; margin-bottom: 11px;
+    border-bottom: 1px solid rgba(120, 200, 222, 0.14);
+  }
+  .svp-ex-doc-ico svg { width: 14px; height: 14px; color: var(--seo-cyan, #40EBFF); }
+  .svp-ex-doc-name {
+    font-family: 'Exo 2', system-ui, sans-serif;
+    font-size: 10.5px; font-weight: 700;
+    letter-spacing: 0.06em; color: #EAF6FB;
+  }
+  .svp-ex-doc-meta {
+    margin-left: auto;
+    font-size: 8.5px; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(159, 220, 239, 0.65);
+  }
+  .svp-ex-doc-body {
+    display: flex; flex-direction: column; gap: 7px;
+  }
+  /* faded text-line "paragraphs" */
+  .svp-ex-line {
+    height: 5px; border-radius: 2px;
+    background: rgba(83, 185, 224, 0.16);
+  }
+  .svp-ex-line.w92 { width: 92%; }
+  .svp-ex-line.w86 { width: 86%; }
+  .svp-ex-line.w80 { width: 80%; }
+  .svp-ex-line.w68 { width: 68%; }
+  .svp-ex-flow {
+    display: flex; align-items: center; gap: 6px;
+  }
+  .svp-ex-inline {
+    height: 5px; border-radius: 2px;
+    background: rgba(83, 185, 224, 0.16);
+    flex: 0 0 auto;
+  }
+  .svp-ex-inline.w42 { width: 42%; }
+  .svp-ex-inline.w38 { width: 38%; }
+  .svp-ex-inline.w34 { width: 34%; }
+  .svp-ex-inline.w28 { width: 28%; }
+  .svp-ex-inline.w22 { width: 22%; }
+  .svp-ex-inline.w20 { width: 20%; }
+  .svp-ex-inline.w14 { width: 14%; }
+  .svp-ex-inline.w12 { width: 12%; }
+  /* highlighted extractable values */
+  .svp-ex-val {
+    display: inline-flex; align-items: center;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-family: 'Exo 2', system-ui, sans-serif;
+    font-size: 9.5px; font-weight: 700;
+    letter-spacing: 0.02em; color: #9FDCEF;
+    background: rgba(64, 235, 255, 0.12);
+    border: 1px solid rgba(64, 235, 255, 0.28);
+    white-space: nowrap;
+    flex: 0 0 auto;
+  }
+  /* scan beam sweeping down the doc */
+  .svp-ex-scan {
+    position: absolute;
+    left: 0; right: 0; top: 0;
+    height: 28px;
+    background: linear-gradient(180deg, transparent 0%, rgba(64, 235, 255, 0.45) 50%, transparent 100%);
+    filter: blur(1px);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 3;
+    mix-blend-mode: screen;
+    animation: svpExScan 9.6s cubic-bezier(0.55, 0.05, 0.55, 0.95) infinite;
+  }
+  @keyframes svpExScan {
+    0%   { opacity: 0; transform: translateY(-20%); }
+    6%   { opacity: 1; }
+    78%  { opacity: 1; transform: translateY(360%); }
+    88%  { opacity: 0; }
+    100% { opacity: 0; transform: translateY(360%); }
+  }
+
+  /* values pulse as the scan crosses them — each on the shared 9.6 s
+     master cycle, with its own keyframe so the timing aligns with the
+     scan arrival point. */
+  .svp-ex-val { animation: svpExValIdle 9.6s linear infinite; }
+  .svp-ex-val.v1 { animation-name: svpExVal1; }
+  .svp-ex-val.v2 { animation-name: svpExVal2; }
+  .svp-ex-val.v3 { animation-name: svpExVal3; }
+  .svp-ex-val.v4 { animation-name: svpExVal4; }
+  @keyframes svpExVal1 {
+    0%, 14%   { background: rgba(64, 235, 255, 0.12); color: #9FDCEF; box-shadow: none; }
+    18%       { background: rgba(64, 235, 255, 0.42); color: #fff; box-shadow: 0 0 14px rgba(64, 235, 255, 0.7); }
+    26%, 100% { background: rgba(64, 235, 255, 0.22); color: #EAF6FB; box-shadow: 0 0 6px rgba(64, 235, 255, 0.3); }
+  }
+  @keyframes svpExVal2 {
+    0%, 32%   { background: rgba(64, 235, 255, 0.12); color: #9FDCEF; box-shadow: none; }
+    36%       { background: rgba(64, 235, 255, 0.42); color: #fff; box-shadow: 0 0 14px rgba(64, 235, 255, 0.7); }
+    44%, 100% { background: rgba(64, 235, 255, 0.22); color: #EAF6FB; box-shadow: 0 0 6px rgba(64, 235, 255, 0.3); }
+  }
+  @keyframes svpExVal3 {
+    0%, 50%   { background: rgba(64, 235, 255, 0.12); color: #9FDCEF; box-shadow: none; }
+    54%       { background: rgba(64, 235, 255, 0.42); color: #fff; box-shadow: 0 0 14px rgba(64, 235, 255, 0.7); }
+    62%, 100% { background: rgba(64, 235, 255, 0.22); color: #EAF6FB; box-shadow: 0 0 6px rgba(64, 235, 255, 0.3); }
+  }
+  @keyframes svpExVal4 {
+    0%, 64%   { background: rgba(64, 235, 255, 0.12); color: #9FDCEF; box-shadow: none; }
+    68%       { background: rgba(64, 235, 255, 0.42); color: #fff; box-shadow: 0 0 14px rgba(64, 235, 255, 0.7); }
+    76%, 100% { background: rgba(64, 235, 255, 0.22); color: #EAF6FB; box-shadow: 0 0 6px rgba(64, 235, 255, 0.3); }
+  }
+
+  /* ──────── arrow connector ──────── */
+  .svp-ex-flow-arrow {
+    position: relative;
+    display: flex; flex-direction: column; align-items: center;
+    height: 22px;
+  }
+  .svp-ex-flow-line {
+    width: 1px; height: 100%;
+    background: linear-gradient(180deg, transparent 0%, rgba(64, 235, 255, 0.5) 50%, transparent 100%);
+  }
+  .svp-ex-flow-tip {
+    position: absolute;
+    bottom: -3px; left: 50%;
+    transform: translateX(-50%);
+    color: var(--seo-cyan, #40EBFF);
+  }
+  .svp-ex-flow-tip svg { width: 12px; height: 12px; }
+
+  /* ──────── extracted structured table ──────── */
+  .svp-ex-table {
+    border-radius: 13px;
+    padding: 11px 14px 13px;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.012) 42%),
+      linear-gradient(180deg, rgba(11, 28, 37, 0.78), rgba(6, 15, 21, 0.86));
+    border: 1px solid rgba(120, 200, 222, 0.22);
+    box-shadow: 0 20px 50px -22px rgba(0, 0, 0, 0.78), inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  }
+  .svp-ex-table-head {
+    display: grid; grid-template-columns: 1fr 1.4fr; gap: 12px;
+    padding: 5px 4px 9px;
+    border-bottom: 1px solid rgba(120, 200, 222, 0.16);
+    font-family: 'Exo 2', system-ui, sans-serif;
+    font-size: 8.5px; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(159, 220, 239, 0.6);
+    margin-bottom: 4px;
+  }
+  .svp-ex-table-row {
+    display: grid; grid-template-columns: 1fr 1.4fr; gap: 12px;
+    padding: 7px 4px;
+    font-family: 'Exo 2', system-ui, sans-serif;
+    font-size: 11px; line-height: 1.2;
+    color: #EAF6FB;
+    border-bottom: 1px solid rgba(120, 200, 222, 0.08);
+    opacity: 0;
+  }
+  .svp-ex-table-row:last-child { border-bottom: none; }
+  .svp-ex-table-row > span:first-child {
+    color: rgba(159, 220, 239, 0.75);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+  .svp-ex-table-val {
+    font-weight: 800;
+    color: #fff;
+    text-align: left;
+  }
+
+  /* each row appears at a different point of the 9.6 s master loop —
+     timed so each row reveals just AFTER the scan has crossed its
+     corresponding value in the doc above. */
+  .svp-ex-table-row.r1 { animation: svpExRow1 9.6s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+  .svp-ex-table-row.r2 { animation: svpExRow2 9.6s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+  .svp-ex-table-row.r3 { animation: svpExRow3 9.6s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+  .svp-ex-table-row.r4 { animation: svpExRow4 9.6s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+  @keyframes svpExRow1 {
+    0%, 18%   { opacity: 0; transform: translateX(-6px); }
+    22%, 90%  { opacity: 1; transform: translateX(0); }
+    98%, 100% { opacity: 0; }
+  }
+  @keyframes svpExRow2 {
+    0%, 36%   { opacity: 0; transform: translateX(-6px); }
+    40%, 90%  { opacity: 1; transform: translateX(0); }
+    98%, 100% { opacity: 0; }
+  }
+  @keyframes svpExRow3 {
+    0%, 54%   { opacity: 0; transform: translateX(-6px); }
+    58%, 90%  { opacity: 1; transform: translateX(0); }
+    98%, 100% { opacity: 0; }
+  }
+  @keyframes svpExRow4 {
+    0%, 70%   { opacity: 0; transform: translateX(-6px); }
+    74%, 90%  { opacity: 1; transform: translateX(0); }
+    98%, 100% { opacity: 0; }
+  }
+
+  @media (max-width: 920px) {
+    .svp--extract .svp-viz { max-width: 340px; }
+  }
+  @media (max-width: 540px) {
+    .svp--extract .svp-viz { max-width: 300px; }
+    .svp-ex-doc-name { font-size: 9.5px; }
+    .svp-ex-val { font-size: 8.5px; padding: 2px 6px; }
+    .svp-ex-table-row { font-size: 10px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .svp-ex-scan { display: none !important; }
+    .svp-ex-val,
+    .svp-ex-table-row { animation: none !important; opacity: 1 !important; }
+  }
+
   /* ═════ AI COMPOSITOR overlay (Generate-time loading effect) ═════
      Sits over the entire preview frame while the AI "composes" the
      proposal. Pulsing cyan orb, blinking AI tag, 6-step ticking
@@ -2489,83 +2735,100 @@
 </section>
 
 <!-- ====== Service pages + service-area pages ====== -->
-<section class="svp" aria-labelledby="svp-title">
+<section class="svp svp--extract" aria-labelledby="svp-title">
   <div class="svp-bg-grid" aria-hidden="true"></div>
   <div class="svp-glow" aria-hidden="true"></div>
 
   <div class="svp-wrap">
 
-    <!-- LEFT · "Page Generator" — a rich page for every service & every area -->
+    <!-- LEFT · "Document → Extracted Table" — a faux PDF with cyan-
+         highlighted values, a slow scan line sweeping down the page,
+         and a structured key/value table below that reveals row-by-
+         row in sync with the scan. -->
     <div class="svp-viz" aria-hidden="true">
-      <div class="svp-board">
-        <div class="svp-heads">
-          <span class="svp-head"><span class="svp-head-dot"></span>Service pages</span>
-          <span class="svp-head"><span class="svp-head-dot"></span>Area pages</span>
+      <!-- TOP: the source document -->
+      <div class="svp-ex-doc">
+        <div class="svp-ex-doc-head">
+          <span class="svp-ex-doc-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/></svg>
+          </span>
+          <span class="svp-ex-doc-name">spec-bid-04.pdf</span>
+          <span class="svp-ex-doc-meta">72 pp</span>
         </div>
-        <div class="svp-grid">
-          <article class="svp-tile">
-            <span class="svp-tile-bar"></span>
-            <div class="svp-tile-row"><span class="svp-tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v7M9 3v7M7.5 10v11M16.5 3c-1.6 0-2.5 2-2.5 4.5s.9 3.5 2.5 3.5v10"/></svg></span><span class="svp-tile-name">Kitchen&nbsp;Remodels</span></div>
-            <span class="svp-tile-line"></span><span class="svp-tile-line s2"></span>
-          </article>
-          <article class="svp-tile a">
-            <span class="svp-tile-bar"></span>
-            <div class="svp-tile-row"><span class="svp-tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span class="svp-tile-name">Coral&nbsp;Gables</span></div>
-            <span class="svp-tile-line"></span><span class="svp-tile-line s2"></span>
-          </article>
-          <article class="svp-tile">
-            <span class="svp-tile-bar"></span>
-            <div class="svp-tile-row"><span class="svp-tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6 6 10a6 6 0 0 1-12 0c0-4 6-10 6-10z"/></svg></span><span class="svp-tile-name">Bathroom&nbsp;Renos</span></div>
-            <span class="svp-tile-line"></span><span class="svp-tile-line s2"></span>
-          </article>
-          <article class="svp-tile a">
-            <span class="svp-tile-bar"></span>
-            <div class="svp-tile-row"><span class="svp-tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span class="svp-tile-name">Brickell</span></div>
-            <span class="svp-tile-line"></span><span class="svp-tile-line s2"></span>
-          </article>
-          <article class="svp-tile">
-            <span class="svp-tile-bar"></span>
-            <div class="svp-tile-row"><span class="svp-tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/></svg></span><span class="svp-tile-name">Roofing&nbsp;&amp;&nbsp;Siding</span></div>
-            <span class="svp-tile-line"></span><span class="svp-tile-line s2"></span>
-          </article>
-          <article class="svp-tile a">
-            <span class="svp-tile-bar"></span>
-            <div class="svp-tile-row"><span class="svp-tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span class="svp-tile-name">Doral</span></div>
-            <span class="svp-tile-line"></span><span class="svp-tile-line s2"></span>
-          </article>
+        <div class="svp-ex-doc-body">
+          <span class="svp-ex-line w92"></span>
+          <div class="svp-ex-flow">
+            <span class="svp-ex-inline w28"></span>
+            <span class="svp-ex-val v1">$48,500</span>
+            <span class="svp-ex-inline w22"></span>
+          </div>
+          <span class="svp-ex-line w86"></span>
+          <div class="svp-ex-flow">
+            <span class="svp-ex-inline w34"></span>
+            <span class="svp-ex-val v2">6 weeks</span>
+          </div>
+          <span class="svp-ex-line w80"></span>
+          <div class="svp-ex-flow">
+            <span class="svp-ex-val v3">HVAC</span>
+            <span class="svp-ex-inline w42"></span>
+          </div>
+          <div class="svp-ex-flow">
+            <span class="svp-ex-inline w20"></span>
+            <span class="svp-ex-val v4">Miami FL</span>
+            <span class="svp-ex-inline w14"></span>
+          </div>
+          <span class="svp-ex-line w68"></span>
         </div>
-        <span class="svp-scan"></span>
+        <span class="svp-ex-scan" aria-hidden="true"></span>
       </div>
-      <div class="svp-chip c1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.2"/></svg>Every location</div>
-      <div class="svp-chip c2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Rich content</div>
+
+      <!-- Down arrow connector -->
+      <div class="svp-ex-flow-arrow" aria-hidden="true">
+        <span class="svp-ex-flow-line"></span>
+        <span class="svp-ex-flow-tip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 14l6 6 6-6"/></svg>
+        </span>
+      </div>
+
+      <!-- BOTTOM: extracted structured table -->
+      <div class="svp-ex-table">
+        <div class="svp-ex-table-head">
+          <span>FIELD</span>
+          <span>VALUE</span>
+        </div>
+        <div class="svp-ex-table-row r1"><span>Amount</span><span class="svp-ex-table-val">$48,500</span></div>
+        <div class="svp-ex-table-row r2"><span>Timeline</span><span class="svp-ex-table-val">6 weeks</span></div>
+        <div class="svp-ex-table-row r3"><span>Trade</span><span class="svp-ex-table-val">HVAC</span></div>
+        <div class="svp-ex-table-row r4"><span>Location</span><span class="svp-ex-table-val">Miami FL</span></div>
+      </div>
     </div>
 
     <!-- RIGHT · copy -->
     <div class="svp-copy">
-      <span class="svp-tag"><span class="svp-tag-dot"></span>[ SERVICE &amp; AREA PAGES ]</span>
-      <h2 class="svp-title" id="svp-title">A page for every service —<br><span class="svp-em">in every area you serve</span></h2>
-      <p class="svp-lead">We never cram your whole business onto one page. Erio builds a rich, dedicated page for each service you offer <em>and</em> each area you cover — so you surface for exactly what people search, wherever they're searching from.</p>
+      <span class="svp-tag"><span class="svp-tag-dot"></span>[ AI-POWERED DATA EXTRACTION ]</span>
+      <h2 class="svp-title" id="svp-title">Raw documents in —<br><span class="svp-em">structured data out</span></h2>
+      <p class="svp-lead">PDFs, spec sheets, contracts, supplier catalogs — the documents that eat hours of manual review. Trained to read what matters, then output it in the exact format your team already uses.</p>
 
       <div class="svp-points">
         <div class="svp-point">
-          <span class="svp-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v4h4"/><path d="M8 13h8M8 17h6"/></svg></span>
+          <span class="svp-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/><circle cx="11" cy="14" r="3"/><path d="M13.4 16.4 16 19"/></svg></span>
           <div class="svp-point-body">
-            <h3>Dedicated service pages</h3>
-            <p>Every service gets its own in-depth, keyword-rich page that tells Google — and your customers — exactly what you do and why you're the best at it.</p>
+            <h3>Reads what your industry actually deals with</h3>
+            <p>Multi-hundred-page specs, contract drawings, scanned PDFs, supplier sheets, takeoff exports — built around the formats and quirks of your trade.</p>
           </div>
         </div>
         <div class="svp-point">
-          <span class="svp-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg></span>
+          <span class="svp-point-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg></span>
           <div class="svp-point-body">
-            <h3>Local service-area pages</h3>
-            <p>A tailored page for each town and neighborhood you serve, so you rank across your entire market — not just where your office happens to sit.</p>
+            <h3>Outputs shaped to your workflow</h3>
+            <p>Excel rows, CSV imports, JSON tables, ready-to-send PDFs — formatted to fit the system your team already uses, not the other way around.</p>
           </div>
         </div>
       </div>
 
       <div class="svp-callout">
-        <span class="svp-callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg></span>
-        <p><strong>More pages means more ways to be found.</strong> Every service and every location becomes another doorway into your business — from search and from AI.</p>
+        <span class="svp-callout-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 1.8"/></svg></span>
+        <p><strong>What used to take hours of manual review</strong> happens in seconds — by a system that already knows exactly what your team is looking for.</p>
       </div>
     </div>
 
