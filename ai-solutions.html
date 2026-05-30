@@ -725,16 +725,17 @@
   .prop-grid {
     position: absolute;
     left: 50%;
-    top: -30px;
+    top: -60px;
     width: 100vw;
-    height: calc(100% + 60px);
+    height: calc(100% + 120px);
     transform: translateX(-50%);
     z-index: 0;
     pointer-events: none;
-    /* Fade out at all four edges — softer than a hard mask so the
-       grid bleeds organically into the dark hero. */
-    -webkit-mask-image: radial-gradient(ellipse 60% 72% at 50% 50%, rgba(0,0,0,1) 32%, rgba(0,0,0,0.72) 56%, rgba(0,0,0,0.3) 80%, transparent 100%);
-            mask-image: radial-gradient(ellipse 60% 72% at 50% 50%, rgba(0,0,0,1) 32%, rgba(0,0,0,0.72) 56%, rgba(0,0,0,0.3) 80%, transparent 100%);
+    /* Vertical fade — handled by this linear mask on the parent so it
+       reaches true transparent at the very top + bottom edges (no more
+       hard cutoff). Affects pattern + beams uniformly. */
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+            mask-image: linear-gradient(180deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
   }
   .prop-grid-pattern {
     position: absolute;
@@ -746,6 +747,11 @@
     background-size: 56px 56px;
     /* anchor cells at the viewport center so beams land on grid lines */
     background-position: 50% 50%;
+    /* Horizontal fade — radial with a tall (200 %) vertical radius so it
+       only contributes to the left/right fade. Vertical fade is handled
+       cleanly by the parent's linear mask. */
+    -webkit-mask-image: radial-gradient(ellipse 65% 200% at 50% 50%, rgba(0,0,0,1) 32%, rgba(0,0,0,0.72) 56%, rgba(0,0,0,0.3) 80%, transparent 100%);
+            mask-image: radial-gradient(ellipse 65% 200% at 50% 50%, rgba(0,0,0,1) 32%, rgba(0,0,0,0.72) 56%, rgba(0,0,0,0.3) 80%, transparent 100%);
   }
   /* Lift the actual content above the grid */
   .prop-stage, .prop-foot { position: relative; z-index: 1; }
@@ -775,9 +781,9 @@
   .prop-beam.left-1  { left: calc(50% - 588.8px); top: 60%; animation-delay: 0s;    }   /* k=-10 */
   .prop-beam.left-2  { left: calc(50% - 532.8px); top: 52%; animation-delay: -1.2s; }   /* k=-9  */
   .prop-beam.left-3  { left: calc(50% - 644.8px); top: 64%; animation-delay: -2.4s; }   /* k=-11 */
-  .prop-beam.right-1 { left: calc(50% + 531.2px); top: 56%; animation-delay: -0.6s; }   /* k=+10 */
-  .prop-beam.right-2 { left: calc(50% + 475.2px); top: 50%; animation-delay: -1.8s; }   /* k=+9  */
-  .prop-beam.right-3 { left: calc(50% + 587.2px); top: 62%; animation-delay: -3.0s; }   /* k=+11 */
+  .prop-beam.right-1 { left: calc(50% + 587.2px); top: 56%; animation-delay: -0.6s; }   /* k=+11 */
+  .prop-beam.right-2 { left: calc(50% + 531.2px); top: 50%; animation-delay: -1.8s; }   /* k=+10 */
+  .prop-beam.right-3 { left: calc(50% + 643.2px); top: 62%; animation-delay: -3.0s; }   /* k=+12 */
 
   @keyframes propBeamRise {
     0%   { opacity: 0; transform: translateY(0);     }
@@ -787,12 +793,18 @@
   }
 
   @media (max-width: 920px) {
-    /* Mobile: stacked layout — much taller section. Loosen the edge
-       mask, push the beams in closer to the viewport edges so they
-       stay in the empty band flanking the single column of containers. */
+    /* Mobile: stacked layout — much taller section. Tighten the
+       vertical fade percentage so the fade stays mostly inside the
+       60 px buffer (5 % of a ~1300 px tall grid ≈ 65 px). Widen the
+       horizontal radial so beams in the inner cells (k=±4..±7) stay
+       within the visible halo. */
     .prop-grid {
-      -webkit-mask-image: radial-gradient(ellipse 80% 86% at 50% 50%, rgba(0,0,0,1) 28%, rgba(0,0,0,0.7) 60%, rgba(0,0,0,0.3) 86%, transparent 100%);
-              mask-image: radial-gradient(ellipse 80% 86% at 50% 50%, rgba(0,0,0,1) 28%, rgba(0,0,0,0.7) 60%, rgba(0,0,0,0.3) 86%, transparent 100%);
+      -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 5%, #000 95%, transparent 100%);
+              mask-image: linear-gradient(180deg, transparent 0%, #000 5%, #000 95%, transparent 100%);
+    }
+    .prop-grid-pattern {
+      -webkit-mask-image: radial-gradient(ellipse 85% 200% at 50% 50%, rgba(0,0,0,1) 28%, rgba(0,0,0,0.7) 60%, rgba(0,0,0,0.3) 86%, transparent 100%);
+              mask-image: radial-gradient(ellipse 85% 200% at 50% 50%, rgba(0,0,0,1) 28%, rgba(0,0,0,0.7) 60%, rgba(0,0,0,0.3) 86%, transparent 100%);
     }
     /* Mobile snap: pull beams to closer-in vertical grid lines (k=±5..±7)
        so they stay in the visible band that flanks the single stacked
@@ -800,9 +812,9 @@
     .prop-beam.left-1  { left: calc(50% - 308.8px); }  /* k=-5 */
     .prop-beam.left-2  { left: calc(50% - 252.8px); }  /* k=-4 */
     .prop-beam.left-3  { left: calc(50% - 364.8px); }  /* k=-6 */
-    .prop-beam.right-1 { left: calc(50% + 251.2px); }  /* k=+5 */
-    .prop-beam.right-2 { left: calc(50% + 195.2px); }  /* k=+4 */
-    .prop-beam.right-3 { left: calc(50% + 307.2px); }  /* k=+6 */
+    .prop-beam.right-1 { left: calc(50% + 307.2px); }  /* k=+6 */
+    .prop-beam.right-2 { left: calc(50% + 251.2px); }  /* k=+5 */
+    .prop-beam.right-3 { left: calc(50% + 363.2px); }  /* k=+7 */
   }
   @media (max-width: 480px) {
     /* On the smallest phones the field is narrow — keep just two
@@ -1281,10 +1293,10 @@
   /* ai-solutions only: tune the empty space between the "Schedule Demo"
      CTA and the AI Proposal Generator tool below it. Scoped via this
      page-local <style> block so other pages keep the original spacing. */
-  .cta-frame { margin-bottom: 120px; }
-  @media (max-width: 720px) { .cta-frame { margin-bottom: 84px; } }
-  @media (max-width: 520px) { .cta-frame { margin-bottom: 72px; } }
-  .prop { margin-top: clamp(14px, 1.5vw, 27px); }
+  .cta-frame { margin-bottom: 210px; }
+  @media (max-width: 720px) { .cta-frame { margin-bottom: 147px; } }
+  @media (max-width: 520px) { .cta-frame { margin-bottom: 126px; } }
+  .prop { margin-top: clamp(25px, 2.6vw, 47px); }
 </style>
 
 <!-- jsPDF for browser-side PDF generation -->
