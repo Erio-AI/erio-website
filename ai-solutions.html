@@ -879,33 +879,118 @@
             drop-shadow(0 0 3px  rgba(64, 235, 255, 0.55));
   }
 
-  /* central app panel -------------------------------------------------- */
+  /* central phone -------------------------------------------------------
+     The outer .seo-lab-panel is the phone bezel/body. The inner
+     .seo-lab-screen is the actual display. A top "Dynamic Island"
+     notch and a bottom home indicator complete the device shape. */
   .seo-lab-panel {
     position: absolute;
     top: 50%; left: 50%;
-    width: 76%; height: 66%;
+    width: 46%;
+    aspect-ratio: 9 / 19;
+    max-height: 86%;
     transform: translate(-50%, -50%);
-    display: flex; flex-direction: column;
-    padding: 13px 14px;
-    border-radius: 13px;
+    padding: 4.5px;
+    border-radius: 26px;
     background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.012) 42%),
-      linear-gradient(180deg, rgba(11, 28, 37, 0.78), rgba(6, 15, 21, 0.82));
-    border: 1px solid rgba(120, 200, 222, 0.22);
-    box-shadow: 0 30px 60px -26px rgba(0, 0, 0, 0.8), inset 0 0 0 1px rgba(255, 255, 255, 0.04);
-    backdrop-filter: blur(20px) saturate(160%);
-    -webkit-backdrop-filter: blur(20px) saturate(160%);
+      linear-gradient(180deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.02) 35%),
+      linear-gradient(180deg, #15323e, #061520);
+    border: 1px solid rgba(120, 200, 222, 0.32);
+    box-shadow:
+      0 36px 70px -28px rgba(0, 0, 0, 0.85),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+      inset 0 -8px 16px -10px rgba(0, 0, 0, 0.5);
     z-index: 2;
     animation: seoLabPanelGlow 4.2s ease-in-out infinite;
   }
   @keyframes seoLabPanelGlow {
-    0%, 100% { box-shadow: 0 30px 60px -26px rgba(0, 0, 0, 0.8), inset 0 0 0 1px rgba(255, 255, 255, 0.04), 0 0 0 0 rgba(64, 235, 255, 0); }
-    50%      { box-shadow: 0 30px 60px -26px rgba(0, 0, 0, 0.8), inset 0 0 0 1px rgba(255, 255, 255, 0.06), 0 0 36px -8px rgba(64, 235, 255, 0.45); }
+    0%, 100% { box-shadow: 0 36px 70px -28px rgba(0, 0, 0, 0.85), inset 0 0 0 1px rgba(255, 255, 255, 0.06), inset 0 -8px 16px -10px rgba(0, 0, 0, 0.5), 0 0 0 0 rgba(64, 235, 255, 0); }
+    50%      { box-shadow: 0 36px 70px -28px rgba(0, 0, 0, 0.85), inset 0 0 0 1px rgba(255, 255, 255, 0.08), inset 0 -8px 16px -10px rgba(0, 0, 0, 0.5), 0 0 40px -8px rgba(64, 235, 255, 0.5); }
+  }
+  /* power-button silhouette on the right side of the phone */
+  .seo-lab-side {
+    position: absolute;
+    top: 24%; right: -1.5px;
+    width: 1.5px; height: 11%;
+    border-radius: 0 1.5px 1.5px 0;
+    background: linear-gradient(180deg, #1a3a47, #0a1c25);
+  }
+  /* inner screen */
+  .seo-lab-screen {
+    position: relative;
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    padding: 18px 9px 11px;
+    border-radius: 22px;
+    background:
+      radial-gradient(120% 60% at 50% 0%, rgba(64, 235, 255, 0.05), transparent 60%),
+      linear-gradient(180deg, rgba(11, 28, 37, 0.96), rgba(6, 15, 21, 0.98));
+    overflow: hidden;
+  }
+  /* Dynamic-Island-style notch at top */
+  .seo-lab-notch {
+    position: absolute;
+    top: 5px; left: 50%;
+    transform: translateX(-50%);
+    width: 32%; height: 8.5px;
+    border-radius: 999px;
+    background: #02080d;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+    z-index: 6;
+  }
+  /* home indicator pill at bottom */
+  .seo-lab-home {
+    position: absolute;
+    bottom: 4px; left: 50%;
+    transform: translateX(-50%);
+    width: 36%; height: 2.5px;
+    border-radius: 999px;
+    background: rgba(234, 246, 251, 0.55);
+    z-index: 4;
+  }
+  /* tiny status bar (time + signal/battery glyphs) */
+  .seo-lab-statusbar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 4px 7px;
+    font-family: 'Exo 2', system-ui, sans-serif;
+  }
+  .seo-lab-time {
+    font-size: 7.5px; font-weight: 800;
+    letter-spacing: 0.02em;
+    color: rgba(234, 246, 251, 0.85);
+  }
+  .seo-lab-status-right {
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+  .seo-lab-signal {
+    width: 8px; height: 5.5px;
+    background:
+      linear-gradient(180deg, transparent 0 30%, rgba(234, 246, 251, 0.85) 30% 100%);
+    clip-path: polygon(0% 100%, 22% 100%, 22% 70%, 0% 70%,
+                       33% 100%, 55% 100%, 55% 50%, 33% 50%,
+                       66% 100%, 88% 100%, 88% 25%, 66% 25%,
+                       100% 100%, 100% 0%);
+  }
+  .seo-lab-battery {
+    width: 11px; height: 5.5px;
+    border-radius: 1.2px;
+    background: linear-gradient(90deg, rgba(64, 235, 255, 0.85) 60%, rgba(234, 246, 251, 0.18) 60%);
+    box-shadow: inset 0 0 0 0.5px rgba(234, 246, 251, 0.55);
+    position: relative;
+  }
+  .seo-lab-battery::after {
+    content: "";
+    position: absolute;
+    top: 50%; right: -1.6px;
+    transform: translateY(-50%);
+    width: 1.2px; height: 2.5px;
+    border-radius: 0 1px 1px 0;
+    background: rgba(234, 246, 251, 0.55);
   }
   .seo-lab-panel-head {
     display: flex; align-items: center; justify-content: space-between;
-    padding-bottom: 9px; margin-bottom: 11px;
-    border-bottom: 1px solid rgba(120, 200, 222, 0.12);
+    padding-bottom: 7px; margin-bottom: 9px;
+    border-bottom: 1px solid rgba(120, 200, 222, 0.14);
   }
   .seo-lab-panel-name {
     font-family: 'Exo 2', system-ui, sans-serif;
@@ -3842,27 +3927,41 @@
         </g>
       </svg>
 
-      <!-- central panel: a tiny custom-built app being assembled -->
+      <!-- central phone: a tiny custom-built app being assembled
+           on a mobile device. The outer .seo-lab-panel is the phone
+           bezel; the inner .seo-lab-screen is the actual display. -->
       <div class="seo-lab-panel">
-        <div class="seo-lab-panel-head">
-          <span class="seo-lab-panel-name">your.app</span>
-          <span class="seo-lab-panel-dots"><i></i><i></i><i></i></span>
-        </div>
-        <div class="seo-lab-panel-body">
-          <div class="seo-lab-input">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6"/><path d="M21 21l-4.3-4.3"/></svg>
-            <span class="seo-lab-input-line"></span>
+        <span class="seo-lab-side" aria-hidden="true"></span>
+        <div class="seo-lab-screen">
+          <span class="seo-lab-notch" aria-hidden="true"></span>
+          <div class="seo-lab-statusbar" aria-hidden="true">
+            <span class="seo-lab-time">9:41</span>
+            <span class="seo-lab-status-right">
+              <i class="seo-lab-signal"></i>
+              <i class="seo-lab-battery"></i>
+            </span>
           </div>
-          <div class="seo-lab-row">
-            <i></i><i></i><i></i><i></i>
+          <div class="seo-lab-panel-head">
+            <span class="seo-lab-panel-name">your.app</span>
+            <span class="seo-lab-panel-dots"><i></i><i></i><i></i></span>
           </div>
-          <div class="seo-lab-row r2">
-            <i></i><i></i><i></i><i></i>
+          <div class="seo-lab-panel-body">
+            <div class="seo-lab-input">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6"/><path d="M21 21l-4.3-4.3"/></svg>
+              <span class="seo-lab-input-line"></span>
+            </div>
+            <div class="seo-lab-row">
+              <i></i><i></i><i></i><i></i>
+            </div>
+            <div class="seo-lab-row r2">
+              <i></i><i></i><i></i><i></i>
+            </div>
+            <div class="seo-lab-chart">
+              <i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+            <span class="seo-lab-btn">Generate</span>
           </div>
-          <div class="seo-lab-chart">
-            <i></i><i></i><i></i><i></i><i></i><i></i>
-          </div>
-          <span class="seo-lab-btn">Generate</span>
+          <span class="seo-lab-home" aria-hidden="true"></span>
         </div>
       </div>
 
