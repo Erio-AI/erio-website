@@ -273,6 +273,11 @@
           </div>
 
           <div class="prop-field">
+            <label class="prop-label" for="propDescription">Project description <em class="prop-label-hint">factored into the proposal overview</em></label>
+            <textarea class="prop-input prop-input-area" id="propDescription" rows="3" placeholder="Full-scope renovation of the existing kitchen and primary bath. Demo and rebuild including cabinetry, counters, tile, and select plumbing fixtures. Owner-selected finishes throughout." autocomplete="off"></textarea>
+          </div>
+
+          <div class="prop-field">
             <label class="prop-label" for="propAddr">Project address</label>
             <input class="prop-input" id="propAddr" type="text" placeholder="221 Coral Way, Miami FL 33145" autocomplete="off" />
           </div>
@@ -342,6 +347,7 @@
             </div>
 
             <h3 class="prop-page-projecttitle" data-p="project">[ Project name ]</h3>
+            <p class="prop-page-desc" data-p="desc">[ project description ]</p>
 
             <ul class="prop-page-rows">
               <li><span>Trade</span><em data-p="trade">Handyman</em></li>
@@ -564,6 +570,26 @@
   .prop-input-wrap .prop-input:focus {
     background: transparent;
     box-shadow: none;
+  }
+  /* Project description — textarea variant of .prop-input */
+  .prop-input-area {
+    resize: vertical;
+    min-height: 96px;
+    line-height: 1.5;
+    font-family: 'Exo 2', system-ui, sans-serif;
+    display: block;
+  }
+  /* description echo on the cover-page preview, clamped to 2 lines */
+  .prop-page-desc {
+    margin: -14px 0 18px;
+    font-size: 10.5px;
+    line-height: 1.5;
+    color: #4f6772;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   /* trade chips */
@@ -1079,7 +1105,8 @@
       project:  document.getElementById('propProject'),
       addr:     document.getElementById('propAddr'),
       amount:   document.getElementById('propAmount'),
-      weeks:    document.getElementById('propWeeks')
+      weeks:    document.getElementById('propWeeks'),
+      description: document.getElementById('propDescription')
     };
     var preview = {
       company: $('[data-p="company"]'),
@@ -1089,7 +1116,8 @@
       amount:  $('[data-p="amount"]'),
       weeks:   $('[data-p="weeks"]'),
       trade:   $('[data-p="trade"]'),
-      id:      $('[data-p="id"]')
+      id:      $('[data-p="id"]'),
+      desc:    $('[data-p="desc"]')
     };
 
     /* placeholders that act as defaults if the user leaves a field blank */
@@ -1099,7 +1127,8 @@
       project: 'Kitchen & primary bath renovation',
       addr:    '221 Coral Way, Miami FL 33145',
       amount:  '48500',
-      weeks:   '6'
+      weeks:   '6',
+      description: 'Full-scope renovation of the existing kitchen and primary bath. Demo and rebuild including cabinetry, counters, tile, and select plumbing fixtures. Owner-selected finishes throughout. Work to be staged so the family can remain on-site during construction.'
     };
 
     /* ── helpers ── */
@@ -1138,6 +1167,7 @@
         addr:     get('addr'),
         amount:   get('amount'),
         weeks:    get('weeks'),
+        description: get('description'),
         id:       proposalId
       };
     }
@@ -1152,6 +1182,7 @@
       if (preview.weeks)   preview.weeks.textContent   = fmtWeeks(inputs.weeks.value || DEFAULTS.weeks);
       if (preview.trade)   preview.trade.textContent   = d.tradeLbl;
       if (preview.id)      preview.id.textContent      = d.id;
+      if (preview.desc)    preview.desc.textContent    = trim(inputs.description.value) || DEFAULTS.description;
     }
 
     /* wire live preview */
@@ -1270,10 +1301,19 @@
       // footer
       footer(doc, M, W, H, 1, 3);
 
-      /* ───── PAGE 2 · SCOPE + EXCLUSIONS ───── */
+      /* ───── PAGE 2 · OVERVIEW + SCOPE + EXCLUSIONS ───── */
       doc.addPage();
       header(doc, M, W, d);
       var y = M + 28;
+      // Project Overview — derived from the user-supplied description
+      y = sectionHead(doc, 'Project Overview', M, y, W);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(10.5);
+      doc.setTextColor.apply(doc, COLORS.ink);
+      var descLines = doc.splitTextToSize(d.description, W - M * 2);
+      doc.text(descLines, M, y + 6);
+      y += 6 + descLines.length * 13 + 14;
+
       y = sectionHead(doc, 'Scope of Work', M, y, W);
       var t = TRADES[d.trade] || TRADES[FALLBACK_TRADE];
       y = bulletList(doc, t.scope, M, y, W, M);
