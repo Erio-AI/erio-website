@@ -387,6 +387,32 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
             Downloaded
           </span>
+
+          <!-- AI Compositor overlay — sequenced multi-step processing display -->
+          <div class="prop-ai" aria-hidden="true">
+            <div class="prop-ai-stack">
+              <div class="prop-ai-orb">
+                <span class="prop-ai-orb-blade b2"></span>
+                <span class="prop-ai-orb-blade b1"></span>
+                <span class="prop-ai-orb-ring r1"></span>
+                <span class="prop-ai-orb-ring r2"></span>
+                <span class="prop-ai-orb-ring r3"></span>
+                <span class="prop-ai-orb-core"></span>
+              </div>
+              <div class="prop-ai-tag">
+                <span class="prop-ai-tag-dot"></span>AI · COMPOSING PROPOSAL
+              </div>
+              <ul class="prop-ai-steps">
+                <li class="prop-ai-step-item"><span class="prop-ai-step-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Reading project details</li>
+                <li class="prop-ai-step-item"><span class="prop-ai-step-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Loading <em data-ai-trade>scope</em> templates</li>
+                <li class="prop-ai-step-item"><span class="prop-ai-step-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Composing scope &amp; exclusions</li>
+                <li class="prop-ai-step-item"><span class="prop-ai-step-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Generating payment schedule</li>
+                <li class="prop-ai-step-item"><span class="prop-ai-step-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Rendering branded PDF</li>
+                <li class="prop-ai-step-item"><span class="prop-ai-step-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Finalizing</li>
+              </ul>
+              <div class="prop-ai-bar"><span class="prop-ai-bar-fill"></span></div>
+            </div>
+          </div>
         </div>
 
         <div class="prop-cf prop-cf-1"><span class="prop-cf-dot"></span><span data-p="pages">3 pages</span></div>
@@ -667,6 +693,177 @@
     transition: background 0.2s, transform 0.2s var(--ease-velvet, ease);
   }
   .prop-drop-x:hover { background: rgba(11, 30, 40, 0.95); transform: scale(1.08); }
+
+  /* ═════ AI COMPOSITOR overlay (Generate-time loading effect) ═════
+     Sits over the entire preview frame while the AI "composes" the
+     proposal. Pulsing cyan orb, blinking AI tag, 6-step ticking
+     checklist, and a gradient progress bar. Activates by adding
+     .is-ai-running on .prop-stage. */
+  .prop-ai {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    display: grid; place-items: center;
+    padding: 18px;
+    background: linear-gradient(180deg, rgba(7, 19, 26, 0.86), rgba(11, 30, 40, 0.86));
+    backdrop-filter: blur(7px) saturate(140%);
+    -webkit-backdrop-filter: blur(7px) saturate(140%);
+    border-radius: 14px;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.32s var(--ease-velvet, ease);
+    overflow: hidden;
+  }
+  /* a faint cyan grain wash behind everything to give depth */
+  .prop-ai::before {
+    content: "";
+    position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(75% 60% at 50% 35%, rgba(64,235,255,0.10), transparent 65%),
+      radial-gradient(60% 50% at 50% 100%, rgba(83,185,224,0.10), transparent 70%);
+  }
+  .prop-stage.is-ai-running .prop-ai { opacity: 1; }
+
+  .prop-ai-stack {
+    position: relative;
+    display: flex; flex-direction: column; align-items: center;
+    gap: 16px;
+    max-width: 92%;
+  }
+
+  /* --- orb --- */
+  .prop-ai-orb {
+    position: relative;
+    width: 58px; height: 58px;
+    margin-bottom: 4px;
+  }
+  .prop-ai-orb-core {
+    position: absolute; inset: 30%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 32% 28%, #bff6ff, #2bb6c8 70%, #1f9fb6);
+    box-shadow:
+      0 0 14px rgba(64, 235, 255, 0.95),
+      0 0 30px rgba(64, 235, 255, 0.4),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+    animation: propAiCore 1.4s ease-in-out infinite;
+  }
+  .prop-ai-orb-ring {
+    position: absolute; inset: 0;
+    border-radius: 50%;
+    border: 1.4px solid rgba(64, 235, 255, 0.65);
+    opacity: 0;
+  }
+  .prop-stage.is-ai-running .prop-ai-orb-ring.r1 { animation: propAiRing 2.4s ease-out infinite 0s; }
+  .prop-stage.is-ai-running .prop-ai-orb-ring.r2 { animation: propAiRing 2.4s ease-out infinite 0.8s; }
+  .prop-stage.is-ai-running .prop-ai-orb-ring.r3 { animation: propAiRing 2.4s ease-out infinite 1.6s; }
+  .prop-ai-orb-blade {
+    position: absolute; inset: -3px;
+    border-radius: 50%;
+    border: 1px solid transparent;
+    border-top-color: rgba(111, 240, 255, 0.9);
+    border-right-color: rgba(64, 235, 255, 0.45);
+  }
+  .prop-ai-orb-blade.b2 {
+    inset: -10px;
+    border: 1px solid transparent;
+    border-top-color: rgba(159, 220, 239, 0.75);
+    border-left-color: rgba(83, 185, 224, 0.4);
+  }
+  .prop-stage.is-ai-running .prop-ai-orb-blade.b1 { animation: propAiBladeSpin 1.7s linear infinite; }
+  .prop-stage.is-ai-running .prop-ai-orb-blade.b2 { animation: propAiBladeSpinR 2.6s linear infinite; }
+  @keyframes propAiCore {
+    0%, 100% { transform: scale(0.9); }
+    50%      { transform: scale(1.05); }
+  }
+  @keyframes propAiRing {
+    0%   { transform: scale(0.55); opacity: 0; }
+    18%  { opacity: 0.9; }
+    100% { transform: scale(2.05); opacity: 0; }
+  }
+  @keyframes propAiBladeSpin  { to { transform: rotate(360deg); } }
+  @keyframes propAiBladeSpinR { to { transform: rotate(-360deg); } }
+
+  /* --- tag --- */
+  .prop-ai-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--p-pale, #9FDCEF);
+  }
+  .prop-ai-tag-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--p-cyan, #40EBFF);
+    box-shadow: 0 0 6px rgba(64, 235, 255, 0.85);
+  }
+  .prop-stage.is-ai-running .prop-ai-tag-dot { animation: propAiTagBlink 0.9s ease-in-out infinite; }
+  @keyframes propAiTagBlink { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+
+  /* --- step checklist --- */
+  .prop-ai-steps {
+    list-style: none; margin: 0; padding: 0;
+    display: flex; flex-direction: column; gap: 7px;
+    font: 600 11.5px/1.2 'Exo 2', system-ui, sans-serif;
+  }
+  .prop-ai-step-item {
+    display: inline-flex; align-items: center; gap: 10px;
+    color: rgba(159, 220, 239, 0.45);
+    transition: color 0.3s;
+    white-space: nowrap;
+  }
+  .prop-ai-step-item em { font-style: normal; font-weight: 700; color: inherit; }
+  .prop-ai-step-mark {
+    position: relative;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    border: 1.2px solid rgba(64, 235, 255, 0.4);
+    background: rgba(64, 235, 255, 0.06);
+    display: grid; place-items: center;
+    color: #04141b;
+    flex: 0 0 auto;
+    transition: background 0.3s, border-color 0.3s, box-shadow 0.3s, transform 0.3s var(--ease-velvet, ease);
+  }
+  .prop-ai-step-mark svg {
+    width: 9px; height: 9px;
+    opacity: 0;
+    transform: scale(0.55);
+    transition: opacity 0.25s, transform 0.25s var(--ease-velvet, ease);
+  }
+  .prop-ai-step-item.is-active {
+    color: rgba(234, 246, 251, 0.95);
+  }
+  .prop-ai-step-item.is-active .prop-ai-step-mark {
+    border-color: var(--p-cyan, #40EBFF);
+    background: rgba(64, 235, 255, 0.12);
+    transform: scale(1.06);
+    box-shadow: 0 0 0 3px rgba(64, 235, 255, 0.14);
+  }
+  .prop-ai-step-item.is-done {
+    color: var(--p-ink, #EAF6FB);
+  }
+  .prop-ai-step-item.is-done .prop-ai-step-mark {
+    background: linear-gradient(135deg, #6ff0ff, #2bb6c8);
+    border-color: transparent;
+    box-shadow: 0 0 12px rgba(64, 235, 255, 0.55);
+    transform: scale(1);
+  }
+  .prop-ai-step-item.is-done .prop-ai-step-mark svg {
+    opacity: 1; transform: scale(1);
+  }
+
+  /* --- progress bar --- */
+  .prop-ai-bar {
+    width: 240px; max-width: 86%;
+    height: 2px;
+    background: rgba(64, 235, 255, 0.16);
+    border-radius: 1px;
+    overflow: hidden;
+    position: relative;
+  }
+  .prop-ai-bar-fill {
+    display: block; width: 100%; height: 100%;
+    background: linear-gradient(90deg, #2bb6c8, #6ff0ff 50%, #2bb6c8);
+    transform-origin: left;
+    transform: scaleX(0);
+    box-shadow: 0 0 10px rgba(64, 235, 255, 0.6);
+  }
 
   /* trade chips */
   .prop-chip-row {
@@ -952,7 +1149,8 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .prop-scan-h, .prop-tag-dot, .prop-live-dot, .prop-page-1, .prop-cf, .prop-scan { animation: none !important; }
+    .prop-scan-h, .prop-tag-dot, .prop-live-dot, .prop-page-1, .prop-cf, .prop-scan,
+    .prop-ai-orb-core, .prop-ai-orb-ring, .prop-ai-orb-blade, .prop-ai-tag-dot { animation: none !important; }
   }
 
   /* ai-solutions only: tune the empty space between the "Schedule Demo"
@@ -1558,8 +1756,9 @@
 
       footer(doc, M, W, H, pageNum, totalPages);
 
-      var filename = 'Proposal — ' + sanitize(d.project) + '.pdf';
-      doc.save(filename);
+      // saving is deferred — handled by the click handler once the
+      // AI Compositor sequence has finished playing
+      return 'Proposal — ' + sanitize(d.project) + '.pdf';
     }
 
     /* ── pdf drawing helpers ── */
@@ -1734,6 +1933,60 @@
       return y + 4;
     }
 
+    /* ── AI Compositor — sequenced loading effect over the preview ── */
+    var aiOverlay     = stage.querySelector('.prop-ai');
+    var aiStepItems   = aiOverlay ? Array.prototype.slice.call(aiOverlay.querySelectorAll('.prop-ai-step-item')) : [];
+    var aiBarFill     = aiOverlay ? aiOverlay.querySelector('.prop-ai-bar-fill') : null;
+    var aiTradeLabel  = aiOverlay ? aiOverlay.querySelector('[data-ai-trade]') : null;
+    var AI_STEP_MS    = [320, 380, 460, 380, 540, 320]; // per-step durations
+    var AI_TAIL_MS    = 260;                            // brief hold after last tick
+
+    function aiReset() {
+      aiStepItems.forEach(function (el) { el.classList.remove('is-active', 'is-done'); });
+      if (aiBarFill) {
+        aiBarFill.style.transition = 'none';
+        aiBarFill.style.transform  = 'scaleX(0)';
+        // force reflow so the next transition starts clean
+        void aiBarFill.offsetWidth;
+      }
+    }
+    function aiRun(tradeLbl) {
+      return new Promise(function (resolve) {
+        if (!aiStepItems.length) { resolve(); return; }
+        if (aiTradeLabel) aiTradeLabel.textContent = (tradeLbl || 'scope').toLowerCase();
+        aiReset();
+
+        var total = AI_STEP_MS.reduce(function (a, b) { return a + b; }, 0) + AI_TAIL_MS;
+        if (aiBarFill) {
+          requestAnimationFrame(function () {
+            aiBarFill.style.transition = 'transform ' + total + 'ms cubic-bezier(0.4, 0, 0.2, 1)';
+            aiBarFill.style.transform  = 'scaleX(1)';
+          });
+        }
+
+        var i = 0;
+        function next() {
+          if (i >= aiStepItems.length) { setTimeout(resolve, AI_TAIL_MS); return; }
+          if (i > 0) {
+            aiStepItems[i - 1].classList.remove('is-active');
+            aiStepItems[i - 1].classList.add('is-done');
+          }
+          aiStepItems[i].classList.add('is-active');
+          var ms = AI_STEP_MS[i] || 380;
+          var done = (i === aiStepItems.length - 1);
+          i++;
+          setTimeout(function () {
+            if (done) {
+              aiStepItems[i - 1].classList.remove('is-active');
+              aiStepItems[i - 1].classList.add('is-done');
+            }
+            next();
+          }, ms);
+        }
+        next();
+      });
+    }
+
     /* ── click handler ── */
     if (generateBtn) {
       generateBtn.addEventListener('click', function () {
@@ -1747,25 +2000,33 @@
         generateBtn.disabled = true;
         generateBtn.classList.add('is-busy');
         stage.classList.remove('is-done');
-        stage.classList.add('is-generating');
-        if (origLabel) origLabel.textContent = 'Generating…';
+        stage.classList.add('is-generating', 'is-ai-running');
+        if (origLabel) origLabel.textContent = 'Composing…';
 
         withDoc(function (doc) {
+          var filename = 'Proposal.pdf';
           try {
-            buildPDF(d, doc);
+            filename = buildPDF(d, doc) || filename;
           } catch (err) {
             console.error(err);
             alert('Sorry — something went wrong generating the PDF. Refresh and try again.');
+            stage.classList.remove('is-generating', 'is-ai-running');
+            generateBtn.disabled = false;
+            generateBtn.classList.remove('is-busy');
+            if (origLabel) origLabel.textContent = origLabelText;
+            return;
           }
-          setTimeout(function () {
-            stage.classList.remove('is-generating');
+          aiRun(d.tradeLbl).then(function () {
+            // sequence finished — save the doc, swap overlay for the
+            // "Downloaded" badge, and reset the button.
+            try { doc.save(filename); } catch (e) { console.error(e); }
+            stage.classList.remove('is-generating', 'is-ai-running');
             stage.classList.add('is-done');
             generateBtn.disabled = false;
             generateBtn.classList.remove('is-busy');
             if (origLabel) origLabel.textContent = 'Download again';
-            // strip is-done after the badge animation completes (matches CSS dur)
             setTimeout(function () { stage.classList.remove('is-done'); }, 1700);
-          }, 1100);
+          });
         });
       });
     }
