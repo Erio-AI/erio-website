@@ -397,10 +397,10 @@
     position: relative;
     z-index: 2;
     isolation: isolate;
-    width: min(95vw, 1340px);
+    width: 100%;
+    max-width: 1180px;
     margin: clamp(18px, 2vw, 36px) auto 0;
     font-family: 'Exo 2', system-ui, sans-serif;
-    overflow: clip;
   }
 
   /* atmospheric layers */
@@ -468,12 +468,14 @@
   }
   .prop-lead { margin: 0 auto; max-width: 720px; font-size: 15px; line-height: 1.65; color: var(--p-mute); }
 
-  /* stage layout */
+  /* stage layout — two centered columns of fixed max size so the pair
+     sits dead-centre in the hero rather than weighting one side */
   .prop-stage {
     display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
-    gap: clamp(24px, 2.4vw, 44px);
+    grid-template-columns: minmax(0, 540px) minmax(0, 460px);
+    justify-content: center;
     align-items: stretch;
+    gap: clamp(24px, 2.4vw, 44px);
   }
 
   /* glass card base */
@@ -669,14 +671,14 @@
     color: #0B1E28;
   }
   .prop-page-1 {
-    transform: translate(-6px, -10px) rotate(-1.6deg);
+    transform: translate(0, 6px) rotate(-1.6deg);
     padding: 30px 28px 24px;
     color: #0B1E28;
     animation: propPageFloat 7s ease-in-out infinite;
   }
   @keyframes propPageFloat {
-    0%, 100% { transform: translate(-6px, -10px) rotate(-1.6deg); }
-    50%      { transform: translate(-6px, -16px) rotate(-1.6deg); }
+    0%, 100% { transform: translate(0, 6px) rotate(-1.6deg); }
+    50%      { transform: translate(0, 0px) rotate(-1.6deg); }
   }
 
   /* page 1 (cover) layout */
@@ -825,9 +827,9 @@
 
   /* responsive */
   @media (max-width: 920px) {
-    .prop { padding: 32px 18px 44px; border-radius: 26px; }
-    .prop-stage { grid-template-columns: 1fr; gap: 28px; }
-    .prop-preview { min-height: 420px; }
+    .prop-stage { grid-template-columns: 1fr; gap: 28px; justify-items: center; }
+    .prop-form-card { width: 100%; max-width: 540px; }
+    .prop-preview { min-height: 420px; width: 100%; }
     .prop-preview-frame { max-width: 380px; }
     .prop-cf-1 { top: 2%; right: 0%; }
     .prop-cf-2 { left: 0%; }
