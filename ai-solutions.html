@@ -1534,11 +1534,11 @@
      transition cascades through the pipeline in sequence on the
      shared 10s loop. Pill label is swapped via a tiny pseudo-element
      overlay (kept text-only — the dot + colour communicate state). */
-  .spd-step.s1 { animation: spdStep1 10s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
-  .spd-step.s2 { animation: spdStep2 10s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
-  .spd-step.s3 { animation: spdStep3 10s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
-  .spd-step.s4 { animation: spdStep4 10s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
-  .spd-step.s5 { animation: spdStep5 10s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+  .spd-step.s1 { margin-right: 33%; animation: spdStep1 10s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+  .spd-step.s2 { margin-left:  33%; animation: spdStep2 10s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+  .spd-step.s3 { margin-right: 33%; animation: spdStep3 10s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+  .spd-step.s4 { margin-left:  33%; animation: spdStep4 10s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+  .spd-step.s5 { margin-right: 33%; animation: spdStep5 10s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
 
   /* per-step state cascade — each keyframe carries the card-border,
      pill-bg + colour, num-colour, and icon-bg through idle/running/
