@@ -218,291 +218,1283 @@
   </div>
 
   <!-- ============================================================
-       FLOATING CONTRACTOR-WEBSITE PREVIEW — layered glass panels
-       (transparent stage; a hero background image can sit behind it)
+       AI PROPOSAL GENERATOR — interactive demo (replaces former
+       Summit Build Co. mock-website example). All styles scoped to
+       .prop-* so nothing leaks to other pages.
   ============================================================ -->
-  <div class="cw-stage" aria-label="Example general-contractor website" role="img">
-    <div class="cw-aura" aria-hidden="true"></div>
+  <section class="prop" aria-labelledby="prop-title">
+    <div class="prop-bg" aria-hidden="true"></div>
+    <div class="prop-glow" aria-hidden="true"></div>
+    <div class="prop-scan-h" aria-hidden="true"></div>
 
-    <!-- ───── floating nav bar ───── -->
-    <div class="cw-float cw-pos-nav" data-depth="7" style="--fdur:8s; --fph:-1.2s;">
-      <nav class="cw-panel cw-nav" style="--rev:.10s">
-        <div class="cw-brand">
-          <span class="cw-brand-mark" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 L12 5 L21 20"/><path d="M7.6 20 L12 12 L16.4 20"/></svg>
+    <header class="prop-head">
+      <span class="prop-tag"><span class="prop-tag-dot"></span>[ AI PROPOSAL GENERATOR ]</span>
+      <h2 class="prop-title" id="prop-title">Try one live —<br><span class="prop-em">watch a proposal write itself.</span></h2>
+      <p class="prop-lead">A working example of the kind of custom tool we build for contractors. Plug in a few details, get back a polished PDF proposal — engineered around how you actually work.</p>
+    </header>
+
+    <div class="prop-stage">
+
+      <!-- ───── LEFT · composer (input) ───── -->
+      <div class="prop-form-card">
+        <div class="prop-form-head">
+          <span class="prop-form-title-grp">
+            <span class="prop-live-dot" aria-hidden="true"></span>
+            <span class="prop-form-title">Composer</span>
+            <span class="prop-form-sub">input · output</span>
           </span>
-          <span class="cw-brand-name">SUMMIT<em>Build&nbsp;Co.</em></span>
+          <span class="prop-form-ver">v1.0</span>
         </div>
-        <div class="cw-nav-links">
-          <span class="is-active">Services</span>
-          <span>Service Areas</span>
-          <span>Projects</span>
-          <span>About</span>
-          <span>Contact</span>
-        </div>
-        <div class="cw-nav-right">
-          <a class="cw-nav-phone" href="tel:+17867880486">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5 9 4l1.2 3.4-1.8 1.3a10.5 10.5 0 0 0 4.6 4.6l1.3-1.8L17.7 13l.5 2.5a1.4 1.4 0 0 1-1.5 1.7A13.6 13.6 0 0 1 4.3 5a1.4 1.4 0 0 1 1.7-1.5"/></svg>
-            (786)&nbsp;788-0486
-          </a>
-          <a class="cw-nav-cta" href="/book">Book Appointment</a>
-        </div>
-      </nav>
-    </div>
 
-    <!-- ───── hero text panel ───── -->
-    <div class="cw-float cw-pos-hero" data-depth="3" style="--fdur:9.5s; --fph:-3s;">
-      <div class="cw-panel cw-hero" style="--rev:.24s">
-        <span class="cw-eyebrow"><span class="cw-eyebrow-dot"></span>Licensed &amp; Insured · Since 2008</span>
-        <h3 class="cw-headline">Your project,<br><span class="cw-grad">built right.</span></h3>
-        <p class="cw-sub">Remodels, repairs &amp; new builds from a crew you can trust — clear quotes, clean job sites, finished on schedule.</p>
-        <div class="cw-hero-actions">
-          <a class="cw-btn cw-btn-fill" href="/book">Get a Free Quote
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </a>
-          <a class="cw-btn cw-btn-ghost" href="/book">View Projects</a>
-        </div>
-        <div class="cw-trust">
-          <span class="cw-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Free estimates</span>
-          <span class="cw-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>5-yr warranty</span>
-          <span class="cw-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>On-time guarantee</span>
-        </div>
-      </div>
-    </div>
+        <div class="prop-form-body">
 
-    <!-- ───── review badge (floating chip) ───── -->
-    <div class="cw-float cw-pos-review" data-depth="12" style="--fdur:7s; --fph:-5s;">
-      <div class="cw-panel cw-review" style="--rev:.56s">
-        <div class="cw-review-stars" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 5.9 6.6.9-4.8 4.6 1.1 6.5L12 21.3 6.2 20.4l1.1-6.5-4.8-4.6 6.6-.9z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 5.9 6.6.9-4.8 4.6 1.1 6.5L12 21.3 6.2 20.4l1.1-6.5-4.8-4.6 6.6-.9z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 5.9 6.6.9-4.8 4.6 1.1 6.5L12 21.3 6.2 20.4l1.1-6.5-4.8-4.6 6.6-.9z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 5.9 6.6.9-4.8 4.6 1.1 6.5L12 21.3 6.2 20.4l1.1-6.5-4.8-4.6 6.6-.9z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 5.9 6.6.9-4.8 4.6 1.1 6.5L12 21.3 6.2 20.4l1.1-6.5-4.8-4.6 6.6-.9z"/></svg>
-        </div>
-        <div class="cw-review-meta"><strong>4.9</strong><span>280+ verified reviews</span></div>
-        <div class="cw-avatars" aria-hidden="true">
-          <span><img src="Profile%20Pictures/happy-male-photographer-showing-result-of-content-2025-03-18-16-21-22-utc.png" alt="" loading="lazy"></span>
-          <span><img src="Profile%20Pictures/happy-young-smiling-woman-taking-a-self-portrait-p-2025-01-08-14-17-44-utc.png" alt="" loading="lazy"></span>
-          <span><img src="Profile%20Pictures/man-photographing-family-2025-03-15-08-22-07-utc.png" alt="" loading="lazy"></span>
-          <span><img src="Profile%20Pictures/young-couple-walking-in-the-background-of-a-large-2024-10-17-13-22-40-utc.png" alt="" loading="lazy"></span>
-          <span class="cw-av-more">+9</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- ───── get-a-free-quote form ───── -->
-    <div class="cw-float cw-pos-form" data-depth="6" style="--fdur:8.6s; --fph:-2s;">
-      <form class="cw-panel cw-form" style="--rev:.36s" onsubmit="return false">
-        <div class="cw-form-head">
-          <span class="cw-form-title">Get a Free Quote</span>
-          <span class="cw-form-pill">~1&nbsp;hr reply</span>
-        </div>
-        <div class="cw-field">
-          <span class="cw-field-label">Full name</span>
-          <span class="cw-field-box">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg>
-            <span class="cw-field-val" data-cw-type="Jordan Mitchell">Jordan Mitchell</span>
-          </span>
-        </div>
-        <div class="cw-field-row">
-          <div class="cw-field">
-            <span class="cw-field-label">Phone</span>
-            <span class="cw-field-box">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5 9 4l1.2 3.4-1.8 1.3a10.5 10.5 0 0 0 4.6 4.6l1.3-1.8L17.7 13l.5 2.5a1.4 1.4 0 0 1-1.5 1.7A13.6 13.6 0 0 1 4.3 5a1.4 1.4 0 0 1 1.7-1.5"/></svg>
-              <span class="cw-field-val" data-cw-type="(305) 555-0142">(305) 555-0142</span>
-            </span>
-          </div>
-          <div class="cw-field">
-            <span class="cw-field-label">Zip</span>
-            <span class="cw-field-box">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
-              <span class="cw-field-val" data-cw-type="33131">33131</span>
-            </span>
-          </div>
-        </div>
-        <div class="cw-field">
-          <span class="cw-field-label">Service needed</span>
-          <span class="cw-field-box cw-field-select">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 6a3.5 3.5 0 0 0-4.6 4.3L4 16.2 7.8 20l5.9-5.9A3.5 3.5 0 0 0 18 9.5l-2.3 2.3-2-2L16 7.5z"/></svg>
-            <span class="cw-field-val" data-cw-type="Kitchen Remodel">Kitchen Remodel</span>
-            <svg class="cw-field-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-          </span>
-        </div>
-        <div class="cw-field">
-          <span class="cw-field-label">Project details</span>
-          <span class="cw-field-box cw-field-area">
-            <span class="cw-field-val" data-cw-type="Full kitchen reno — cabinets, counters &amp; island">Full kitchen reno — cabinets, counters &amp; island</span>
-          </span>
-        </div>
-        <a class="cw-submit" href="/book">Get My Free Quote
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-        </a>
-        <span class="cw-form-foot">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
-          No spam · No obligation
-        </span>
-      </form>
-    </div>
-
-    <!-- ───── analytics carousel ───── -->
-    <div class="cw-float cw-pos-analytics" data-depth="4" style="--fdur:10s; --fph:-6s;">
-      <div class="cw-panel cw-analytics" style="--rev:.48s">
-        <div class="cw-ticker">
-          <div class="cw-ticker-track">
-            <!-- ── credibility ticker · set A ── -->
-            <div class="cw-stat"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5.5"/><path d="M8.5 13.5 7 22l5-2.7L17 22l-1.5-8.5"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">20+</span><span class="cw-stat-label">Years in business</span></span></div>
-            <div class="cw-stat"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 19 6v5c0 4.4-3 7.4-7 9-4-1.6-7-4.6-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">100%</span><span class="cw-stat-label">Insured &amp; bonded</span></span></div>
-            <div class="cw-stat"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="8.5" r="3"/><path d="M4 20a5.5 5.5 0 0 1 11 0"/><path d="M16 6a3 3 0 0 1 0 5.7"/><path d="M18.5 20a5.5 5.5 0 0 0-2.6-4.7"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">10,000+</span><span class="cw-stat-label">Customers served</span></span></div>
-            <div class="cw-stat"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.4-6-10a6 6 0 0 1 12 0c0 4.6-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">Local</span><span class="cw-stat-label">Owned &amp; operated</span></span></div>
-            <div class="cw-stat"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7 14.85 8.45 21.2 9.35 16.6 13.8 17.7 20.1 12 17.1 6.3 20.1 7.4 13.8 2.8 9.35 9.15 8.45 Z"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">280+</span><span class="cw-stat-label">5-star reviews</span></span></div>
-            <div class="cw-stat"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 1.8"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">98%</span><span class="cw-stat-label">On-time completion</span></span></div>
-            <div class="cw-stat"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3.5" width="16" height="12" rx="2"/><path d="M8.5 19.5 12 18l3.5 1.5v-4"/><path d="M8 7.5h8M8 10.5h5"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">Licensed</span><span class="cw-stat-label">GC&nbsp;#B-1184</span></span></div>
-            <div class="cw-stat"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 6a3.5 3.5 0 0 0-4.6 4.3L4 16.2 7.8 20l5.9-5.9A3.5 3.5 0 0 0 18 9.5l-2.3 2.3-2-2L16 7.5z"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">5-Year</span><span class="cw-stat-label">Workmanship warranty</span></span></div>
-            <!-- ── set B (duplicate for a seamless loop) ── -->
-            <div class="cw-stat" aria-hidden="true"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5.5"/><path d="M8.5 13.5 7 22l5-2.7L17 22l-1.5-8.5"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">20+</span><span class="cw-stat-label">Years in business</span></span></div>
-            <div class="cw-stat" aria-hidden="true"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 19 6v5c0 4.4-3 7.4-7 9-4-1.6-7-4.6-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">100%</span><span class="cw-stat-label">Insured &amp; bonded</span></span></div>
-            <div class="cw-stat" aria-hidden="true"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="8.5" r="3"/><path d="M4 20a5.5 5.5 0 0 1 11 0"/><path d="M16 6a3 3 0 0 1 0 5.7"/><path d="M18.5 20a5.5 5.5 0 0 0-2.6-4.7"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">10,000+</span><span class="cw-stat-label">Customers served</span></span></div>
-            <div class="cw-stat" aria-hidden="true"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.4-6-10a6 6 0 0 1 12 0c0 4.6-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">Local</span><span class="cw-stat-label">Owned &amp; operated</span></span></div>
-            <div class="cw-stat" aria-hidden="true"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7 14.85 8.45 21.2 9.35 16.6 13.8 17.7 20.1 12 17.1 6.3 20.1 7.4 13.8 2.8 9.35 9.15 8.45 Z"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">280+</span><span class="cw-stat-label">5-star reviews</span></span></div>
-            <div class="cw-stat" aria-hidden="true"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 1.8"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">98%</span><span class="cw-stat-label">On-time completion</span></span></div>
-            <div class="cw-stat" aria-hidden="true"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3.5" width="16" height="12" rx="2"/><path d="M8.5 19.5 12 18l3.5 1.5v-4"/><path d="M8 7.5h8M8 10.5h5"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">Licensed</span><span class="cw-stat-label">GC&nbsp;#B-1184</span></span></div>
-            <div class="cw-stat" aria-hidden="true"><span class="cw-stat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 6a3.5 3.5 0 0 0-4.6 4.3L4 16.2 7.8 20l5.9-5.9A3.5 3.5 0 0 0 18 9.5l-2.3 2.3-2-2L16 7.5z"/></svg></span><span class="cw-stat-body"><span class="cw-stat-num">5-Year</span><span class="cw-stat-label">Workmanship warranty</span></span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ═══════ Facebook live feed (2/3) + call/text chat (1/3) ═══════ -->
-    <div class="cw-float cw-pos-extra" data-depth="4">
-      <div class="cw-extra">
-
-        <!-- LEFT · Facebook feed, auto-published to the site -->
-        <section class="cw-panel cw-feed" style="--rev:.5s">
-          <header class="cw-feed-head">
-            <span class="cw-fb-mark" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.52 1.5-3.91 3.78-3.91 1.1 0 2.24.2 2.24.2v2.47H15.2c-1.24 0-1.63.78-1.63 1.57v1.88h2.78l-.44 2.9h-2.34V22c4.78-.79 8.43-4.94 8.43-9.94z"/></svg>
-            </span>
-            <div class="cw-feed-title">
-              <strong>Facebook Feed</strong>
-              <span>Auto-published to your website</span>
-            </div>
-            <span class="cw-feed-live" aria-hidden="true"><i></i>LIVE</span>
-          </header>
-
-          <div class="cw-feed-scroll">
-            <div class="cw-feed-list" data-cw-feed>
-              <!-- Three posts. One shows at a time and cross-fades on a
-                   continuous loop: bathroom → living room → bedroom → … -->
-              <article class="cw-post is-active">
-                <div class="cw-post-top">
-                  <span class="cw-post-av" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15"/><path d="M7.6 20 12 12l4.4 8"/></svg></span>
-                  <div class="cw-post-meta"><strong>Summit Build&nbsp;Co.</strong><span class="cw-post-time">Just now</span></div>
-                  <svg class="cw-post-src" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.52 1.5-3.91 3.78-3.91 1.1 0 2.24.2 2.24.2v2.47H15.2c-1.24 0-1.63.78-1.63 1.57v1.88h2.78l-.44 2.9h-2.34V22c4.78-.79 8.43-4.94 8.43-9.94z"/></svg>
-                </div>
-                <div class="cw-post-body">
-                  <div class="cw-post-media"><img src="post-bathroom.jpg" alt="Bathroom remodel by Summit Build Co." loading="lazy"></div>
-                  <div class="cw-post-side">
-                    <p class="cw-post-cap">Spa-style primary bath, handed over this morning — heated floors, rainfall shower, and that freestanding soaker tub. 🛁✨</p>
-                    <div class="cw-post-foot">
-                      <span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 10.5h3.5V22H2zM22 11.2a1.9 1.9 0 0 0-1.9-1.9h-4.7l.74-3.78A1.55 1.55 0 0 0 13 4.7L8 10.5V22h9.3a1.9 1.9 0 0 0 1.87-1.5l1.28-7a1.9 1.9 0 0 0 .05-.3z"/></svg>248</span>
-                      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M21 11.5a8 8 0 0 1-11.6 7.1L4 20.5l1.9-5.3A8 8 0 1 1 21 11.5z"/></svg>32</span>
-                      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M16 6l-4-4-4 4M12 2v13"/></svg>11</span>
-                    </div>
-                    <span class="cw-post-more">View all 32 comments</span>
-                    <div class="cw-post-comments">
-                      <div class="cw-cmt"><span class="cw-cmt-av">J</span><p><strong>Jessica&nbsp;R.</strong> Absolutely stunning 😍 the tub is everything</p></div>
-                      <div class="cw-cmt"><span class="cw-cmt-av">M</span><p><strong>Marcus&nbsp;D.</strong> That marble work is unreal. Booking you next.</p></div>
-                    </div>
-                  </div>
-                </div>
-              </article>
-              <article class="cw-post">
-                <div class="cw-post-top">
-                  <span class="cw-post-av" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15"/><path d="M7.6 20 12 12l4.4 8"/></svg></span>
-                  <div class="cw-post-meta"><strong>Summit Build&nbsp;Co.</strong><span class="cw-post-time">Just now</span></div>
-                  <svg class="cw-post-src" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.52 1.5-3.91 3.78-3.91 1.1 0 2.24.2 2.24.2v2.47H15.2c-1.24 0-1.63.78-1.63 1.57v1.88h2.78l-.44 2.9h-2.34V22c4.78-.79 8.43-4.94 8.43-9.94z"/></svg>
-                </div>
-                <div class="cw-post-body">
-                  <div class="cw-post-media"><img src="post-living.jpg" alt="Living room remodel by Summit Build Co." loading="lazy"></div>
-                  <div class="cw-post-side">
-                    <p class="cw-post-cap">Living room transformation complete — custom built-ins, white-oak floors, and a statement fireplace wall. 🔥</p>
-                    <div class="cw-post-foot">
-                      <span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 10.5h3.5V22H2zM22 11.2a1.9 1.9 0 0 0-1.9-1.9h-4.7l.74-3.78A1.55 1.55 0 0 0 13 4.7L8 10.5V22h9.3a1.9 1.9 0 0 0 1.87-1.5l1.28-7a1.9 1.9 0 0 0 .05-.3z"/></svg>312</span>
-                      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M21 11.5a8 8 0 0 1-11.6 7.1L4 20.5l1.9-5.3A8 8 0 1 1 21 11.5z"/></svg>44</span>
-                      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M16 6l-4-4-4 4M12 2v13"/></svg>19</span>
-                    </div>
-                    <span class="cw-post-more">View all 44 comments</span>
-                    <div class="cw-post-comments">
-                      <div class="cw-cmt"><span class="cw-cmt-av">S</span><p><strong>Sofia&nbsp;M.</strong> Obsessed with those built-ins! 👏</p></div>
-                      <div class="cw-cmt"><span class="cw-cmt-av">A</span><p><strong>Aaron&nbsp;P.</strong> Best crew in town, hands down.</p></div>
-                    </div>
-                  </div>
-                </div>
-              </article>
-              <article class="cw-post">
-                <div class="cw-post-top">
-                  <span class="cw-post-av" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 12 5l9 15"/><path d="M7.6 20 12 12l4.4 8"/></svg></span>
-                  <div class="cw-post-meta"><strong>Summit Build&nbsp;Co.</strong><span class="cw-post-time">Just now</span></div>
-                  <svg class="cw-post-src" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.52 1.5-3.91 3.78-3.91 1.1 0 2.24.2 2.24.2v2.47H15.2c-1.24 0-1.63.78-1.63 1.57v1.88h2.78l-.44 2.9h-2.34V22c4.78-.79 8.43-4.94 8.43-9.94z"/></svg>
-                </div>
-                <div class="cw-post-body">
-                  <div class="cw-post-media"><img src="post-bedroom.jpg" alt="Bedroom remodel by Summit Build Co." loading="lazy"></div>
-                  <div class="cw-post-side">
-                    <p class="cw-post-cap">Primary bedroom reveal — warm white oak, soft linens, and so much natural light. Calm, clean, done. ☀️</p>
-                    <div class="cw-post-foot">
-                      <span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 10.5h3.5V22H2zM22 11.2a1.9 1.9 0 0 0-1.9-1.9h-4.7l.74-3.78A1.55 1.55 0 0 0 13 4.7L8 10.5V22h9.3a1.9 1.9 0 0 0 1.87-1.5l1.28-7a1.9 1.9 0 0 0 .05-.3z"/></svg>176</span>
-                      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M21 11.5a8 8 0 0 1-11.6 7.1L4 20.5l1.9-5.3A8 8 0 1 1 21 11.5z"/></svg>21</span>
-                      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M16 6l-4-4-4 4M12 2v13"/></svg>7</span>
-                    </div>
-                    <span class="cw-post-more">View all 21 comments</span>
-                    <div class="cw-post-comments">
-                      <div class="cw-cmt"><span class="cw-cmt-av">H</span><p><strong>Hannah&nbsp;W.</strong> So peaceful — I could move right in 😍</p></div>
-                      <div class="cw-cmt"><span class="cw-cmt-av">L</span><p><strong>Leo&nbsp;F.</strong> Quality is next level. 🙌</p></div>
-                    </div>
-                  </div>
-                </div>
-              </article>
+          <!-- Trade chips -->
+          <div class="prop-field prop-field-trade">
+            <label class="prop-label">Trade <em class="prop-label-hint">scope is tuned to the selection</em></label>
+            <div class="prop-chip-row" role="tablist" aria-label="Trade">
+              <button type="button" class="prop-chip is-active" data-trade="remodeling" role="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/><path d="M10 19v-5h4v5"/></svg>Remodeling</button>
+              <button type="button" class="prop-chip" data-trade="roofing" role="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12l10-8 10 8"/><path d="M5 11v9h14v-9"/><path d="M9 20v-5h6v5"/></svg>Roofing</button>
+              <button type="button" class="prop-chip" data-trade="hvac" role="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M3 12h18"/><circle cx="12" cy="12" r="3"/></svg>HVAC</button>
+              <button type="button" class="prop-chip" data-trade="plumbing" role="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v7M9 3v7M7.5 10v11M16.5 3c-1.6 0-2.5 2-2.5 4.5s.9 3.5 2.5 3.5v10"/></svg>Plumbing</button>
+              <button type="button" class="prop-chip" data-trade="electrical" role="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg>Electrical</button>
+              <button type="button" class="prop-chip" data-trade="landscaping" role="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V8"/><path d="M12 8c-3 0-6-3-6-6 3 0 6 3 6 6z"/><path d="M12 8c3 0 6-3 6-6-3 0-6 3-6 6z"/></svg>Landscaping</button>
+              <button type="button" class="prop-chip" data-trade="pool" role="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 17c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2"/><path d="M2 21c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2"/><path d="M6 13V5a2 2 0 0 1 4 0"/><path d="M14 13V5a2 2 0 0 1 4 0"/></svg>Pool &amp; Spa</button>
+              <button type="button" class="prop-chip" data-trade="pest" role="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="11" r="4"/><path d="M12 7V3M8 5l-3-2M16 5l3-2M5 11H2M19 11h3M8 17l-3 2M16 17l3 2M12 15v4"/></svg>Pest Control</button>
+              <button type="button" class="prop-chip" data-trade="general" role="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></svg>General Contracting</button>
+              <button type="button" class="prop-chip" data-trade="commercial" role="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="18"/><rect x="13" y="8" width="8" height="13"/><path d="M5 7h2M5 11h2M5 15h2M15 12h2M15 16h2"/></svg>Commercial Build-Out</button>
             </div>
           </div>
-        </section>
 
-        <!-- RIGHT · call / text chat widget -->
-        <aside class="cw-panel cw-chat" style="--rev:.58s">
-          <header class="cw-chat-head">
-            <span class="cw-chat-photo" aria-label="Representative photo"><img src="chat-rep.jpg" alt="" loading="lazy"></span>
-            <div class="cw-chat-id">
-              <strong>Chat with Summit</strong>
-              <span class="cw-chat-status"><i></i>Online now · replies in ~5&nbsp;sec</span>
+          <div class="prop-row">
+            <div class="prop-field">
+              <label class="prop-label" for="propCompany">Your company</label>
+              <input class="prop-input" id="propCompany" type="text" placeholder="Mitchell &amp; Sons Remodeling" autocomplete="off" />
             </div>
-          </header>
-          <div class="cw-chat-thread">
-            <div class="cw-chat-msg">Hi there! 👋 How can we help with your project today?</div>
-            <div class="cw-chat-msg cw-chat-me">Hi! I'd love a quote to remodel my kitchen 🙂</div>
-            <div class="cw-chat-typing" aria-hidden="true"><i></i><i></i><i></i></div>
+            <div class="prop-field">
+              <label class="prop-label" for="propClient">Client name</label>
+              <input class="prop-input" id="propClient" type="text" placeholder="Jordan Carter" autocomplete="off" />
+            </div>
           </div>
-          <div class="cw-chat-cta">
-            <a class="cw-chat-btn cw-chat-call" href="/ai-employees">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5 9 4l1.2 3.4-1.8 1.3a10.5 10.5 0 0 0 4.6 4.6l1.3-1.8L17.7 13l.5 2.5a1.4 1.4 0 0 1-1.5 1.7A13.6 13.6 0 0 1 4.3 5a1.4 1.4 0 0 1 1.7-1.5"/></svg>
-              Call
-            </a>
-            <span class="cw-chat-btn cw-chat-text">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5h16v10H8l-4 3.5z"/></svg>
-              Text
-            </span>
-          </div>
-          <div class="cw-chat-input">
-            <span>Type your message…</span>
-            <span class="cw-chat-send" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h14M12 5l7 7-7 7"/></svg></span>
-          </div>
-        </aside>
 
+          <div class="prop-field">
+            <label class="prop-label" for="propProject">Project name</label>
+            <input class="prop-input" id="propProject" type="text" placeholder="Kitchen &amp; primary bath renovation" autocomplete="off" />
+          </div>
+
+          <div class="prop-field">
+            <label class="prop-label" for="propAddr">Project address</label>
+            <input class="prop-input" id="propAddr" type="text" placeholder="221 Coral Way, Miami FL 33145" autocomplete="off" />
+          </div>
+
+          <div class="prop-row">
+            <div class="prop-field">
+              <label class="prop-label" for="propAmount">Estimated total</label>
+              <span class="prop-input-wrap prop-input-prefix">
+                <span class="prop-aff">$</span>
+                <input class="prop-input" id="propAmount" type="text" inputmode="numeric" placeholder="48,500" autocomplete="off" />
+              </span>
+            </div>
+            <div class="prop-field">
+              <label class="prop-label" for="propWeeks">Timeline</label>
+              <span class="prop-input-wrap prop-input-suffix">
+                <input class="prop-input" id="propWeeks" type="text" inputmode="numeric" placeholder="6" autocomplete="off" />
+                <span class="prop-aff">weeks</span>
+              </span>
+            </div>
+          </div>
+
+          <button class="prop-generate" id="propGenerate" type="button" aria-label="Generate PDF proposal">
+            <span class="prop-gen-spark" aria-hidden="true"></span>
+            <svg class="prop-gen-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.7 5.3L19 10l-5.3 1.7L12 17l-1.7-5.3L5 10l5.3-1.7z"/></svg>
+            <span class="prop-gen-label">Generate PDF Proposal</span>
+            <svg class="prop-gen-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </button>
+
+          <div class="prop-form-foot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+            <span>No sign-up. Runs entirely in your browser — nothing is sent anywhere.</span>
+          </div>
+        </div>
       </div>
+
+      <!-- ───── RIGHT · live PDF preview ───── -->
+      <div class="prop-preview" aria-hidden="true">
+        <div class="prop-preview-frame">
+
+          <!-- depth: page 3 -> 2 -> 1 (cover on top) -->
+          <div class="prop-page prop-page-3"></div>
+          <div class="prop-page prop-page-2">
+            <div class="prop-pp-bar"></div>
+            <div class="prop-pp-block prop-pp-h1">Scope of Work</div>
+            <div class="prop-pp-line w90"></div>
+            <div class="prop-pp-line w76"></div>
+            <div class="prop-pp-line w82"></div>
+            <div class="prop-pp-line w68"></div>
+            <div class="prop-pp-block prop-pp-h2">Exclusions</div>
+            <div class="prop-pp-line w80"></div>
+            <div class="prop-pp-line w64"></div>
+          </div>
+
+          <div class="prop-page prop-page-1">
+            <span class="prop-page-bar" aria-hidden="true"></span>
+            <header class="prop-page-head">
+              <span class="prop-page-mark">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20 12 5l9 15"/><path d="M7.6 20 12 12l4.4 8"/></svg>
+                <span class="prop-page-company" data-p="company">YOUR COMPANY</span>
+              </span>
+              <span class="prop-page-stamp">PROPOSAL</span>
+            </header>
+
+            <div class="prop-page-meta">
+              <span>Prepared for · <em data-p="client">[ client name ]</em></span>
+              <span class="prop-page-id" data-p="id">#PROP-00000000</span>
+            </div>
+
+            <h3 class="prop-page-projecttitle" data-p="project">[ Project name ]</h3>
+
+            <ul class="prop-page-rows">
+              <li><span>Trade</span><em data-p="trade">Remodeling</em></li>
+              <li><span>Site</span><em data-p="addr">[ project address ]</em></li>
+              <li><span>Estimate</span><em data-p="amount">$ —</em></li>
+              <li><span>Timeline</span><em data-p="weeks">— weeks</em></li>
+            </ul>
+
+            <div class="prop-page-foot">
+              <span class="prop-page-pgct">01 / 03</span>
+              <span>generated by erio.ai</span>
+            </div>
+
+            <span class="prop-page-corner" aria-hidden="true"></span>
+          </div>
+
+          <!-- scan beam played on Generate -->
+          <span class="prop-scan" aria-hidden="true"></span>
+          <span class="prop-done" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            Downloaded
+          </span>
+        </div>
+
+        <div class="prop-cf prop-cf-1"><span class="prop-cf-dot"></span>3 pages</div>
+        <div class="prop-cf prop-cf-2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 14l4-4 3 3 6-6"/><path d="M14 7h4v4"/></svg>Branded PDF</div>
+        <div class="prop-cf prop-cf-3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.7 5.3L19 10l-5.3 1.7L12 17l-1.7-5.3L5 10l5.3-1.7z"/></svg>Trade-tuned scope</div>
+      </div>
+
     </div>
 
-  </div>
+    <p class="prop-foot"><em>//</em>&nbsp; This is just one example. Yours would be branded with your logo, your standard scope library, your exclusions and your terms — and tied into your CRM, calendar, or wherever you actually work.</p>
+  </section>
 
 </main>
+
+<!-- ============================================================
+     AI PROPOSAL GENERATOR — scoped styles
+============================================================ -->
+<style>
+  .prop {
+    --p-cyan: #40EBFF;
+    --p-mid: #53B9E0;
+    --p-deep: #337791;
+    --p-pale: #9FDCEF;
+    --p-ink: #EAF6FB;
+    --p-mute: rgba(178, 204, 214, 0.62);
+    --p-line: rgba(120, 200, 222, 0.18);
+    --p-line-strong: rgba(64, 235, 255, 0.34);
+    --p-paper: #F6FBFD;
+    --p-paper-ink: #0B1E28;
+
+    position: relative;
+    z-index: 2;
+    isolation: isolate;
+    width: min(95vw, 1340px);
+    margin: clamp(18px, 2vw, 36px) auto 0;
+    padding: clamp(36px, 4vw, 64px) clamp(22px, 2.4vw, 48px) clamp(48px, 5vw, 72px);
+    border-radius: 34px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background:
+      radial-gradient(120% 80% at 30% 0%, rgba(64, 235, 255, 0.07), transparent 56%),
+      radial-gradient(95% 110% at 88% 100%, rgba(83, 185, 224, 0.07), transparent 60%),
+      linear-gradient(180deg, rgba(11, 30, 40, 0.55), rgba(7, 19, 26, 0.65));
+    box-shadow:
+      0 60px 130px -50px rgba(0, 0, 0, 0.78),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+    font-family: 'Exo 2', system-ui, sans-serif;
+    overflow: clip;
+  }
+
+  /* atmospheric layers */
+  .prop-bg {
+    position: absolute; inset: 0; z-index: -2; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(83, 185, 224, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(83, 185, 224, 0.05) 1px, transparent 1px);
+    background-size: 44px 44px;
+    -webkit-mask-image: radial-gradient(80% 70% at 50% 50%, #000, transparent 95%);
+            mask-image: radial-gradient(80% 70% at 50% 50%, #000, transparent 95%);
+    opacity: 0.55;
+  }
+  .prop-glow {
+    position: absolute; z-index: -1; pointer-events: none;
+    width: 60%; aspect-ratio: 1; right: -6%; top: 8%;
+    background: radial-gradient(closest-side, rgba(64, 235, 255, 0.16), transparent 70%);
+    filter: blur(18px);
+  }
+  .prop-scan-h {
+    position: absolute; z-index: -1; pointer-events: none;
+    left: -20%; right: -20%; top: 28%; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(64, 235, 255, 0.45), transparent);
+    opacity: 0.55;
+    animation: propScanH 7.5s linear infinite;
+  }
+  @keyframes propScanH {
+    0%   { transform: translateY(-12px); opacity: 0; }
+    20%  { opacity: 0.7; }
+    50%  { transform: translateY(80px); opacity: 0.45; }
+    80%  { opacity: 0.6; }
+    100% { transform: translateY(260px); opacity: 0; }
+  }
+
+  /* head */
+  .prop-head { position: relative; max-width: 920px; margin: 0 auto clamp(32px, 3.5vw, 56px); text-align: center; }
+  .prop-tag {
+    display: inline-flex; align-items: center; gap: 9px;
+    padding: 6px 13px 6px 11px; border-radius: 999px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--p-pale);
+    background: rgba(64, 235, 255, 0.06);
+    border: 1px solid rgba(64, 235, 255, 0.2);
+  }
+  .prop-tag-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--p-cyan);
+    box-shadow: 0 0 8px rgba(64, 235, 255, 0.8);
+    animation: propPulse 1.8s ease-in-out infinite;
+  }
+  @keyframes propPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(64, 235, 255, 0.55); }
+    50%      { box-shadow: 0 0 0 7px rgba(64, 235, 255, 0); }
+  }
+  .prop-title {
+    margin: 18px 0 14px;
+    font-size: clamp(28px, 4vw, 54px);
+    font-weight: 700; line-height: 1.06; letter-spacing: -0.022em;
+    color: #fff;
+  }
+  .prop-em {
+    background-image: linear-gradient(110deg, #53B9E0 0%, #9FDCEF 50%, #FFFFFF 100%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+  }
+  .prop-lead { margin: 0 auto; max-width: 720px; font-size: 15px; line-height: 1.65; color: var(--p-mute); }
+
+  /* stage layout */
+  .prop-stage {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: clamp(24px, 2.4vw, 44px);
+    align-items: stretch;
+  }
+
+  /* glass card base */
+  .prop-form-card {
+    position: relative;
+    border-radius: 22px;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.012) 42%),
+      linear-gradient(180deg, rgba(11, 28, 37, 0.7), rgba(6, 15, 21, 0.78));
+    border: 1px solid var(--p-line);
+    box-shadow: 0 30px 64px -28px rgba(0, 0, 0, 0.78);
+    backdrop-filter: blur(24px) saturate(165%);
+    -webkit-backdrop-filter: blur(24px) saturate(165%);
+    transition: border-color 0.5s, box-shadow 0.5s;
+    overflow: hidden;
+  }
+  .prop-form-card::before {
+    content: "";
+    position: absolute; inset: 0; pointer-events: none;
+    border-radius: inherit;
+    background: radial-gradient(120% 60% at 50% -10%, rgba(64, 235, 255, 0.07), transparent 60%);
+  }
+  .prop-form-card:focus-within { border-color: var(--p-line-strong); box-shadow: 0 36px 76px -28px rgba(0,0,0,.82), 0 0 0 1px rgba(64,235,255,0.08); }
+
+  .prop-form-head {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px;
+    padding: 14px 18px 12px;
+    border-bottom: 1px dashed rgba(120, 200, 222, 0.16);
+  }
+  .prop-form-title-grp { display: inline-flex; align-items: center; gap: 9px; min-width: 0; }
+  .prop-live-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--p-cyan);
+    box-shadow: 0 0 0 0 rgba(64, 235, 255, 0.55);
+    animation: propPulse 1.8s ease-in-out infinite;
+    flex: 0 0 auto;
+  }
+  .prop-form-title { font-size: 13px; font-weight: 700; letter-spacing: 0.04em; color: #fff; }
+  .prop-form-sub { font-size: 10.5px; font-weight: 500; color: var(--p-mute); letter-spacing: 0.16em; text-transform: uppercase; }
+  .prop-form-ver { font-size: 10.5px; font-weight: 600; color: var(--p-pale); letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.7; }
+
+  .prop-form-body { padding: 18px 18px 20px; display: flex; flex-direction: column; gap: 16px; }
+
+  /* fields */
+  .prop-field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .prop-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .prop-label {
+    font-size: 10.5px; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(170, 198, 210, 0.65);
+    display: flex; align-items: baseline; gap: 8px;
+  }
+  .prop-label-hint { font-size: 9.5px; font-style: normal; font-weight: 500; letter-spacing: 0.08em; color: var(--p-mute); text-transform: none; opacity: 0.85; }
+
+  .prop-input,
+  .prop-input-wrap {
+    width: 100%;
+    display: flex; align-items: center; gap: 8px;
+    padding: 11px 14px;
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(120, 200, 222, 0.16);
+    border-radius: 11px;
+    font: 500 13.5px/1.3 'Exo 2', system-ui, sans-serif;
+    color: var(--p-ink);
+    transition: border-color 0.3s, background 0.3s, box-shadow 0.3s, transform 0.3s var(--ease-velvet, ease);
+    outline: none; min-width: 0;
+  }
+  .prop-input-wrap { padding: 0; gap: 0; }
+  .prop-input-wrap .prop-input { border: 0; background: transparent; padding-left: 4px; padding-right: 4px; box-shadow: none; }
+  .prop-input-wrap.prop-input-prefix .prop-aff { padding: 11px 0 11px 14px; color: var(--p-pale); }
+  .prop-input-wrap.prop-input-suffix .prop-aff { padding: 11px 14px 11px 0; color: var(--p-pale); margin-left: auto; }
+  .prop-aff { font-size: 13.5px; font-weight: 600; flex: 0 0 auto; }
+  .prop-input::placeholder { color: rgba(178, 204, 214, 0.35); }
+  .prop-input:hover,
+  .prop-input-wrap:hover { border-color: rgba(64, 235, 255, 0.28); }
+  .prop-input:focus,
+  .prop-input-wrap:focus-within {
+    border-color: var(--p-cyan);
+    background: rgba(64, 235, 255, 0.05);
+    box-shadow: 0 0 0 3px rgba(64, 235, 255, 0.14), 0 0 22px -6px rgba(64, 235, 255, 0.4);
+  }
+
+  /* trade chips */
+  .prop-chip-row {
+    display: flex; gap: 8px; padding: 4px 2px 6px;
+    overflow-x: auto; overflow-y: hidden;
+    scroll-snap-type: x proximity;
+    -ms-overflow-style: none; scrollbar-width: none;
+  }
+  .prop-chip-row::-webkit-scrollbar { display: none; }
+  .prop-chip {
+    display: inline-flex; align-items: center; gap: 7px;
+    flex: 0 0 auto; scroll-snap-align: start;
+    padding: 8px 13px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(120, 200, 222, 0.16);
+    color: var(--p-ink);
+    font: 600 12.5px/1 'Exo 2', system-ui, sans-serif;
+    cursor: pointer;
+    transition: transform 0.3s var(--ease-velvet, ease), border-color 0.3s, background 0.3s, color 0.3s, box-shadow 0.3s;
+    white-space: nowrap;
+  }
+  .prop-chip svg { width: 14px; height: 14px; color: var(--p-pale); transition: color 0.3s; flex: 0 0 auto; }
+  .prop-chip:hover { transform: translateY(-1px); border-color: rgba(64, 235, 255, 0.32); }
+  .prop-chip.is-active {
+    background: linear-gradient(135deg, #6ff0ff, #2bb6c8);
+    color: #04141b; border-color: transparent;
+    box-shadow: 0 10px 24px -10px rgba(64, 235, 255, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.42);
+  }
+  .prop-chip.is-active svg { color: #04141b; }
+
+  /* generate button */
+  .prop-generate {
+    position: relative;
+    margin-top: 6px;
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 14px 20px;
+    border: 0; border-radius: 13px; cursor: pointer;
+    font: 800 14px/1 'Exo 2', system-ui, sans-serif;
+    color: #04141b;
+    background: linear-gradient(135deg, #6ff0ff, #2bb6c8);
+    box-shadow: 0 18px 36px -14px rgba(64, 235, 255, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.42);
+    transition: transform 0.3s var(--ease-velvet, ease), box-shadow 0.3s, filter 0.3s;
+    overflow: hidden;
+  }
+  .prop-generate:hover { transform: translateY(-2px); box-shadow: 0 22px 44px -16px rgba(64, 235, 255, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.42); }
+  .prop-generate:hover .prop-gen-arrow { transform: translateX(3px); }
+  .prop-generate:disabled { cursor: progress; filter: saturate(0.7); }
+  .prop-gen-icon { width: 16px; height: 16px; }
+  .prop-gen-arrow { width: 16px; height: 16px; transition: transform 0.3s var(--ease-velvet, ease); }
+  .prop-gen-spark {
+    position: absolute; inset: -1px;
+    border-radius: inherit; pointer-events: none;
+    background: linear-gradient(120deg, transparent 25%, rgba(255, 255, 255, 0.7) 50%, transparent 75%);
+    transform: translateX(-110%);
+    opacity: 0;
+  }
+  .prop-generate.is-busy .prop-gen-spark {
+    opacity: 1;
+    animation: propGenSpark 1.05s ease-out 1;
+  }
+  @keyframes propGenSpark {
+    from { transform: translateX(-110%); }
+    to   { transform: translateX(110%); }
+  }
+
+  .prop-form-foot {
+    display: inline-flex; align-items: center; gap: 8px;
+    justify-content: center;
+    font-size: 11.5px; color: var(--p-mute);
+  }
+  .prop-form-foot svg { width: 13px; height: 13px; color: var(--p-mid); flex: 0 0 auto; }
+
+  /* preview */
+  .prop-preview {
+    position: relative; min-height: 460px;
+    display: grid; place-items: center;
+  }
+  .prop-preview-frame {
+    position: relative;
+    width: 100%; max-width: 460px;
+    aspect-ratio: 17 / 22;
+    perspective: 1500px;
+  }
+
+  /* pages = paper */
+  .prop-page {
+    position: absolute; inset: 0;
+    border-radius: 14px;
+    background:
+      linear-gradient(180deg, #ffffff, #eaf5f8);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow:
+      0 30px 60px -18px rgba(0, 0, 0, 0.55),
+      0 0 0 1px rgba(64, 235, 255, 0.08),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+    transform-origin: center;
+    will-change: transform;
+    overflow: hidden;
+  }
+  .prop-page-3 {
+    transform: translate(28px, 38px) rotate(4.2deg) scale(0.96);
+    opacity: 0.42;
+    background:
+      linear-gradient(180deg, #e8f3f6, #c8dde3);
+  }
+  .prop-page-2 {
+    transform: translate(14px, 18px) rotate(2deg) scale(0.98);
+    opacity: 0.7;
+    padding: 22px 22px;
+    color: #0B1E28;
+  }
+  .prop-page-1 {
+    transform: translate(-6px, -10px) rotate(-1.6deg);
+    padding: 30px 28px 24px;
+    color: #0B1E28;
+    animation: propPageFloat 7s ease-in-out infinite;
+  }
+  @keyframes propPageFloat {
+    0%, 100% { transform: translate(-6px, -10px) rotate(-1.6deg); }
+    50%      { transform: translate(-6px, -16px) rotate(-1.6deg); }
+  }
+
+  /* page 1 (cover) layout */
+  .prop-page-bar {
+    position: absolute; left: 0; right: 0; top: 0; height: 6px;
+    background: linear-gradient(90deg, #2bb6c8, #6ff0ff 50%, #2bb6c8);
+  }
+  .prop-page-head {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-top: 6px; margin-bottom: 22px;
+  }
+  .prop-page-mark { display: inline-flex; align-items: center; gap: 8px; min-width: 0; }
+  .prop-page-mark svg { width: 18px; height: 18px; color: #2bb6c8; flex: 0 0 auto; }
+  .prop-page-company {
+    font-size: 11px; font-weight: 800; letter-spacing: 0.22em; text-transform: uppercase;
+    color: #0B1E28;
+    max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .prop-page-stamp {
+    font-size: 9.5px; font-weight: 700; letter-spacing: 0.32em;
+    padding: 4px 8px;
+    color: #2bb6c8;
+    border: 1px solid rgba(43, 182, 200, 0.4);
+    border-radius: 4px;
+  }
+  .prop-page-meta {
+    display: flex; justify-content: space-between; gap: 12px;
+    font-size: 10.5px; color: #4f6772; letter-spacing: 0.04em;
+    margin-bottom: 18px;
+  }
+  .prop-page-meta em { font-style: normal; color: #0B1E28; font-weight: 600; }
+  .prop-page-id { color: #2bb6c8 !important; font-weight: 600; }
+  .prop-page-projecttitle {
+    margin: 0 0 22px; font-size: 22px; line-height: 1.18; letter-spacing: -0.012em;
+    color: #0B1E28; font-weight: 800;
+  }
+  .prop-page-projecttitle em { font-style: normal; }
+  .prop-page-rows {
+    list-style: none; margin: 0 0 22px; padding: 0;
+    display: flex; flex-direction: column; gap: 9px;
+  }
+  .prop-page-rows li {
+    display: flex; justify-content: space-between; gap: 10px;
+    padding: 8px 10px; border-radius: 8px;
+    background: rgba(11, 30, 40, 0.04);
+    border: 1px solid rgba(11, 30, 40, 0.06);
+    font-size: 11.5px;
+  }
+  .prop-page-rows li span { color: #4f6772; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; font-size: 9.5px; align-self: center; }
+  .prop-page-rows li em { font-style: normal; font-weight: 700; color: #0B1E28; text-align: right; max-width: 220px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .prop-page-foot {
+    position: absolute; left: 28px; right: 28px; bottom: 18px;
+    display: flex; justify-content: space-between;
+    font-size: 9.5px; color: #4f6772; letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .prop-page-pgct { color: #2bb6c8; font-weight: 700; }
+  .prop-page-corner {
+    position: absolute; right: 12px; top: 12px;
+    width: 36px; height: 36px;
+    background-image:
+      linear-gradient(rgba(43, 182, 200, 0.4) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(43, 182, 200, 0.4) 1px, transparent 1px);
+    background-size: 6px 6px;
+    -webkit-mask-image: linear-gradient(135deg, #000, transparent 80%);
+            mask-image: linear-gradient(135deg, #000, transparent 80%);
+    opacity: 0.55; pointer-events: none;
+  }
+
+  /* page 2 (peek) */
+  .prop-pp-bar { width: 36%; height: 4px; background: linear-gradient(90deg, #2bb6c8, #6ff0ff); border-radius: 2px; }
+  .prop-pp-block { font-size: 11.5px; font-weight: 800; color: #0B1E28; letter-spacing: 0.04em; margin-top: 14px; margin-bottom: 8px; }
+  .prop-pp-h1, .prop-pp-h2 { position: relative; padding-left: 10px; }
+  .prop-pp-h1::before, .prop-pp-h2::before { content: ""; position: absolute; left: 0; top: 4px; bottom: 4px; width: 2px; background: #2bb6c8; border-radius: 2px; }
+  .prop-pp-line { height: 6px; border-radius: 3px; background: rgba(11, 30, 40, 0.16); margin-bottom: 6px; }
+  .prop-pp-line.w90 { width: 90%; } .prop-pp-line.w82 { width: 82%; } .prop-pp-line.w80 { width: 80%; } .prop-pp-line.w76 { width: 76%; } .prop-pp-line.w68 { width: 68%; } .prop-pp-line.w64 { width: 64%; }
+
+  /* scan beam */
+  .prop-scan {
+    position: absolute; left: -10%; right: -10%; top: 0; height: 130%;
+    pointer-events: none; opacity: 0;
+    background: linear-gradient(180deg, transparent 38%, rgba(64, 235, 255, 0.55) 50%, transparent 62%);
+    filter: blur(2px);
+    transform: translateY(-100%);
+    z-index: 5;
+    mix-blend-mode: screen;
+  }
+  .prop-stage.is-generating .prop-scan {
+    opacity: 1;
+    animation: propScanRun 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  @keyframes propScanRun {
+    0%   { transform: translateY(-100%); opacity: 0.2; }
+    25%  { opacity: 1; }
+    100% { transform: translateY(120%); opacity: 0; }
+  }
+
+  /* done badge */
+  .prop-done {
+    position: absolute; left: 50%; bottom: 14px; transform: translate(-50%, 10px);
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 8px 14px; border-radius: 999px;
+    background: linear-gradient(135deg, #6ff0ff, #2bb6c8);
+    color: #04141b; font-size: 11px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase;
+    box-shadow: 0 14px 30px -10px rgba(64, 235, 255, 0.75);
+    opacity: 0; pointer-events: none; z-index: 6;
+  }
+  .prop-done svg { width: 13px; height: 13px; }
+  .prop-stage.is-done .prop-done {
+    animation: propDoneIn 1.6s var(--ease-velvet, cubic-bezier(0.22, 1, 0.36, 1)) forwards;
+  }
+  @keyframes propDoneIn {
+    0%   { opacity: 0; transform: translate(-50%, 10px); }
+    18%  { opacity: 1; transform: translate(-50%, 0); }
+    78%  { opacity: 1; transform: translate(-50%, 0); }
+    100% { opacity: 0; transform: translate(-50%, -8px); }
+  }
+
+  /* floating chips around preview */
+  .prop-cf {
+    position: absolute; z-index: 3;
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 7px 12px; border-radius: 999px;
+    font-size: 10.5px; font-weight: 700;
+    color: #04141b; letter-spacing: 0.04em;
+    background: linear-gradient(135deg, #6ff0ff, #2bb6c8);
+    box-shadow: 0 12px 26px -10px rgba(64, 235, 255, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.42);
+    white-space: nowrap;
+    animation: propFloatY 5.5s ease-in-out infinite;
+  }
+  .prop-cf svg { width: 12px; height: 12px; }
+  .prop-cf-dot { width: 6px; height: 6px; border-radius: 50%; background: #04141b; }
+  .prop-cf-1 { top: 6%; right: -6%; }
+  .prop-cf-2 { bottom: 18%; left: -6%; animation-delay: -1.3s; }
+  .prop-cf-3 { bottom: 4%; right: 8%; animation-delay: -2.6s; }
+  @keyframes propFloatY {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-6px); }
+  }
+
+  .prop-foot {
+    margin: clamp(28px, 3vw, 44px) auto 0;
+    max-width: 760px; text-align: center;
+    font-size: 12.5px; color: var(--p-mute); line-height: 1.55; font-style: italic;
+  }
+  .prop-foot em { font-style: normal; color: var(--p-cyan); margin-right: 4px; font-weight: 700; }
+
+  /* responsive */
+  @media (max-width: 920px) {
+    .prop { padding: 32px 18px 44px; border-radius: 26px; }
+    .prop-stage { grid-template-columns: 1fr; gap: 28px; }
+    .prop-preview { min-height: 420px; }
+    .prop-preview-frame { max-width: 380px; }
+    .prop-cf-1 { top: 2%; right: 0%; }
+    .prop-cf-2 { left: 0%; }
+    .prop-cf-3 { right: 2%; }
+  }
+  @media (max-width: 540px) {
+    .prop-row { grid-template-columns: 1fr; }
+    .prop-preview-frame { max-width: 320px; }
+    .prop-cf { font-size: 9.5px; padding: 6px 10px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .prop-scan-h, .prop-tag-dot, .prop-live-dot, .prop-page-1, .prop-cf, .prop-scan { animation: none !important; }
+  }
+</style>
+
+<!-- jsPDF for browser-side PDF generation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+
+<script>
+  /* ============================================================
+     AI PROPOSAL GENERATOR — runtime
+  ============================================================ */
+  (function propInit() {
+    var stage = document.querySelector('.prop-stage');
+    if (!stage) return;
+
+    /* --- Trade-specific content templates --- */
+    var TRADES = {
+      remodeling: {
+        label: 'Remodeling',
+        scope: [
+          'Site protection of adjacent surfaces, demolition of existing finishes within the defined scope, and disposal of construction debris.',
+          'Structural and framing modifications per approved drawings, including blocking and substrate prep for finish work.',
+          'Mechanical, electrical and plumbing rough-in coordinated with licensed sub-contractors and inspected per local code.',
+          'Installation of owner-selected cabinetry, countertops, tile, flooring, trim and millwork to manufacturer specifications.',
+          'Painting, caulking, hardware and final fixture install, including punch-list correction prior to substantial completion.',
+          'Final cleaning of work area and removal of all tools, equipment and packaging from the site.'
+        ],
+        exclusions: [
+          'Permits, plan-review fees, design fees and third-party engineering unless explicitly itemized.',
+          'Discovery of hazardous materials (asbestos, lead, mold) — remediation billed separately by a certified abatement contractor.',
+          'Concealed conditions revealed during demolition (rot, structural deficiency, code-mandated upgrades).',
+          'Owner-furnished items not delivered before scheduled install date — re-trip and storage billed at standard rates.',
+          'Landscaping, exterior siding or roofing repairs outside the immediate work area.',
+          'Utility upgrades (service panel capacity, water service sizing) beyond what is required to support the defined scope.'
+        ]
+      },
+      roofing: {
+        label: 'Roofing',
+        scope: [
+          'Complete tear-off of existing roof covering down to structural decking; haul-away of all debris.',
+          'Inspection of decking; replacement of deteriorated sheathing at unit cost (price per sheet noted in agreement).',
+          'Installation of ice-and-water shield at eaves, valleys and penetrations; synthetic underlayment across full roof field.',
+          'New drip edge, step flashing and counter-flashing at all walls, chimneys and penetrations.',
+          'Installation of owner-selected shingles or roof covering, hip-and-ridge cap, and continuous ridge ventilation.',
+          'Site clean-up with magnetic nail sweep; manufacturer registration of warranty in owner\'s name.'
+        ],
+        exclusions: [
+          'Permits and inspection fees.',
+          'Replacement of structural rafters, trusses or fascia beyond superficial repair (priced separately).',
+          'Skylight replacement, solar removal/reinstallation, or satellite-dish relocation.',
+          'Gutter replacement, gutter-guard install or downspout extensions unless itemized in the agreement.',
+          'Interior repairs to damage existing prior to start of work.',
+          'Damage to landscaping, low-hanging lines or driveways from staging equipment — reasonable care taken but not insured.'
+        ]
+      },
+      hvac: {
+        label: 'HVAC',
+        scope: [
+          'Manual-J load calculation; recommendation of correctly-sized equipment for the conditioned space.',
+          'Removal and disposal of existing equipment, refrigerant recovery per EPA Section 608.',
+          'Installation of new condenser, air handler / furnace, evaporator coil and line set; pad or rack as required.',
+          'New supply / return ductwork connections, plenum transitions and sealing of accessible duct joints.',
+          'Refrigerant charging, electrical hookup to existing disconnect, condensate management and thermostat install.',
+          'Full system commissioning, static-pressure verification and homeowner walk-through with product registration.'
+        ],
+        exclusions: [
+          'Permits, inspection fees and utility-rebate processing.',
+          'Electrical service upgrades (panel capacity, dedicated circuits beyond existing).',
+          'Replacement or sealing of inaccessible ductwork inside finished walls / ceilings.',
+          'Crane, lift, or roof-access charges for equipment placement above the second floor.',
+          'Asbestos abatement on existing duct insulation — handled by licensed third party.',
+          'Smart-home / zoning systems beyond the specified thermostat.'
+        ]
+      },
+      plumbing: {
+        label: 'Plumbing',
+        scope: [
+          'Demolition and removal of existing fixtures and accessible piping within the defined scope.',
+          'Installation of supply, drain, waste and vent piping per current plumbing code with all required tests.',
+          'Set and connect owner-selected fixtures, valves, trim and water-heating equipment.',
+          'Pressure-testing of all supply lines and visual inspection of DWV system before close-in.',
+          'Coordination with the local inspector for rough-in and final inspections.',
+          'Final clean-up and removal of all packaging and debris from the work area.'
+        ],
+        exclusions: [
+          'Permits, tap fees and meter upgrades.',
+          'Repair or replacement of concealed piping not within the defined work area.',
+          'Backflow-preventer testing and certification.',
+          'Septic, well or main-sewer-line work outside the immediate connection points.',
+          'Patching of drywall, tile or flooring beyond rough patch-back at access points.',
+          'Owner-furnished fixtures that arrive damaged or with missing parts.'
+        ]
+      },
+      electrical: {
+        label: 'Electrical',
+        scope: [
+          'Verification of existing service capacity and panel condition prior to work.',
+          'Installation of new branch circuits, devices, outlets, switches and lighting fixtures per drawings.',
+          'Code-compliant grounding, bonding, AFCI / GFCI protection and tamper-resistant devices where required.',
+          'Pull-and-terminate of all wiring; labeling of every circuit at the panel.',
+          'Coordination with inspector for rough-in and final inspection sign-off.',
+          'Final testing of all circuits and devices, and homeowner walk-through.'
+        ],
+        exclusions: [
+          'Permits and inspection fees.',
+          'Service-entrance, mast or meter-base replacement unless itemized.',
+          'Patching of drywall, plaster or finishes after wiring is run.',
+          'Low-voltage data, alarm or AV cabling unless explicitly included.',
+          'Generator and transfer-switch installation.',
+          'Utility-side work or coordination with the power company.'
+        ]
+      },
+      landscaping: {
+        label: 'Landscaping',
+        scope: [
+          'Site survey, layout and grading per approved plan; protection of existing trees and structures.',
+          'Soil preparation, amendment and installation of irrigation rough-in where specified.',
+          'Hardscape install — pavers, walls, steps, edging — set to manufacturer specifications.',
+          'Installation of plant material, sod and mulch with a one-season establishment guarantee.',
+          'Tie-in of irrigation, controller programming and walk-through of operation.',
+          'Final site clean-up and removal of all packaging and excavated material.'
+        ],
+        exclusions: [
+          'Permits, HOA approvals and arborist reports.',
+          'Underground utility relocation beyond marked depths.',
+          'Repair of pre-existing irrigation, drainage or grading defects outside the scope.',
+          'Tree removal larger than 4-inch caliper or stump grinding.',
+          'Long-term maintenance, fertilization or seasonal clean-ups.',
+          'Damage to underground items not flagged by 811 / utility locate.'
+        ]
+      },
+      pool: {
+        label: 'Pool & Spa',
+        scope: [
+          'Excavation, layout staking and removal of spoil to a designated stockpile area.',
+          'Steel cage, hydraulic plumbing rough-in, electrical bonding grid and equipment-pad pour.',
+          'Shotcrete or gunite shell, tile band and coping per the design.',
+          'Decking and interior finish (plaster / pebble / quartz) to manufacturer specifications.',
+          'Equipment installation — pump, filter, heater, automation, lighting — and start-up chemistry.',
+          'Owner orientation on operation, chemistry and a one-year build warranty.'
+        ],
+        exclusions: [
+          'Permits, engineering and HOA approvals.',
+          'Site access requiring removal of fences, walls or structures.',
+          'Soil-engineering surprises (rock, water table, fill) — priced per change order.',
+          'Electrical sub-panel upgrades or gas-line extension to the equipment pad.',
+          'Landscaping restoration outside the immediate construction area.',
+          'Pool covers, water-feature add-ons and smart-home integration unless itemized.'
+        ]
+      },
+      pest: {
+        label: 'Pest Control',
+        scope: [
+          'Full interior and exterior inspection, identification of pest pressure and conducive conditions.',
+          'Initial treatment with EPA-registered products, applied by a state-licensed technician.',
+          'Exclusion work at obvious entry points (weep holes, plumbing penetrations, foundation gaps).',
+          'Placement of monitoring devices and recurring treatment schedule per the agreement.',
+          'Service report after every visit with target activity, products applied and recommendations.',
+          '60-day re-treatment guarantee for targeted pests covered by the agreement.'
+        ],
+        exclusions: [
+          'Wood-destroying-organism reports for real-estate transactions (priced separately).',
+          'Wildlife trapping and removal (raccoons, bats, larger vertebrates).',
+          'Tenting / fumigation services.',
+          'Repair of structural damage caused by pest activity.',
+          'Pre-existing infestations of stored-product, fabric or wood-destroying pests not on the agreement.',
+          'Bee, wasp or hornet removal more than 12 feet above grade.'
+        ]
+      },
+      general: {
+        label: 'General Contracting',
+        scope: [
+          'Pre-construction planning: scope review, schedule, sub-contractor selection and submittals.',
+          'Permit application, plan-review coordination and management of all inspections.',
+          'On-site supervision, daily QA and weekly progress reporting to the owner.',
+          'Procurement, delivery scheduling and storage of long-lead materials.',
+          'Coordination of all trades and management of the day-to-day construction schedule.',
+          'Closeout: punch list, lien releases, warranties and as-built documentation.'
+        ],
+        exclusions: [
+          'Design, architectural drawings, structural engineering and consulting fees.',
+          'Owner-direct purchases unless coordinated and included in the schedule.',
+          'Changes to scope after agreement signing — handled via written change order.',
+          'Acceleration or overtime requested by the owner.',
+          'Items shown on architectural drawings but not in the agreed scope of work.',
+          'Owner-supplied materials that arrive damaged or out of sequence.'
+        ]
+      },
+      commercial: {
+        label: 'Commercial Build-Out',
+        scope: [
+          'Demolition of existing finishes, ceilings and partitions within the lease area.',
+          'Metal-stud partitions, doors, frames and hardware per the construction documents.',
+          'MEP rough-in: HVAC distribution, fire-protection modifications, electrical and low-voltage.',
+          'Ceiling install (ACT or hard lid), lighting, devices and life-safety systems.',
+          'Finish carpentry, paint, flooring and millwork per the finish schedule.',
+          'Final cleaning, life-safety sign-off, certificate-of-occupancy coordination and warranty turnover.'
+        ],
+        exclusions: [
+          'Design, MEP engineering, code review and permit costs.',
+          'Landlord work, base-building upgrades and capacity increases to base systems.',
+          'Tenant\'s FF&E, signage, AV, security and tele-data cabling unless itemized.',
+          'Hazardous-material abatement found behind existing finishes.',
+          'Premium overtime requested by landlord or tenant to maintain occupied operations.',
+          'Modifications to scope after final pricing is accepted.'
+        ]
+      }
+    };
+
+    var FALLBACK_TRADE = 'remodeling';
+    var current = FALLBACK_TRADE;
+
+    var $ = function (s) { return stage.querySelector(s); };
+    var $$ = function (s) { return stage.querySelectorAll(s); };
+
+    /* ── element handles ── */
+    var inputs = {
+      company:  document.getElementById('propCompany'),
+      client:   document.getElementById('propClient'),
+      project:  document.getElementById('propProject'),
+      addr:     document.getElementById('propAddr'),
+      amount:   document.getElementById('propAmount'),
+      weeks:    document.getElementById('propWeeks')
+    };
+    var preview = {
+      company: $('[data-p="company"]'),
+      client:  $('[data-p="client"]'),
+      project: $('[data-p="project"]'),
+      addr:    $('[data-p="addr"]'),
+      amount:  $('[data-p="amount"]'),
+      weeks:   $('[data-p="weeks"]'),
+      trade:   $('[data-p="trade"]'),
+      id:      $('[data-p="id"]')
+    };
+
+    /* placeholders that act as defaults if the user leaves a field blank */
+    var DEFAULTS = {
+      company: 'Mitchell & Sons Remodeling',
+      client:  'Jordan Carter',
+      project: 'Kitchen & primary bath renovation',
+      addr:    '221 Coral Way, Miami FL 33145',
+      amount:  '48500',
+      weeks:   '6'
+    };
+
+    /* ── helpers ── */
+    function trim(s) { return (s == null ? '' : String(s)).replace(/^\s+|\s+$/g, ''); }
+    function digits(s) { return trim(s).replace(/[^\d.]/g, ''); }
+    function fmtMoney(raw) {
+      var n = parseFloat(digits(raw));
+      if (!isFinite(n) || n <= 0) return '$ —';
+      return '$' + n.toLocaleString('en-US', { maximumFractionDigits: 0 });
+    }
+    function fmtWeeks(raw) {
+      var n = parseInt(digits(raw), 10);
+      if (!isFinite(n) || n <= 0) return '— weeks';
+      return n + (n === 1 ? ' week' : ' weeks');
+    }
+    function genId() {
+      var t = new Date();
+      var y = t.getFullYear();
+      var d = String(t.getMonth() + 1).padStart(2, '0') + String(t.getDate()).padStart(2, '0');
+      var r = Math.floor(1000 + Math.random() * 9000);
+      return '#PROP-' + y + '-' + d + '-' + r;
+    }
+    var proposalId = genId();
+
+    function gather() {
+      var get = function (k) {
+        var v = trim(inputs[k] && inputs[k].value);
+        return v || DEFAULTS[k];
+      };
+      return {
+        trade:    current,
+        tradeLbl: TRADES[current].label,
+        company:  get('company'),
+        client:   get('client'),
+        project:  get('project'),
+        addr:     get('addr'),
+        amount:   get('amount'),
+        weeks:    get('weeks'),
+        id:       proposalId
+      };
+    }
+
+    function paint() {
+      var d = gather();
+      if (preview.company) preview.company.textContent = (inputs.company.value || DEFAULTS.company).toUpperCase();
+      if (preview.client)  preview.client.textContent  = inputs.client.value || DEFAULTS.client;
+      if (preview.project) preview.project.textContent = inputs.project.value || DEFAULTS.project;
+      if (preview.addr)    preview.addr.textContent    = inputs.addr.value || DEFAULTS.addr;
+      if (preview.amount)  preview.amount.textContent  = fmtMoney(inputs.amount.value || DEFAULTS.amount);
+      if (preview.weeks)   preview.weeks.textContent   = fmtWeeks(inputs.weeks.value || DEFAULTS.weeks);
+      if (preview.trade)   preview.trade.textContent   = d.tradeLbl;
+      if (preview.id)      preview.id.textContent      = d.id;
+    }
+
+    /* wire live preview */
+    Object.keys(inputs).forEach(function (k) {
+      var el = inputs[k]; if (!el) return;
+      el.addEventListener('input', paint, { passive: true });
+      el.addEventListener('change', paint, { passive: true });
+    });
+
+    /* trade chip selection */
+    var chips = $$('.prop-chip');
+    chips.forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        chips.forEach(function (c) { c.classList.remove('is-active'); });
+        chip.classList.add('is-active');
+        current = chip.dataset.trade || FALLBACK_TRADE;
+        paint();
+      });
+    });
+
+    paint();
+
+    /* ── PDF GENERATION ──────────────────────────────────────── */
+    var generateBtn = document.getElementById('propGenerate');
+    var origLabel = generateBtn && generateBtn.querySelector('.prop-gen-label');
+    var origLabelText = origLabel ? origLabel.textContent : 'Generate PDF Proposal';
+
+    function withDoc(fn) {
+      if (!window.jspdf || !window.jspdf.jsPDF) {
+        console.warn('jsPDF not ready yet — retrying once');
+        setTimeout(function () { withDoc(fn); }, 250);
+        return;
+      }
+      fn(new window.jspdf.jsPDF({ unit: 'pt', format: 'letter' }));
+    }
+
+    /* color helpers */
+    var COLORS = {
+      cyan:    [43, 182, 200],
+      cyanHi:  [111, 240, 255],
+      ink:     [11, 30, 40],
+      mute:    [85, 110, 122],
+      paper:   [246, 251, 253],
+      hairline:[210, 224, 230]
+    };
+
+    function buildPDF(d, doc) {
+      var W = doc.internal.pageSize.getWidth();
+      var H = doc.internal.pageSize.getHeight();
+      var M = 56; // margin
+
+      /* ───── PAGE 1 · COVER ───── */
+      // accent bar
+      doc.setFillColor.apply(doc, COLORS.cyan); doc.rect(0, 0, W, 8, 'F');
+      // gradient illusion: thin cyanHi strip
+      doc.setFillColor.apply(doc, COLORS.cyanHi); doc.rect(0, 8, W * 0.42, 1.6, 'F');
+
+      // letterhead
+      doc.setTextColor.apply(doc, COLORS.ink);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(11);
+      doc.text(d.company.toUpperCase(), M, M);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(8.5);
+      doc.setTextColor.apply(doc, COLORS.mute);
+      doc.text('proposal', W - M, M, { align: 'right' });
+
+      // hairline under header
+      doc.setDrawColor.apply(doc, COLORS.hairline);
+      doc.setLineWidth(0.5);
+      doc.line(M, M + 10, W - M, M + 10);
+
+      // stamp
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(9);
+      doc.setTextColor.apply(doc, COLORS.cyan);
+      doc.text(d.id, M, M + 28);
+
+      doc.setTextColor.apply(doc, COLORS.mute);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(9);
+      var dateStr = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+      doc.text(dateStr, W - M, M + 28, { align: 'right' });
+
+      // BIG project title block
+      var titleY = M + 110;
+      doc.setTextColor.apply(doc, COLORS.mute);
+      doc.setFont('helvetica', 'normal'); doc.setFontSize(10);
+      doc.text('PROJECT', M, titleY);
+      doc.setTextColor.apply(doc, COLORS.ink);
+      doc.setFont('helvetica', 'bold'); doc.setFontSize(28);
+      var projLines = doc.splitTextToSize(d.project, W - M * 2);
+      doc.text(projLines, M, titleY + 28);
+
+      // "Prepared for" block
+      var pfY = titleY + 28 + (projLines.length * 30) + 36;
+      doc.setFont('helvetica', 'normal'); doc.setFontSize(10);
+      doc.setTextColor.apply(doc, COLORS.mute);
+      doc.text('PREPARED FOR', M, pfY);
+      doc.setFont('helvetica', 'bold'); doc.setFontSize(16);
+      doc.setTextColor.apply(doc, COLORS.ink);
+      doc.text(d.client, M, pfY + 22);
+      doc.setFont('helvetica', 'normal'); doc.setFontSize(10);
+      doc.setTextColor.apply(doc, COLORS.mute);
+      doc.text(d.addr, M, pfY + 38);
+
+      // meta tiles
+      var tilesY = pfY + 80;
+      var tileW = (W - M * 2 - 16) / 2;
+      drawTile(doc, M, tilesY, tileW, 'Trade', d.tradeLbl);
+      drawTile(doc, M + tileW + 16, tilesY, tileW, 'Timeline', fmtWeeks(d.weeks));
+
+      var tilesY2 = tilesY + 70;
+      drawTile(doc, M, tilesY2, W - M * 2, 'Estimated Total', fmtMoney(d.amount), true);
+
+      // footer
+      footer(doc, M, W, H, 1, 3);
+
+      /* ───── PAGE 2 · SCOPE + EXCLUSIONS ───── */
+      doc.addPage();
+      header(doc, M, W, d);
+      var y = M + 28;
+      y = sectionHead(doc, 'Scope of Work', M, y, W);
+      var t = TRADES[d.trade] || TRADES[FALLBACK_TRADE];
+      y = bulletList(doc, t.scope, M, y, W, M);
+      y += 18;
+      y = sectionHead(doc, 'Exclusions', M, y, W);
+      y = bulletList(doc, t.exclusions, M, y, W, M);
+      footer(doc, M, W, H, 2, 3);
+
+      /* ───── PAGE 3 · PAYMENT / TIMELINE / TERMS ───── */
+      doc.addPage();
+      header(doc, M, W, d);
+      y = M + 28;
+      y = sectionHead(doc, 'Payment Schedule', M, y, W);
+      var ps = [
+        ['Deposit', '30% on agreement signing — secures schedule and material orders.'],
+        ['Progress', '50% at project midpoint — verified against the milestone schedule below.'],
+        ['Final', '20% on substantial completion — released after the punch list is signed.']
+      ];
+      y = paymentRows(doc, ps, M, y, W);
+
+      y += 24;
+      y = sectionHead(doc, 'Project Timeline', M, y, W);
+      var weeks = parseInt(digits(d.weeks), 10) || 6;
+      var ml = buildMilestones(weeks);
+      y = timelineList(doc, ml, M, y, W);
+
+      y += 24;
+      y = sectionHead(doc, 'Terms', M, y, W);
+      var terms = [
+        'Pricing is held for 30 days from the date of this proposal.',
+        'Any changes to scope are documented in writing and added as a change order.',
+        'Work begins after deposit clears and required permits are issued.',
+        'A one-year workmanship warranty covers all labor performed under this agreement.'
+      ];
+      y = bulletList(doc, terms, M, y, W, M);
+
+      y += 30;
+      // signature block
+      doc.setDrawColor.apply(doc, COLORS.hairline);
+      doc.setLineWidth(0.7);
+      var sigW = (W - M * 2 - 24) / 2;
+      doc.line(M, y + 30, M + sigW, y + 30);
+      doc.line(M + sigW + 24, y + 30, W - M, y + 30);
+      doc.setFontSize(9); doc.setFont('helvetica', 'normal');
+      doc.setTextColor.apply(doc, COLORS.mute);
+      doc.text('Client signature · ' + d.client, M, y + 44);
+      doc.text(d.company + ' · authorized signature', M + sigW + 24, y + 44);
+      doc.setFontSize(8);
+      doc.text('Date', M, y + 58);
+      doc.text('Date', M + sigW + 24, y + 58);
+
+      footer(doc, M, W, H, 3, 3);
+
+      var filename = 'Proposal — ' + sanitize(d.project) + '.pdf';
+      doc.save(filename);
+    }
+
+    /* ── pdf drawing helpers ── */
+    function sanitize(s) {
+      return String(s).replace(/[^\w\s\-—.]/g, '').replace(/\s+/g, ' ').trim().slice(0, 60) || 'Proposal';
+    }
+    function drawTile(doc, x, y, w, label, value, big) {
+      doc.setFillColor(241, 247, 250);
+      doc.setDrawColor.apply(doc, COLORS.hairline);
+      doc.setLineWidth(0.5);
+      doc.roundedRect(x, y, w, 56, 8, 8, 'FD');
+      doc.setFont('helvetica', 'normal'); doc.setFontSize(8);
+      doc.setTextColor.apply(doc, COLORS.mute);
+      doc.text(label.toUpperCase(), x + 14, y + 18);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(big ? 22 : 16);
+      doc.setTextColor.apply(doc, COLORS.ink);
+      doc.text(value, x + 14, y + (big ? 44 : 40));
+    }
+    function header(doc, M, W, d) {
+      doc.setFillColor.apply(doc, COLORS.cyan); doc.rect(0, 0, W, 6, 'F');
+      doc.setTextColor.apply(doc, COLORS.ink);
+      doc.setFont('helvetica', 'bold'); doc.setFontSize(10);
+      doc.text(d.company.toUpperCase(), M, M);
+      doc.setTextColor.apply(doc, COLORS.cyan);
+      doc.setFontSize(9);
+      doc.text(d.id, W - M, M, { align: 'right' });
+      doc.setDrawColor.apply(doc, COLORS.hairline);
+      doc.setLineWidth(0.5);
+      doc.line(M, M + 10, W - M, M + 10);
+    }
+    function footer(doc, M, W, H, pg, total) {
+      doc.setDrawColor.apply(doc, COLORS.hairline);
+      doc.setLineWidth(0.4);
+      doc.line(M, H - M, W - M, H - M);
+      doc.setFontSize(8.5);
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor.apply(doc, COLORS.mute);
+      doc.text('generated by erio.ai', M, H - M + 14);
+      doc.setTextColor.apply(doc, COLORS.cyan);
+      doc.setFont('helvetica', 'bold');
+      doc.text(pad2(pg) + ' / ' + pad2(total), W - M, H - M + 14, { align: 'right' });
+    }
+    function pad2(n) { return (n < 10 ? '0' : '') + n; }
+    function sectionHead(doc, label, M, y, W) {
+      doc.setFillColor.apply(doc, COLORS.cyan);
+      doc.rect(M, y - 2, 3, 14, 'F');
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(14);
+      doc.setTextColor.apply(doc, COLORS.ink);
+      doc.text(label, M + 12, y + 9);
+      return y + 22;
+    }
+    function bulletList(doc, items, M, y, W, leftM) {
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(10.5);
+      doc.setTextColor.apply(doc, COLORS.ink);
+      for (var i = 0; i < items.length; i++) {
+        var bulletX = leftM + 4;
+        var textX   = leftM + 18;
+        var lines = doc.splitTextToSize(items[i], W - leftM * 2 - 18);
+        // dot
+        doc.setFillColor.apply(doc, COLORS.cyan);
+        doc.circle(bulletX, y + 5, 2, 'F');
+        doc.text(lines, textX, y + 8);
+        y += 14 + (lines.length - 1) * 12 + 6;
+      }
+      return y;
+    }
+    function paymentRows(doc, rows, M, y, W) {
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(10);
+      for (var i = 0; i < rows.length; i++) {
+        var r = rows[i];
+        doc.setFillColor(241, 247, 250);
+        doc.setDrawColor.apply(doc, COLORS.hairline);
+        doc.roundedRect(M, y, W - M * 2, 36, 8, 8, 'FD');
+        // label pill
+        doc.setFillColor.apply(doc, COLORS.cyan);
+        doc.roundedRect(M + 8, y + 8, 74, 20, 6, 6, 'F');
+        doc.setTextColor(255, 255, 255);
+        doc.setFontSize(9.5);
+        doc.text(r[0].toUpperCase(), M + 8 + 37, y + 22, { align: 'center' });
+        // copy
+        doc.setTextColor.apply(doc, COLORS.ink);
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(10);
+        doc.text(r[1], M + 96, y + 22);
+        doc.setFont('helvetica', 'bold');
+        y += 44;
+      }
+      return y;
+    }
+    function buildMilestones(weeks) {
+      weeks = Math.max(1, Math.min(weeks || 6, 36));
+      var m = [];
+      m.push(['Week 1', 'Mobilization, permits in hand, materials staged.']);
+      if (weeks >= 3) m.push(['Week 2 — ' + Math.max(2, Math.floor(weeks * 0.4)), 'Demolition, rough-in and inspections.']);
+      if (weeks >= 5) m.push(['Week ' + (Math.floor(weeks * 0.4) + 1) + ' — ' + Math.floor(weeks * 0.75), 'Finish work, cabinetry, fixtures, paint.']);
+      m.push(['Week ' + Math.max(weeks - 1, 2) + ' — ' + weeks, 'Punch list, walk-through, closeout and warranty turnover.']);
+      return m;
+    }
+    function timelineList(doc, items, M, y, W) {
+      var laneX = M + 8;
+      // dashed lane
+      doc.setDrawColor.apply(doc, COLORS.cyan);
+      doc.setLineDashPattern([2, 3], 0);
+      doc.line(laneX, y, laneX, y + items.length * 26 - 10);
+      doc.setLineDashPattern([], 0);
+      for (var i = 0; i < items.length; i++) {
+        doc.setFillColor.apply(doc, COLORS.cyan);
+        doc.circle(laneX, y + 6, 3, 'F');
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(10);
+        doc.setTextColor.apply(doc, COLORS.ink);
+        doc.text(items[i][0], laneX + 14, y + 8);
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(9.5);
+        doc.setTextColor.apply(doc, COLORS.mute);
+        var lines = doc.splitTextToSize(items[i][1], W - laneX - M - 14);
+        doc.text(lines, laneX + 14, y + 22);
+        y += 26 + (lines.length - 1) * 11;
+      }
+      return y + 4;
+    }
+
+    /* ── click handler ── */
+    if (generateBtn) {
+      generateBtn.addEventListener('click', function () {
+        if (generateBtn.disabled) return;
+        // refresh proposal ID for every generation
+        proposalId = genId();
+        if (preview.id) preview.id.textContent = proposalId;
+
+        var d = gather();
+        d.id = proposalId;
+        generateBtn.disabled = true;
+        generateBtn.classList.add('is-busy');
+        stage.classList.remove('is-done');
+        stage.classList.add('is-generating');
+        if (origLabel) origLabel.textContent = 'Generating…';
+
+        withDoc(function (doc) {
+          try {
+            buildPDF(d, doc);
+          } catch (err) {
+            console.error(err);
+            alert('Sorry — something went wrong generating the PDF. Refresh and try again.');
+          }
+          setTimeout(function () {
+            stage.classList.remove('is-generating');
+            stage.classList.add('is-done');
+            generateBtn.disabled = false;
+            generateBtn.classList.remove('is-busy');
+            if (origLabel) origLabel.textContent = 'Download again';
+            // strip is-done after the badge animation completes (matches CSS dur)
+            setTimeout(function () { stage.classList.remove('is-done'); }, 1700);
+          }, 1100);
+        });
+      });
+    }
+  })();
+</script>
+
 
 <!-- ====== SEO + AI/LLM visibility ====== -->
 <section class="seo" aria-labelledby="seo-title">
