@@ -224,42 +224,6 @@
   ============================================================ -->
   <section class="prop">
 
-    <!-- ═════ Ambient background — "Iso-Contour Strata + Atmospheric Drift" ═════
-         Sits behind the two containers only. Halo-masked so it dims behind
-         the form/preview and fades transparent at the section's perimeter.
-         Pure CSS animation, GPU-only, motion-reduced friendly. -->
-    <div class="prop-bg-stage" aria-hidden="true">
-      <span class="prop-bg-blob prop-bg-blob-1"></span>
-      <span class="prop-bg-blob prop-bg-blob-2"></span>
-      <span class="prop-bg-blob prop-bg-blob-3"></span>
-
-      <svg class="prop-bg-iso" viewBox="0 0 1200 700" preserveAspectRatio="none" aria-hidden="true">
-        <defs>
-          <linearGradient id="propIsoStroke" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0"    stop-color="#40EBFF" stop-opacity="0"/>
-            <stop offset="0.16" stop-color="#40EBFF" stop-opacity="0.6"/>
-            <stop offset="0.5"  stop-color="#9FDCEF" stop-opacity="0.75"/>
-            <stop offset="0.84" stop-color="#53B9E0" stop-opacity="0.6"/>
-            <stop offset="1"    stop-color="#40EBFF" stop-opacity="0"/>
-          </linearGradient>
-        </defs>
-        <path class="prop-iso-line iso-l1" d="M-100 70  C 180 30,  380 100, 600 50  S 1000 80,  1300 40"/>
-        <path class="prop-iso-line iso-l2" d="M-100 160 C 220 120, 420 200, 620 140 S 1020 170, 1300 130"/>
-        <path class="prop-iso-line iso-l3" d="M-100 250 C 200 210, 420 300, 620 230 S 1020 260, 1300 220"/>
-        <path class="prop-iso-line iso-l4" d="M-100 350 C 220 310, 420 390, 620 330 S 1020 360, 1300 320"/>
-        <path class="prop-iso-line iso-l5" d="M-100 460 C 200 420, 400 500, 620 430 S 1020 470, 1300 420"/>
-        <path class="prop-iso-line iso-l6" d="M-100 570 C 220 530, 420 610, 620 550 S 1020 580, 1300 530"/>
-        <path class="prop-iso-line iso-l7" d="M-100 660 C 200 620, 400 700, 620 640 S 1020 670, 1300 620"/>
-      </svg>
-
-      <span class="prop-bg-node n1"></span>
-      <span class="prop-bg-node n2"></span>
-      <span class="prop-bg-node n3"></span>
-      <span class="prop-bg-node n4"></span>
-      <span class="prop-bg-node n5"></span>
-      <span class="prop-bg-node n6"></span>
-    </div>
-
     <div class="prop-stage">
 
       <!-- ───── LEFT · composer (input) ───── -->
@@ -704,134 +668,6 @@
   }
   .prop-drop-x:hover { background: rgba(11, 30, 40, 0.95); transform: scale(1.08); }
 
-  /* ═════ AMBIENT BACKGROUND — "Iso-Contour Strata + Atmospheric Drift" ═════
-     Layered behind the two containers only. Concept: a topographic
-     contour field (seven cyan curves) slowly breathing + drifting
-     sideways, layered over three blurred radial blobs that float on
-     long parallax loops. A few stationary node-markers pulse at
-     intersections to suggest a live data-field. Everything is masked
-     into a soft halo so the field reads dimmest exactly where the
-     containers sit and fades to transparent at the perimeter, so it
-     never bleeds past the section's bounds and never competes with
-     the foreground. Pure CSS, GPU-friendly, motion-reduce friendly. */
-  .prop-bg-stage {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    overflow: hidden;
-    border-radius: 22px;
-    -webkit-mask-image: radial-gradient(ellipse 95% 100% at 50% 50%, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.28) 30%, #000 70%, transparent 100%);
-            mask-image: radial-gradient(ellipse 95% 100% at 50% 50%, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.28) 30%, #000 70%, transparent 100%);
-  }
-  /* lift the actual content above the ambient layer */
-  .prop-stage, .prop-foot { position: relative; z-index: 1; }
-
-  /* — atmospheric drift blobs — */
-  .prop-bg-blob {
-    position: absolute;
-    border-radius: 50%;
-    pointer-events: none;
-    filter: blur(72px);
-    will-change: transform, opacity;
-  }
-  .prop-bg-blob-1 {
-    width: 540px; height: 540px;
-    left: -12%; top: -18%;
-    background: radial-gradient(circle, rgba(64, 235, 255, 0.22), transparent 70%);
-    animation: propBlobDrift1 36s ease-in-out infinite;
-  }
-  .prop-bg-blob-2 {
-    width: 480px; height: 480px;
-    right: -10%; bottom: -16%;
-    background: radial-gradient(circle, rgba(83, 185, 224, 0.22), transparent 70%);
-    animation: propBlobDrift2 42s ease-in-out infinite;
-  }
-  .prop-bg-blob-3 {
-    width: 380px; height: 380px;
-    left: 42%; top: 18%;
-    background: radial-gradient(circle, rgba(159, 220, 239, 0.10), transparent 70%);
-    animation: propBlobDrift3 50s ease-in-out infinite;
-  }
-  @keyframes propBlobDrift1 {
-    0%, 100% { transform: translate3d(0, 0, 0);        opacity: 0.85; }
-    50%      { transform: translate3d(46px, 32px, 0);  opacity: 0.55; }
-  }
-  @keyframes propBlobDrift2 {
-    0%, 100% { transform: translate3d(0, 0, 0);          opacity: 0.7; }
-    50%      { transform: translate3d(-40px, -36px, 0);  opacity: 1; }
-  }
-  @keyframes propBlobDrift3 {
-    0%, 100% { transform: translate3d(0, 0, 0);        opacity: 0.65; }
-    50%      { transform: translate3d(-24px, 18px, 0); opacity: 1; }
-  }
-
-  /* — iso-contour strata (SVG) — */
-  .prop-bg-iso {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    display: block;
-  }
-  .prop-iso-line {
-    fill: none;
-    stroke: url(#propIsoStroke);
-    stroke-width: 1.1;
-    stroke-linecap: round;
-    will-change: transform, opacity;
-  }
-  .iso-l1 { animation: propIsoBreatheA 24s ease-in-out infinite;       }
-  .iso-l2 { animation: propIsoBreatheB 27s ease-in-out -3s infinite;   }
-  .iso-l3 { animation: propIsoBreatheA 30s ease-in-out -6s infinite;   }
-  /* mid-stratum lines run right behind the form / preview — keep them
-     dimmer at baseline so the containers always win the foreground */
-  .iso-l4 { animation: propIsoBreatheB 33s ease-in-out -9s infinite;  opacity: 0.5; }
-  .iso-l5 { animation: propIsoBreatheA 30s ease-in-out -12s infinite; opacity: 0.5; }
-  .iso-l6 { animation: propIsoBreatheB 27s ease-in-out -15s infinite; }
-  .iso-l7 { animation: propIsoBreatheA 24s ease-in-out -18s infinite; }
-  @keyframes propIsoBreatheA {
-    0%, 100% { transform: translateX(0);    opacity: 0.72; }
-    50%      { transform: translateX(20px); opacity: 1;    }
-  }
-  @keyframes propIsoBreatheB {
-    0%, 100% { transform: translateX(0);     opacity: 0.92; }
-    50%      { transform: translateX(-18px); opacity: 0.58; }
-  }
-
-  /* — node markers (slow pulse, like contour intersections lighting up) — */
-  .prop-bg-node {
-    position: absolute;
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--p-cyan, #40EBFF);
-    box-shadow: 0 0 8px rgba(64, 235, 255, 0.7), 0 0 20px rgba(64, 235, 255, 0.4);
-    transform: translate(-50%, -50%) scale(0.7);
-    opacity: 0;
-    will-change: opacity, transform;
-    animation: propNodePulse 14s ease-in-out infinite;
-  }
-  .prop-bg-node.n1 { left: 7%;  top: 12%; animation-delay:   0s; }
-  .prop-bg-node.n2 { left: 93%; top: 18%; animation-delay:  -3s; }
-  .prop-bg-node.n3 { left: 4%;  top: 64%; animation-delay:  -6s; }
-  .prop-bg-node.n4 { left: 96%; top: 72%; animation-delay:  -9s; }
-  .prop-bg-node.n5 { left: 50%; top: 6%;  animation-delay: -11s; }
-  .prop-bg-node.n6 { left: 50%; top: 95%; animation-delay:  -2s; }
-  @keyframes propNodePulse {
-    0%, 100% { opacity: 0;    transform: translate(-50%, -50%) scale(0.7); }
-    40%, 60% { opacity: 0.85; transform: translate(-50%, -50%) scale(1);   }
-  }
-
-  @media (max-width: 920px) {
-    /* on mobile the section is taller / narrower — hide the central blob
-       so the field stays light, and tighten the halo mask */
-    .prop-bg-blob-3 { display: none; }
-    .prop-bg-stage {
-      -webkit-mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.24) 28%, #000 72%, transparent 100%);
-              mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.24) 28%, #000 72%, transparent 100%);
-    }
-  }
-
   /* trade chips */
   .prop-chip-row {
     display: flex; gap: 8px; padding: 4px 2px 6px;
@@ -1116,9 +952,7 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .prop-scan-h, .prop-tag-dot, .prop-live-dot, .prop-page-1, .prop-cf, .prop-scan,
-    .prop-bg-blob, .prop-iso-line, .prop-bg-node { animation: none !important; }
-    .prop-bg-node { opacity: 0.6; }
+    .prop-scan-h, .prop-tag-dot, .prop-live-dot, .prop-page-1, .prop-cf, .prop-scan { animation: none !important; }
   }
 
   /* ai-solutions only: tune the empty space between the "Schedule Demo"
