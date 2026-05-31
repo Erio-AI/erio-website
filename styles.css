@@ -3,6 +3,14 @@
    Brand colors from Erio-Brand-Board.html
 ============================================================ */
 
+/* Offscreen sections: pause every CSS animation in the subtree.
+   Toggled by JS IntersectionObserver. Visual is identical because
+   the section isn't visible while paused. */
+.is-offscreen-paused,
+.is-offscreen-paused * {
+  animation-play-state: paused !important;
+}
+
 :root {
   --primary: #005475;
   --neutral: #FFFFFF;
@@ -1100,6 +1108,7 @@ body {
 .logos-strip.is-revealed {
   opacity: 1;
   filter: blur(0);
+  will-change: auto;
   transform: translateY(0);
 }
 .logos-strip-label {
@@ -1344,6 +1353,7 @@ body {
   opacity: 1;
   filter: blur(0);
   transform: translateY(0);
+  will-change: auto;
 }
 .growth.is-revealed .growth-floor,
 .growth.is-revealed .growth-axis,
@@ -2911,17 +2921,23 @@ body {
   inset: 0;
   padding: 30px 32px 30px;
   opacity: 0;
+  visibility: hidden;
   transform: translateY(8px) scale(0.985);
   pointer-events: none;
   transition:
     opacity 0.55s var(--ease-velvet),
-    transform 0.65s var(--ease-velvet);
+    transform 0.65s var(--ease-velvet),
+    visibility 0s 0.55s;
 }
 .bcon-pane.is-active {
   opacity: 1;
+  visibility: visible;
   transform: none;
   pointer-events: auto;
-  transition-delay: 0.05s;
+  transition:
+    opacity 0.55s var(--ease-velvet) 0.05s,
+    transform 0.65s var(--ease-velvet) 0.05s,
+    visibility 0s;
 }
 
 /* Pane head row: eyebrow + title + blurb on left, CTA on right */
