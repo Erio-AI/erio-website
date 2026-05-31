@@ -2067,14 +2067,12 @@ a.cw-chat-btn { text-decoration: none; }
   text-shadow: 0 0 12px rgba(64, 235, 255, 0.5);
   transition: color 0.2s ease, text-shadow 0.2s ease;
   animation: empEmit var(--dur, 7s) cubic-bezier(0.25, 0.6, 0.3, 1) var(--d, 0s) infinite;
-  will-change: transform, opacity;
 }
 .emp-dot {
   position: absolute; left: 50%; top: 50%;
   width: var(--w, 4px); height: var(--w, 4px); border-radius: 50%; opacity: 0;
   background: #9FDCEF; box-shadow: 0 0 8px rgba(64, 235, 255, 0.85);
   animation: empEmit var(--dur, 6s) cubic-bezier(0.25, 0.6, 0.3, 1) var(--d, 0s) infinite;
-  will-change: transform, opacity;
 }
 @keyframes empEmit {
   0%   { transform: translate(-50%, -50%) translate(0, 0) scale(0.35); opacity: 0; }
