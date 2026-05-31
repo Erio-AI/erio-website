@@ -1,3 +1,11 @@
+/* Offscreen sections: pause every CSS animation in the subtree.
+   Toggled by JS IntersectionObserver. Visual is identical because
+   the section isn't visible while paused. */
+.is-offscreen-paused,
+.is-offscreen-paused * {
+  animation-play-state: paused !important;
+}
+
 /* ============================================================
    AI WEBSITES — floating "contractor website" preview
    Layered glass panels over a transparent stage (a hero image
@@ -257,8 +265,9 @@
     opacity 0.46s var(--ease-velvet, cubic-bezier(0.22, 1, 0.36, 1)),
     transform 0.46s var(--ease-velvet, cubic-bezier(0.22, 1, 0.36, 1)),
     filter 0.46s var(--ease-velvet, cubic-bezier(0.22, 1, 0.36, 1));
-  will-change: transform, opacity;
 }
+.cw-grad.cw-swap-out,
+.cw-grad.cw-swap-in { will-change: transform, opacity, filter; }
 .cw-grad.cw-swap-out { opacity: 0; transform: translateY(-0.42em); filter: blur(3px); }
 .cw-grad.cw-swap-in  { opacity: 0; transform: translateY(0.5em);   filter: blur(3px); }
 @media (prefers-reduced-motion: reduce) {
