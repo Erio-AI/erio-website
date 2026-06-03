@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="googlebot" content="noindex, nofollow" />
+<title>Erio Pricing Details</title>
+<link rel="icon" type="image/png" href="favicon.png?v=3" />
+<link rel="shortcut icon" type="image/png" href="favicon.png?v=3" />
+<link rel="apple-touch-icon" href="favicon.png?v=3" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* Headline has 4 words ("Choose Your AI Package"), staggered with the same
+     +0.05s/char, +0.10s/word cadence so every character animates in left-to-right. */
+  /* Choose */
+  .hero-title .word:nth-of-type(1) .char:nth-child(1) { animation-delay: 0.65s; }
+  .hero-title .word:nth-of-type(1) .char:nth-child(2) { animation-delay: 0.70s; }
+  .hero-title .word:nth-of-type(1) .char:nth-child(3) { animation-delay: 0.75s; }
+  .hero-title .word:nth-of-type(1) .char:nth-child(4) { animation-delay: 0.80s; }
+  .hero-title .word:nth-of-type(1) .char:nth-child(5) { animation-delay: 0.85s; }
+  .hero-title .word:nth-of-type(1) .char:nth-child(6) { animation-delay: 0.90s; }
+  /* Your */
+  .hero-title .word:nth-of-type(2) .char:nth-child(1) { animation-delay: 1.00s; }
+  .hero-title .word:nth-of-type(2) .char:nth-child(2) { animation-delay: 1.05s; }
+  .hero-title .word:nth-of-type(2) .char:nth-child(3) { animation-delay: 1.10s; }
+  .hero-title .word:nth-of-type(2) .char:nth-child(4) { animation-delay: 1.15s; }
+  /* AI */
+  .hero-title .word:nth-of-type(3) .char:nth-child(1) { animation-delay: 1.25s; }
+  .hero-title .word:nth-of-type(3) .char:nth-child(2) { animation-delay: 1.30s; }
+  /* Package */
+  .hero-title .word:nth-of-type(4) .char:nth-child(1) { animation-delay: 1.40s; }
+  .hero-title .word:nth-of-type(4) .char:nth-child(2) { animation-delay: 1.45s; }
+  .hero-title .word:nth-of-type(4) .char:nth-child(3) { animation-delay: 1.50s; }
+  .hero-title .word:nth-of-type(4) .char:nth-child(4) { animation-delay: 1.55s; }
+  .hero-title .word:nth-of-type(4) .char:nth-child(5) { animation-delay: 1.60s; }
+  .hero-title .word:nth-of-type(4) .char:nth-child(6) { animation-delay: 1.65s; }
+  .hero-title .word:nth-of-type(4) .char:nth-child(7) { animation-delay: 1.70s; }
+  /* keep "Choose Your AI Package" on a single line */
+  .hero .hero-title { font-size: clamp(38px, 6.2vw, 82px); }
+  /* extend the per-character gradient below the baseline so descenders (the "g") aren't clipped */
+  .hero .hero-title .char { background-size: var(--grad-size, 100%) 165%; padding-bottom: 0.08em; }
+
+  /* ===== Pricing section (packages page only) ===== */
+  /* tighten the gap between the Schedule Demo button and the pricing block to ≈25% of the original */
+  .hero { padding-bottom: 9px; }
+  /* fully visible so the top of the light fades up across the section seam (no clipped line);
+     horizontal scroll is already prevented globally by html/body overflow-x: clip, and Safari
+     mis-handles per-axis clip (it re-clips the visible axis), so don't clip here at all */
+  .pkg-pricing { position: relative; isolation: isolate; padding: clamp(5px, 0.75vw, 10px) 24px clamp(48px, 7vw, 92px); overflow: visible; font-family: 'Exo 2', system-ui, sans-serif; }
+
+  /* soft diffuse glow that washes over the whole cards area, with twinkling particles */
+  /* light "hovers" above the card row: brightest across the top of the cards, then dims
+     gradually downward so it reads as a soft source illuminating them from above */
+  .pkg-beam { position: absolute; left: 50%; top: 30px; transform: translateX(-50%); width: min(1969px, 101%); height: 100%;
+    background: radial-gradient(ellipse 74% 50% at 50% 32%,
+        rgba(64,235,255,0.26) 0%,
+        rgba(64,235,255,0.25) 28%,
+        rgba(64,235,255,0.125) 52%,
+        rgba(64,235,255,0.044) 72%,
+        transparent 90%);
+    filter: blur(46px); pointer-events: none; z-index: 0; }
+  /* concentrated bright core right where the source sits, just above the card tops */
+  .pkg-beam::before { content: ''; position: absolute; top: 28%; left: 50%; transform: translate(-50%, -50%); width: 758px; height: 250px; border-radius: 50%;
+    background: radial-gradient(ellipse at center, rgba(150,248,255,0.375), rgba(64,235,255,0.10) 52%, transparent 76%); filter: blur(38px); }
+  .pkg-particles { position: absolute; left: 50%; top: calc(2% + 30px); transform: translateX(-50%); width: min(1488px, 83%); height: 44%; overflow: visible; pointer-events: none; z-index: 3; }
+  /* extra sparkle fields for the 2nd/3rd cards — mobile only (see media query below) */
+  .pkg-particles--m2, .pkg-particles--m3 { display: none; }
+  .pkg-dot { position: absolute; border-radius: 50%; background: rgba(180,250,255,0.95); box-shadow: 0 0 6px rgba(120,235,255,0.75); opacity: 0; animation: pkgFall 11s linear infinite; }
+  /* particles drift slowly downward and fade out the lower they get (fully gone ~25% earlier) */
+  @keyframes pkgFall { 0% { opacity: 0; transform: translateY(-6px); } 12% { opacity: 0.9; } 32% { opacity: 0.45; } 50% { opacity: 0; } 100% { opacity: 0; transform: translateY(var(--fall, 280px)); } }
+  .pkg-head { position: relative; z-index: 2; text-align: center; max-width: 760px; margin: 0 auto clamp(38px, 5vw, 60px); display: flex; flex-direction: column; align-items: center; gap: 15px; }
+  .pkg-tag { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; color: #9FDCEF; }
+  .pkg-tag-dot { width: 7px; height: 7px; border-radius: 50%; background: #40EBFF; box-shadow: 0 0 8px rgba(64,235,255,0.85); animation: pkgPulse 1.8s ease-in-out infinite; }
+  @keyframes pkgPulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.35; transform: scale(0.82); } }
+  .pkg-title { font-size: clamp(30px, 4.6vw, 54px); font-weight: 700; line-height: 1.07; letter-spacing: -0.022em; color: #EAF6FB; margin: 0; }
+  .pkg-subline { font-size: clamp(17px, 2.1vw, 24px); font-weight: 500; color: #FFFFFF; margin: 12px 0 0; letter-spacing: 0.01em; }
+  .pkg-em { background: linear-gradient(110deg, #53B9E0 0%, #9FDCEF 46%, #F5C842 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
+
+  .pkg-grid { position: relative; z-index: 2; max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; align-items: start; }
+  .pkg-card {
+    position: relative; overflow: hidden; display: flex; flex-direction: column; border-radius: 22px; padding: 30px 26px 32px;
+    background: rgba(255, 255, 255, 0.06);
+    -webkit-backdrop-filter: blur(28px) saturate(170%); backdrop-filter: blur(28px) saturate(170%);
+    box-shadow: 0 20px 52px rgba(0, 0, 0, 0.5), inset 0 -3px 0 rgba(0, 0, 0, 0.58), inset 0 -17px 24px -14px rgba(0, 0, 0, 0.42), inset 1px 0 0 rgba(0, 0, 0, 0.58), inset -1px 0 0 rgba(0, 0, 0, 0.58);
+    transition: transform 0.4s var(--ease-velvet, cubic-bezier(0.22,1,0.36,1)), box-shadow 0.4s, filter 0.35s ease, opacity 0.35s ease;
+  }
+  .pkg-card:hover { transform: translateY(-6px); box-shadow: 0 28px 64px rgba(0, 0, 0, 0.55), inset 0 -3px 0 rgba(0, 0, 0, 0.58), inset 0 -17px 24px -14px rgba(0, 0, 0, 0.42), inset 1px 0 0 rgba(0, 0, 0, 0.58), inset -1px 0 0 rgba(0, 0, 0, 0.58); }
+
+  /* gradient top banner (same cyan gradient as the brand CTA) holding the plan name */
+  .pkg-banner { margin: -30px -26px 22px; padding: 16px 24px; text-align: center; font-size: 19px; font-weight: 800; letter-spacing: -0.01em; color: #062029; background: linear-gradient(135deg, #6ff0ff, #2bb6c8); box-shadow: inset 0 3px 0 rgba(255,255,255,0.6), inset 1px 0 0 rgba(0,0,0,0.58), inset -1px 0 0 rgba(0,0,0,0.58); }
+  .pkg-desc { font-size: 13px; color: rgba(178,204,214,0.78); margin: 6px 0 0; }
+  .pkg-price { display: flex; align-items: baseline; gap: 7px; margin: 22px 0; }
+  .pkg-setup { margin: 14px 0 -8px; font-size: 13.5px; font-weight: 600; letter-spacing: -0.01em; color: #9FDCEF; }
+  .pkg-setup-amount { font-size: 44px; font-weight: 800; color: #fff; letter-spacing: -0.025em; line-height: 1; }
+  .pkg-save { display: inline-block; align-self: center; vertical-align: middle; margin-left: 8px; padding: 2px 8px; border-radius: 999px; background: #F5C842; color: #062029; font-size: 10.5px; font-weight: 800; letter-spacing: 0.01em; white-space: nowrap; }
+  .pkg-amount { font-size: 24px; font-weight: 600; color: #fff; letter-spacing: -0.025em; line-height: 1; }
+  .pkg-per { font-size: 13.5px; font-weight: 600; color: #9FDCEF; }
+  /* subtle line beneath the price that fades out toward the edges */
+  .pkg-div { height: 1px; margin: 0 0 16px; background: linear-gradient(90deg, transparent, rgba(120,200,222,0.32), transparent); }
+  /* "What's included:" label in the banner's cyan gradient */
+  .pkg-included { display: block; font-size: 12px; font-weight: 700; letter-spacing: 0.04em; margin-bottom: 16px; background: linear-gradient(135deg, #6ff0ff, #2bb6c8); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
+  /* CTA pinned to the bottom of the card, fit-content width, cyan gradient like the banner */
+  .pkg-cta {
+    align-self: center; margin-top: auto; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; cursor: pointer;
+    font-size: 14.5px; font-weight: 700; color: #062029; padding: 13px 30px; border-radius: 999px;
+    background: linear-gradient(135deg, #6ff0ff, #2bb6c8); border: none;
+    box-shadow: 0 12px 28px -10px rgba(64,235,255,0.55), inset 0 0 0 1px rgba(255,255,255,0.28);
+    transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
+  }
+  .pkg-cta:hover { background: linear-gradient(135deg, #6ff0ff, #2bb6c8); box-shadow: 0 16px 34px -10px rgba(64,235,255,0.72), inset 0 0 0 1px rgba(255,255,255,0.34); transform: translateY(-2px); }
+  .pkg-features { display: flex; flex-direction: column; gap: 16px; margin-bottom: 26px; }
+  .pkg-feat { display: flex; align-items: center; gap: 12px; font-size: 13.5px; font-weight: 500; color: #DCEEF3; }
+  .pkg-feat svg { width: 20px; height: 20px; flex: 0 0 auto; color: #40EBFF; }
+  /* on-load fade + blur reveal for the [ PLANS ] tag, the headline, and the cards */
+  @keyframes pkgReveal { from { opacity: 0; transform: translateY(18px); filter: blur(14px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
+  .pkg-tag, .pkg-title, .pkg-subline, .pkg-card { animation: pkgReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) backwards; }
+  .pkg-tag { animation-delay: 0.15s; }
+  .pkg-title { animation-delay: 0.28s; }
+  .pkg-subline { animation-delay: 0.36s; }
+  .pkg-grid .pkg-card:nth-child(1) { animation-delay: 0.42s; }
+  .pkg-grid .pkg-card:nth-child(2) { animation-delay: 0.54s; }
+  .pkg-grid .pkg-card:nth-child(3) { animation-delay: 0.66s; }
+  @media (max-width: 980px) {
+    .pkg-grid { grid-template-columns: 1fr; max-width: 440px; gap: 26px; }
+  }
+  /* mobile only: raise the glow + sparkles, and replicate the same light + sparkles
+     over the 2nd (AI Employee) and 3rd (AI Solution) cards as well */
+  @media (max-width: 768px) {
+    .pkg-beam {
+      top: -145px;
+      background:
+        radial-gradient(ellipse 74% 50% at 50% 32%, rgba(64,235,255,0.21) 0%, rgba(64,235,255,0.20) 28%, rgba(64,235,255,0.10) 52%, rgba(64,235,255,0.035) 72%, transparent 90%),
+        radial-gradient(ellipse 74% 50% at 50% 60%, rgba(64,235,255,0.21) 0%, rgba(64,235,255,0.20) 28%, rgba(64,235,255,0.10) 52%, rgba(64,235,255,0.035) 72%, transparent 90%),
+        radial-gradient(ellipse 74% 50% at 50% 88%, rgba(64,235,255,0.21) 0%, rgba(64,235,255,0.20) 28%, rgba(64,235,255,0.10) 52%, rgba(64,235,255,0.035) 72%, transparent 90%);
+    }
+    .pkg-particles { top: calc(2% - 45px); }
+    .pkg-particles--m2 { display: block; top: calc(30% - 45px); }
+    .pkg-particles--m3 { display: block; top: calc(58% - 45px); }
+    /* halve the sparkles on mobile (drop every other one, keeps even spacing) */
+    .pkg-dot:nth-child(even) { display: none; }
+  }
+  /* non-mobile only: halve the gap between the Schedule Demo button and [ PLANS ] */
+  @media (min-width: 769px) {
+    .hero { padding-bottom: 1.1px; }
+    .pkg-pricing { padding-top: clamp(0.6px, 0.094vw, 1.25px); }
+  }
+  /* raise the AI Bundle (middle) card a little for prominence — only in the 3-column layout */
+  @media (min-width: 981px) {
+    .pkg-card--raised { transform: translateY(-18px); }
+    .pkg-card--raised:hover { transform: translateY(-24px); }
+    /* hovering one card softly blurs the others so the focused one stands out (desktop only) */
+    .pkg-grid:has(.pkg-card:hover) .pkg-card:not(:hover) { filter: blur(5px); opacity: 0.85; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pkg-tag-dot { animation: none; }
+    .pkg-dot { animation: none; opacity: 0; }
+    .pkg-card, .pkg-card:hover, .pkg-cta:hover { transition: none; }
+    .pkg-tag, .pkg-title, .pkg-subline, .pkg-card { animation: none; }
+  }
+</style>
+<link rel="stylesheet" href="ai-websites.css?v=66">
+</head>
+<body>
+
+<!-- AMBIENT BACKGROUND LAYERS -->
+<div class="bg-mesh" aria-hidden="true"></div>
+
+
+
+<!-- TOP NAV -->
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="/" aria-label="Erio home">
+      <img src="Erio Logo Original.png" alt="Erio" decoding="async" />
+    </a>
+
+    <div class="nav-pill-slot">
+      <nav class="nav-pill" aria-label="Primary">
+      <a class="nav-drop-trigger" href="#products" aria-haspopup="true">
+        Products
+        <svg class="nav-drop-chevron" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </a>
+      <a href="https://app.erio.ai/">Login</a>
+      <a href="/packages">Packages</a>
+      <div class="nav-pill-sub" role="menu">
+        <div class="nav-pill-sub-inner">
+          <a href="/ai-websites"  role="menuitem">AI Websites</a>
+          <a href="/ai-employees" role="menuitem">AI Employees</a>
+          <a href="/ai-solutions" role="menuitem">AI Solutions</a>
+        </div>
+      </div>
+      </nav>
+    </div>
+
+    <div class="nav-cta">
+      <a class="btn-primary" href="/book">
+        <span>Book</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <!-- MOBILE NAV — single pill with logo (L), Demo text (center), hamburger (R) -->
+    <div class="nav-mobile-pill" role="navigation" aria-label="Mobile">
+      <a class="nav-mobile-logo" href="/" aria-label="Erio home">
+        <img src="Erio Logo Original.png" alt="Erio" decoding="async" />
+      </a>
+      <a class="nav-mobile-demo" href="/book">Book</a>
+      <button class="nav-mobile-burger" type="button" aria-label="Open menu"
+              aria-expanded="false" aria-controls="navMobileMenu">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.6" stroke-linecap="round" aria-hidden="true">
+          <defs>
+            <linearGradient id="burgerGrad" gradientUnits="userSpaceOnUse"
+                            x1="4" y1="7" x2="20" y2="17">
+              <stop offset="0%"   stop-color="#70F0FF"/>
+              <stop offset="55%"  stop-color="#53B9E0"/>
+              <stop offset="100%" stop-color="#337791"/>
+            </linearGradient>
+          </defs>
+          <line x1="4" y1="7"  x2="20" y2="7"  stroke="url(#burgerGrad)"/>
+          <line x1="4" y1="12" x2="20" y2="12" stroke="url(#burgerGrad)"/>
+          <line x1="4" y1="17" x2="20" y2="17" stroke="url(#burgerGrad)"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile dropdown menu — opens beneath the pill -->
+    <div class="nav-mobile-menu" id="navMobileMenu" role="menu" aria-hidden="true">
+      <a href="/packages"     role="menuitem">Packages</a>
+      <a href="/ai-websites"  role="menuitem">AI Websites</a>
+      <a href="/ai-employees" role="menuitem">AI Employees</a>
+      <a href="/ai-solutions" role="menuitem">AI Solutions</a>
+      <a href="https://app.erio.ai/" role="menuitem">Login</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<main class="hero">
+
+  <!-- HEADLINE -->
+  <h1 class="hero-title">
+    <span class="word"><span class="char">C</span><span class="char">h</span><span class="char">o</span><span class="char">o</span><span class="char">s</span><span class="char">e</span></span>
+    <span class="word"><span class="char">Y</span><span class="char">o</span><span class="char">u</span><span class="char">r</span></span>
+    <span class="word"><span class="char">A</span><span class="char">I</span></span>
+    <span class="word grad"><span class="char">P</span><span class="char">a</span><span class="char">c</span><span class="char">k</span><span class="char">a</span><span class="char">g</span><span class="char">e</span></span>
+  </h1>
+
+  <p class="hero-sub">AI packages for your business — websites, employees, or bundled.<br/>For contractors who want to win more jobs with less effort.</p>
+
+  <div class="cta-frame">
+    <svg class="cta-track cta-track-l" viewBox="0 0 300 90" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      <defs>
+        <linearGradient id="trackFadeL" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%"   stop-color="#53D2E0" stop-opacity="0"/>
+          <stop offset="55%"  stop-color="#53D2E0" stop-opacity="0.4"/>
+          <stop offset="100%" stop-color="#A1E8F0" stop-opacity="0.9"/>
+        </linearGradient>
+      </defs>
+      <path id="trackPathL"
+            d="M 5 78 C 80 78, 200 45, 295 45"
+            stroke="url(#trackFadeL)" stroke-width="1.3"
+            stroke-dasharray="2 7" stroke-linecap="round"
+            fill="none"/>
+      <circle r="2.6" fill="#A1E8F0"
+              style="filter: drop-shadow(0 0 4px #53D2E0) drop-shadow(0 0 9px rgba(83,210,224,0.7));">
+        <animateMotion dur="2.6s" repeatCount="indefinite" rotate="auto" keyPoints="0;1" keyTimes="0;1">
+          <mpath href="#trackPathL"/>
+        </animateMotion>
+        <animate attributeName="opacity"
+                 values="0;0.4;1;1;0" keyTimes="0;0.1;0.4;0.85;1"
+                 dur="2.6s" repeatCount="indefinite"/>
+      </circle>
+    </svg>
+
+    <a class="hero-cta" href="/book">
+      <span class="cta-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="6 4 20 12 6 20" fill="currentColor"/>
+        </svg>
+      </span>
+      <span>Schedule Demo</span>
+    </a>
+
+    <svg class="cta-track cta-track-r" viewBox="0 0 300 90" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      <defs>
+        <linearGradient id="trackFadeR" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%"   stop-color="#A1E8F0" stop-opacity="0.9"/>
+          <stop offset="45%"  stop-color="#53D2E0" stop-opacity="0.4"/>
+          <stop offset="100%" stop-color="#53D2E0" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <path id="trackPathR"
+            d="M 5 45 C 100 45, 220 78, 295 78"
+            stroke="url(#trackFadeR)" stroke-width="1.3"
+            stroke-dasharray="2 7" stroke-linecap="round"
+            fill="none"/>
+      <circle r="2.6" fill="#A1E8F0"
+              style="filter: drop-shadow(0 0 4px #53D2E0) drop-shadow(0 0 9px rgba(83,210,224,0.7));">
+        <animateMotion dur="2.6s" repeatCount="indefinite" rotate="auto" keyPoints="1;0" keyTimes="0;1">
+          <mpath href="#trackPathR"/>
+        </animateMotion>
+        <animate attributeName="opacity"
+                 values="0;0.4;1;1;0" keyTimes="0;0.1;0.4;0.85;1"
+                 dur="2.6s" repeatCount="indefinite"/>
+      </circle>
+    </svg>
+  </div>
+
+
+</main>
+
+<!-- ====== Pricing — AI packages ====== -->
+<section class="pkg-pricing" aria-labelledby="pricing-title">
+  <div class="pkg-beam" aria-hidden="true"></div>
+  <div class="pkg-particles" aria-hidden="true">
+    <span class="pkg-dot" style="left:50%; top:9%;  width:3px;   height:3px;   animation-delay:0s;      --fall:320px;"></span>
+    <span class="pkg-dot" style="left:30%; top:13%; width:2px;   height:2px;   animation-delay:-0.41s;  --fall:280px;"></span>
+    <span class="pkg-dot" style="left:70%; top:12%; width:2.5px; height:2.5px; animation-delay:-0.81s;  --fall:300px;"></span>
+    <span class="pkg-dot" style="left:14%; top:18%; width:2px;   height:2px;   animation-delay:-1.22s;  --fall:260px;"></span>
+    <span class="pkg-dot" style="left:86%; top:16%; width:2px;   height:2px;   animation-delay:-1.63s;  --fall:260px;"></span>
+    <span class="pkg-dot" style="left:18%; top:11%; width:2px;   height:2px;   animation-delay:-2.04s;  --fall:300px;"></span>
+    <span class="pkg-dot" style="left:42%; top:20%; width:2.5px; height:2.5px; animation-delay:-2.44s;  --fall:300px;"></span>
+    <span class="pkg-dot" style="left:58%; top:22%; width:2px;   height:2px;   animation-delay:-2.85s;  --fall:280px;"></span>
+    <span class="pkg-dot" style="left:82%; top:24%; width:2px;   height:2px;   animation-delay:-3.26s;  --fall:270px;"></span>
+    <span class="pkg-dot" style="left:22%; top:26%; width:2px;   height:2px;   animation-delay:-3.67s;  --fall:240px;"></span>
+    <span class="pkg-dot" style="left:78%; top:28%; width:2.5px; height:2.5px; animation-delay:-4.07s;  --fall:240px;"></span>
+    <span class="pkg-dot" style="left:50%; top:30%; width:3.5px; height:3.5px; animation-delay:-4.48s;  --fall:340px;"></span>
+    <span class="pkg-dot" style="left:38%; top:32%; width:2px;   height:2px;   animation-delay:-4.89s;  --fall:260px;"></span>
+    <span class="pkg-dot" style="left:62%; top:34%; width:2.5px; height:2.5px; animation-delay:-5.30s;  --fall:250px;"></span>
+    <span class="pkg-dot" style="left:8%;  top:34%; width:2px;   height:2px;   animation-delay:-5.70s;  --fall:220px;"></span>
+    <span class="pkg-dot" style="left:92%; top:36%; width:2px;   height:2px;   animation-delay:-6.11s;  --fall:220px;"></span>
+    <span class="pkg-dot" style="left:36%; top:40%; width:2.5px; height:2.5px; animation-delay:-6.52s;  --fall:250px;"></span>
+    <span class="pkg-dot" style="left:64%; top:42%; width:2px;   height:2px;   animation-delay:-6.93s;  --fall:250px;"></span>
+    <span class="pkg-dot" style="left:12%; top:44%; width:2px;   height:2px;   animation-delay:-7.33s;  --fall:210px;"></span>
+    <span class="pkg-dot" style="left:88%; top:46%; width:2px;   height:2px;   animation-delay:-7.74s;  --fall:210px;"></span>
+    <span class="pkg-dot" style="left:26%; top:48%; width:2px;   height:2px;   animation-delay:-8.15s;  --fall:200px;"></span>
+    <span class="pkg-dot" style="left:74%; top:50%; width:2.5px; height:2.5px; animation-delay:-8.56s;  --fall:200px;"></span>
+    <span class="pkg-dot" style="left:46%; top:54%; width:2px;   height:2px;   animation-delay:-8.96s;  --fall:190px;"></span>
+    <span class="pkg-dot" style="left:34%; top:58%; width:2px;   height:2px;   animation-delay:-9.37s;  --fall:180px;"></span>
+    <span class="pkg-dot" style="left:68%; top:56%; width:2px;   height:2px;   animation-delay:-9.78s;  --fall:190px;"></span>
+    <span class="pkg-dot" style="left:58%; top:60%; width:2px;   height:2px;   animation-delay:-10.19s; --fall:170px;"></span>
+    <span class="pkg-dot" style="left:50%; top:68%; width:2px;   height:2px;   animation-delay:-10.59s; --fall:160px;"></span>
+  </div>
+  <div class="pkg-particles pkg-particles--m2" aria-hidden="true">
+    <span class="pkg-dot" style="left:50%; top:9%;  width:3px;   height:3px;   animation-delay:0s;      --fall:320px;"></span>
+    <span class="pkg-dot" style="left:30%; top:13%; width:2px;   height:2px;   animation-delay:-0.41s;  --fall:280px;"></span>
+    <span class="pkg-dot" style="left:70%; top:12%; width:2.5px; height:2.5px; animation-delay:-0.81s;  --fall:300px;"></span>
+    <span class="pkg-dot" style="left:14%; top:18%; width:2px;   height:2px;   animation-delay:-1.22s;  --fall:260px;"></span>
+    <span class="pkg-dot" style="left:86%; top:16%; width:2px;   height:2px;   animation-delay:-1.63s;  --fall:260px;"></span>
+    <span class="pkg-dot" style="left:18%; top:11%; width:2px;   height:2px;   animation-delay:-2.04s;  --fall:300px;"></span>
+    <span class="pkg-dot" style="left:42%; top:20%; width:2.5px; height:2.5px; animation-delay:-2.44s;  --fall:300px;"></span>
+    <span class="pkg-dot" style="left:58%; top:22%; width:2px;   height:2px;   animation-delay:-2.85s;  --fall:280px;"></span>
+    <span class="pkg-dot" style="left:82%; top:24%; width:2px;   height:2px;   animation-delay:-3.26s;  --fall:270px;"></span>
+    <span class="pkg-dot" style="left:22%; top:26%; width:2px;   height:2px;   animation-delay:-3.67s;  --fall:240px;"></span>
+    <span class="pkg-dot" style="left:78%; top:28%; width:2.5px; height:2.5px; animation-delay:-4.07s;  --fall:240px;"></span>
+    <span class="pkg-dot" style="left:50%; top:30%; width:3.5px; height:3.5px; animation-delay:-4.48s;  --fall:340px;"></span>
+    <span class="pkg-dot" style="left:38%; top:32%; width:2px;   height:2px;   animation-delay:-4.89s;  --fall:260px;"></span>
+    <span class="pkg-dot" style="left:62%; top:34%; width:2.5px; height:2.5px; animation-delay:-5.30s;  --fall:250px;"></span>
+    <span class="pkg-dot" style="left:8%;  top:34%; width:2px;   height:2px;   animation-delay:-5.70s;  --fall:220px;"></span>
+    <span class="pkg-dot" style="left:92%; top:36%; width:2px;   height:2px;   animation-delay:-6.11s;  --fall:220px;"></span>
+    <span class="pkg-dot" style="left:36%; top:40%; width:2.5px; height:2.5px; animation-delay:-6.52s;  --fall:250px;"></span>
+    <span class="pkg-dot" style="left:64%; top:42%; width:2px;   height:2px;   animation-delay:-6.93s;  --fall:250px;"></span>
+    <span class="pkg-dot" style="left:12%; top:44%; width:2px;   height:2px;   animation-delay:-7.33s;  --fall:210px;"></span>
+    <span class="pkg-dot" style="left:88%; top:46%; width:2px;   height:2px;   animation-delay:-7.74s;  --fall:210px;"></span>
+    <span class="pkg-dot" style="left:26%; top:48%; width:2px;   height:2px;   animation-delay:-8.15s;  --fall:200px;"></span>
+    <span class="pkg-dot" style="left:74%; top:50%; width:2.5px; height:2.5px; animation-delay:-8.56s;  --fall:200px;"></span>
+    <span class="pkg-dot" style="left:46%; top:54%; width:2px;   height:2px;   animation-delay:-8.96s;  --fall:190px;"></span>
+    <span class="pkg-dot" style="left:34%; top:58%; width:2px;   height:2px;   animation-delay:-9.37s;  --fall:180px;"></span>
+    <span class="pkg-dot" style="left:68%; top:56%; width:2px;   height:2px;   animation-delay:-9.78s;  --fall:190px;"></span>
+    <span class="pkg-dot" style="left:58%; top:60%; width:2px;   height:2px;   animation-delay:-10.19s; --fall:170px;"></span>
+    <span class="pkg-dot" style="left:50%; top:68%; width:2px;   height:2px;   animation-delay:-10.59s; --fall:160px;"></span>
+  </div>
+  <div class="pkg-particles pkg-particles--m3" aria-hidden="true">
+    <span class="pkg-dot" style="left:50%; top:9%;  width:3px;   height:3px;   animation-delay:0s;      --fall:320px;"></span>
+    <span class="pkg-dot" style="left:30%; top:13%; width:2px;   height:2px;   animation-delay:-0.41s;  --fall:280px;"></span>
+    <span class="pkg-dot" style="left:70%; top:12%; width:2.5px; height:2.5px; animation-delay:-0.81s;  --fall:300px;"></span>
+    <span class="pkg-dot" style="left:14%; top:18%; width:2px;   height:2px;   animation-delay:-1.22s;  --fall:260px;"></span>
+    <span class="pkg-dot" style="left:86%; top:16%; width:2px;   height:2px;   animation-delay:-1.63s;  --fall:260px;"></span>
+    <span class="pkg-dot" style="left:18%; top:11%; width:2px;   height:2px;   animation-delay:-2.04s;  --fall:300px;"></span>
+    <span class="pkg-dot" style="left:42%; top:20%; width:2.5px; height:2.5px; animation-delay:-2.44s;  --fall:300px;"></span>
+    <span class="pkg-dot" style="left:58%; top:22%; width:2px;   height:2px;   animation-delay:-2.85s;  --fall:280px;"></span>
+    <span class="pkg-dot" style="left:82%; top:24%; width:2px;   height:2px;   animation-delay:-3.26s;  --fall:270px;"></span>
+    <span class="pkg-dot" style="left:22%; top:26%; width:2px;   height:2px;   animation-delay:-3.67s;  --fall:240px;"></span>
+    <span class="pkg-dot" style="left:78%; top:28%; width:2.5px; height:2.5px; animation-delay:-4.07s;  --fall:240px;"></span>
+    <span class="pkg-dot" style="left:50%; top:30%; width:3.5px; height:3.5px; animation-delay:-4.48s;  --fall:340px;"></span>
+    <span class="pkg-dot" style="left:38%; top:32%; width:2px;   height:2px;   animation-delay:-4.89s;  --fall:260px;"></span>
+    <span class="pkg-dot" style="left:62%; top:34%; width:2.5px; height:2.5px; animation-delay:-5.30s;  --fall:250px;"></span>
+    <span class="pkg-dot" style="left:8%;  top:34%; width:2px;   height:2px;   animation-delay:-5.70s;  --fall:220px;"></span>
+    <span class="pkg-dot" style="left:92%; top:36%; width:2px;   height:2px;   animation-delay:-6.11s;  --fall:220px;"></span>
+    <span class="pkg-dot" style="left:36%; top:40%; width:2.5px; height:2.5px; animation-delay:-6.52s;  --fall:250px;"></span>
+    <span class="pkg-dot" style="left:64%; top:42%; width:2px;   height:2px;   animation-delay:-6.93s;  --fall:250px;"></span>
+    <span class="pkg-dot" style="left:12%; top:44%; width:2px;   height:2px;   animation-delay:-7.33s;  --fall:210px;"></span>
+    <span class="pkg-dot" style="left:88%; top:46%; width:2px;   height:2px;   animation-delay:-7.74s;  --fall:210px;"></span>
+    <span class="pkg-dot" style="left:26%; top:48%; width:2px;   height:2px;   animation-delay:-8.15s;  --fall:200px;"></span>
+    <span class="pkg-dot" style="left:74%; top:50%; width:2.5px; height:2.5px; animation-delay:-8.56s;  --fall:200px;"></span>
+    <span class="pkg-dot" style="left:46%; top:54%; width:2px;   height:2px;   animation-delay:-8.96s;  --fall:190px;"></span>
+    <span class="pkg-dot" style="left:34%; top:58%; width:2px;   height:2px;   animation-delay:-9.37s;  --fall:180px;"></span>
+    <span class="pkg-dot" style="left:68%; top:56%; width:2px;   height:2px;   animation-delay:-9.78s;  --fall:190px;"></span>
+    <span class="pkg-dot" style="left:58%; top:60%; width:2px;   height:2px;   animation-delay:-10.19s; --fall:170px;"></span>
+    <span class="pkg-dot" style="left:50%; top:68%; width:2px;   height:2px;   animation-delay:-10.59s; --fall:160px;"></span>
+  </div>
+
+  <div class="pkg-head">
+    <span class="pkg-tag"><span class="pkg-tag-dot"></span>[ PLANS ]</span>
+    <h2 class="pkg-title" id="pricing-title">Deployed &amp; <span class="pkg-em">Live In 5 Days</span></h2>
+    <p class="pkg-subline">No contracts. Cancel anytime.</p>
+  </div>
+
+  <div class="pkg-grid">
+
+    <!-- AI Website -->
+    <article class="pkg-card">
+      <div class="pkg-banner">AI Website</div>
+      <p class="pkg-desc">Perfect for getting found online</p>
+      <p class="pkg-setup"><span class="pkg-setup-amount">$2,997</span> - setup fee</p>
+      <div class="pkg-price"><span class="pkg-amount">$297</span><span class="pkg-per">/ mo</span></div>
+      <div class="pkg-div"></div>
+      <span class="pkg-included">What's included:</span>
+      <div class="pkg-features">
+        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>SEO &amp; AI search visibility</span>
+        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>25+ optimized pages</span>
+        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h18l-7 8v6l-4 2v-8z"/></svg>Conversion automations</span>
+        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v4h-4"/></svg>Regular updates</span>
+        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Web widgets</span>
+        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l4 4"/><path d="M4 20l1-4L16 5l3 3L8 19z"/></svg>Custom design</span>
+      </div>
+      <a class="pkg-cta" href="https://buy.stripe.com/fZu5kv62u4997CP73J7ss1u">Get Started</a>
+    </article>
+
+    <!-- AI Bundle -->
+    <article class="pkg-card pkg-card--raised">
+      <div class="pkg-banner">AI Bundle</div>
+      <p class="pkg-desc">Perfect for both, at a discount</p>
+      <p class="pkg-setup"><span class="pkg-setup-amount">$2,997</span> - setup fee <span class="pkg-save">Save $1,000</span></p>
+      <div class="pkg-price"><span class="pkg-amount">$697</span><span class="pkg-per">/ mo</span><span class="pkg-save">Save $100</span></div>
+      <div class="pkg-div"></div>
+      <span class="pkg-included">AI Website &amp; AI Employees</span>
+      <div class="pkg-features">
+        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>SEO &amp; AI search visibility</span>
+        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>25+ optimized pages</span>
+        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h18l-7 8v6l-4 2v-8z"/></svg>Conversion automations</span>
+        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v4h-4"/></svg>Regular updates</span>
+        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Web widgets</span>
+        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l4 4"/><path d="M4 20l1-4L16 5l3 3L8 19z"/></svg>Custom design</span>
+        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>Attached to your phoneline</span>
+        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 8.5a3.5 3.5 0 1 0 0 7c2.5 0 3.5-3.5 6.5-3.5s4 3.5 6.5 3.5a3.5 3.5 0 1 0 0-7c-2.5 0-3.5 3.5-6.5 3.5S8 8.5 5.5 8.5z"/></svg>Unlimited mins/msgs</span>
+        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2.2"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg>Calendar bookings</span>
+        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 2 9l10 5 10-5-10-5z"/><path d="M6 11.5V16c0 1.1 2.7 2.5 6 2.5s6-1.4 6-2.5v-4.5"/><path d="M22 9v5"/></svg>Custom trained</span>
+        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h4v4"/><path d="M20 4l-7 7"/><path d="M8 20H4v-4"/><path d="M4 20l7-7"/></svg>Live call transfers</span>
+        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="12" width="3.6" height="8" rx="1"/><rect x="10.2" y="6" width="3.6" height="14" rx="1"/><rect x="17.4" y="9" width="3.6" height="11" rx="1"/></svg>Recordings &amp; analytics</span>
+      </div>
+      <a class="pkg-cta" href="https://buy.stripe.com/fZu00b0IaeNNbT5bjZ7ss1w">Get Started</a>
+    </article>
+
+    <!-- AI Employee -->
+    <article class="pkg-card">
+      <div class="pkg-banner">AI Employee</div>
+      <p class="pkg-desc">Perfect for never missing a call</p>
+      <p class="pkg-setup"><span class="pkg-setup-amount">$997</span> - setup fee</p>
+      <div class="pkg-price"><span class="pkg-amount">$497</span><span class="pkg-per">/ mo</span></div>
+      <div class="pkg-div"></div>
+      <span class="pkg-included">What's included:</span>
+      <div class="pkg-features">
+        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>Attached to your phoneline</span>
+        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 8.5a3.5 3.5 0 1 0 0 7c2.5 0 3.5-3.5 6.5-3.5s4 3.5 6.5 3.5a3.5 3.5 0 1 0 0-7c-2.5 0-3.5 3.5-6.5 3.5S8 8.5 5.5 8.5z"/></svg>Unlimited mins/msgs</span>
+        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2.2"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg>Calendar bookings</span>
+        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 2 9l10 5 10-5-10-5z"/><path d="M6 11.5V16c0 1.1 2.7 2.5 6 2.5s6-1.4 6-2.5v-4.5"/><path d="M22 9v5"/></svg>Custom trained</span>
+        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h4v4"/><path d="M20 4l-7 7"/><path d="M8 20H4v-4"/><path d="M4 20l7-7"/></svg>Live call transfers</span>
+        <span class="pkg-feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="12" width="3.6" height="8" rx="1"/><rect x="10.2" y="6" width="3.6" height="14" rx="1"/><rect x="17.4" y="9" width="3.6" height="11" rx="1"/></svg>Recordings &amp; analytics</span>
+      </div>
+      <a class="pkg-cta" href="https://buy.stripe.com/3cI6oz1MeaxxaP10Fl7ss1v">Get Started</a>
+    </article>
+
+  </div>
+</section>
+
+<!-- ====== FAQ — contractor questions ====== -->
+<section class="faq" aria-labelledby="faq-title">
+  <div class="faq-grid-bg" aria-hidden="true"></div>
+  <div class="faq-glow" aria-hidden="true"></div>
+  <span class="faq-cross faq-cross-tl" aria-hidden="true"></span>
+  <span class="faq-cross faq-cross-br" aria-hidden="true"></span>
+
+  <div class="faq-wrap">
+    <div class="faq-head">
+      <span class="faq-tag"><span class="faq-dot"></span>[ FAQ ]</span>
+      <h2 class="faq-title" id="faq-title">Answers to the questions <span class="faq-em">contractors actually ask</span></h2>
+    </div>
+
+    <div class="faq-list">
+      <article class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span class="faq-q-text">How fast can Erio get me up and running?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Most contractors are live within a week — AI website published and your AI receptionist answering calls. No six-month build, no drawn-out onboarding.</p></div></div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span class="faq-q-text">What exactly does the AI receptionist do?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner"><p>It answers every call and message around the clock, qualifies the lead, handles questions about your services and area, and books the job straight onto your calendar — even at 2&nbsp;AM or on a Sunday.</p></div></div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span class="faq-q-text">Will the AI sound like a robot to my customers?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner"><p>No. It's trained on your business — your services, your service area, and the way you talk — so it sounds natural. And a real person on our team is always behind it.</p></div></div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span class="faq-q-text">Do I have to replace my current website?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Only if you want to. We'll build a new lead-generating site, or connect our AI tools to the site you already have — whatever books you more jobs.</p></div></div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span class="faq-q-text">Can you build something custom for my trade?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner"><p>Yes — that's what AI Solutions is for. Estimating engines, dispatch boards, route optimizers, and other custom tooling built around the parts of your operation that slow you down.</p></div></div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span class="faq-q-text">Is there a real team behind this, or just software?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner"><p>A real team. We build, train, and tune your system — and we pick up the phone when you need us. You're never left troubleshooting a bot on your own.</p></div></div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
+          <span class="faq-q-text">What does Erio cost?</span>
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner"><p>It depends on which engines you stack — websites, AI employees, solutions, or all three. Book a quick demo and we'll scope a setup that fits your shop.</p></div></div>
+      </article>
+    </div>
+
+    <div class="faq-foot">
+      <span class="faq-foot-text">Still have questions?</span>
+      <a class="faq-foot-cta" href="/book">
+        <span>Ask an expert</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FINAL CTA — let's talk ====== -->
+<section class="finalcta" aria-labelledby="finalcta-title">
+  <div class="finalcta-stage">
+    <div class="finalcta-discs" aria-hidden="true">
+      <span class="fdisc d1"></span>
+      <span class="fdisc d2"></span>
+      <span class="fdisc d3"></span>
+      <span class="fdisc d4"></span>
+    </div>
+    <h2 class="finalcta-title" id="finalcta-title">Let&rsquo;s <span class="finalcta-em">talk.</span></h2>
+    <p class="finalcta-sub">Or better &mdash; call our demo line and let Erio do the talking. Websites, AI&nbsp;employees, and custom solutions, all built around the way your shop actually runs.</p>
+    <div class="finalcta-actions">
+      <a href="/book" class="finalcta-fill">
+        <span>Book Demo</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="2"/><path d="M3 9.5h18"/><path d="M8 2.5v4M16 2.5v4"/></svg>
+      </a>
+      <a href="/packages" class="finalcta-line">
+        <span>View Packages</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8.5"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer class="site-foot">
+  <div class="site-foot-brand">
+    <a href="/"><img class="site-foot-logo" src="Erio-Logo-Text-White-Transparent.png" alt="Erio" loading="lazy" decoding="async" /></a>
+    <p>&copy; 2026 Erio LLC &middot; AI websites, employees &amp; solutions.</p>
+    <div class="site-foot-legal">
+      <a href="/privacypolicy" target="_blank" rel="noopener">Privacy</a>
+      <span>|</span>
+      <a href="/termsofservice" target="_blank" rel="noopener">Terms</a>
+    </div>
+  </div>
+
+  <nav class="site-foot-col" aria-label="Explore">
+    <span class="site-foot-head">Explore</span>
+    <a href="/book">Book</a>
+    <a href="/packages">Packages</a>
+    <a href="https://app.erio.ai/">Login</a>
+  </nav>
+
+  <nav class="site-foot-col" aria-label="Products">
+    <span class="site-foot-head">Products</span>
+    <a href="/ai-websites">AI Websites</a>
+    <a href="/ai-employees">AI Employees</a>
+    <a href="/ai-solutions">AI Solutions</a>
+  </nav>
+
+  <div class="site-foot-col">
+    <span class="site-foot-head">Contact</span>
+    <a href="mailto:info@erio.ai">info@erio.ai</a>
+    <a href="tel:+17867880486">(786) 788-0486</a>
+    <a class="site-foot-addr" href="https://www.google.com/maps/place/Erio/@38.3941829,-171.0053285,3z/data=!4m6!3m5!1s0x4ba0d6ca652a56b:0x278344f4b97a786e!8m2!3d46.423669!4d-129.9427086!16s%2Fg%2F11yk61fcg9?entry=ttu&g_ep=EgoyMDI2MDUyMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">1000 Brickell Ave,<br>Miami, FL 33131</a>
+  </div>
+</footer>
+
+<script>
+
+  /* ============================================================
+     MOBILE NAV — hamburger toggles the dropdown menu.
+  ============================================================ */
+  (function initMobileMenu() {
+    const burger = document.querySelector('.nav-mobile-burger');
+    const menu   = document.getElementById('navMobileMenu');
+    if (!burger || !menu) return;
+
+    function setOpen(open) {
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      menu.setAttribute('aria-hidden', open ? 'false' : 'true');
+      burger.classList.toggle('is-open', open);
+      menu.classList.toggle('is-open', open);
+    }
+
+    burger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setOpen(burger.getAttribute('aria-expanded') !== 'true');
+    });
+
+    // close on item tap
+    menu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => setOpen(false));
+    });
+
+    // close on outside tap
+    document.addEventListener('click', (e) => {
+      if (burger.getAttribute('aria-expanded') !== 'true') return;
+      if (menu.contains(e.target) || burger.contains(e.target)) return;
+      setOpen(false);
+    });
+
+    // close on escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') setOpen(false);
+    });
+  })();
+
+  /* ============================================================
+     MOBILE PILL — wider by default; shrinks when scrolling down,
+     expands again when scrolling up (and at the very top).
+  ============================================================ */
+  (function initMobilePillScroll() {
+    const pill = document.querySelector('.nav-mobile-pill');
+    if (!pill) return;
+    let lastY = window.scrollY || 0;
+    let ticking = false;
+
+    function update() {
+      ticking = false;
+      const y = window.scrollY || 0;
+      if (y <= 4) {
+        pill.classList.remove('is-compact');     // expanded at the top
+      } else if (y > lastY + 2) {
+        pill.classList.add('is-compact');         // scrolling down → shrink
+      } else if (y < lastY - 2) {
+        pill.classList.remove('is-compact');      // scrolling up → expand
+      }
+      lastY = y;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+  })();
+
+  /* ============================================================
+     PRODUCTS DROPDOWN — opens ONLY when the cursor enters
+     "Products", then stays open while the cursor is anywhere on
+     the pill, and closes once the cursor leaves the pill entirely.
+  ============================================================ */
+  (function initProductsDropdown() {
+    const pill    = document.querySelector('.nav-pill');
+    const trigger = document.querySelector('.nav-drop-trigger');
+    const sub     = pill && pill.querySelector('.nav-pill-sub');
+    if (!pill || !trigger || !sub) return;
+
+    const open = () => {
+      pill.classList.add('is-open');
+      sub.style.maxHeight = sub.scrollHeight + 'px'; // exact content height
+    };
+    const close = () => {
+      pill.classList.remove('is-open');
+      sub.style.maxHeight = ''; // back to CSS max-height:0
+    };
+
+    // open only from Products (hover or keyboard focus)
+    trigger.addEventListener('mouseenter', open);
+    trigger.addEventListener('focus', open);
+
+    // stay open across the whole pill; close when the cursor leaves it
+    pill.addEventListener('mouseleave', close);
+
+    // keyboard: close once focus leaves the pill
+    pill.addEventListener('focusout', (e) => {
+      if (!pill.contains(e.relatedTarget)) close();
+    });
+  })();
+
+
+  // headline gradient: compute per-char background-position once after layout settles,
+  // then recompute on resize debounced to avoid layout thrash
+  function applyHeadlineGradient() {
+    const title = document.querySelector('.hero-title');
+    if (!title) return;
+    const chars = title.querySelectorAll('.char');
+    if (!chars.length) return;
+    // single forced reflow read, then batch writes
+    const titleLeft = title.getBoundingClientRect().left;
+    const total = title.offsetWidth;
+    const writes = [];
+    chars.forEach(c => {
+      const offset = c.getBoundingClientRect().left - titleLeft;
+      writes.push([c, total, -offset]);
+    });
+    writes.forEach(([c, size, pos]) => {
+      c.style.setProperty('--grad-size', size + 'px');
+      c.style.setProperty('--grad-pos', pos + 'px');
+    });
+  }
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(applyHeadlineGradient);
+  } else {
+    window.addEventListener('load', applyHeadlineGradient);
+  }
+  let resizeRaf = 0;
+  window.addEventListener('resize', () => {
+    if (resizeRaf) return;
+    resizeRaf = requestAnimationFrame(() => {
+      resizeRaf = 0;
+      applyHeadlineGradient();
+    });
+  }, { passive: true });
+
+
+
+
+
+
+  /* ============================================================
+     FAQ — accordion (single open) + scroll reveal
+  ============================================================ */
+  (function initFaq() {
+    const root = document.querySelector('.faq');
+    if (!root) return;
+
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('is-revealed'); obs.unobserve(e.target); }
+        });
+      }, { threshold: 0.15 });
+      obs.observe(root);
+    } else {
+      root.classList.add('is-revealed');
+    }
+
+    // Reveal-on-scroll. For each, we observe an inner "watch" element so the
+    // fade fires when the actual content enters the viewport (the voice
+    // section has tall top padding, which otherwise triggered it too early).
+    [
+      { root: '.finalcta', watch: '.finalcta-stage', th: 0.25 }
+    ].forEach(({ root: rootSel, watch, th }) => {
+      const el = document.querySelector(rootSel);
+      if (!el) return;
+      const target = el.querySelector(watch) || el;
+      if ('IntersectionObserver' in window) {
+        const o = new IntersectionObserver(es => {
+          es.forEach(e => { if (e.isIntersecting) { el.classList.add('is-revealed'); o.disconnect(); } });
+        }, { threshold: th });
+        o.observe(target);
+      } else {
+        el.classList.add('is-revealed');
+      }
+    });
+
+    const items = Array.from(root.querySelectorAll('.faq-item'));
+    items.forEach(item => {
+      const btn = item.querySelector('.faq-q');
+      if (!btn) return;
+      btn.addEventListener('click', () => {
+        const open = item.classList.contains('is-open');
+        // close all, then open the clicked one (single-open accordion)
+        items.forEach(it => {
+          it.classList.remove('is-open');
+          const b = it.querySelector('.faq-q');
+          if (b) b.setAttribute('aria-expanded', 'false');
+        });
+        if (!open) {
+          item.classList.add('is-open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  })();
+
+  /* ============================================================
+     OFFSCREEN ANIMATION PAUSE — pauses CSS animations and SMIL
+     inside any section that's fully scrolled out of view.
+     Zero visual change because nothing visible is being paused.
+  ============================================================ */
+  (function initOffscreenPause() {
+    if (!('IntersectionObserver' in window)) return;
+    const targets = document.querySelectorAll('section, footer');
+    if (!targets.length) return;
+    const io = new IntersectionObserver(entries => {
+      for (const e of entries) {
+        const sec = e.target;
+        const offscreen = !e.isIntersecting;
+        sec.classList.toggle('is-offscreen-paused', offscreen);
+        const svgs = sec.querySelectorAll('svg');
+        for (const svg of svgs) {
+          if (typeof svg.pauseAnimations === 'function') {
+            if (offscreen) svg.pauseAnimations(); else svg.unpauseAnimations();
+          }
+        }
+      }
+    }, { rootMargin: '200px' });
+    targets.forEach(t => io.observe(t));
+  })();
+</script>
+
+
+
+
+<script src="https://beta.leadconnectorhq.com/loader.js" data-resources-url="https://beta.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="693c3fe5f258cfe85d44d64e"></script>
+</body>
+</html>
