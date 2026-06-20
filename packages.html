@@ -112,7 +112,8 @@
   .pkg-grid { position: relative; z-index: 2; max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; align-items: stretch; }
   .pkg-card {
     position: relative; overflow: hidden; display: flex; flex-direction: column; border-radius: 22px; padding: 30px 26px 32px;
-    background: linear-gradient(180deg, rgba(83, 185, 224, 0.55), rgba(31, 110, 132, 0.50));
+    background: rgba(255, 255, 255, 0.06);
+    -webkit-backdrop-filter: blur(28px) saturate(170%); backdrop-filter: blur(28px) saturate(170%);
     box-shadow: 0 20px 52px rgba(0, 0, 0, 0.5), inset 0 -3px 0 rgba(0, 0, 0, 0.58), inset 0 -17px 24px -14px rgba(0, 0, 0, 0.42), inset 1px 0 0 rgba(0, 0, 0, 0.58), inset -1px 0 0 rgba(0, 0, 0, 0.58);
     transition: transform 0.4s var(--ease-velvet, cubic-bezier(0.22,1,0.36,1)), box-shadow 0.4s, opacity 0.35s ease;
   }
