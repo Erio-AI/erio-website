@@ -67,6 +67,8 @@
   .hero-title .word:nth-of-type(8) .char:nth-child(4) { animation-delay: 3.00s; }
   /* keep "Choose Your AI Package" on a single line */
   .hero .hero-title { font-size: clamp(38px, 6.2vw, 82px); }
+  /* Line 2 ("Please Book Your Onboarding Call") — smaller than line 1 */
+  .hero .hero-title .word:nth-of-type(n+4) { font-size: clamp(24px, 3.9vw, 52px); }
   /* extend the per-character gradient below the baseline so descenders (the "g") aren't clipped */
   .hero .hero-title .char { background-size: var(--grad-size, 100%) 165%; padding-bottom: 0.08em; }
 
