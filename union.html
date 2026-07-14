@@ -70,7 +70,11 @@
 
   /* Smooth scroll to booking anchor when top-right Book is clicked */
   html { scroll-behavior: smooth; }
-  /* Headline: "Websites Built For Union Locals" — staggered +0.05s/char, +0.10s/word. */
+  /* Union page: tighter top space above the headline */
+  .hero { padding-top: 15px; }
+  @media (max-width: 900px) { .hero { padding-top: 7px; } }
+  @media (max-width: 560px) { .hero { padding-top: 5px; } }
+  /* Headline: "Websites For Union Locals" — staggered +0.05s/char, +0.10s/word. */
   /* Websites */
   .hero-title .word:nth-of-type(1) .char:nth-child(1) { animation-delay: 0.65s; }
   .hero-title .word:nth-of-type(1) .char:nth-child(2) { animation-delay: 0.70s; }
@@ -80,28 +84,23 @@
   .hero-title .word:nth-of-type(1) .char:nth-child(6) { animation-delay: 0.90s; }
   .hero-title .word:nth-of-type(1) .char:nth-child(7) { animation-delay: 0.95s; }
   .hero-title .word:nth-of-type(1) .char:nth-child(8) { animation-delay: 1.00s; }
-  /* Built */
+  /* For */
   .hero-title .word:nth-of-type(2) .char:nth-child(1) { animation-delay: 1.10s; }
   .hero-title .word:nth-of-type(2) .char:nth-child(2) { animation-delay: 1.15s; }
   .hero-title .word:nth-of-type(2) .char:nth-child(3) { animation-delay: 1.20s; }
-  .hero-title .word:nth-of-type(2) .char:nth-child(4) { animation-delay: 1.25s; }
-  .hero-title .word:nth-of-type(2) .char:nth-child(5) { animation-delay: 1.30s; }
-  /* For */
-  .hero-title .word:nth-of-type(3) .char:nth-child(1) { animation-delay: 1.40s; }
-  .hero-title .word:nth-of-type(3) .char:nth-child(2) { animation-delay: 1.45s; }
-  .hero-title .word:nth-of-type(3) .char:nth-child(3) { animation-delay: 1.50s; }
   /* Union */
+  .hero-title .word:nth-of-type(3) .char:nth-child(1) { animation-delay: 1.30s; }
+  .hero-title .word:nth-of-type(3) .char:nth-child(2) { animation-delay: 1.35s; }
+  .hero-title .word:nth-of-type(3) .char:nth-child(3) { animation-delay: 1.40s; }
+  .hero-title .word:nth-of-type(3) .char:nth-child(4) { animation-delay: 1.45s; }
+  .hero-title .word:nth-of-type(3) .char:nth-child(5) { animation-delay: 1.50s; }
+  /* Locals */
   .hero-title .word:nth-of-type(4) .char:nth-child(1) { animation-delay: 1.60s; }
   .hero-title .word:nth-of-type(4) .char:nth-child(2) { animation-delay: 1.65s; }
   .hero-title .word:nth-of-type(4) .char:nth-child(3) { animation-delay: 1.70s; }
   .hero-title .word:nth-of-type(4) .char:nth-child(4) { animation-delay: 1.75s; }
   .hero-title .word:nth-of-type(4) .char:nth-child(5) { animation-delay: 1.80s; }
-  /* Locals */
-  .hero-title .word:nth-of-type(5) .char:nth-child(1) { animation-delay: 1.90s; }
-  .hero-title .word:nth-of-type(5) .char:nth-child(2) { animation-delay: 1.95s; }
-  .hero-title .word:nth-of-type(5) .char:nth-child(3) { animation-delay: 2.00s; }
-  .hero-title .word:nth-of-type(5) .char:nth-child(4) { animation-delay: 2.05s; }
-  .hero-title .word:nth-of-type(5) .char:nth-child(5) { animation-delay: 2.10s; }
+  .hero-title .word:nth-of-type(4) .char:nth-child(6) { animation-delay: 1.85s; }
   .hero-title .word:nth-of-type(5) .char:nth-child(6) { animation-delay: 2.15s; }
   /* keep "Choose Your AI Package" on a single line */
   .hero .hero-title { font-size: clamp(38px, 6.2vw, 82px); }
@@ -243,7 +242,7 @@
 <!-- TOP NAV -->
 <header class="nav">
   <div class="nav-inner">
-    <a class="nav-logo" href="/" aria-label="Erio home">
+    <a class="nav-logo" href="#" onclick="event.preventDefault()" aria-label="Erio home">
       <img src="Erio Logo Original.png" alt="Erio" />
     </a>
 
@@ -258,7 +257,7 @@
 
     <!-- MOBILE NAV — single pill with logo (L), Demo text (center), hamburger (R) -->
     <div class="nav-mobile-pill" role="navigation" aria-label="Mobile">
-      <a class="nav-mobile-logo" href="/" aria-label="Erio home">
+      <a class="nav-mobile-logo" href="#" onclick="event.preventDefault()" aria-label="Erio home">
         <img src="Erio Logo Original.png" alt="Erio" />
       </a>
       <a class="nav-mobile-demo" href="#book-cal">Book</a>
@@ -272,7 +271,6 @@
   <!-- HEADLINE -->
   <h1 class="hero-title">
     <span class="word"><span class="char">W</span><span class="char">e</span><span class="char">b</span><span class="char">s</span><span class="char">i</span><span class="char">t</span><span class="char">e</span><span class="char">s</span></span>
-    <span class="word"><span class="char">B</span><span class="char">u</span><span class="char">i</span><span class="char">l</span><span class="char">t</span></span>
     <span class="word"><span class="char">F</span><span class="char">o</span><span class="char">r</span></span>
     <span class="word"><span class="char">U</span><span class="char">n</span><span class="char">i</span><span class="char">o</span><span class="char">n</span></span>
     <span class="word grad"><span class="char">L</span><span class="char">o</span><span class="char">c</span><span class="char">a</span><span class="char">l</span><span class="char">s</span></span>
