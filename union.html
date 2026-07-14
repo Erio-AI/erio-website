@@ -216,6 +216,22 @@
     .pkg-card, .pkg-card:hover, .pkg-cta:hover { transition: none; }
     .pkg-tag, .pkg-title, .pkg-card { animation: none; }
   }
+
+  /* ===== Union testimonials ===== */
+  .union-tst { max-width: 1240px; margin: 0 auto; padding: 40px 24px 80px; text-align: center; font-family: 'Exo 2', system-ui, sans-serif; color: #E7F5FA; }
+  .union-tst-title { font-size: clamp(24px, 3vw, 36px); font-weight: 700; letter-spacing: -0.02em; margin: 0 0 32px; color: #E7F5FA; }
+  .union-tst-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; align-items: start; }
+  .union-tst-card { margin: 0; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .union-tst-video-wrap { width: 100%; aspect-ratio: 9 / 16; background: #000; border-radius: 14px; overflow: hidden; box-shadow: 0 10px 34px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.06) inset; }
+  .union-tst-video-wrap video { width: 100%; height: 100%; object-fit: contain; display: block; background: #000; }
+  .union-tst-card figcaption { padding: 16px 4px 0; width: 100%; }
+  .union-tst-quote { font-size: 17px; line-height: 1.4; margin: 0 0 10px; color: #DCEFF6; font-style: italic; }
+  .union-tst-stars { display: inline-flex; gap: 3px; color: #FFC24C; margin: 0 0 10px; }
+  .union-tst-stars svg { width: 18px; height: 18px; filter: drop-shadow(0 0 6px rgba(255,194,76,0.35)); }
+  .union-tst-name { margin: 0; font-size: 15px; color: #F3FBFF; }
+  .union-tst-name strong { font-weight: 700; }
+  .union-tst-company { margin: 2px 0 0; font-size: 13px; color: #9FC4D2; }
+  @media (max-width: 900px) { .union-tst-grid { grid-template-columns: 1fr; gap: 34px; } .union-tst-video-wrap { max-width: 380px; margin: 0 auto; } }
 </style>
 <link rel="stylesheet" href="ai-websites.css?v=66">
 </head>
@@ -277,13 +293,61 @@
   </h1>
 
   <div class="union-video" style="max-width: 900px; width: 100%; margin: 34px auto 0;">
-    <div style="padding:62.5% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1209999313?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Local 152"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+    <video controls playsinline preload="metadata" style="width:100%;height:auto;display:block;border-radius:14px;background:#000;">
+      <source src="Locals/local-152.mp4" type="video/mp4">
+    </video>
   </div>
 
   <div id="book-cal" class="book-cal" style="max-width: 900px; width: 100%; margin: 34px auto 0;">
     <iframe src="https://api.erio.ai/widget/booking/9tFBg8ycEH5b3a19Xsdq" style="width: 100%;border:none;overflow: hidden;" scrolling="no" id="9tFBg8ycEH5b3a19Xsdq_1779757203027"></iframe><br><script src="https://api.erio.ai/js/form_embed.js" type="text/javascript"></script>
   </div>
 </main>
+
+<!-- ====== UNION TESTIMONIALS ====== -->
+<section class="union-tst" aria-labelledby="union-tst-title">
+  <h2 id="union-tst-title" class="union-tst-title">What our clients say</h2>
+  <div class="union-tst-grid">
+      <figure class="union-tst-card">
+        <div class="union-tst-video-wrap">
+          <video controls playsinline preload="metadata">
+            <source src="Locals/Testimonials/Eric Murray.mp4" type="video/mp4">
+          </video>
+        </div>
+        <figcaption>
+          <p class="union-tst-quote">&ldquo;Erio did a great job.&rdquo;</p>
+          <div class="union-tst-stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.95 6.6 7.05.65-5.3 4.9 1.55 7.35L12 18l-6.25 4 1.55-7.35L2 9.75l7.05-.65L12 2.5z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.95 6.6 7.05.65-5.3 4.9 1.55 7.35L12 18l-6.25 4 1.55-7.35L2 9.75l7.05-.65L12 2.5z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.95 6.6 7.05.65-5.3 4.9 1.55 7.35L12 18l-6.25 4 1.55-7.35L2 9.75l7.05-.65L12 2.5z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.95 6.6 7.05.65-5.3 4.9 1.55 7.35L12 18l-6.25 4 1.55-7.35L2 9.75l7.05-.65L12 2.5z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.95 6.6 7.05.65-5.3 4.9 1.55 7.35L12 18l-6.25 4 1.55-7.35L2 9.75l7.05-.65L12 2.5z"/></svg></div>
+          <p class="union-tst-name"><strong>Eric Murray</strong></p>
+          <p class="union-tst-company">Murray Brothers Concrete Foundations Inc.</p>
+        </figcaption>
+      </figure>
+      <figure class="union-tst-card">
+        <div class="union-tst-video-wrap">
+          <video controls playsinline preload="metadata">
+            <source src="Locals/Testimonials/Bill Lang.mp4" type="video/mp4">
+          </video>
+        </div>
+        <figcaption>
+          <p class="union-tst-quote">&ldquo;Erio did a great job.&rdquo;</p>
+          <div class="union-tst-stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.95 6.6 7.05.65-5.3 4.9 1.55 7.35L12 18l-6.25 4 1.55-7.35L2 9.75l7.05-.65L12 2.5z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.95 6.6 7.05.65-5.3 4.9 1.55 7.35L12 18l-6.25 4 1.55-7.35L2 9.75l7.05-.65L12 2.5z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.95 6.6 7.05.65-5.3 4.9 1.55 7.35L12 18l-6.25 4 1.55-7.35L2 9.75l7.05-.65L12 2.5z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.95 6.6 7.05.65-5.3 4.9 1.55 7.35L12 18l-6.25 4 1.55-7.35L2 9.75l7.05-.65L12 2.5z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.95 6.6 7.05.65-5.3 4.9 1.55 7.35L12 18l-6.25 4 1.55-7.35L2 9.75l7.05-.65L12 2.5z"/></svg></div>
+          <p class="union-tst-name"><strong>Bill Lang</strong></p>
+          <p class="union-tst-company">Lang Home Exteriors</p>
+        </figcaption>
+      </figure>
+      <figure class="union-tst-card">
+        <div class="union-tst-video-wrap">
+          <video controls playsinline preload="metadata">
+            <source src="Locals/Testimonials/Phillip Alexander.mp4" type="video/mp4">
+          </video>
+        </div>
+        <figcaption>
+          <p class="union-tst-quote">&ldquo;Erio did a great job.&rdquo;</p>
+          <div class="union-tst-stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.95 6.6 7.05.65-5.3 4.9 1.55 7.35L12 18l-6.25 4 1.55-7.35L2 9.75l7.05-.65L12 2.5z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.95 6.6 7.05.65-5.3 4.9 1.55 7.35L12 18l-6.25 4 1.55-7.35L2 9.75l7.05-.65L12 2.5z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.95 6.6 7.05.65-5.3 4.9 1.55 7.35L12 18l-6.25 4 1.55-7.35L2 9.75l7.05-.65L12 2.5z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.95 6.6 7.05.65-5.3 4.9 1.55 7.35L12 18l-6.25 4 1.55-7.35L2 9.75l7.05-.65L12 2.5z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.95 6.6 7.05.65-5.3 4.9 1.55 7.35L12 18l-6.25 4 1.55-7.35L2 9.75l7.05-.65L12 2.5z"/></svg></div>
+          <p class="union-tst-name"><strong>Phillip Alexander</strong></p>
+          <p class="union-tst-company">Alexander&rsquo;s Window Cleaning</p>
+        </figcaption>
+      </figure>
+  </div>
+</section>
 <!-- ====== FOOTER ====== -->
 <footer class="site-foot">
   <div class="site-foot-brand">
