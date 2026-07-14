@@ -223,7 +223,10 @@
   .union-tst-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; align-items: start; }
   .union-tst-card { margin: 0; display: flex; flex-direction: column; align-items: center; text-align: center; }
   .union-tst-video-wrap { width: 100%; aspect-ratio: 9 / 16; background: #000; border-radius: 14px; overflow: hidden; box-shadow: 0 10px 34px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.06) inset; }
-  .union-tst-video-wrap video { width: 100%; height: 100%; object-fit: contain; display: block; background: #000; }
+  /* Cards 1 & 2 (Eric Murray, Bill Lang) are native 4:3 landscape — match container to video so it fills */
+  .union-tst-card:nth-child(1) .union-tst-video-wrap,
+  .union-tst-card:nth-child(2) .union-tst-video-wrap { aspect-ratio: 4 / 3; }
+  .union-tst-video-wrap video { width: 100%; height: 100%; object-fit: cover; display: block; background: #000; }
   .union-tst-card figcaption { padding: 16px 4px 0; width: 100%; }
   .union-tst-quote { font-size: 17px; line-height: 1.4; margin: 0 0 10px; color: #DCEFF6; font-style: italic; }
   .union-tst-stars { display: inline-flex; gap: 3px; color: #FFC24C; margin: 0 0 10px; }
