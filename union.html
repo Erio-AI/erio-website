@@ -70,6 +70,10 @@
 
   /* Smooth scroll to booking anchor when top-right Book is clicked */
   html { scroll-behavior: smooth; }
+  /* Union hero video: floating "Tap for sound" pill overlay */
+  .union-hero-unmute { position: absolute; top: 14px; right: 14px; display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; background: rgba(11,30,40,0.72); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.14); color: #fff; border-radius: 999px; font: 500 13px/1 'Exo 2', system-ui, sans-serif; letter-spacing: 0.02em; cursor: pointer; z-index: 3; transition: background 0.2s ease, opacity 0.35s ease, transform 0.35s ease; box-shadow: 0 6px 22px rgba(0,0,0,0.35); }
+  .union-hero-unmute:hover { background: rgba(11,30,40,0.9); transform: translateY(-1px); }
+  .union-hero-unmute.is-hidden { opacity: 0; pointer-events: none; transform: translateY(-6px); }
   /* Union page: tighter top space above the headline */
   .hero { padding-top: 0; }
   @media (max-width: 900px) { .hero { padding-top: 0; } }
@@ -292,11 +296,35 @@
     <span class="word grad"><span class="char">L</span><span class="char">o</span><span class="char">c</span><span class="char">a</span><span class="char">l</span><span class="char">s</span></span>
   </h1>
 
-  <div class="union-video" style="max-width: 900px; width: 100%; margin: 34px auto 0;">
-    <video controls autoplay playsinline preload="auto" poster="Locals/local-152-poster.jpg" style="width:100%;height:auto;display:block;border-radius:14px;background:#000;">
+  <div class="union-video" style="max-width: 900px; width: 100%; margin: 34px auto 0; position: relative;">
+    <video id="union-hero-video" controls autoplay muted playsinline preload="auto" poster="Locals/local-152-poster.jpg" style="width:100%;height:auto;display:block;border-radius:14px;background:#000;">
       <source src="Locals/local-152.mp4" type="video/mp4">
     </video>
+    <button type="button" id="union-hero-unmute" class="union-hero-unmute" aria-label="Tap for sound">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M11 5 6 9H2v6h4l5 4V5z"/>
+        <line x1="23" y1="9" x2="17" y2="15"/>
+        <line x1="17" y1="9" x2="23" y2="15"/>
+      </svg>
+      <span>Tap for sound</span>
+    </button>
   </div>
+  <script>
+    (function(){
+      var v = document.getElementById('union-hero-video');
+      var b = document.getElementById('union-hero-unmute');
+      if (!v || !b) return;
+      b.addEventListener('click', function(){
+        v.muted = false;
+        var p = v.play();
+        if (p && typeof p.catch === 'function') p.catch(function(){});
+        b.classList.add('is-hidden');
+      });
+      v.addEventListener('volumechange', function(){
+        if (!v.muted && v.volume > 0) b.classList.add('is-hidden');
+      });
+    })();
+  </script>
 
   <h2 class="union-tst-title" style="margin: 53px 0 10px;">Book an appointment below</h2>
   <p class="hero-sub" style="margin: 0 auto 20px;">We&rsquo;ll have your website demo ready before the call.</p>
