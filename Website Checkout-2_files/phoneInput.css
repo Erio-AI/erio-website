@@ -1,0 +1,46 @@
+/* iti plugin styles */
+
+.iti {
+  width: 100%;
+  margin-top: 5px; /*mimic the 5px margin on input[type="text"]*/
+  margin-bottom: 5px;
+  box-sizing: border-box;
+  --iti-path-flags-1x: url('/images/external/int-tel-input/flags.webp?v=1');
+  --iti-path-flags-2x: url('/images/external/int-tel-input/flags@2x.webp?v=1');
+  --iti-path-globe-1x: url('/images/external/int-tel-input/globe.webp?v=1');
+  --iti-path-globe-2x: url('/images/external/int-tel-input/globe@2x.webp?v=1');
+}
+
+.theme .iti {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.iti.iti--container.iti--fullscreen-popup {
+  margin: 0px;
+}
+
+.prefix-input .iti .iti__country-container > button {
+  left: 46px;
+}
+
+/* fixes/resets */
+
+.iti__country-list {
+  float: left;
+  width: 100%;
+}
+
+.contact-details .label .iti__search-input {
+  padding: 9px 12px
+}
+
+/* PhoneInput styles */
+
+.phone-input-hidden {
+  display: none !important;
+}
+
+.phone-input-error {
+  outline: #dd1742 solid 1px !important;
+}
